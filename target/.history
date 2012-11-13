@@ -5,3 +5,9 @@ compile
 update
 ~compile
 ~run
+eclipsify
+play
+exit
+~run
+eclipsify
+~run
