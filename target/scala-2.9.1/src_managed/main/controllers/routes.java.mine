@@ -1,0 +1,31 @@
+// @SOURCE:C:/Users/Hellen Lemos/Desktop/sigepi-ifrn/conf/routes
+// @HASH:5781a812f562b01d5cb7332d57d6c2dd152c7ce1
+// @DATE:Tue Nov 13 17:10:00 GMT-03:00 2012
+
+package controllers;
+
+public class routes {
+public static final controllers.ReverseAssets Assets = new controllers.ReverseAssets();
+public static final controllers.ReverseAdministracao Administracao = new controllers.ReverseAdministracao();
+public static final controllers.ReverseAvaliadores Avaliadores = new controllers.ReverseAvaliadores();
+public static final controllers.ReverseProfessores Professores = new controllers.ReverseProfessores();
+public static final controllers.ReverseApplication Application = new controllers.ReverseApplication();
+public static final controllers.ReverseSessions Sessions = new controllers.ReverseSessions();
+public static class javascript {
+public static final controllers.javascript.ReverseAssets Assets = new controllers.javascript.ReverseAssets();
+public static final controllers.javascript.ReverseAdministracao Administracao = new controllers.javascript.ReverseAdministracao();
+public static final controllers.javascript.ReverseAvaliadores Avaliadores = new controllers.javascript.ReverseAvaliadores();
+public static final controllers.javascript.ReverseProfessores Professores = new controllers.javascript.ReverseProfessores();
+public static final controllers.javascript.ReverseApplication Application = new controllers.javascript.ReverseApplication();
+public static final controllers.javascript.ReverseSessions Sessions = new controllers.javascript.ReverseSessions();    
+}   
+public static class ref {
+public static final controllers.ref.ReverseAssets Assets = new controllers.ref.ReverseAssets();
+public static final controllers.ref.ReverseAdministracao Administracao = new controllers.ref.ReverseAdministracao();
+public static final controllers.ref.ReverseAvaliadores Avaliadores = new controllers.ref.ReverseAvaliadores();
+public static final controllers.ref.ReverseProfessores Professores = new controllers.ref.ReverseProfessores();
+public static final controllers.ref.ReverseApplication Application = new controllers.ref.ReverseApplication();
+public static final controllers.ref.ReverseSessions Sessions = new controllers.ref.ReverseSessions();    
+} 
+}
+                            

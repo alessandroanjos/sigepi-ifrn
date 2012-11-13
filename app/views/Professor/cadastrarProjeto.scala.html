@@ -29,18 +29,32 @@
 	         </div>
 	 </div>
 	<center>
-		 <div id="container" style="width:500px">
-		<!--  <div id="header" style="background-color:#FFA500;"> -->
-		 <!-- <h1 style="margin-bottom:0;">SIGEPI</h1></div> -->
-		 <div id="content" style="background-color:#EEEEEE;height:200px;width:500px;float:left;">
-Content goes here</div>
+	<br>
+	<br>
+	<br>
+		<form action="demo_form.asp">
+			<div>
+				<br> <b>Escolha o Edital:</b> <select>
+					<option>Edital 2010.1</option>
+					<option>Edital 2010.2</option>
+					<option>Edital 2011.1</option>
+					<option>Edital 2011.2</option>
+					<option>Edital 2012.1</option>
+					<option>Edital 2012.2</option>
+				</select>
+			</div>
+			<br> <b>Nome do Projeto:</b> <input type="text" name="fname"><br>
+			<br>
+			<form action="">
+				<b>Escolha o arquivo:</b><input type="file" multiple="multiple">
+				<br>
 
-<div id="footer" style="background-color:#99FF99;clear:both;text-align:center;">
-www.sigepi.edu.ifrn.br</div>
-		  
+			</form>
+			<button class="btn pull-right" type="submit">Avançar</button>
+			<a href="@routes.Professores.index()" class="btn pull-right">Voltar</a>
 	</center>
 	
-	 <a href="@routes.Professores.index()" class="btn">Voltar</a>
+
 </body> 
 </html> 
 }

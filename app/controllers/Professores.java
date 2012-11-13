@@ -14,6 +14,9 @@ public class Professores extends Controller{
 	}
 	
 	public static Result adicionarMembrosProjeto(){
+		return ok(views.html.Professor.adicionarMembros.render());
+	}
+	public static Result exibirDadosCadastrados(){
 		return TODO;
 	}
 }

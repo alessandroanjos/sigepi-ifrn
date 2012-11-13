@@ -1,5 +1,63 @@
+@import helper._
+@import helper.twitterBootstrap._
+
 @main("SIGEPI - Adicionar Membros"){
+<html>
 
+<body>
 
-<h1> Adicionar Membros</h1>
+<div class="topbar">
+	        <div class="fill">
+	              <div id="headerCSS">
+	                    <a class="brand" href="@routes.Professores.index()">Home</a>
+	                    <ul class="">
+	                        <li class="">
+	                            <a href="@routes.Professores.adicionarMembrosProjeto()">Adicionar Membros</a>
+	                        </li>
+	                        @*
+	                        <li class="">
+	                            <a href="@routes.Bolsistas.blank()">Bolsistas</a>
+	                        </li>
+	                        *@
+	                    </ul>
+	                    <dl id="user" class="afastar">
+	                       <dt>user.name <span>(user.email)</span></dt>
+	                         <dd>
+	                              <a href="@routes.Sessions.efetuarlogout()">Sair</a>
+	                        </dd>
+	                   </dl>
+	                   
+	                </div>
+	         </div>
+	 </div>
+	<center>
+		<br> <br> <br>
+		<div class="row">
+			<b>Aluno:</b><input class="input-large" type="text"
+				placeholder="Discente"> <b>Matrícula:</b><input
+				class="input-large" type="text" placeholder="Matrícula"><br>
+			<br> <b>Professor:</b><input class="input-large" type="text"
+				placeholder="Docente"> <b>Matrícula:</b><input
+				class="input-large" type="text" placeholder="Matrícula"><br>
+			<br>
+
+		</div>
+		<br> <br>
+		<div>
+			<button class="btn pull-right" type="submit">Avançar</button>
+			<button class="btn pull-right" type="submit">Adicionar
+				Docente</button>
+			<button class="btn pull-right" type="submit">Adicionar
+				Discente</button>
+			<a href="@routes.Professores.index()" class="btn pull-right">Voltar</a>
+		</div>
+	</center>
+
+<br>
+	<br>
+	<br>
+</body> 
+</html> 
+	
+
 }
