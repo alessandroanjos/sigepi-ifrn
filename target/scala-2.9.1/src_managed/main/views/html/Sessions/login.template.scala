@@ -68,8 +68,8 @@ Seq[Any](format.raw/*1.35*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Tue Nov 13 09:47:14 GMT-03:00 2012
-                    SOURCE: C:/Users/Hellen Lemos/Desktop/sigepi-ifrn/app/views/Sessions/login.scala.html
+                    DATE: Tue Nov 13 11:06:58 BRST 2012
+                    SOURCE: C:/Users/Alessandro/workspace/sigepi-ifrn/app/views/Sessions/login.scala.html
                     HASH: 6ae9b04673d76269ca56e1863cabbef5795b6682
                     MATRIX: 778->1|940->34|972->93|1009->96|1038->117|1077->119|1207->214|1222->220|1300->289|1340->291|1448->364|1463->370|1556->441|1601->451|1616->457|1713->532|1858->641|1873->647|1917->669|2035->756
                     LINES: 27->1|33->1|36->6|37->7|37->7|37->7|44->14|44->14|44->14|44->14|47->17|47->17|47->17|48->18|48->18|48->18|51->21|51->21|51->21|54->24

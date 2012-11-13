@@ -11,3 +11,5 @@ exit
 ~run
 eclipsify
 ~run
+compile
+~run
