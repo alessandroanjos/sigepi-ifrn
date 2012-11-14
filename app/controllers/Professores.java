@@ -19,4 +19,8 @@ public class Professores extends Controller{
 	public static Result exibirDadosCadastrados(){
 		return TODO;
 	}
+	
+	public static Result atualizarCurriculo(){
+		return TODO;
+	}
 }

@@ -1,0 +1,135 @@
+@main("SIGEPI - Atualizar Curriculo"){
+
+<html>
+	<body>
+		<div class="topbar">
+			<div class="fill">
+				<div id="headerCSS">
+					<a class="brand" href="@routes.Professores.index()">Home</a>
+					<ul class="">
+						<li class="">
+							<a href="@routes.Professores.atualizarCurriculo()">Atualizar Curriculo</a>
+						</li>
+					</ul>
+					<dl id="user" class="afastar">
+						<dt>user.name<span>(user.email)</span></dt>
+						<dd>
+							<a href="@routes.Sessions.efetuarlogout()">Sair</a>
+						</dd>
+					</dl>   
+				</div>
+			</div>
+		</div> 
+		<center> 
+			<div id="container" style="width:500px">
+			<!--  <div id="header" style="background-color:#FFA500;"> -->
+			<!-- <h1 style="margin-bottom:0;">SIGEPI</h1></div> -->
+			<div id="content" style="background-color:#EEEEEE;width:500px;float:left;">
+				<form action="demo_form.asp">
+					<div>
+						<br />
+						
+						<b>Número de Orientações de IC (Últimos 3 Anos): *</b>
+						<p>O professor deve colocar o número de orientações que fez nos últimos 3 anos. Cada orientação de IC vale 1 ponto.</p>
+						<select>
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+						</select>
+						
+						<br />
+						<br />
+						<br />
+						
+						<b>Número de Orientações de Monografias de Graduação ou Especialização (últimos 3 Anos): *</b>
+						<p>Cada orientação vale 1 ponto.</p>
+						<select>
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+						</select>
+						
+						<br />
+						<br />
+						<br />
+						
+						<b>Número de Orientações de Dissertações de Mestrado (Últimos 3 Anos): *</b>
+						<p>Cada orientação de Dissertação vale 2 pontos.</p>
+						<select>
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+						</select>
+						
+					</div>
+					@*<b>Nome do Projeto:</b> <input type="text" name="fname"></b>
+					<br />
+					<br />
+					<form action="">
+						<b>Escolha o arquivo:</b>
+						<input type="file" multiple="multiple">
+						<br />
+					</form>*@
+				<button class="btn pull-right" type="submit">Enviar</button>
+				<a href="@routes.Professores.index()" class="btn pull-right">Cancelar</a>
+			</div>
+			<div id="footer" style="background-color:#99FF99;clear:both;text-align:center;">www.sigepi.ifrn.edu.br</div>		  
+		</center>
+		<a href="@routes.Professores.index()" class="btn">Voltar</a>
+	</body> 
+</html> 
+}
