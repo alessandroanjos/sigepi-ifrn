@@ -9,8 +9,9 @@ public class Professores extends Controller{
 		return ok(views.html.Professor.index.render());
 	}
 	
-	public static Result cadastrarProjeto(){
-		return ok(views.html.Professor.cadastrarProjeto.render());
+	public static Result criarNovoProjeto(){
+		return ok(views.html.Professor.criarNovoProjeto.render());
+		/*return ok(views.html.Professor.criarNovoProjeto.render());*/
 	}
 	
 	public static Result adicionarMembrosProjeto(){

@@ -1,14 +1,14 @@
 @main("SIGEPI - Area do Professor"){
 
 
-<html>
+<html> 
 <body>
 	<div class="topbar">
 		<div class="fill">
 			<div id="headerCSS">
-				<a class="brand" href="@routes.Professores.index()">Home</a>
-				<ul class="">
-					<li class=""><a href="@routes.Professores.cadastrarProjeto()">Cadastrar	Projeto</a></li>
+				 <a class="brand" href="@routes.Professores.index()">Home</a>
+				<ul class=""> 
+					<li class=""><a href="@routes.Professores.criarNovoProjeto()">Cadastrar	Projeto</a></li> 
 					<li class=""><a href="@routes.Professores.adicionarMembrosProjeto()">Inserir Membros</a></li>
 					<li class=""><a href="@routes.Professores.atualizarCurriculo()">Atualizar Curriculo</a></li>
 					@*<li class=""><a href="@routes.Bolsistas.blank()">Bolsista</a></li>*@
@@ -24,7 +24,7 @@
 	  
 	<h1>O que deseja fazer?</h1>
 </body> 
-<a href="@routes.Professores.cadastrarProjeto()" class="btn">Cadastrar Projeto</a>
+<a href="@routes.Professores.criarNovoProjeto()" class="btn">Cadastrar Projeto</a>
 <a href="@routes.Professores.adicionarMembrosProjeto()" class="btn">Adicionar Membros</a>
 <a href="@routes.Professores.atualizarCurriculo()" class="btn">Atualizar Curriculo</a>
 </html> 

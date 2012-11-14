@@ -26,10 +26,10 @@ GET     /administracao/avaliador/acessar-formulario         controllers.Avaliado
 
 # Administração do Professor
 GET 	/administracao/professor							controllers.Professores.index()
-GET		/administracao/professor/cadastrar-projeto			controllers.Professores.cadastrarProjeto()
 GET  	/administracao/professor/adicionarMembros			controllers.Professores.adicionarMembrosProjeto()
 GET		/administracao/professor/resumoCadastroProjeto		controllers.Professores.exibirDadosCadastrados()
 GET  	/administracao/professor/atualizar-curriculo		controllers.Professores.atualizarCurriculo()
+GET     /administracao/professor/criar-novo-projeto         controllers.Professores.criarNovoProjeto()
 
 
 
