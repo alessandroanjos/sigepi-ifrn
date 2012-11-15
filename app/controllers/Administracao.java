@@ -40,7 +40,7 @@ public class Administracao extends Controller {
 		}
 		Bolsista bolsista  = bForm.get();
 		Bolsista.add(bolsista);
-		flash("success", String.format("Bolsista Adicionado com sucessso!"));
+		flash("success", String.format("Bolsista Adicionado com sucessso!")); 
 				return redirect(routes.Administracao.gerenciarBolsista());
 	}
 	

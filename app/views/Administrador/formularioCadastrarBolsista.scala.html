@@ -4,7 +4,7 @@
 @import helper.twitterBootstrap._
 
 
-@main("Sigepi - Cadastrar Um Novo Bolsista") {
+@main("SIGEPI - Cadastrar Um Novo Bolsista") {
 
 
 <h1>Formulário  Bolsista</h1>
@@ -14,9 +14,10 @@
 
 <fieldset>
    <legend>Bolsista (@bolsistas("nome").valueOr("Novo"))</legend>
-       @helper.inputText(bolsistas("Nome"))
-       @helper.inputText(bolsistas("Email"))
+       @helper.inputText(bolsistas("nome"))
+       @helper.inputText(bolsistas("email"))
        @helper.inputText(bolsistas("matricula"))
+       @helper.inputText(bolsistas("cpf"))
        
        @* @helper.textarea(bolsistas("descricao")) *@
 </fieldset>

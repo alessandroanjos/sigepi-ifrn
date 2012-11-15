@@ -19,7 +19,7 @@ GET     /administracao/admin								controllers.Administracao.index()
 GET     /administracao/admin/cadastrar-edital				controllers.Administracao.cadastrarEdital()
 GET     /administracao/admin/gerenciar-bolsista             controllers.Administracao.gerenciarBolsista()
 GET     /administracao/admin/cadastrar-bolsista				controllers.Administracao.formularioCadastrarBolsista()
-GET     /administracao/admin/salvar-cadastro-bolsista       controllers.Administracao.salvarCadastroBolsista()
+POST    /administracao/admin/salvar-cadastro-bolsista       controllers.Administracao.salvarCadastroBolsista()
 
 
 # Administração do Avaliador
