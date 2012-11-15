@@ -35,12 +35,12 @@ public class Administracao extends Controller {
 		
 		Form<Bolsista> bForm = bolsistaForm.bindFromRequest();
 		if(bForm.hasErrors()){
-			flash("error", "Please correct the form below.");
+			flash("error", "Dados inválidos!");
 			return badRequest(views.html.Administrador.formularioCadastrarBolsista.render(bForm));
 		}
 		Bolsista bolsista  = bForm.get();
 		Bolsista.add(bolsista);
-		flash("success", String.format("Successfully added product %s", bolsista));
+		flash("success", String.format("Bolsista Adicionado com sucessso!"));
 				return redirect(routes.Administracao.gerenciarBolsista());
 	}
 	
