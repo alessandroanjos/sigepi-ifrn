@@ -16,6 +16,7 @@ GET     /sair-do-sistema            						controllers.Sessions.efetuarlogout()
 # GET	/administracao/				        			    controllers.Avaliadores.index
 GET     /administracao/admin								controllers.Administracao.index()
 GET     /administracao/admin/cadastrar-edital				controllers.Administracao.cadastrarEdital()
+GET     /administracao/admin/gerenciar-bolsista             controllers.Administracao.gerenciarBolsista()
 
 # Administração do Avaliador
 GET     /administracao/avaliador            				controllers.Avaliadores.index()       
