@@ -19,7 +19,7 @@ public class Bolsista {
 	@Required(message="O campo deve ser preenchido.")
 	public String nome;
 	
-	@Required
+	@Required(message="O campo deve ser preenchido.")
 	@Email(message="O campo deve ser preenchido.")
 	public String email;
 	
