@@ -11,14 +11,13 @@ public class Professores extends Controller{
 	
 	public static Result criarNovoProjeto(){
 		return ok(views.html.Professor.criarNovoProjeto.render());
-		/*return ok(views.html.Professor.criarNovoProjeto.render());*/
 	}
 	
 	public static Result adicionarMembrosProjeto(){
 		return ok(views.html.Professor.adicionarMembros.render());
 	}
 	public static Result exibirDadosCadastrados(){
-		return TODO;
+		return ok(views.html.Professor.resumoCadastroProjeto.render());
 	}
 	
 	public static Result atualizarCurriculo(){
