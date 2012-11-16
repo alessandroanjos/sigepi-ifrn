@@ -95,3 +95,14 @@ body {
 	height: 40px;
     padding-left: 900px;
 }
+
+ div.error {
+        color: #c00;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px rgba(0,0,0,.1);
+    }
+   div.success {
+        color: #83BD41; 
+        margin-bottom: 10px;
+        text-shadow: 1px 1px rgba(0,0,0,.1);
+    }

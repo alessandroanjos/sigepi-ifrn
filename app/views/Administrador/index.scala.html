@@ -10,13 +10,13 @@
 	                    <a class="brand" href="@routes.Administracao.index()">Home</a>
 	                    <ul class="">
 	                        <li class="">
-	                            <a href="@routes.Administracao.cadastrarEdital()">Cadastrar Edital</a>
+	                            <a href="@routes.Administracao.cadastrarEdital()">Gerenciar Editais </a>
 	                        </li>
-	                        @*
+	                        
 	                        <li class="">
-	                            <a href="@routes.Bolsistas.blank()">Bolsistas</a>
+	                            <a href="@routes.Administracao.gerenciarBolsista()">Gerenciar Bolsista</a>
 	                        </li>
-	                        *@
+	                        
 	                    </ul>
 	                    <dl id="user" class="afastar">
 	                       <dt>user.name <span>(user.email)</span></dt>
@@ -32,7 +32,10 @@
 <h1>O que deseja fazer? </h1> 
 </body> 
 
-<a href="@routes.Administracao.cadastrarEdital()" class="btn">Cadastrar Edital</a>
+<a href="@routes.Administracao.cadastrarEdital()" class="btn">Gerenciar Editais </a>  - <i>Gerencie os editais de pesquisa do IFRN. </i>
+<br><br>
+<a href="@routes.Administracao.gerenciarBolsista()" class="btn">Gerenciar Bolsista</a> - <i>Gerencie os bolsistas do IFRN.</i>
+
 </html>  
 
 }

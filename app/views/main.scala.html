@@ -30,11 +30,13 @@
                     <h1>@title</h1>
         
         @if(flash.containsKey("success")){
-        <br><br>
-		   <center><h5><div class="alert alert-success">@flash.get("success")</div></h5></center>  
-		   <br><br>
+        <br>
+		   <center><h3><div class="success">@flash.get("success")</div></h3></center>  
+		   <br>
 	    } @if(flash.containsKey("error")){
-		    <div class="alert alert-error">@flash.get("error")</div>
+	    <br>
+		   <center><h3><div class="error">@flash.get("error")</div></h3></center> 
+		   <br>
 	    }
                 </div>
 
