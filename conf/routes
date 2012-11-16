@@ -11,6 +11,7 @@ GET     /acesso              		        				controllers.Sessions.login()
 GET     /esqueci-senha                      				controllers.Sessions.esqueciSenha()
 POST    /acessar-minha-conta        		 				controllers.Sessions.efetuarLogin()
 GET     /sair-do-sistema            						controllers.Sessions.efetuarlogout()
+GET     /minha-conta/ativar-minha-conta		        		controllers.Sessions.ativarConta(email: String)
 
 
 # Administração do Sistema

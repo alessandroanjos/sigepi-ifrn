@@ -3,6 +3,7 @@ package controllers;
 import java.security.NoSuchAlgorithmException;
 
 import models.Avaliador;
+import models.Usuario;
 
 import form.LoginForm;
 
@@ -64,8 +65,17 @@ public class Sessions extends Controller{
 	
 	public static Result efetuarlogout() {
 		session().clear();
-        flash("success", "Você está desconectado.");
+        flash("success", "Logout feito com sucesso!");
         return redirect(
             routes.Sessions.login());
     }
+	
+	public static Result ativarConta(String email) {
+		Usuario usuario = Usuario.find.where().eq("email", email).findUnique();
+		usuario.isAtivo = true;
+		usuario.update();
+		
+		flash().put("success", String.format("Sua conta foi ativada com sucesso!"));
+		return ok(views.html.Sessions.login.render(form(LoginForm.class)));
+	}
 }
