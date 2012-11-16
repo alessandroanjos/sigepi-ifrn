@@ -84,10 +84,12 @@ public class Sessions extends Controller{
 				session().put("usuarioLogadoID", usuario.id.toString());
 				
 				if (usuario.isProfessor)
-					return redirect(controllers.routes.Administracao.index());
+					return redirect(controllers.routes.Professores.index());
 				else if(usuario.isAvaliador){
 					return redirect(controllers.routes.Avaliadores.index());
-				}
+				} else if(usuario.isAdministrador){
+					return redirect(controllers.routes.Administracao.index());
+				}					
 				else
 					return redirect(controllers.routes.Application.index());
 			}

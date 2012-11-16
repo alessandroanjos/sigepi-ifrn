@@ -1,14 +1,15 @@
 package models;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Administrador extends Usuario{
-	public String nome;
-	public int idAdministrador;
-	public String login;
-	public String senha;
 	
+	public int idAdministrador;
+
 	public Administrador(){
 		
-	}
+	} 
 	
 	
 }

@@ -3,6 +3,24 @@
 
 # --- !Ups
 
+create table administrador (
+  id                        bigint auto_increment not null,
+  login                     varchar(255),
+  senha                     varchar(255),
+  nome                      varchar(255),
+  email                     varchar(255),
+  chave_redefinicao_senha   varchar(255),
+  is_avaliador              tinyint(1) default 0,
+  is_professor              tinyint(1) default 0,
+  is_gestor                 tinyint(1) default 0,
+  is_administrador          tinyint(1) default 0,
+  is_ativo                  tinyint(1) default 0,
+  id_administrador          integer,
+  constraint uq_administrador_login unique (login),
+  constraint uq_administrador_email unique (email),
+  constraint pk_administrador primary key (id))
+;
+
 create table bolsista (
   id                        bigint auto_increment not null,
   nome                      varchar(255),
@@ -45,6 +63,8 @@ create table usuario (
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table administrador;
 
 drop table bolsista;
 
