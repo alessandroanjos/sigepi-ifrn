@@ -31,25 +31,43 @@
 	         </div>
 	 </div>
 	<center>
-		<br> <br> <br>
-		<div class="row">
-			<b>Aluno:</b><input class="input-large" type="text"
-				placeholder="Discente"> <b>Matrícula:</b><input
-				class="input-large" type="text" placeholder="Matrícula"><br>
-			<br> <b>Professor:</b><input class="input-large" type="text"
-				placeholder="Docente"> <b>Matrícula:</b><input
-				class="input-large" type="text" placeholder="Matrícula"><br>
-			<br>
+		<!-- Adicionar Dicente -->
+		<a href="#addDicente" role="button" class="btn" data-toggle="modal">Adicionar Dicente</a>
 
-		</div>
-		<br> <br>
-		<div>
-			<a class="btn pull-right" type="submit" href="@routes.Professores.exibirDadosCadastrados()">Avançar</a>
-			<button class="btn pull-right" type="submit">Adicionar
-				Docente</button>
-			<button class="btn pull-right" type="submit">Adicionar
-				Discente</button>
-			<a href="@routes.Professores.index()" class="btn pull-right">Voltar</a>
+		<!-- Modal -->
+		<div id="addDicente" class="modal hide fade" tabindex="-1" role="dialog"
+			aria-labelledby="addDicenteLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Inserir Dicente</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="text">Nome:</label>
+						<div class="controls">
+							<input type="text" id="name" placeholder="Insira seu nome aqui!">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="text">Matricula:</label>
+						<div class="controls">
+							<input type="text" id="text" placeholder="Insira sua matricula aqui!">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="text">CPF:</label>
+						<div class="controls">
+							<input type="text" id="text" placeholder="Insira seu cpf aqui!">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+				<button class="btn btn-primary">Salvar</button>
+			</div>
 		</div>
 	</center>
 
