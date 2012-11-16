@@ -1,8 +1,12 @@
 @(title: String)(content: Html)
 
+@import form.LoginForm._
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
 
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 
 <html>
     <head>
@@ -19,7 +23,21 @@
     </head>
     <body>
 
-	
+	@if(isLogado()) {
+		@if(getUsuarioLogado().isProfessor) {
+			@menuProfessor()
+   	    }
+   	    
+   	    @if(getUsuarioLogado().isAvaliador)	{
+   	    	@menuAvaliador() 	
+   	   	} else {
+	   		@menuGestor()
+	   	}
+    	
+    } else {
+    		@menuPublico()
+    }
+   
 
 
 	<div class="container">

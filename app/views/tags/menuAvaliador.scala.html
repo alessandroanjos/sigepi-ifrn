@@ -1,7 +1,7 @@
 
-<html>
-<body>
-<div class="topbar">
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+	<div class="topbar">
 	        <div class="fill">
 	              <div id="headerCSS">
 	                    <a class="brand" href="@routes.Avaliadores.index()">Home</a>
@@ -9,11 +9,11 @@
 	                        <li class="">
 	                            <a href="@routes.Avaliadores.avaliarProjeto()">Avaliar Projetos</a>
 	                        </li>
-	                        @*
+	                        
 	                        <li class="">
-	                            <a href="@routes.Bolsistas.blank()">Bolsistas</a>
+	                            <a href="routes.Bolsistas.blank()">Bolsistas</a>
 	                        </li>
-	                        *@
+	                        
 	                    </ul>
 	                    <dl id="user" class="afastar">
 	                       <dt>user.name <span>(user.email)</span></dt>
@@ -25,6 +25,4 @@
 	                </div>
 	         </div>
 	 </div>
-	 </body>
-	 </html>
-	 
+	

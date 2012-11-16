@@ -41,7 +41,43 @@ public class Usuario extends Model {
 	
 	public String chaveRedefinicaoSenha;
 	
+	public boolean isAvaliador;
+	public boolean isAvaliador() {
+		return isAvaliador;
+	}
+
+	public void setAvaliador(boolean isAvaliador) {
+		this.isAvaliador = isAvaliador;
+	}
+
 	public boolean isProfessor;
+	public boolean isGestor;
+	public boolean isAdministrador;
+	
+	public boolean isGestor() {
+		return isGestor;
+	}
+
+	public void setGestor(boolean isGestor) {
+		this.isGestor = isGestor;
+	}
+
+	public boolean isAdministrador() {
+		return isAdministrador;
+	}
+
+	public void setAdministrador(boolean isAdministrador) {
+		this.isAdministrador = isAdministrador;
+	}
+
+	public static Finder<Long, Usuario> getFind() {
+		return find;
+	}
+
+	public static void setFind(Finder<Long, Usuario> find) {
+		Usuario.find = find;
+	}
+
 	public boolean isAtivo;
 
 	public Usuario() {
