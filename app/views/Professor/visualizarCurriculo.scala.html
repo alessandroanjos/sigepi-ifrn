@@ -1,6 +1,4 @@
-
-
-@main("SIGEPI - Atualizar Currículo"){
+@main("SIGEPI - Currículo"){
 
 <html >
 	<head>
@@ -9,7 +7,7 @@
 
 	<body>
 		
-		<form action=""><br />	
+		<form action="demo_form.asp"><br />	
 			
 		<b>Número de Orientações de IC (Últimos 3 Anos): *</b>
 		<p>O professor deve colocar o número de orientações que fez nos últimos 3 anos. Cada orientação de IC vale 1 ponto.</p>
@@ -188,6 +186,8 @@
 			<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
 			<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
 		</select>
+		</form>
+		
 		
 		<br /><br /><br />
 		
@@ -200,11 +200,8 @@
 										
 		<br /><br /><br />
 		
-		<button class="btn pull-right" type="submit">Enviar</button>
-		<a href="@routes.Professores.index()" class="btn pull-right">Cancelar</a><br />
 		<div id="footer" style="background-color:#99FF99;clear:both;text-align:center;"></div>
 		<a href="@routes.Professores.index()" class="btn">Voltar</a>
 	</body> 
 </html> 
-
 }

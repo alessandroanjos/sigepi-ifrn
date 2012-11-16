@@ -23,4 +23,8 @@ public class Professores extends Controller{
 	public static Result atualizarCurriculo(){
 	    return ok(views.html.Professor.atualizarCurriculo.render());
 	}
+	
+	public static Result visualizarCurriculo(){
+		return ok(views.html.Professor.visualizarCurriculo.render());
+	}
 }

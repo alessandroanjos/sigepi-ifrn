@@ -1,0 +1,26 @@
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+<div class="topbar">
+	        <div class="fill">
+	              <div id="headerCSS">
+	                    <a class="brand" href="@routes.Administracao.index()">Home</a>
+	                    <ul class="">
+	                        <li class="">
+	                            <a href="@routes.Administracao.cadastrarEdital()">Gerenciar Editais </a>
+	                        </li>
+	                        
+	                        <li class="">
+	                            <a href="@routes.Administracao.gerenciarBolsista()">Gerenciar Bolsista</a>
+	                        </li>
+	                        
+	                    </ul>
+	                    <dl id="user" class="afastar">
+	                       <dt>user.name <span>(user.email)</span></dt>
+	                         <dd>
+	                              <a href="@routes.Sessions.efetuarlogout()">Sair</a>
+	                        </dd>
+	                   </dl>
+	                   
+	                </div>
+	         </div>
+	 </div>

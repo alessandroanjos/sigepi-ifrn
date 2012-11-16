@@ -24,12 +24,18 @@
     <body>
 
 	@if(isLogado()) {
+	
 		@if(getUsuarioLogado().isProfessor) {
 			@menuProfessor()
    	    }
    	    
+   	    @if(getUsuarioLogado().isAdministrador) {
+			@menuAdmin()
+   	    }
+   	    
    	    @if(getUsuarioLogado().isAvaliador)	{
    	    	@menuAvaliador() 	
+   	    	
    	   	} else {
 	   		@menuGestor()
 	   	}

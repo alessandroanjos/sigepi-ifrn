@@ -36,6 +36,7 @@ GET  	/administracao/professor/adicionarMembros			controllers.Professores.adicio
 GET		/administracao/professor/resumoCadastroProjeto		controllers.Professores.exibirDadosCadastrados()
 GET  	/administracao/professor/atualizar-curriculo		controllers.Professores.atualizarCurriculo()
 GET     /administracao/professor/criar-novo-projeto         controllers.Professores.criarNovoProjeto()
+GET  	/administracao/professor/visualizar-curriculo		controllers.Professores.visualizarCurriculo()
 
 
 
