@@ -20,11 +20,11 @@ public class Professores extends Controller{
 		return ok(views.html.Professor.resumoCadastroProjeto.render());
 	}
 	
-	public static Result atualizarCurriculo(){
-	    return ok(views.html.Professor.atualizarCurriculo.render());
+	public static Result curriculo(){
+	    return ok(views.html.Professor.curriculo.render());
 	}
 	
-	public static Result visualizarCurriculo(){
+	/*public static Result visualizarCurriculo(){
 		return ok(views.html.Professor.visualizarCurriculo.render());
-	}
+	}*/
 }
