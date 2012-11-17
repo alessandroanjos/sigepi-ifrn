@@ -24,7 +24,4 @@ public class Professores extends Controller{
 	    return ok(views.html.Professor.curriculo.render());
 	}
 	
-	/*public static Result visualizarCurriculo(){
-		return ok(views.html.Professor.visualizarCurriculo.render());
-	}*/
 }

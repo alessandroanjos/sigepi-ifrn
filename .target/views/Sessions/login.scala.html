@@ -1,0 +1,29 @@
+@(loginForm: Form[form.LoginForm])
+
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("SIGEPI entrar") {
+<html>
+<head>
+  
+</head>
+
+<div class="well" style="width:400px; margin:0 auto; height:25s0px">
+   		@helper.form(action = routes.Sessions.efetuarLogin(), 'style -> "margin:0;") {
+   			<fieldset>
+   				<legend>Acessar minha Conta</legend>
+   				
+   				@helper.inputText(loginForm("login"), 'class -> "span3", '_label -> "Login: ")
+   				@helper.inputPassword(loginForm("senha"), 'class -> "span3", '_label -> "Senha: ")
+   				<center>
+   				   <input type="submit" value="      Entrar!      " class="btn primary">
+   			    </center> 
+   			</fieldset>
+   		} 
+  	</div> 
+  	
+  	
+</html> 
+}

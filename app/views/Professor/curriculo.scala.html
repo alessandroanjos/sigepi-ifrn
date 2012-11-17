@@ -1,0 +1,306 @@
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("SIGEPI - Currículo"){
+
+<html >
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+
+	<body>
+		
+		<form action="demo_form.asp"><br />	
+		
+		<!-- MOSTRAR CURRÍCULO -->
+		<h4>O CURRÍCULO DEVERÁ SER EXIBIDO AQUI</h4>
+		<br />
+		
+		<div id="footer" style="background-color:#99FF99;clear:both;text-align:center;"></div>
+		<a href="@routes.Professores.index()" class="btn">Voltar</a>
+		<a href="#attCurriculo" role="button" class="btn" data-toggle="modal">Atualizar Currículo</a>
+		
+		<center>
+		<!-- Atualizar Currículo -->
+
+		<!-- Modal -->
+			<div id="attCurriculo" class="modal hide fade" tabindex="-1" role="dialog"
+				aria-labelledby="attCurriculo" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h3 id="myModalLabel">Atualizar Currículo</h3>
+				</div>
+				
+				<div class="modal-body">
+					<form class="form-horizontal">
+					
+						<div class="control-group">
+							<b>Número de Orientações de IC (Últimos 3 Anos):</b>
+							<br />
+							<i>Cada orientação de IC vale 1 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Orientações de Monografias de Graduação ou Especialização (últimos 3 Anos):</b>
+							<br />
+							<i>Cada orientação vale 1 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Orientações Dissertações de Mestrado (Últimos 3 Anos):</b>
+							<br />
+							<i>Cada orientação vale 2 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Orientações Dissertações de Doutorado (Últimos 3 Anos):</b>
+							<br />
+							<i>Cada orientação vale 3 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Coordenação de Graduação ou Pós-Graduação (Por Ano, nos últimos 3 anos):</b>
+							<br />
+							<i>O professor deve informar se foi coordenador nos últimos 3 anos, e por quantos anos. Cada ano como coordenador valerá 2 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Projetos de Pesquisa em Andamento:</b>
+							<br />
+							<i>Cada projeto de pesquisa em andamento valerá 3 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Bancas de Graduação ou Especialização (Últimos 3 Anos):</b>
+							<br />
+							<i>Para cada banca o professor receberá 0,5 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Bancas de Mestrado (Últimos 3 Anos):</b>
+							<br />
+							<i>Para cada banca o professor receberá 1 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Bancas de Doutorado (Últimos 3 Anos):</b>
+							<br />
+							<i>Para cada banca o professor receberá 1,5 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Publicação de Livros com ISBN:</b>
+							<br />
+							<i>Cada publicação de livros receberá 3 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Publicação de Capítulos de Livros com ISBN:</b>
+							<br />
+							<i>Cada publicação de livros receberá 2 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Trab. Publ. em Revistas e Periódicos (qualis acima de B1 - Últimos 3 Anos):</b>
+							<br />
+							<i>Cada publicação de livros receberá 5 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Trab. Publ. em Revistas e Periódicos (qualis entre B2 - B5 - Últimos 3 Anos):</b>
+							<br />
+							<i>Cada publicação de livros receberá 4 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Trab. Publ. em Revistas e Periódicos (qualis C - Últimos 3 Anos):</b>
+							<br />
+							<i>Cada publicação de livros receberá 1 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Comunicação em Congressos Internacionais (últimos 3 Anos):</b>
+							<br />
+							<i>Cada comunicação receberá 1,5 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Comunicação em Congressos Nacionais (últimos 3 Anos):</b>
+							<br />
+							<i>Cada comunicação receberá 1 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Comunicação em Congressos Regionais (últimos 3 Anos):</b>
+							<br />
+							<i>Cada comunicação receberá 0,5 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Participação como Conferencista (últimos 3 Anos):</b>
+							<br />
+							<i>Cada participação receberá 2 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Trabalhos Completos Publicados em Anais Internacionais (Últimos 3 Anos):</b>
+							<br />
+							<i>Cada trabalho receberá 1,5 pontos.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Trabalhos Completos Publicados em Anais Nacionais (Últimos 3 Anos):</b>
+							<br />
+							<i>Cada trabalho receberá 1 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Número de Trabalhos Completos Publicados em Anais Regionais (Últimos 3 Anos):</b>
+							<br />
+							<i>Cada trabalho receberá 0,5 ponto.</i>
+							<div class="controls">
+								<select style="width:50px">
+									<option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+									<option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<div class="control-group">
+							<b>Títulos Decorrentes de Atividades Acadêmicas:</b>
+							<br />
+							<i>Indicar titulação.</i>
+							<div class="controls">
+								<input type="checkbox" value="option1"> Título de Doutor (10 Pontos)<br />
+								<input type="checkbox" value="option2"> Título de Mestre (7 Pontos)<br />
+								<input type="checkbox" value="option3"> Título de Especialização (3 Pontos)<br />
+								<input type="checkbox" value="option4"> Bolsista de Produtividade do CNPq (20 pontos)<br />				
+							</div>
+						</div>
+						<br />
+					</form>
+					
+					<div class="modal-footer">
+						<button class="btn btn-primary">Salvar</button>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+					</div>
+				
+			</div>
+			
+		</center>
+		
+	</body> 
+</html> 
+}
