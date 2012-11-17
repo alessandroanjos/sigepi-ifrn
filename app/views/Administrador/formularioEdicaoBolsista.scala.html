@@ -1,12 +1,13 @@
-@(bolsistas: Form[Bolsista])
+@(id: Long, bolsistas: Form[Bolsista])
 
 @import helper._
 @import helper.twitterBootstrap._
 
 
-@main("SIGEPI - Cadastrar Um Novo Bolsista") {
 
-@helper.form(action = routes.Administracao.salvarCadastroBolsista()) {
+@main("SIGEPI - Editar Bolsista") {
+
+@helper.form(action = routes.Administracao.update(id)) {
 
 
 <fieldset>
@@ -23,6 +24,6 @@
 <a href="@routes.Administracao.gerenciarBolsista" class="btn">Cancelar</a>
 
 
- }
+ } 
 
 }

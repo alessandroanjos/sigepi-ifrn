@@ -22,6 +22,12 @@ GET     /administracao/admin/gerenciar-bolsista             controllers.Administ
 GET     /administracao/admin/cadastrar-bolsista				controllers.Administracao.formularioCadastrarBolsista()
 POST    /administracao/admin/salvar-cadastro-bolsista       controllers.Administracao.salvarCadastroBolsista()
 
+GET 	/administracao/admin/:id/editar						controllers.Administracao.formularioEdicaoBolsista(id: Long)
+POST 	/administracao/admin/:id/editar     				controllers.Administracao.update(id: Long)
+GET 	/administracao/admin/:id/deletar	    			controllers.Administracao.delete(id: Long)
+
+
+
 
 # Administração do Avaliador
 GET     /administracao/avaliador            				controllers.Avaliadores.index()       

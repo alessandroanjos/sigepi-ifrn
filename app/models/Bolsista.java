@@ -11,6 +11,7 @@ import play.data.validation.Constraints.Email;
 
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
+import play.db.ebean.Model.Finder;
 
 @Entity
 public class Bolsista extends Model{
@@ -117,5 +118,7 @@ public class Bolsista extends Model{
 	  
 	  public static void add(Bolsista bolsista) {
 		  bolsistas.add(bolsista); }
+	  
+	  public static Finder<Long, Bolsista> find = new Finder<Long, Bolsista>(Long.class, Bolsista.class);
 
 }

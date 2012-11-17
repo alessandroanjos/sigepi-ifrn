@@ -98,7 +98,7 @@ public class Sessions extends Controller{
 	
 	public static Result efetuarlogout() {
 		session().clear();
-        flash("success", "Logout feito com sucesso!");
+        flash("success", "Logout realizado com sucesso!");
         return redirect(
             routes.Sessions.login());
     }
