@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import play.data.validation.Constraints.Email;
 
@@ -29,6 +30,10 @@ public class Bolsista extends Model{
 	
 	@Required(message="O campo deve ser preenchido.")
 	public String cpf;
+	
+	@ManyToOne
+	public Projeto projeto;
+	
 	
 	public Long getId() {
 		return id;
