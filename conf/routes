@@ -56,7 +56,7 @@ GET 	/administracao/professor/:id/editar					controllers.Professores.formularioE
 POST 	/administracao/professor/:id/editar     			controllers.Professores.update(id: Long)
 GET 	/administracao/professor/:id/deletar	    		controllers.Professores.deletarProjeto(id: Long)
 
-
+GET     /administracao/professor/exibir-dados-cadastrados   controllers.Professores.exibirDadosCadastrados()
 
 
 # Map static resources from the /public folder to the /assets URL path

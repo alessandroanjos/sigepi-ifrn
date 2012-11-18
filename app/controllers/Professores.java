@@ -72,7 +72,7 @@ public class Professores extends Controller{
         }
         //Atualiza no BD.
         pForm.get().update(id);
-        flash("success", "Projeto " + pForm.get().nome + " foi Atualizado(a) com Sucesso!");
+        flash("success", "Projeto \"" + pForm.get().nome + "\" foi Atualizado(a) com Sucesso!");
         return redirect(routes.Professores.gerenciarProjeto());
    
     }
@@ -93,5 +93,9 @@ public class Professores extends Controller{
 		}
 	
 		return redirect(routes.Professores.gerenciarProjeto());
+    }
+    
+    public static Result exibirDadosCadastrados(){
+    	return TODO;
     }
 }

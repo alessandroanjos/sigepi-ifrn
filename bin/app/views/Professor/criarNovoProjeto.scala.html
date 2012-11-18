@@ -1,0 +1,37 @@
+@main("SIGEPI - Cadastrar Projetos"){
+
+<html>
+
+<body>
+
+
+	<center>
+	<br>
+	<br>
+	<br>
+		<form action="demo_form.asp">
+			<div>
+				<br> <b>Escolha o Edital:</b> <select>
+					<option>Edital 2010.1</option>
+					<option>Edital 2010.2</option>
+					<option>Edital 2011.1</option>
+					<option>Edital 2011.2</option>
+					<option>Edital 2012.1</option>
+					<option>Edital 2012.2</option>
+				</select>
+			</div>
+			<br> <b>Nome do Projeto:</b> <input type="text" name="fname"><br>
+			<br>
+			<form action="">
+				<b>Escolha o arquivo:</b><input type="file" multiple="multiple">
+				<br>
+
+			</form>
+			<a class="btn pull-right" type="submit" href="@routes.Professores.adicionarMembrosProjeto()">Avançar</a>
+			<a href="@routes.Professores.index()" class="btn pull-right">Voltar</a>
+	</center>
+	
+
+</body> 
+</html> 
+}

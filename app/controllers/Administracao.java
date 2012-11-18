@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import models.Bolsista;
+import models.Edital;
 import models.Usuario;
 import play.data.Form;
 import play.mvc.Controller;
@@ -14,7 +15,10 @@ import play.mvc.Result;
 public class Administracao extends Controller {
 	
 	private static final Form<Bolsista> bolsistaForm = form(Bolsista.class);
+	
+	private static final Form<Edital> editalForm = form(Edital.class);
 
+	
 	public static Result index(){
         return ok(views.html.Administrador.index.render());
 	}
@@ -43,7 +47,7 @@ public class Administracao extends Controller {
 		}
 		//armazena no BD
 		bForm.get().save();
-        flash("success", "Bolsista " + bForm.get().nome + " foi Cadastrado(a) com Sucesso!");
+        flash("success", "Bolsista \"" + bForm.get().nome + "\" foi Cadastrado(a) com Sucesso!");
         return redirect(routes.Administracao.gerenciarBolsista());
 		
         //Armazena na memória
@@ -66,7 +70,7 @@ public class Administracao extends Controller {
      *
      * @param id Id of the computer to edit
      */
-    public static Result update(Long id) {
+    public static Result atualizarBolsista(Long id) {
         Form<Bolsista> bForm = form(Bolsista.class).bindFromRequest();
         if(bForm.hasErrors()) {
             return badRequest(views.html.Administrador.formularioEdicaoBolsista.render(id, bForm));
@@ -81,7 +85,7 @@ public class Administracao extends Controller {
     /**
      * Handle computer deletion
      */
-    public static Result delete(Long id) {
+    public static Result deletarBolsista(Long id) {
            
         Bolsista bolsista = Bolsista.find.byId(id);
         	
@@ -97,4 +101,64 @@ public class Administracao extends Controller {
     }
     
 	
+    //CRUD Edital
+    
+    public static Result gerenciarEdital(){
+    	
+    	//Passar uma lista de Bolsistas
+    		List<Edital> editais = Edital.find.where().findList();
+    	//Set<Bolsista> bolsistas = Bolsista.findAll();
+    	   return ok(views.html.Administrador.gerenciarEdital.render(editais));
+    }
+    
+    public static Result formularioCadastrarEdital(){
+    	return ok(views.html.Administrador.formularioCadastrarEdital.render(editalForm));//
+    }
+    
+    public static Result salvarCadastroEdital() {
+    	
+    	Form<Edital> eForm = editalForm.bindFromRequest();
+		if(eForm.hasErrors()){
+			flash("error", "Dados inválidos!");
+			return badRequest(views.html.Administrador.formularioCadastrarEdital.render(eForm));
+		}
+		//armazena no BD
+		eForm.get().save();
+		
+        flash("success", "Edital \"" + eForm.get().nome + "\"  foi Cadastrado(a) com Sucesso!");
+        return redirect(routes.Administracao.gerenciarEdital());
+
+    }
+    
+    public static Result formularioEdicaoEdital(Long id){
+           
+    	Form<Edital> eForm = form(Edital.class).fill(Edital.find.byId(id));
+		
+		return ok(views.html.Administrador.formularioEdicaoEdital.render(id, eForm));
+    }
+    
+    public static Result atualizarEdital(Long id) {
+    	Form<Edital> eForm = form(Edital.class).bindFromRequest();
+        if(eForm.hasErrors()) {
+            return badRequest(views.html.Administrador.formularioEdicaoEdital.render(id, eForm));
+        }
+        //Atualiza no BD.
+        eForm.get().update(id);
+        flash("success", "Edital \"" + eForm.get().nome + "\" foi Atualizado(a) com Sucesso!");
+        return redirect(routes.Administracao.gerenciarEdital());
+    }
+    
+    public static Result deletarEdital(Long id) {
+    	Edital edital = Edital.find.byId(id);
+    	
+		if (edital == null) {
+			flash().put("error", "O Edital informado não foi encontrado no Sistema.");
+		} else {
+			edital.delete();
+						
+			flash().put("success", "Edital \""+ edital.nome +"\" removido(a) com sucesso!");
+		}
+		
+		return redirect(routes.Administracao.gerenciarEdital());
+    }
 }

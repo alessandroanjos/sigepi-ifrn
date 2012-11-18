@@ -1,0 +1,122 @@
+@main("SIGEPI - Submeter Projetos"){
+
+<html>
+
+<body>
+
+
+	<center>
+	<br>
+	<br>
+	<br>
+		<form action="demo_form.asp">
+			<div>
+				<br> <b>Escolha o Edital:</b> <select>
+					<option>Edital 2010.1</option>
+					<option>Edital 2010.2</option>
+					<option>Edital 2011.1</option>
+					<option>Edital 2011.2</option>
+					<option>Edital 2012.1</option>
+					<option>Edital 2012.2</option>
+				</select>
+			</div>
+			<br> <b>Nome do Projeto:</b>  <select>
+					<option>Potigol</option>
+					<option>Games Online</option>
+					<option>Sei nao</option>
+				</select><br>
+			<br>
+			<form action="">
+				<b>Escolha o arquivo:</b><input type="file" multiple="multiple">
+				<br>
+
+			</form>
+		<!-- Adicionar Dicente -->
+		<a href="#addDicente" role="button" class="btn" data-toggle="modal">Adicionar Discente</a>
+
+		<!-- Modal -->
+		<div id="addDicente" class="modal hide fade" tabindex="-1" role="dialog"
+			aria-labelledby="addDicenteLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Inserir Discente</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="text">Nome:</label>
+						<div class="controls">
+							<input type="text" id="name" placeholder="Insira seu nome aqui!">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="text">Matricula:</label>
+						<div class="controls">
+							<input type="text" id="text" placeholder="Insira sua matricula aqui!">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="text">CPF:</label>
+						<div class="controls">
+							<input type="text" id="text" placeholder="Insira seu cpf aqui!">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+				<button class="btn btn-primary">Salvar</button>
+			</div>
+		</div>
+		
+		<!-- Adicionar Dicente -->
+		<a href="#addDocente" role="button" class="btn" data-toggle="modal">Adicionar Docente</a>
+
+		<!-- Modal -->
+		<div id="addDocente" class="modal hide fade" tabindex="-1" role="dialog"
+			aria-labelledby="addDocenteLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">X</button>
+				<h3 id="myModalLabel">Inserir Docente</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="text">Nome:</label>
+						<div class="controls">
+							<input type="text" id="name" placeholder="Insira seu nome aqui!">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="text">Matricula:</label>
+						<div class="controls">
+							<input type="text" id="text" placeholder="Insira sua matricula aqui!">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="text">CPF:</label>
+						<div class="controls">
+							<input type="text" id="text" placeholder="Insira seu cpf aqui!">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>
+				<button class="btn btn-primary">Salvar</button>
+			</div>
+		</div>
+	</center>
+			
+			
+			 
+			<a class="btn pull-right" type="submit" >Enviar</a>
+			<a href="@routes.Professores.index()" class="btn pull-right">Voltar</a>
+	</center> 
+	
+
+</body> 
+</html> 
+}

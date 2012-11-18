@@ -29,7 +29,7 @@
                 		<td>@bolsista.matricula</td>
 						<td style="width:15%;">
 						<a href="@routes.Administracao.formularioEdicaoBolsista(bolsista.id)" class="btn success"><i class="icon-edit"></i> Editar</a>
-						<a href="@routes.Administracao.delete(bolsista.id)" onclick="return confirm('Deseja realmente excluir o Bolsista: &quot;@bolsista.nome&quot;?')" class="btn danger"><i class="icon-remove"></i> Excluir</a>
+						<a href="@routes.Administracao.deletarBolsista(bolsista.id)" onclick="return confirm('Deseja realmente excluir o Bolsista: &quot;@bolsista.nome&quot;?')" class="btn danger"><i class="icon-remove"></i> Excluir</a>
 						@*
 							<a href="routes.Professores.formularioEdicao(professor.id)" class="btn btn-small"><i class="icon-edit"></i> Editar</a>
 							<a href="routes.Professores.deletar(professor.id)" onclick="return confirm('Deseja realmente excluir o bolsista &quot;@professor.nome&quot;?')" class="btn btn-small"><i class="icon-remove"></i> Excluir</a>

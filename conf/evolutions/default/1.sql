@@ -33,11 +33,10 @@ create table bolsista (
 
 create table edital (
   id_edital                 bigint auto_increment not null,
+  nome                      varchar(255),
   descricao                 varchar(255),
-  data_inscricao            datetime,
-  periodo_inscricao_inicial datetime,
-  perido_inscricao_final    datetime,
-  date                      datetime,
+  periodo_inscricao_inicial varchar(255),
+  periodo_inscricao_final   varchar(255),
   constraint pk_edital primary key (id_edital))
 ;
 

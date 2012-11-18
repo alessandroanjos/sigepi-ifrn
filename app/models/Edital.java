@@ -1,76 +1,58 @@
 package models;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 import play.data.validation.Constraints.Required;
+import play.db.ebean.Model;
+import play.db.ebean.Model.Finder;
 
 
 @Entity
-public class Edital {
+public class Edital extends Model{
 	@Id
 	public Long idEdital;
-	@Required (message="O campo Descrição deve ser preenchido")
-	public String descricao;
-	@Required (message="O campo data deve ser preenchido")
-	public Date dataInscricao;
-	@Required (message="O campo data deve ser preenchido")
-	public Date periodoInscricaoInicial;
-	@Required (message="O campo data deve ser preenchido")
-	public Date peridoInscricaoFinal;
+
+
+	@Required (message="O campo deve ser preenchido.")
+    public String nome;
 	
-	public Long getIdEdital() {
-		return idEdital;
-	}
-	public void setIdEdital(Long idEdital) {
-		this.idEdital = idEdital;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public Date getDataInscricao() {
-		return dataInscricao;
-	}
-	public void setDataInscricao(Date dataInscricao) {
-		this.dataInscricao = dataInscricao;
-	}
-	public Date getPeriodoInscricaoInicial() {
-		return periodoInscricaoInicial;
-	}
-	public void setPeriodoInscricaoInicial(Date periodoInscricaoInicial) {
-		this.periodoInscricaoInicial = periodoInscricaoInicial;
-	}
-	public Date getPeridoInscricaoFinal() {
-		return peridoInscricaoFinal;
-	}
-	public void setPeridoInscricaoFinal(Date peridoInscricaoFinal) {
-		this.peridoInscricaoFinal = peridoInscricaoFinal;
-	}
+	@Required (message="O campo deve ser preenchido.")
+	public String descricao;
+	
+	@Required (message="O campo deve ser preenchido.")
+	public String periodoInscricaoInicial;
+	
+	@Required (message="O campo deve ser preenchido.")
+	public String periodoInscricaoFinal;
+	
+	
+	@OneToMany
+	public Projeto projeto;
+	
+	
 
-
-	GregorianCalendar gc = new GregorianCalendar(2009, Calendar.JULY, 15);  
-    Date date = gc.getTime();  
    
     public Edital(){
     	
     }
 	 
 	 
-	public Edital(Long idEdital, String descricao, Date dataInscricao, Date periodoInscricaoInicial, Date periodoInscricaoFinal){
+	public Edital(Long idEdital, String descricao, String periodoInscricaoInicial, String periodoInscricaoFinal){
 		this.idEdital = idEdital;
 		this.descricao = descricao;
-		this.dataInscricao = dataInscricao;
 		this.periodoInscricaoInicial = periodoInscricaoInicial;
-		this.peridoInscricaoFinal = periodoInscricaoFinal;
+		this.periodoInscricaoFinal = periodoInscricaoFinal;
 	}
 	
 		
@@ -80,5 +62,7 @@ public class Edital {
 		editais.add(new Edital());
 		
 	}
+	
+	public static Finder<Long, Edital> find = new Finder<Long, Edital>(Long.class, Edital.class);
 
 }
