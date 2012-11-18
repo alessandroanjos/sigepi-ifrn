@@ -4,15 +4,35 @@
 
 <body>
 
-	
+	<div class="topbar">
+	        <div class="fill">
+	              <div id="headerCSS">
+	                    <a class="brand" href="@routes.Administracao.index()">Home</a>
+	                    <ul class="">
+	                        <li class="">
+	                            <a href="@routes.Administracao.cadastrarEdital()">Cadastrar Edital</a>
+	                        </li>
+	                        @*
+	                        <li class="">
+	                            <a href="@routes.Bolsistas.blank()">Bolsistas</a>
+	                        </li>
+	                        *@
+	                    </ul>
+	                    <dl id="user" class="afastar">
+	                       <dt>user.name <span>(user.email)</span></dt>
+	                         <dd>
+	                              <a href="@routes.Sessions.efetuarlogout()">Sair</a>
+	                        </dd>
+	                   </dl>
+	                   
+	                </div>
+	         </div>
+	 </div>
         
 <h1>O que deseja fazer? </h1> 
 </body> 
 
-<a href="@routes.Administracao.cadastrarEdital()" class="btn">Gerenciar Editais </a>  - <i>Gerencie os editais de pesquisa do IFRN. </i>
-<br><br>
-<a href="@routes.Administracao.gerenciarBolsista()" class="btn">Gerenciar Bolsista</a> - <i>Gerencie os bolsistas do IFRN.</i>
-
+<a href="@routes.Administracao.cadastrarEdital()" class="btn">Cadastrar Edital</a>
 </html>  
 
 }

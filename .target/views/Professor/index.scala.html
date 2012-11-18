@@ -3,13 +3,30 @@
 
 <html> 
 <body>
-	 
+	<div class="topbar">
+		<div class="fill">
+			<div id="headerCSS">
+				 <a class="brand" href="@routes.Professores.index()">Home</a>
+				<ul class=""> 
+					<li class=""><a href="@routes.Professores.criarNovoProjeto()">Cadastrar	Projeto</a></li> 
+					<li class=""><a href="@routes.Professores.adicionarMembrosProjeto()">Inserir Membros</a></li>
+					<li class=""><a href="@routes.Professores.exibirDadosCadastrados()"></a>
+					<li class=""><a href="@routes.Professores.atualizarCurriculo()">Atualizar Curriculo</a></li>
+					@*<li class=""><a href="@routes.Bolsistas.blank()">Bolsista</a></li>*@
+				</ul>
+				<dl id="user" class="afastar">
+					<dt>user.name<span>(user.mail)</span></dt>
+					<dd>
+						<a href="@routes.Sessions.efetuarlogout()">Sair</a></dd>
+				</dl>
+			</div>
+		</div>
+	</div> 
 	  
 	<h1>O que deseja fazer?</h1>
-	<br>
-	<br>
 </body> 
 <a href="@routes.Professores.criarNovoProjeto()" class="btn">Cadastrar Projeto</a>
-<a href="@routes.Professores.curriculo()" class="btn">Checar Currículo</a>
+<a href="@routes.Professores.adicionarMembrosProjeto()" class="btn">Adicionar Membros</a>
+<a href="@routes.Professores.atualizarCurriculo()" class="btn">Atualizar Curriculo</a>
 </html> 
 } 

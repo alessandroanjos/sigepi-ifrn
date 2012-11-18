@@ -1,12 +1,8 @@
 @(title: String)(content: Html)
 
-@import form.LoginForm._
-@import tags._
-@import helper._
-@import helpers.Seguranca.InformacoesUsuarioHelper._
 
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -23,27 +19,7 @@
     </head>
     <body>
 
-	@if(isLogado()) {
 	
-		@if(getUsuarioLogado().isProfessor) {
-			@menuProfessor()
-   	    }
-   	    
-   	    @if(getUsuarioLogado().isAdministrador) {
-			@menuAdmin()
-   	    }
-   	    
-   	    @if(getUsuarioLogado().isAvaliador)	{
-   	    	@menuAvaliador() 	
-   	    	
-   	   	} else {
-	   		@menuGestor()
-	   	}
-    	
-    } else {
-    		@menuPublico()
-    }
-   
 
 
 	<div class="container">
@@ -54,13 +30,11 @@
                     <h1>@title</h1>
         
         @if(flash.containsKey("success")){
-        <br>
-		   <center><h3><div class="success">@flash.get("success")</div></h3></center>  
-		   <br>
+        <br><br>
+		   <center><h5><div class="alert alert-success">@flash.get("success")</div></h5></center>  
+		   <br><br>
 	    } @if(flash.containsKey("error")){
-	    <br>
-		   <center><h3><div class="error">@flash.get("error")</div></h3></center> 
-		   <br>
+		    <div class="alert alert-error">@flash.get("error")</div>
 	    }
                 </div>
 
@@ -78,14 +52,12 @@
                 
         	
         		<br/>
-			<center>
-				<p>	SIGEPI - Sistema de Gestão de Pesquisa e Inovação - beta 1.0 <br />
-					<a href="http://portal.ifrn.edu.br/pesquisa/pro-reitoria-de-pesquisa-e-inovacao" target="blank" >PROPI - Pró-reitoria de Pesquisa e Inovação</a><br>
-					<a href="http://ifrn.edu.br" target="blank">Instituto Federal de Educação,	Ciência e Tecnologia do Rio Grande do Norte</a> <br /> </br>
-				</p>
-				</p>
-			</center>
-		</footer>
+	        	<p> SIGEPI - Sistema de Gestão de Pesquisa e Inovação - beta 1.0 <br /> 
+	        	<a href="http://ifrn.edu.br">Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte</a>  <br/></br>
+	        	
+	        	</p>
+	     
+            </footer>
 
         </div>
     </body>

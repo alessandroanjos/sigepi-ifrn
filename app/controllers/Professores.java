@@ -30,7 +30,7 @@ public class Professores extends Controller{
 	}
 	
 	public static Result atualizarCurriculo(){
-		return TODO;
+		return ok(views.html.Professor.atualizarCurriculo.render());
 	}
 	
 	public static Result gerenciarProjeto(){

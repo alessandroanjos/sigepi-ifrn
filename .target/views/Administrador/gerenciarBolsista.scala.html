@@ -1,11 +1,38 @@
-@(bolsistas: List[Bolsista])
+@* @(bolsistas: Form[Bolsista])  *@
 
-@* @(bolsistas: Set[Bolsista]) *@
+@(bolsistas: Set[Bolsista])
 
 @main("SIGEPI - Gerenciar Bolsista") {
 			
 			
-	<a href="@routes.Administracao.formularioCadastrarBolsista()" class="btn primary"><i class="icon-plus"></i> Cadastrar Novo Bolsista</a>
+	<div class="topbar">
+	        <div class="fill">
+	              <div id="headerCSS">
+	                    <a class="brand" href="@routes.Administracao.index()">Home</a>
+	                    <ul class="">
+	                        <li class="">
+	                            <a href="@routes.Administracao.cadastrarEdital()">Cadastrar Edital</a>
+	                        </li>
+	                       
+	                        <li class="">
+	                            <a href="@routes.Administracao.gerenciarBolsista()">Gerenciar Bolsistas</a>
+	                        </li>
+	                        
+	                    </ul>
+	                    <dl id="user" class="afastar">
+	                       <dt>user.name <span>(user.email)</span></dt>
+	                         <dd>
+	                              <a href="@routes.Sessions.efetuarlogout()">Sair</a>
+	                        </dd>
+	                   </dl>
+	                   
+	                </div>
+	         </div>
+	 </div>
+	 
+	
+			
+		<a href="@routes.Administracao.formularioCadastrarBolsista()" class="btn primary"><i class="icon-plus"></i> Cadastrar Novo Bolsista</a>
 			
 			<br><br>
  
@@ -28,8 +55,8 @@
                 		<td>@bolsista.email</td>
                 		<td>@bolsista.matricula</td>
 						<td style="width:15%;">
-						<a href="@routes.Administracao.formularioEdicaoBolsista(bolsista.id)" class="btn success"><i class="icon-edit"></i> Editar</a>
-						<a href="@routes.Administracao.delete(bolsista.id)" onclick="return confirm('Deseja realmente excluir o Bolsista: &quot;@bolsista.nome&quot;?')" class="btn danger"><i class="icon-remove"></i> Excluir</a>
+						<a href="routes.Professores.formularioEdicao(professor.id)" class="btn success"><i class="icon-edit"></i> Editar</a>
+						<a href="routes.Professores.deletar(professor.id)"  class="btn danger"><i class="icon-remove"></i> Excluir</a>
 						@*
 							<a href="routes.Professores.formularioEdicao(professor.id)" class="btn btn-small"><i class="icon-edit"></i> Editar</a>
 							<a href="routes.Professores.deletar(professor.id)" onclick="return confirm('Deseja realmente excluir o bolsista &quot;@professor.nome&quot;?')" class="btn btn-small"><i class="icon-remove"></i> Excluir</a>
@@ -40,8 +67,6 @@
 	              </tbody>
 	            </table>
 			}
-			
-			<a href="@routes.Administracao.index()" class="btn">Voltar</a>
 			
 }
 

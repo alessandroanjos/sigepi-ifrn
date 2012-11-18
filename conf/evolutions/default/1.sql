@@ -62,7 +62,6 @@ create table projeto (
   id                        bigint auto_increment not null,
   nome                      varchar(255),
   data_cadastro             varchar(255),
-  numero_edital             varchar(255),
   campus                    varchar(255),
   agencia                   varchar(255),
   area_conhecimento         varchar(255),
