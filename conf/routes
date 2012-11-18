@@ -17,16 +17,22 @@ GET     /minha-conta/ativar-minha-conta		        		controllers.Sessions.ativarCo
 # Administração do Sistema
 # GET	/administracao/				        			    controllers.Avaliadores.index 
 GET     /administracao/admin								controllers.Administracao.index()
-GET     /administracao/admin/cadastrar-edital				controllers.Administracao.cadastrarEdital()
+GET     /administracao/admin/gerenciar-edital				controllers.Administracao.gerenciarEdital()
 GET     /administracao/admin/gerenciar-bolsista             controllers.Administracao.gerenciarBolsista()
-GET     /administracao/admin/cadastrar-bolsista				controllers.Administracao.formularioCadastrarBolsista()
-POST    /administracao/admin/salvar-cadastro-bolsista       controllers.Administracao.salvarCadastroBolsista()
- 
-GET 	/administracao/admin/:id/editar						controllers.Administracao.formularioEdicaoBolsista(id: Long)
-POST 	/administracao/admin/:id/editar     				controllers.Administracao.update(id: Long)
-GET 	/administracao/admin/:id/deletar	    			controllers.Administracao.delete(id: Long)
 
- 
+GET     /administracao/admin/form-cadastrar-bolsista		controllers.Administracao.formularioCadastrarBolsista()
+POST    /administracao/admin/salvar-cadastro-bolsista       controllers.Administracao.salvarCadastroBolsista()
+
+GET 	/administracao/admin/:id/form-editar-bolsista		controllers.Administracao.formularioEdicaoBolsista(id: Long)
+POST 	/administracao/admin/:id/atualizar-bolsista			controllers.Administracao.atualizarBolsista(id: Long)
+GET 	/administracao/admin/:id/deletar-bolsista  			controllers.Administracao.deletarBolsista(id: Long)
+
+GET     /administracao/admin/form-cadastrar-edital          controllers.Administracao.formularioCadastrarEdital()
+POST    /administracao/admin/salvar-cadastro-edital         controllers.Administracao.salvarCadastroEdital()
+GET 	/administracao/admin/:id/form-editar-edital		    controllers.Administracao.formularioEdicaoEdital(id: Long)
+POST 	/administracao/admin/:id/atualizar-edital			controllers.Administracao.atualizarEdital(id: Long)
+GET 	/administracao/admin/:id/deletar-edital  			controllers.Administracao.deletarEdital(id: Long)
+
 
 
 # Administração do Avaliador
@@ -45,8 +51,6 @@ GET     /administracao/professor/submeter-projeto         	controllers.Professor
 GET     /administracao/professor/gerenciar-projeto         	controllers.Professores.gerenciarProjeto()
 GET		/administracao/professor/cadastrar-projeto			controllers.Professores.formularioCadastrarProjeto()
 POST    /administracao/professor/salvar-cadastro-projeto	controllers.Professores.salvarCadastroProjeto()
-
-
 
 GET 	/administracao/professor/:id/editar					controllers.Professores.formularioEdicaoProjeto(id: Long)
 POST 	/administracao/professor/:id/editar     			controllers.Professores.update(id: Long)
