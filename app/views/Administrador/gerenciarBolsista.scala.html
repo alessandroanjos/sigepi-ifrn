@@ -1,4 +1,4 @@
-@(bolsistas: List[Bolsista])
+@(bolsistas: List[Bolsista],  projetos : List[Projeto])
 
 @* @(bolsistas: Set[Bolsista]) *@
 
@@ -18,15 +18,22 @@
 	                  <th>Nome</th>
 	                  <th>Email</th>
 	                  <th>Matr�cula</th>
+	                  <th>Projeto</th>
 	                  <th>Ações</th>
 	                </tr>
 	              </thead>
 	              <tbody>
+                	
                 	@for(bolsista <- bolsistas) {
+                	
+                	
 	                <tr>
                 		<td>@bolsista.nome</td>
                 		<td>@bolsista.email</td>
                 		<td>@bolsista.matricula</td>
+                		
+                		<td>@bolsista.projeto.getNome</td>
+                		
 						<td style="width:15%;">
 						<a href="@routes.Administracao.formularioEdicaoBolsista(bolsista.id)" class="btn success"><i class="icon-edit"></i> Editar</a>
 						<a href="@routes.Administracao.deletarBolsista(bolsista.id)" onclick="return confirm('Deseja realmente excluir o Bolsista: &quot;@bolsista.nome&quot;?')" class="btn danger"><i class="icon-remove"></i> Excluir</a>
@@ -36,6 +43,7 @@
 						*@
 						</td>
 	                </tr>
+	                
 					}
 	              </tbody>
 	            </table>

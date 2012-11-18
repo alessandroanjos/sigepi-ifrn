@@ -58,6 +58,8 @@ GET 	/administracao/professor/:id/deletar	    		controllers.Professores.deletarP
 
 GET     /administracao/professor/exibir-dados-cadastrados   controllers.Professores.exibirDadosCadastrados()
 
+POST     /administracao/professor/submeter-projeto          controllers.Professores.enviarProjetoAvaliacao()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

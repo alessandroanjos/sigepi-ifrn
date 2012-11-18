@@ -1,4 +1,4 @@
-@(bolsistas: Form[Bolsista])
+@(bolsistas: Form[Bolsista], projetos : List[Projeto])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -15,6 +15,19 @@
        @helper.inputText(bolsistas("email"))
        @helper.inputText(bolsistas("matricula"))
        @helper.inputText(bolsistas("cpf"))
+       
+       <div class="clearfix" id="idCurso_field">
+				<label for="idProjeto">Escolha o Projeto:</label>
+				<div class="input">
+						<select id="idProjeto" name="idProjeto" class="span5">
+							@for(projeto <- projetos) {
+							  <option value="@projeto.id">@projeto.nome</option>
+							}						
+		    			</select>
+					<span class="help-inline"></span>
+					<span class="help-block"></span>
+				</div>
+		 </div>
        
        @* @helper.textarea(bolsistas("descricao")) *@
 </fieldset>

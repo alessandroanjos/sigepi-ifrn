@@ -36,6 +36,14 @@ public class Bolsista extends Model{
 	public Projeto projeto;
 	
 	
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -96,10 +104,10 @@ public class Bolsista extends Model{
 		this.cpf = cpf;
 	}
 	
-	public String toString() {
+/*	public String toString() {
 		return String.format("%s - %s - %s - s% - s%", id, nome, email, matricula, cpf);
 	}
-	 
+	 */
 	
 	private static Set<Bolsista> bolsistas;
 	  

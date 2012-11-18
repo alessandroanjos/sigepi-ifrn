@@ -4,10 +4,13 @@ package controllers;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import helpers.Seguranca.InformacoesUsuarioHelper;
+
 import java.util.List;
 import java.util.Date;
 
 import models.Bolsista;
+import models.Edital;
 import models.Projeto;
 
 
@@ -22,8 +25,38 @@ public class Professores extends Controller{
 	}
 	
 	public static Result submeterProjeto(){
-		return ok(views.html.Professor.submeterProjeto.render());
+		
+		List<Edital> edital = Edital.find.findList();
+		List<Projeto> projeto = Projeto.find.findList();
+		
+		return ok(views.html.Professor.submeterProjeto.render(form(Projeto.class),edital,projeto));
 	}
+	
+	public static Result enviarProjetoAvaliacao() {
+		
+		return TODO;
+		/*
+		Form<Projeto> form = form(Exercicio.class).bindFromRequest();
+		Long idCurso = Long.valueOf(form.data().get("idCurso"));
+		
+		if(form.hasErrors()) {
+			List<Curso> cursos = Curso.find.findList();
+			
+			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
+			return badRequest(views.html.Exercicios.formulario.render(form, cursos));
+		}
+		
+		Exercicio exercicio = form.get();
+		exercicio.autor = InformacoesUsuarioHelper.getUsuarioLogado();
+		exercicio.curso = Curso.find.byId(idCurso);
+		exercicio.save();
+		
+		flash().put("success", "Exercício <strong>\""+ exercicio.titulo +"\"</strong> cadastrado com sucesso!");
+		return redirect(routes.Exercicios.index());
+		*/
+	}
+	
+	
 	
 	public static Result curriculo(){
 	    return ok(views.html.Professor.curriculo.render());

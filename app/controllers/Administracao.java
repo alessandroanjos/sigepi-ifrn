@@ -1,10 +1,13 @@
 package controllers;
 
+import helpers.Seguranca.InformacoesUsuarioHelper;
+
 import java.util.List;
 import java.util.Set;
 
 import models.Bolsista;
 import models.Edital;
+import models.Projeto;
 import models.Usuario;
 import play.data.Form;
 import play.mvc.Controller;
@@ -31,22 +34,54 @@ public class Administracao extends Controller {
 		//Passar uma lista de Bolsistas
 		List<Bolsista> bolsistas = Bolsista.find.where().findList();
 		//Set<Bolsista> bolsistas = Bolsista.findAll();
-		return ok(views.html.Administrador.gerenciarBolsista.render(bolsistas));
+		List<Projeto> projeto = Projeto.find.findList();
+		return ok(views.html.Administrador.gerenciarBolsista.render(bolsistas,projeto));
 	}
 	
 	public static Result formularioCadastrarBolsista(){
-		return ok(views.html.Administrador.formularioCadastrarBolsista.render(bolsistaForm));//return ok(cadastrarBolsista.render(productForm));
+		List<Projeto> projeto = Projeto.find.findList();
+		return ok(views.html.Administrador.formularioCadastrarBolsista.render(bolsistaForm,projeto));//return ok(cadastrarBolsista.render(productForm));
 	}
 	
 	public static Result salvarCadastroBolsista() {
+		/*
+		 * Form<Bolsista> bform = form(Bolsista.class).bindFromRequest();
+		Long idProjeto = Long.valueOf(bform.data().get("idProjeto"));
 		
+		if(bform.hasErrors()) {
+			List<Projeto> projetos = Projeto.find.findList();
+			
+			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
+			return badRequest(views.html.Exercicios.formulario.render(form, cursos));
+		}
+		
+		Exercicio exercicio = form.get();
+		exercicio.autor = InformacoesUsuarioHelper.getUsuarioLogado();
+		exercicio.curso = Curso.find.byId(idCurso);
+		exercicio.save();
+		
+		flash().put("success", "Exercício <strong>\""+ exercicio.titulo +"\"</strong> cadastrado com sucesso!");
+		return redirect(routes.Exercicios.index());
+		 */
 		Form<Bolsista> bForm = bolsistaForm.bindFromRequest();
+		Long idProjeto = Long.valueOf(bForm.data().get("idProjeto"));
+		
 		if(bForm.hasErrors()){
 			flash("error", "Dados inválidos!");
-			return badRequest(views.html.Administrador.formularioCadastrarBolsista.render(bForm));
+			
+			List<Projeto> projeto = Projeto.find.findList();
+			return badRequest(views.html.Administrador.formularioCadastrarBolsista.render(bForm,projeto));
 		}
 		//armazena no BD
-		bForm.get().save();
+		//bForm.get().save();
+		
+		Bolsista bol = bForm.get();
+		
+		
+		bol.projeto = Projeto.find.byId(idProjeto);
+		bol.save();
+		System.out.println("BOLSISTA-PROJETO"+bol.projeto.nome);
+		
         flash("success", "Bolsista \"" + bForm.get().nome + "\" foi Cadastrado(a) com Sucesso!");
         return redirect(routes.Administracao.gerenciarBolsista());
 		
@@ -61,8 +96,8 @@ public class Administracao extends Controller {
 	
 	public static Result formularioEdicaoBolsista(Long id){
 		Form<Bolsista> bForm = form(Bolsista.class).fill(Bolsista.find.byId(id));
-		
-		return ok(views.html.Administrador.formularioEdicaoBolsista.render(id, bForm));
+		List<Projeto> projeto = Projeto.find.findList();
+		return ok(views.html.Administrador.formularioEdicaoBolsista.render(id, bForm, projeto));
 	}
 	
 	/**
@@ -71,12 +106,49 @@ public class Administracao extends Controller {
      * @param id Id of the computer to edit
      */
     public static Result atualizarBolsista(Long id) {
+    	
+    	/*
+    	 * Form<Exercicio> form = form(Exercicio.class).bindFromRequest();
+		Exercicio exercicio = Exercicio.find.byId(id);
+		
+		if(form.hasErrors()) {
+			List<Curso> cursos = Curso.find.findList();
+			
+			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
+			return badRequest(views.html.Exercicios.formularioEdicao.render(form, cursos, exercicio));
+		}
+		
+		exercicio.setCurso(Curso.find.byId(Long.valueOf(form.data().get("idCurso"))));
+		exercicio.setTitulo(form.get().titulo);
+		exercicio.setDescricao(form.get().descricao);
+		exercicio.setCasoDeTeste(form.get().casoDeTeste);
+		exercicio.setSolucaoProposta(form.get().solucaoProposta);
+		exercicio.setPontuacao(form.get().pontuacao);
+		exercicio.setNivelExercicio(form.get().nivelExercicio);
+		exercicio.setEstruturaMetodoProposto(form.get().estruturaMetodoProposto);
+		exercicio.update();
+		
+		flash().put("success", "Exercício <strong>\""+ exercicio.titulo +"\"</strong> atualizado com sucesso!");
+		return redirect(routes.Exercicios.index());
+    	 */
         Form<Bolsista> bForm = form(Bolsista.class).bindFromRequest();
+        Bolsista bolsista = Bolsista.find.byId(id);
         if(bForm.hasErrors()) {
-            return badRequest(views.html.Administrador.formularioEdicaoBolsista.render(id, bForm));
+        	flash("error", "Dados inválidos!");
+        	List<Projeto> projetos = Projeto.find.findList();
+            return badRequest(views.html.Administrador.formularioEdicaoBolsista.render(id, bForm,projetos));
         }
         //Atualiza no BD.
-        bForm.get().update(id);
+        
+        bolsista.setProjeto(Projeto.find.byId((Long.valueOf(bForm.data().get("idProjeto")))));
+        bolsista.setNome(bForm.get().nome);
+        bolsista.setCpf(bForm.get().cpf);
+        bolsista.setEmail(bForm.get().email);
+        bolsista.setMatricula(bForm.get().matricula);
+        
+        
+        bolsista.update();
+        //bForm.get().update(id);
         flash("success", "Bolsista " + bForm.get().nome + " foi Atualizado(a) com Sucesso!");
         return redirect(routes.Administracao.gerenciarBolsista());
    
