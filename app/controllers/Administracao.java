@@ -1,12 +1,15 @@
 package controllers;
 
 import helpers.Seguranca.InformacoesUsuarioHelper;
+import helpers.Seguranca.Permissao;
 
 import java.util.List;
 import java.util.Set;
 
 import models.Bolsista;
+import models.Campus;
 import models.Edital;
+import models.Professor;
 import models.Projeto;
 import models.Usuario;
 import play.data.Form;
@@ -17,19 +20,33 @@ import play.mvc.Result;
 
 public class Administracao extends Controller {
 	
+	
 	private static final Form<Bolsista> bolsistaForm = form(Bolsista.class);
 	
 	private static final Form<Edital> editalForm = form(Edital.class);
+	
+	private static final Form<Campus> campusForm = form(Campus.class);
+	
+	private static final Form<Professor> userForm = form(Professor.class);
 
 	
+    /**
+     * Area de incio do Administrador
+     */
+	@helpers.Seguranca.Permissao("Administrador")
 	public static Result index(){
         return ok(views.html.Administrador.index.render());
 	}
 	
-	public static Result cadastrarEdital(){
+    
+/*	public static Result cadastrarEdital(){
 		return ok(views.html.Administrador.cadastrarEdital.render());
-	}
+	}*/
 	
+    /**
+     * Abre a página de gerencia de bolsistas
+     */
+	@helpers.Seguranca.Permissao("Administrador")
 	public static Result gerenciarBolsista(){
 		//Passar uma lista de Bolsistas
 		List<Bolsista> bolsistas = Bolsista.find.where().findList();
@@ -38,31 +55,21 @@ public class Administracao extends Controller {
 		return ok(views.html.Administrador.gerenciarBolsista.render(bolsistas,projeto));
 	}
 	
+    /**
+     * Formulário de Cadastar Bolsista
+     */
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result formularioCadastrarBolsista(){
 		List<Projeto> projeto = Projeto.find.findList();
 		return ok(views.html.Administrador.formularioCadastrarBolsista.render(bolsistaForm,projeto));//return ok(cadastrarBolsista.render(productForm));
 	}
 	
+    /**
+     * Salva o Bolsista no banco de dados
+     */
+	
 	public static Result salvarCadastroBolsista() {
-		/*
-		 * Form<Bolsista> bform = form(Bolsista.class).bindFromRequest();
-		Long idProjeto = Long.valueOf(bform.data().get("idProjeto"));
-		
-		if(bform.hasErrors()) {
-			List<Projeto> projetos = Projeto.find.findList();
-			
-			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Exercicios.formulario.render(form, cursos));
-		}
-		
-		Exercicio exercicio = form.get();
-		exercicio.autor = InformacoesUsuarioHelper.getUsuarioLogado();
-		exercicio.curso = Curso.find.byId(idCurso);
-		exercicio.save();
-		
-		flash().put("success", "Exercício <strong>\""+ exercicio.titulo +"\"</strong> cadastrado com sucesso!");
-		return redirect(routes.Exercicios.index());
-		 */
+	
 		Form<Bolsista> bForm = bolsistaForm.bindFromRequest();
 		Long idProjeto = Long.valueOf(bForm.data().get("idProjeto"));
 		
@@ -101,36 +108,13 @@ public class Administracao extends Controller {
 	}
 	
 	/**
-     * Handle the 'edit form' submission 
+     * Atualiza o Bolsista no banco de dados
      *
      * @param id Id of the computer to edit
      */
     public static Result atualizarBolsista(Long id) {
     	
-    	/*
-    	 * Form<Exercicio> form = form(Exercicio.class).bindFromRequest();
-		Exercicio exercicio = Exercicio.find.byId(id);
-		
-		if(form.hasErrors()) {
-			List<Curso> cursos = Curso.find.findList();
-			
-			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Exercicios.formularioEdicao.render(form, cursos, exercicio));
-		}
-		
-		exercicio.setCurso(Curso.find.byId(Long.valueOf(form.data().get("idCurso"))));
-		exercicio.setTitulo(form.get().titulo);
-		exercicio.setDescricao(form.get().descricao);
-		exercicio.setCasoDeTeste(form.get().casoDeTeste);
-		exercicio.setSolucaoProposta(form.get().solucaoProposta);
-		exercicio.setPontuacao(form.get().pontuacao);
-		exercicio.setNivelExercicio(form.get().nivelExercicio);
-		exercicio.setEstruturaMetodoProposto(form.get().estruturaMetodoProposto);
-		exercicio.update();
-		
-		flash().put("success", "Exercício <strong>\""+ exercicio.titulo +"\"</strong> atualizado com sucesso!");
-		return redirect(routes.Exercicios.index());
-    	 */
+    	
         Form<Bolsista> bForm = form(Bolsista.class).bindFromRequest();
         Bolsista bolsista = Bolsista.find.byId(id);
         if(bForm.hasErrors()) {
@@ -155,8 +139,9 @@ public class Administracao extends Controller {
     }
     
     /**
-     * Handle computer deletion
+     * Deletar o Bolsista
      */
+    
     public static Result deletarBolsista(Long id) {
            
         Bolsista bolsista = Bolsista.find.byId(id);
@@ -173,8 +158,15 @@ public class Administracao extends Controller {
     }
     
 	
+    
+    
+    
     //CRUD Edital
     
+    /**
+     * Abre a tela de gerenciar editais
+     */
+    @helpers.Seguranca.Permissao("Administrador")
     public static Result gerenciarEdital(){
     	
     	//Passar uma lista de Bolsistas
@@ -183,10 +175,19 @@ public class Administracao extends Controller {
     	   return ok(views.html.Administrador.gerenciarEdital.render(editais));
     }
     
+    /**
+     * abre o form de cadastrar edital
+     */
+    @helpers.Seguranca.Permissao("Administrador")
     public static Result formularioCadastrarEdital(){
     	return ok(views.html.Administrador.formularioCadastrarEdital.render(editalForm));//
     }
     
+    
+    /**
+     * Salva o cadastro do edital
+     */
+    @helpers.Seguranca.Permissao("Administrador")
     public static Result salvarCadastroEdital() {
     	
     	Form<Edital> eForm = editalForm.bindFromRequest();
@@ -197,11 +198,16 @@ public class Administracao extends Controller {
 		//armazena no BD
 		eForm.get().save();
 		
-        flash("success", "Edital \"" + eForm.get().nome + "\"  foi Cadastrado(a) com Sucesso!");
+        flash("success", "Edital \"" + eForm.get().nome + "\"  foi Cadastrado com Sucesso!");
         return redirect(routes.Administracao.gerenciarEdital());
 
     }
     
+    
+    /**
+     * form de edição de edital
+     */
+    @helpers.Seguranca.Permissao("Administrador")
     public static Result formularioEdicaoEdital(Long id){
            
     	Form<Edital> eForm = form(Edital.class).fill(Edital.find.byId(id));
@@ -209,17 +215,27 @@ public class Administracao extends Controller {
 		return ok(views.html.Administrador.formularioEdicaoEdital.render(id, eForm));
     }
     
+    /**
+     * Atualiza o edital
+     */
+    @helpers.Seguranca.Permissao("Administrador")
     public static Result atualizarEdital(Long id) {
     	Form<Edital> eForm = form(Edital.class).bindFromRequest();
         if(eForm.hasErrors()) {
+        	flash("error", "Dados inválidos!");
             return badRequest(views.html.Administrador.formularioEdicaoEdital.render(id, eForm));
         }
         //Atualiza no BD.
         eForm.get().update(id);
-        flash("success", "Edital \"" + eForm.get().nome + "\" foi Atualizado(a) com Sucesso!");
+        flash("success", "Edital \"" + eForm.get().nome + "\" foi Atualizado com Sucesso!");
         return redirect(routes.Administracao.gerenciarEdital());
     }
     
+    
+    /**
+     * Deleta  o edital
+     */
+    @helpers.Seguranca.Permissao("Administrador")
     public static Result deletarEdital(Long id) {
     	Edital edital = Edital.find.byId(id);
     	
@@ -228,9 +244,201 @@ public class Administracao extends Controller {
 		} else {
 			edital.delete();
 						
-			flash().put("success", "Edital \""+ edital.nome +"\" removido(a) com sucesso!");
+			flash().put("success", "Edital \""+ edital.nome +"\" removido com sucesso!");
 		}
 		
 		return redirect(routes.Administracao.gerenciarEdital());
     }
+    
+    
+    
+                                                       // CRUD - Gerenciar Campus
+    //---------------------------------------------------------------------------------------------------------------------
+    
+    
+    /**
+     * Abre a tela de gerenciar campus
+     */
+    @helpers.Seguranca.Permissao("Administrador")
+    public static Result gerenciarCampus(){
+    	//Passar uma lista de campus
+    	List<Campus> campus = Campus.find.where().findList();
+    	
+    	return ok(views.html.Administrador.gerenciarCampus.render(campus));	
+    }
+    
+    
+    /**
+     * abre o form de cadastrar Campus
+     */
+    @helpers.Seguranca.Permissao("Administrador")
+    public static Result formularioCadastrarCampus(){
+    	return ok(views.html.Administrador.formularioCadastrarCampus.render(campusForm));
+    }
+    
+    
+    /**
+     * Salva o cadastro do campus
+     */
+    @helpers.Seguranca.Permissao("Administrador")
+    public static Result salvarCadastroCampus() {
+    	Form<Campus> cForm = campusForm.bindFromRequest();
+		if(cForm.hasErrors()){
+			flash("error", "Dados inválidos!");
+			return badRequest(views.html.Administrador.formularioCadastrarCampus.render(cForm));
+		}
+		//armazena no BD
+		cForm.get().save();
+		
+        flash("success", "Campus \"" + cForm.get().nome + "\"  foi Cadastrado com Sucesso!");
+        return redirect(routes.Administracao.gerenciarCampus());
+    }
+    
+    
+    
+    /**
+     * form de edição de campus
+     */
+    @helpers.Seguranca.Permissao("Administrador")
+    public static Result formularioEdicaoCampus(Long id){
+        
+    	 Form<Campus> cForm = form(Campus.class).fill(Campus.find.byId(id));
+		
+		return ok(views.html.Administrador.formularioEdicaoCampus.render(id, cForm));
+    	
+    }
+    
+    
+    /**
+     * Atualiza o campus
+     */
+    @helpers.Seguranca.Permissao("Administrador")
+    public static Result atualizarCampus(Long id) {
+    	Form<Campus> cForm = form(Campus.class).bindFromRequest();
+        if(cForm.hasErrors()) {
+        	flash("error", "Dados inválidos!");
+            return badRequest(views.html.Administrador.formularioEdicaoCampus.render(id, cForm));
+        }
+        //Atualiza no BD.
+        cForm.get().update(id);
+        flash("success", "Edital \"" + cForm.get().nome + "\" foi Atualizado com Sucesso!");
+        return redirect(routes.Administracao.gerenciarCampus());
+    }
+    
+    
+    
+    /**
+     * Deleta  o campus
+     */
+    @helpers.Seguranca.Permissao("Administrador")
+    public static Result deletarCampus(Long id) {
+	
+    	Campus campus = Campus.find.byId(id);
+	    	
+			if (campus == null) {
+				flash().put("error", "O Edital informado não foi encontrado no Sistema.");
+			} else {
+				campus.delete();
+							
+				flash().put("success", "Edital \""+ campus.nome +"\" removido(a) com sucesso!");
+			}
+			
+		return redirect(routes.Administracao.gerenciarCampus());
+    }
+    
+    
+    ///--------------------------------------------------Cadastrar Professor-----------------------------------------------------
+    
+    
+    /**
+     * Formulário de Cadastro de Professor
+     */
+    
+    public static Result formCadastrarProfessor() {
+	
+       return ok(views.html.Administrador.formCadastrarProfessor.render(form(Usuario.class)));
+	}
+    
+    
+    public static Result formularioGestor() {
+    	
+        return ok(views.html.formularioGestor.render(form(Usuario.class)));
+    }
+    
+    public static Result formularioProfessor() {
+    	
+        return ok(views.html.formularioProfessor.render(form(Usuario.class)));
+    }
+    
+    
+    
+    
+    /**
+     * Salva o cadastro de Professor no banco de dados
+     */
+    
+    public static Result salvarCadastrarProfessor() {
+    	
+   
+    	Form<Usuario> form = form(Usuario.class).bindFromRequest();
+    	
+    	if(form.hasErrors() || !form.get().senha.equals(form.data().get("confirmacaoSenha"))) {
+			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
+			return badRequest(views.html.Administrador.formCadastrarProfessor.render(form));
+		}
+    	
+    	Usuario professor = form.get();
+    	professor.isAtivo = true;
+    	professor.isProfessor = true;
+    	professor.save();
+    	
+    	flash().put("success", "Professor \""+ professor.nome +"\" cadastrado(a) com sucesso!");
+		return redirect(routes.Administracao.index());
+		
+    }
+    
+    
+    public static Result salvarCadastrarGestor() {
+    	
+    	   
+    	Form<Usuario> form = form(Usuario.class).bindFromRequest();
+    	
+    	if(form.hasErrors() || !form.get().senha.equals(form.data().get("confirmacaoSenha"))) {
+			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
+			return badRequest(views.html.formularioGestor.render(form));
+		}
+    	
+    	Usuario gestor  = form.get();
+    	gestor.isAtivo  = true;
+    	gestor.isGestor = true;
+    	gestor.save();
+    	
+    	flash().put("success", "Gestor \""+ gestor.nome +"\" cadastrado(a) com sucesso!");
+		return redirect(routes.Administracao.index());
+		
+    }
+	/*
+    	Form<Usuario> form = form(Usuario.class).bindFromRequest();
+		
+		if(form.hasErrors() || !form.get().senha.equals(form.data().get("confirmacaoSenha"))) {
+			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
+			return badRequest(views.html.Professores.formulario.render(form));
+		}
+		
+		Usuario professor = form.get();
+		professor.isAtivo = false;
+		professor.isProfessor = true;
+		professor.save();
+		
+		// Envia o email de confirmação de cadastro no sistema!
+		RegistroMailer.enviarMensagemRegistro(professor);
+		
+		flash().put("success", "Professor <strong>\""+ professor.nome +"\"</strong> cadastrado com sucesso!");
+		return redirect(routes.Professores.index());
+	
+    */
+    
+    //Cadastrar Avaliador
+    
+    
 }

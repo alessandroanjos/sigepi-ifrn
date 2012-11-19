@@ -31,6 +31,12 @@ create table bolsista (
   constraint pk_bolsista primary key (id))
 ;
 
+create table campus (
+  id                        bigint auto_increment not null,
+  nome                      varchar(255),
+  constraint pk_campus primary key (id))
+;
+
 create table edital (
   id_edital                 bigint auto_increment not null,
   nome                      varchar(255),
@@ -60,10 +66,11 @@ create table professor (
 create table projeto (
   id                        bigint auto_increment not null,
   nome                      varchar(255),
-  data_cadastro             varchar(255),
-  campus                    varchar(255),
+  data_cadastro             datetime,
   agencia                   varchar(255),
   area_conhecimento         varchar(255),
+  edital_id_edital          bigint,
+  campus_id                 bigint,
   constraint pk_projeto primary key (id))
 ;
 
@@ -92,6 +99,10 @@ create table projeto_professor (
 ;
 alter table bolsista add constraint fk_bolsista_projeto_1 foreign key (projeto_id) references projeto (id) on delete restrict on update restrict;
 create index ix_bolsista_projeto_1 on bolsista (projeto_id);
+alter table projeto add constraint fk_projeto_edital_2 foreign key (edital_id_edital) references edital (id_edital) on delete restrict on update restrict;
+create index ix_projeto_edital_2 on projeto (edital_id_edital);
+alter table projeto add constraint fk_projeto_campus_3 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
+create index ix_projeto_campus_3 on projeto (campus_id);
 
 
 
@@ -106,6 +117,8 @@ SET FOREIGN_KEY_CHECKS=0;
 drop table administrador;
 
 drop table bolsista;
+
+drop table campus;
 
 drop table edital;
 

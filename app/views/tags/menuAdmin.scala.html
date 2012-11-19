@@ -13,9 +13,18 @@
 	                            <a href="@routes.Administracao.gerenciarBolsista()">Gerenciar Bolsista</a>
 	                        </li>
 	                        
+	                        <li class="">
+	                            <a href="@routes.Administracao.gerenciarCampus()">Gerenciar Campus</a>
+	                        </li>
+	                       
+	                         <li>
+	                           
+	                           <a href="@routes.Administracao.formCadastrarProfessor()"> Cadastrar Professor</a>
+	                    
+	                         </li>
 	                    </ul>
 	                    <dl id="user" class="afastar">
-	                       <dt>user.name <span>(user.email)</span></dt>
+	                       <dt>@getUsuarioLogado().nome</dt>
 	                         <dd>
 	                              <a href="@routes.Sessions.efetuarlogout()">Sair</a>
 	                        </dd>

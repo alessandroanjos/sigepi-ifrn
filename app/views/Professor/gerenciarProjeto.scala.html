@@ -1,4 +1,4 @@
-@(projetos: List[Projeto])
+@(projetos: List[Projeto], campus: List[Campus])
 
 @* @(bolsistas: Set[Bolsista]) *@
 
@@ -18,7 +18,7 @@
 	                  <th>Nome</th>
 	                  <th>Data de Cadastro</th>
 	                  <th>Campus</th>
-	                  <th>Agência</th>
+	                  <th>Agência Financiadora</th>
 	                  <th>Área de Conhecimento</th>
 	                  @*<th>Bolsista</th>*@
 	                </tr>
@@ -28,7 +28,7 @@
 	                <tr>
                 		<td>@projeto.nome</td>
                 		<td>@projeto.dataCadastro</td>
-                		<td>@projeto.campus</td>
+                		<td>@projeto.campus.getNome</td>
                 		<td>@projeto.agencia</td>
                 		<td>@projeto.areaConhecimento</td>
                 		@*<td>@projeto.bolsista</td>*@

@@ -1,9 +1,13 @@
 @(formProjetos : Form[Projeto], editais : List[Edital], projetos : List[Projeto] )
 
 
-@main("SIGEPI - Submeter Projetos"){
+@main("SIGEPI - Submissão de Projetos"){
 
 <html>
+
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
 
 <body>
 
@@ -47,6 +51,7 @@
 	
 	
 	}
+	@*
 		<form action="demo_form.asp">
 			<div>
 			
@@ -67,6 +72,8 @@
 					<option>Sei nao</option>
 				</select><br>
 			<br>
+			
+			*@
 			<form action="">
 				<b>Escolha o arquivo:</b><input type="file" multiple="multiple">
 				<br>
@@ -80,7 +87,7 @@
 			aria-labelledby="addDicenteLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">�</button>
+					aria-hidden="true">×</button>
 				<h3 id="myModalLabel">Inserir Discente</h3>
 			</div>
 			<div class="modal-body">

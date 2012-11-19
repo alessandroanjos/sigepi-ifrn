@@ -4,12 +4,9 @@ package controllers;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import helpers.Seguranca.InformacoesUsuarioHelper;
-
 import java.util.List;
 import java.util.Date;
-
-import models.Bolsista;
+import models.Campus;
 import models.Edital;
 import models.Projeto;
 
@@ -20,10 +17,19 @@ public class Professores extends Controller{
 	
 	private static final Form<Projeto> projetoForm = form(Projeto.class);
 
+    /**
+     * Inicio da área do professro
+     */
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result index(){
 		return ok(views.html.Professor.index.render());
 	}
 	
+    /**
+     * Formulário de de submeter projeto 
+     */
+	
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result submeterProjeto(){
 		
 		List<Edital> edital = Edital.find.findList();
@@ -32,6 +38,11 @@ public class Professores extends Controller{
 		return ok(views.html.Professor.submeterProjeto.render(form(Projeto.class),edital,projeto));
 	}
 	
+	
+    /**
+     * Envia os dados do projeto para avaliação
+     */
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result enviarProjetoAvaliacao() {
 		
 		return TODO;
@@ -56,52 +67,136 @@ public class Professores extends Controller{
 		*/
 	}
 	
-	
+    /**
+     * 
+     */
 	
 	public static Result curriculo(){
 	    return ok(views.html.Professor.curriculo.render());
 	}
 	
+	
+    /**
+     * 
+     */
+	
 	public static Result atualizarCurriculo(){
 		return ok(views.html.Professor.atualizarCurriculo.render());
 	}
 	
+    /**
+     *  tela de gerencia do projeto
+     */
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result gerenciarProjeto(){
 		List<Projeto> projetos = Projeto.find.where().findList();
-		return ok(views.html.Professor.gerenciarProjeto.render(projetos));
+		List<Campus> campus  = Campus.find.where().findList();
+		
+		return ok(views.html.Professor.gerenciarProjeto.render(projetos, campus));
 	
 		
 	}
-	
+    /**
+     * Abre o formulário de cadastrar o projeto
+     */
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result formularioCadastrarProjeto(){	
-		return ok(views.html.Professor.formularioCadastrarProjeto.render(projetoForm));
+		//Lista de Campus
+		List<Campus> campus = Campus.find.findList();		
+		return ok(views.html.Professor.formularioCadastrarProjeto.render(projetoForm, campus));
 	}
 	
+    /**
+     * Inserir o projeto no Banco de Dados 
+     */
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result salvarCadastroProjeto() {
+		/*
+		 * Form<Bolsista> bForm = bolsistaForm.bindFromRequest();
+		Long idProjeto = Long.valueOf(bForm.data().get("idProjeto"));
 		
-		Form<Projeto> pForm = projetoForm.bindFromRequest();
-		if(pForm .hasErrors()){
+		if(bForm.hasErrors()){
 			flash("error", "Dados inválidos!");
-			return badRequest(views.html.Professor.formularioCadastrarProjeto.render(pForm));
+			
+			List<Projeto> projeto = Projeto.find.findList();
+			return badRequest(views.html.Administrador.formularioCadastrarBolsista.render(bForm,projeto));
 		}
 		//armazena no BD
-		pForm.get().save();
-        flash("success", "Projeto " + pForm.get().nome + " foi Cadastrado(a) com Sucesso!");
+		//bForm.get().save();
+		
+		Bolsista bol = bForm.get();
+		
+		
+		bol.projeto = Projeto.find.byId(idProjeto);
+		bol.save();
+		System.out.println("BOLSISTA-PROJETO"+bol.projeto.nome);
+		
+        flash("success", "Bolsista \"" + bForm.get().nome + "\" foi Cadastrado(a) com Sucesso!");
+        return redirect(routes.Administracao.gerenciarBolsista());
+		 */
+		Form<Projeto> pForm = projetoForm.bindFromRequest();
+		Long idCampus = Long.valueOf(pForm.data().get("idCampus"));
+		
+		
+		if(pForm.hasErrors()){
+			flash("error", "Dados inválidos!");
+			
+			List<Campus> campus = Campus.find.findList();
+			return badRequest(views.html.Professor.formularioCadastrarProjeto.render(pForm,campus));
+		}
+		//armazena no BD
+         
+        Projeto projeto = pForm.get();
+	    projeto.campus = Campus.find.byId(idCampus);
+		projeto.dataCadastro = new Date();
+		projeto.save();
+		System.out.println("PROJETO-CAMPUS"+projeto.campus);
+		
+        flash("success", "Projeto \"" + pForm.get().nome + "\" foi Cadastrado com Sucesso!");
         return redirect(routes.Professores.gerenciarProjeto());
 		
+		
+		/*
+		 * 
+		 Projeto projeto = pForm.get();
+		
+		//colocar ao invés de Projeto - colocar Campus.
+		projeto.nome = Projeto.find.byId(idProjeto);
+		projeto.dataCadastro = new Date();
+		bol.save();
+		System.out.println("BOLSISTA-PROJETO"+bol.projeto.nome);
+		
+        flash("success", "Bolsista \"" + bForm.get().nome + "\" foi Cadastrado(a) com Sucesso!");
+        return redirect(routes.Administracao.gerenciarBolsista());
+		
+		*/
+		/*
+		pForm.get().save();
+        flash("success", "Projeto \"" + pForm.get().nome + "\" foi Cadastrado(a) com Sucesso!");
+        return redirect(routes.Professores.gerenciarProjeto());
+		*/
 	}
-	
-	
+    /**
+     * Abrir o formulário de edição do projeto
+     */
+	@helpers.Seguranca.Permissao("Professor")
 	public static Result formularioEdicaoProjeto(Long id){
 		Form<Projeto> pForm = form(Projeto.class).fill(Projeto.find.byId(id));
-		return ok(views.html.Professor.formularioEdicaoProjeto.render(id, pForm));
+		List<Campus> campus = Campus.find.findList();
+		return ok(views.html.Professor.formularioEdicaoProjeto.render(id, pForm, campus));
 	}
 	
-
+    /**
+     * Atualizar o projeto
+     */
+	@helpers.Seguranca.Permissao("Professor")
     public static Result update(Long id) {
         Form<Projeto> pForm = form(Projeto.class).bindFromRequest();
         if(pForm.hasErrors()) {
-            return badRequest(views.html.Professor.formularioEdicaoProjeto.render(id, pForm));
+        	flash("error", "Dados inválidos!");
+        	List<Campus> campus = Campus.find.findList();
+        	
+            return badRequest(views.html.Professor.formularioEdicaoProjeto.render(id, pForm, campus));
         }
         //Atualiza no BD.
         pForm.get().update(id);
@@ -111,8 +206,9 @@ public class Professores extends Controller{
     }
     
     /**
-     * Handle computer deletion
+     * Deletar o projeto
      */
+    @helpers.Seguranca.Permissao("Professor")
     public static Result deletarProjeto(Long id) {
            
         Projeto projeto = Projeto.find.byId(id);

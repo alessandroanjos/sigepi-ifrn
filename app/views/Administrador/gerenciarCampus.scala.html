@@ -1,0 +1,44 @@
+@(campus: List[Campus])
+
+
+@main("SIGEPI - Gerenciar Campus") {
+			
+			
+	<a href="@routes.Administracao.formularioCadastrarCampus" class="btn primary"><i class="icon-plus"></i> Cadastrar Novo Campus</a>
+			
+			<br><br>
+ 
+			@if(campus.size == 0) {
+				<h3>Nenhum Campus cadastrado.</h3>			
+			} else {
+				<table class="table table-bordered table-condensed table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Nome</th>
+	                  <th>Ações</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+                	
+                	@for(campi <- campus) {
+                	
+                	
+	                <tr>
+                		<td>@campi.nome</td>
+                		
+                		
+						<td style="width:15%;">
+						     <a href="@routes.Administracao.formularioEdicaoCampus(campi.id)" class="btn success"><i class="icon-edit"></i> Editar</a>
+						    <a href="@routes.Administracao.deletarCampus(campi.id)" onclick="return confirm('Deseja realmente excluir o Campus: &quot;@campi.nome&quot;?')" class="btn danger"><i class="icon-remove"></i> Excluir</a>
+					   </td>
+	                </tr>
+	                
+					}
+	              </tbody>
+	            </table>
+			}
+			
+			<a href="@routes.Administracao.index()" class="btn">Voltar</a>
+			
+}
+

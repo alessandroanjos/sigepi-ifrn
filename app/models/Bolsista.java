@@ -35,7 +35,18 @@ public class Bolsista extends Model{
 	@ManyToOne
 	public Projeto projeto;
 	
+	public Pessoa pessoa;
 	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+	
+	public Curso curso;
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
 	public Projeto getProjeto() {
 		return projeto;
 	}

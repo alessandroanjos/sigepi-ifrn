@@ -1,7 +1,6 @@
 package models;
 
-
-public class Avaliador extends Usuario {
+public class Curso {
 
 	public String nome;
 }

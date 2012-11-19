@@ -5,6 +5,12 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+GET      /cadastro-professor                                controllers.Administracao.formularioProfessor()
+GET      /cadastro-gestor                                   controllers.Administracao.formularioGestor()
+
+POST    /cadastro-gestor                                    controllers.Administracao.salvarCadastrarGestor()
+POST    /cadastro-professor                                 controllers.Administracao.salvarCadastrarProfessor()
+
 
 # Sistema de Login, Alteração e Recuperação de Senha
 GET     /acesso              		        				controllers.Sessions.login()
@@ -19,10 +25,11 @@ GET     /minha-conta/ativar-minha-conta		        		controllers.Sessions.ativarCo
 GET     /administracao/admin								controllers.Administracao.index()
 GET     /administracao/admin/gerenciar-edital				controllers.Administracao.gerenciarEdital()
 GET     /administracao/admin/gerenciar-bolsista             controllers.Administracao.gerenciarBolsista()
+GET     /administracao/admin/gerenciar-campus               controllers.Administracao.gerenciarCampus()
+
 
 GET     /administracao/admin/form-cadastrar-bolsista		controllers.Administracao.formularioCadastrarBolsista()
 POST    /administracao/admin/salvar-cadastro-bolsista       controllers.Administracao.salvarCadastroBolsista()
-
 GET 	/administracao/admin/:id/form-editar-bolsista		controllers.Administracao.formularioEdicaoBolsista(id: Long)
 POST 	/administracao/admin/:id/atualizar-bolsista			controllers.Administracao.atualizarBolsista(id: Long)
 GET 	/administracao/admin/:id/deletar-bolsista  			controllers.Administracao.deletarBolsista(id: Long)
@@ -33,7 +40,14 @@ GET 	/administracao/admin/:id/form-editar-edital		    controllers.Administracao.
 POST 	/administracao/admin/:id/atualizar-edital			controllers.Administracao.atualizarEdital(id: Long)
 GET 	/administracao/admin/:id/deletar-edital  			controllers.Administracao.deletarEdital(id: Long)
 
+GET     /administracao/admin/form-cadastrar-campus          controllers.Administracao.formularioCadastrarCampus()
+POST    /administracao/admin/salvar-cadastro-campus         controllers.Administracao.salvarCadastroCampus()
+GET 	/administracao/admin/:id/form-editar-campus		    controllers.Administracao.formularioEdicaoCampus(id: Long)
+POST 	/administracao/admin/:id/atualizar-campus			controllers.Administracao.atualizarCampus(id: Long)
+GET 	/administracao/admin/:id/deletar-campus  			controllers.Administracao.deletarCampus(id: Long)
 
+GET     /administracao/admin/form-cadastro-professor        controllers.Administracao.formCadastrarProfessor()
+POST    /administracao/admin/salvar-cadastro-professor      controllers.Administracao.salvarCadastrarProfessor()
 
 # Administração do Avaliador
 GET     /administracao/avaliador            				controllers.Avaliadores.index()       
