@@ -1,0 +1,51 @@
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\bin\Debug\sigepiApp01.exe
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\bin\Debug\sigepiApp01.pdb
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\MainWindow.baml
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\App.g.cs
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\sigepiApp01_MarkupCompile.cache
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\sigepiApp01.g.resources
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\sigepiApp01.Properties.Resources.resources
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\sigepiApp01.exe
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\sigepiApp01.pdb
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\Login.baml
+C:\Users\Alessandro\Documents\Visual Studio 2010\Projects\SIGEPI\Testes\sigepi-ifrn\sigepiApp01\obj\x86\Debug\Login.g.cs
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.exe
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.pdb
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\bin\Debug\sigepiApp01.exe
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\bin\Debug\sigepiApp01.pdb
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\Login.baml
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\MainWindow.baml
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\Login.g.cs
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\App.g.cs
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01_MarkupCompile.cache
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.g.resources
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.Properties.Resources.resources
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\Denilde\Desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.exe
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.pdb
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\bin\Debug\sigepiApp01.exe
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\bin\Debug\sigepiApp01.pdb
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\Login.baml
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\MainWindow.baml
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\Login.g.cs
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\App.g.cs
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01_MarkupCompile.cache
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.g.resources
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.Properties.Resources.resources
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01_MarkupCompile.lref
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.FormAdministrador.resources
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.FormEditais.resources
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.FormLogin.resources
+C:\Users\Alessandro\sigepi-ifrn\sigepi-ifrn_desktop\sigepiApp01\bin\Debug\sigepiApp01.exe.config
