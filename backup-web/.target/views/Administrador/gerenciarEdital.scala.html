@@ -1,0 +1,45 @@
+@(editais: List[Edital])
+
+@main("SIGEPI - Gerenciar Editais") {
+			
+			
+	<a href="@routes.Administracao.formularioCadastrarEdital()" class="btn primary"><i class="icon-plus"></i> Cadastrar Novo Edital</a>
+			
+			<br><br>
+ 
+			@if(editais.size == 0) {
+				<h3>Nenhum Edital cadastrado.</h3>			
+			} else {
+				<table class="table table-bordered table-condensed table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Edital</th>
+	                  <th>Descricao</th>
+	                  <th>Periodo de Inscricao Inicial</th>
+	                   <th>Periodo de Inscricao Final</th>
+	                  <th>Ações</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+                	@for(edital <- editais) {
+	                <tr>
+                		<td>@edital.nome</td>
+                		<td>@edital.descricao</td>
+                		<td>@edital.periodoInscricaoInicial</td>
+                		<td>@edital.periodoInscricaoFinal</td>
+						<td style="width:15%;">
+						    
+						    <a href="@routes.Administracao.formularioEdicaoEdital(edital.idEdital)" class="btn success"><i class="icon-edit"></i> Editar</a>
+						    <a href="@routes.Administracao.deletarEdital(edital.idEdital)" onclick="return confirm('Deseja realmente excluir o Edital: &quot;@edital.nome&quot;?')" class="btn danger"><i class="icon-remove"></i> Excluir</a>
+								
+						</td>
+	                </tr>
+					}
+	              </tbody>
+	            </table>
+			}
+			
+			<a href="@routes.Administracao.index()" class="btn">Voltar</a>
+			
+}
+

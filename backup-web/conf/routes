@@ -1,0 +1,79 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+
+GET      /cadastro-professor                                controllers.Administracao.formularioProfessor()
+GET      /cadastro-gestor                                   controllers.Administracao.formularioGestor()
+
+POST    /cadastro-gestor                                    controllers.Administracao.salvarCadastrarGestor()
+POST    /cadastro-professor                                 controllers.Administracao.salvarCadastrarProfessor()
+
+
+# Sistema de Login, Alteração e Recuperação de Senha
+GET     /acesso              		        				controllers.Sessions.login()
+GET     /esqueci-senha                      				controllers.Sessions.esqueciSenha()
+POST    /acessar-minha-conta        		 				controllers.Sessions.efetuarLogin()
+GET     /sair-do-sistema            						controllers.Sessions.efetuarlogout()
+GET     /minha-conta/ativar-minha-conta		        		controllers.Sessions.ativarConta(email: String)
+
+
+# Administração do Sistema
+# GET	/administracao/				        			    controllers.Avaliadores.index 
+GET     /administracao/admin								controllers.Administracao.index()
+GET     /administracao/admin/gerenciar-edital				controllers.Administracao.gerenciarEdital()
+GET     /administracao/admin/gerenciar-bolsista             controllers.Administracao.gerenciarBolsista()
+GET     /administracao/admin/gerenciar-campus               controllers.Administracao.gerenciarCampus()
+
+
+GET     /administracao/admin/form-cadastrar-bolsista		controllers.Administracao.formularioCadastrarBolsista()
+POST    /administracao/admin/salvar-cadastro-bolsista       controllers.Administracao.salvarCadastroBolsista()
+GET 	/administracao/admin/:id/form-editar-bolsista		controllers.Administracao.formularioEdicaoBolsista(id: Long)
+POST 	/administracao/admin/:id/atualizar-bolsista			controllers.Administracao.atualizarBolsista(id: Long)
+GET 	/administracao/admin/:id/deletar-bolsista  			controllers.Administracao.deletarBolsista(id: Long)
+
+GET     /administracao/admin/form-cadastrar-edital          controllers.Administracao.formularioCadastrarEdital()
+POST    /administracao/admin/salvar-cadastro-edital         controllers.Administracao.salvarCadastroEdital()
+GET 	/administracao/admin/:id/form-editar-edital		    controllers.Administracao.formularioEdicaoEdital(id: Long)
+POST 	/administracao/admin/:id/atualizar-edital			controllers.Administracao.atualizarEdital(id: Long)
+GET 	/administracao/admin/:id/deletar-edital  			controllers.Administracao.deletarEdital(id: Long)
+
+GET     /administracao/admin/form-cadastrar-campus          controllers.Administracao.formularioCadastrarCampus()
+POST    /administracao/admin/salvar-cadastro-campus         controllers.Administracao.salvarCadastroCampus()
+GET 	/administracao/admin/:id/form-editar-campus		    controllers.Administracao.formularioEdicaoCampus(id: Long)
+POST 	/administracao/admin/:id/atualizar-campus			controllers.Administracao.atualizarCampus(id: Long)
+GET 	/administracao/admin/:id/deletar-campus  			controllers.Administracao.deletarCampus(id: Long)
+
+GET     /administracao/admin/form-cadastro-professor        controllers.Administracao.formCadastrarProfessor()
+POST    /administracao/admin/salvar-cadastro-professor      controllers.Administracao.salvarCadastrarProfessor()
+
+# Administração do Avaliador
+GET     /administracao/avaliador            				controllers.Avaliadores.index()       
+GET     /administracao/avaliador/avaliar-projetos      		controllers.Avaliadores.avaliarProjeto()    
+GET     /administracao/avaliador/acessar-dados-projeto      controllers.Avaliadores.acessarDadosProjeto()
+GET     /administracao/avaliador/acessar-formulario         controllers.Avaliadores.acessarFormulario()
+
+
+# Administração do Professor
+GET 	/administracao/professor							controllers.Professores.index()
+GET  	/administracao/professor/curriculo					controllers.Professores.curriculo()
+GET  	/administracao/professor/atualizar-curriculo		controllers.Professores.atualizarCurriculo()
+GET     /administracao/professor/submeter-projeto         	controllers.Professores.submeterProjeto()
+
+GET     /administracao/professor/gerenciar-projeto         	controllers.Professores.gerenciarProjeto()
+GET		/administracao/professor/cadastrar-projeto			controllers.Professores.formularioCadastrarProjeto()
+POST    /administracao/professor/salvar-cadastro-projeto	controllers.Professores.salvarCadastroProjeto()
+
+GET 	/administracao/professor/:id/editar					controllers.Professores.formularioEdicaoProjeto(id: Long)
+POST 	/administracao/professor/:id/editar     			controllers.Professores.update(id: Long)
+GET 	/administracao/professor/:id/deletar	    		controllers.Professores.deletarProjeto(id: Long)
+
+GET     /administracao/professor/exibir-dados-cadastrados   controllers.Professores.exibirDadosCadastrados()
+
+POST     /administracao/professor/submeter-projeto          controllers.Professores.enviarProjetoAvaliacao()
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,45 @@
+@(id: Long, projetos: Form[Projeto], campus : List[Campus])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+
+
+@main("SIGEPI - Editar Projeto") {
+
+@helper.form(action = routes.Professores.update(id)) {
+
+
+<fieldset>
+   <legend>Projeto (@projetos("nome").valueOr("Novo"))</legend>
+       @helper.inputText(projetos("nome"), '_label -> "Nome" )
+  @*   @helper.inputText(projetos("dataCadastro"), '_label -> "Data Cadastro"  )  *@
+  @*   @helper.inputText(projetos("campus"), '_label -> "Campus" ) *@
+  
+    <div class="clearfix" id="idCampus_field">
+				<label for="idCampus">Escolha o Campus:</label>
+				<div class="input">
+						<select id="idCampus" name="idCampus" class="span5">
+							@for(campi <- campus) {
+							  <option value="@campi.id">@campi.nome</option>
+							}						
+		    			</select>
+					<span class="help-inline"></span>
+					<span class="help-block"></span>
+				</div>
+		 </div>
+     
+       @helper.inputText(projetos("agencia"), '_label -> "Agencia Financiadora" )
+       @helper.inputText(projetos("areaConhecimento"), '_label -> "Area Conhecimento" )
+       
+       
+       @* @helper.textarea(projetos("descricao")) *@
+</fieldset>
+<input type="submit" class="btn primary">
+
+<a href="@routes.Professores.gerenciarProjeto" class="btn">Cancelar</a>
+
+
+ } 
+
+}
