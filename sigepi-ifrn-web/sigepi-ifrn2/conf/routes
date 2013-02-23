@@ -1,0 +1,114 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+
+
+# Cadastro dos Usuários no Sistema
+
+GET     /cadastro-professor                                 controllers.Professores.formulario()
+POST 	/cadastro-professor             					controllers.Professores.cadastrar()
+GET     /cadastro-gestor                                    controllers.Gestores.formulario()
+POST    /cadastro-gestor                                    controllers.Gestores.cadastrar()
+GET     /cadastro-avaliador                                 controllers.Avaliadores.formulario()
+POST    /cadastro-avaliador                                 controllers.Avaliadores.cadastrar()
+
+
+# Sistema de Login
+GET     /acesso              		        				controllers.Sessions.login()
+POST    /acessar-minha-conta        		 				controllers.Sessions.efetuarLogin()
+GET     /sair-do-sistema            						controllers.Sessions.efetuarlogout()
+
+# Administração do Sistema
+GET     /administracao/admin								controllers.Administracao.index()
+
+
+# Editais
+GET 	/administracao/editais								controllers.Editais.index()
+GET 	/administracao/editais/:id/visualizar				controllers.Editais.visualizar(id: Long)
+
+
+# Campus
+GET     /administracao/campus                               controllers.CampusController.index()
+GET 	/administracao/campus/:id/visualizar				controllers.CampusController.visualizar(id: Long)
+
+
+# Ranking dos Projetos
+GET 	/ranking-dos-projetos/visualizar					controllers.Projetos.rankingProjetos()
+
+
+
+
+
+# Projetos
+GET 	/administracao/projetos								controllers.Projetos.index()
+GET 	/administracao/projetos/submeter					controllers.Projetos.formulario()
+POST 	/administracao/projetos/submeter					controllers.Projetos.submeter()
+GET 	/administracao/projetos/:id/visualizar				controllers.Projetos.visualizar(id: Long)
+GET     /administracao/projetos/avaliados           		controllers.Projetos.meusProjetosAvaliados()
+GET     /administracao/projetos/meus-projetos         		controllers.Projetos.meusProjetos()
+
+
+# Administracao dos Projetos
+GET 	/administracao/projetos/:id/editar					controllers.Projetos.formularioEdicao(id: Long)
+POST 	/administracao/projetos/:id/editar					controllers.Projetos.editar(id: Long)
+GET 	/administracao/projetos/:id/excluir					controllers.Projetos.deletar(id: Long)
+GET     /administracao/projetos/:id/avaliar                 controllers.Projetos.formularioAvaliacao(id: Long)
+POST    /administracao/projetos/avaliar                     controllers.Projetos.avaliacaoProjeto(id: Long)
+
+# Administração dos Editais
+GET 	/administracao/editais/cadastro						controllers.Editais.formulario()
+POST 	/administracao/editais/cadastro						controllers.Editais.cadastrar()
+GET 	/administracao/editais/:id/editar					controllers.Editais.formularioEdicao(id: Long)
+POST 	/administracao/editais/:id/editar					controllers.Editais.editar(id: Long)
+GET 	/administracao/editais/:id/excluir					controllers.Editais.deletar(id: Long)
+
+
+# Administração dos Campus
+GET 	/administracao/campus/cadastro						controllers.CampusController.formulario()
+POST 	/administracao/campus/cadastro						controllers.CampusController.cadastrar()
+GET 	/administracao/campus/:id/editar					controllers.CampusController.formularioEdicao(id: Long)
+POST 	/administracao/campus/:id/editar					controllers.CampusController.editar(id: Long)
+GET 	/administracao/campus/:id/excluir					controllers.CampusController.deletar(id: Long)
+
+
+# Administração dos Professores, Gestores e Avaliadores
+GET     /administracao/professores/listagem-professores     controllers.Professores.listaProfessores()
+GET 	/administracao/professores/:id/editar				controllers.Professores.formularioEdicao(id: Long)
+POST 	/administracao/professores/:id/editar				controllers.Professores.editar(id: Long)
+GET 	/administracao/professores/:id/deletar				controllers.Professores.deletar(id: Long)
+GET     /administracao/gestores/listagem-gestores           controllers.Gestores.listaGestores()
+GET 	/administracao/gestores/:id/editar				    controllers.Gestores.formularioEdicao(id: Long)
+POST 	/administracao/gestores/:id/editar				    controllers.Gestores.editar(id: Long)
+GET 	/administracao/gestores/:id/deletar				    controllers.Gestores.deletar(id: Long)
+GET     /administracao/avaliadores/listagem-avaliadores     controllers.Avaliadores.listaAvaliadores()
+GET 	/administracao/avaliadores/:id/editar				controllers.Avaliadores.formularioEdicao(id: Long)
+POST 	/administracao/avaliadores/:id/editar				controllers.Avaliadores.editar(id: Long)
+GET 	/administracao/avaliadores/:id/deletar				controllers.Avaliadores.deletar(id: Long)
+
+
+# Administração do Avaliador
+GET     /administracao/avaliador            				controllers.Avaliadores.index()    
+
+
+# Administração do Professor
+GET 	/administracao/professor							controllers.Professores.index()
+
+
+# Administração do Gestor
+GET     /administracao/gestor                               controllers.Gestores.index()
+
+
+
+
+
+
+
+
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

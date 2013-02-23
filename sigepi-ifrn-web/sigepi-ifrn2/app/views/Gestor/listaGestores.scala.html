@@ -1,0 +1,57 @@
+@(gestores: List[Usuario])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Gestores</h1>
+				
+				<div style="float:right; position:relative; top:8px;">
+					<a href="@routes.Gestores.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Novo Gestor</a>
+				</div>
+			</div>
+			
+			
+			
+			@if(gestores.size == 0) {
+				<h3>Nenhum Gestor cadastrado.</h3>			
+			} else {
+				<table class="table table-bordered table-condensed table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Nome</th>
+	                  <th>Email</th>
+	                  <th>Login</th>
+	                  <th>Campus</th>
+	                  <th>Ações</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+                	@for(gestor <- gestores) {
+	                <tr>
+                		<td>@gestor.nome</td>
+                		<td>@gestor.email</td>
+                		<td>@gestor.login</td>
+                		<td>@gestor.campus.getNome</td>
+						<td style="width:15%;">
+							<a href="@routes.Gestores.formularioEdicao(gestor.id)" class="btn btn-small"><i class="icon-edit"></i> Editar</a>
+							<a href="@routes.Gestores.deletar(gestor.id)" onclick="return confirm('Deseja realmente excluir o gestor &quot;@gestor.nome&quot;?')" class="btn btn-small"><i class="icon-remove"></i> Excluir</a>
+						</td>
+	                </tr>
+					}
+	              </tbody>
+	            </table>
+			}
+		</div>
+	</div>	
+	
+
+}

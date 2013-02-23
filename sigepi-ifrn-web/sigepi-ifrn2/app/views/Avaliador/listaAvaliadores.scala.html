@@ -1,0 +1,119 @@
+@(avaliadores: List[Usuario])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+@if(isLogado()) {
+		@if(getUsuarioLogado().isAdministrador) {
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Avaliadores</h1>
+				
+				<div style="float:right; position:relative; top:8px;">
+					<a href="@routes.Avaliadores.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Novo Avaliador</a>
+				</div>
+			</div>
+			
+			
+			
+			@if(avaliadores.size == 0) {
+				<h3>Nenhum Avaliador cadastrado.</h3>			
+			} else {
+				<table class="table table-bordered table-condensed table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Nome</th>
+	                  <th>Email</th>
+	                  <th>Login</th>
+	                  <th>Campus</th>
+	                  <th>Ações</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+                	@for(avaliador <- avaliadores) {
+	                <tr>
+                		<td>@avaliador.nome</td>
+                		<td>@avaliador.email</td>
+                		<td>@avaliador.login</td>
+                		<td>@avaliador.campus.getNome</td>
+						<td style="width:15%;">
+							<a href="@routes.Avaliadores.formularioEdicao(avaliador.id)" class="btn btn-small"><i class="icon-edit"></i> Editar</a>
+							<a href="@routes.Avaliadores.deletar(avaliador.id)" onclick="return confirm('Deseja realmente excluir o avaliador &quot;@avaliador.nome&quot;?')" class="btn btn-small"><i class="icon-remove"></i> Excluir</a>
+						</td>
+	                </tr>
+					}
+	              </tbody>
+	            </table>
+			}
+		</div>
+	</div>	
+	}
+	
+	@if(getUsuarioLogado().isGestor){
+	
+	
+	<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Avaliadores</h1>
+				
+				<div style="float:right; position:relative; top:8px;">
+					<a href="@routes.Avaliadores.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Novo Avaliador</a>
+				</div>
+			</div>
+			
+			
+			
+			@if(avaliadores.size == 0) {
+				<h3>Nenhum Avaliador cadastrado.</h3>			
+			} else {
+				<table class="table table-bordered table-condensed table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Nome</th>
+	                  <th>Email</th>
+	                  <th>Login</th>
+	                  <th>Campus</th>
+	                  <th>Ações</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+                	@for(avaliador <- avaliadores) {
+                	
+                	 @if(isAvaliadorCampusIgual(avaliador.id)){
+                	 
+		                <tr>
+	                		<td>@avaliador.nome</td>
+	                		<td>@avaliador.email</td>
+	                		<td>@avaliador.login</td>
+	                		<td>@avaliador.campus.getNome</td>
+							<td style="width:15%;">
+								<a href="@routes.Avaliadores.formularioEdicao(avaliador.id)" class="btn btn-small"><i class="icon-edit"></i> Editar</a>
+								<a href="@routes.Avaliadores.deletar(avaliador.id)" onclick="return confirm('Deseja realmente excluir o avaliador &quot;@avaliador.nome&quot;?')" class="btn btn-small"><i class="icon-remove"></i> Excluir</a>
+							</td>
+		                </tr>
+	                  }
+					}
+	              </tbody>
+	            </table>
+			}
+		</div>
+	</div>	
+		   
+		   
+		   
+		   
+		   
+	
+	
+	
+	}
+	
+  }
+
+}

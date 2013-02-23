@@ -1,0 +1,51 @@
+@(rankingProjetos: TreeMap[Projeto,Integer])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Ranking dos Projetos</h1>
+			</div>
+			
+			<table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+           
+                  <th>Edital</th> 
+                  <th>Colocação</th>
+                  <th>Nome</th>
+                 
+                  <th>Pontuação Total</th>
+                </tr>
+              </thead>
+              <tbody>
+               	@for((ranking, i) <- rankingProjetos.view.zipWithIndex) {
+               	
+                     
+                <tr>
+                       
+                 @if(isCampusIgual(ranking._1.id)){ 
+               	
+	               
+	               		<td style="width:15%;">@ranking._1.edital.getTitulo </td> 
+	               		<td style="width:5%;">
+	               			@{var colocacao = i + 1; colocacao}º
+	               		</td>
+	               		<td>@ranking._1.titulo</td>
+	               		
+	               		<td style="width:15%;">@ranking._2 ponto(s)</td>
+	                
+                 }
+                 </tr>
+				}
+              </tbody>
+            </table>
+		</div>
+	</div>	
+
+}

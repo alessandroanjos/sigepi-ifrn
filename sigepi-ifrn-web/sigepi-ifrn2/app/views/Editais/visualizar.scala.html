@@ -1,0 +1,80 @@
+@(edital: Edital)
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">
+					@edital.titulo <br/>
+					<small>
+						Cadastrado por: @edital.autor.getNome
+					</small>
+				</h1>
+				
+				@if(isLogado()) {
+					@if(getUsuarioLogado().isProfessor) {
+					<div style="float:right; position:relative; top:8px;">
+						<a href="@routes.Projetos.formulario" class="btn"><i class="icon-plus"></i> Submeter um Novo Projeto </a>
+					</div>
+					}
+				}
+			</div>
+			
+			
+	@if(isLogado()) {
+		@if(getUsuarioLogado().isAdministrador) {
+			
+			
+			@if(edital.projetos.size == 0) {
+				<h3>Nenhum Projeto Cadastrado para este Edital.</h3>
+			} else {
+				<div class="row">
+				@for(projeto <- edital.projetos) {
+						<div class="span5 well pull-left">
+							<h2>
+								<a href="@routes.Projetos.visualizar(projeto.id)">
+									@projeto.titulo
+								</a>
+							</h2>
+							
+							<div style="height:400px;">
+								@Html(projeto.resumo)
+							</div>
+							
+						@*	<span class="label label-info">Nível: @exercicio.nivelExercicio</span>  *@
+						
+							
+						
+							@if(isProjetoAvaliado(projeto.id)) {
+								<span class="label label-success">Avaliado - @getProjetoAvaliado(projeto.id).pontuacaoObtida Pontos Obtidos!</span>
+							} else {
+								<span class="label label-important">Pendente!</span>
+							}
+							
+							
+							
+						</div>
+				}
+				</div>
+			}
+			
+			
+			
+			
+			} else{
+			   //Informa os dados do edital como a descricao do edital
+			}
+		}	
+		
+		
+		</div>
+	</div>	
+
+
+}

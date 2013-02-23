@@ -1,0 +1,63 @@
+@(campus: List[Campus])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Campus</h1>
+				
+				@if(isLogado()) {
+					@if(getUsuarioLogado().isAdministrador) {
+					<div style="float:right; position:relative; top:8px;">
+						<a href="@routes.CampusController.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Novo Campus</a>
+					</div>
+					}
+				}
+			</div>
+			
+			@if(campus.size == 0) {
+				<h3>Nenhum campus cadastrado.</h3>			
+			} else {
+				@for(campi <- campus) {
+				<div class="item-lista">
+					<div class="item-lista">
+						<div class="item">
+							
+							<h2>
+								<a href="@routes.CampusController.visualizar(campi.id)">
+									@campi.nome 
+								</a>
+							</h2>
+							
+												
+						
+						
+						<div style=" padding-top:10px;">
+							<a href="@routes.CampusController.visualizar(campi.id)" class="btn btn-primary"><i class="icon-white icon-list-alt"></i> Visualizar o Campus</a>
+							
+							@if(isLogado()) {
+								@if(getUsuarioLogado().isAdministrador) {
+									<a href="@routes.CampusController.editar(campi.id)" class="btn"><i class="icon-edit"></i> Editar</a>
+									<a href="@routes.CampusController.deletar(campi.id)" onclick="return confirm('Deseja realmente excluir o campus &quot;@campi.nome&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
+								}
+							}
+						</div>
+						
+						 <br /><br />
+						
+						</div> 
+					</div>
+				</div>
+				}
+			}
+		</div>
+		</div>
+	
+
+}

@@ -1,0 +1,62 @@
+@(formulario: Form[Projeto], editais: List[Edital], campus: List[Campus], projeto: Projeto)
+@import tags._
+@import helper.twitterBootstrap._
+@import helper._
+
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Edição do Projeto: @projeto.titulo</h1>
+			</div>
+			
+			@helper.form(action = routes.Projetos.editar(projeto.id), 'style -> "margin:0;"){
+				@helper.inputText(formulario("titulo"), 'id -> "titulo", 'class -> "span8", '_label -> "Título do Projeto: ", '_showConstraints -> false, '_showErrors -> true)
+				
+				<div class="clearfix " id="idCurso_field">
+					<label for="idEdital">Edital do Projeto:</label>
+					<div class="input">
+						<select id="idEdital" name="idEdital" class="span5">
+							@for(edital <- editais) {
+							  <option @if(projeto.edital.id == edital.id){ selected="selected" } value="@edital.id">@edital.titulo</option>
+							}						
+						</select>
+						<span class="help-inline"></span>
+						<span class="help-block"></span>
+					</div>
+				</div>
+				
+				<div class="clearfix" id="idCurso_field">
+					<label for="idCampus">Escolha o Campus do Projeto:</label>
+					<div class="input">
+						<select id="idCampus" name="idCampus" class="span5">
+							@for(campi <- campus) {
+							  <option value="@campi.id">@campi.nome</option>
+							}						
+						</select>
+						<span class="help-inline"></span>
+						<span class="help-block"></span>
+					</div>
+				</div>
+				
+				@helper.textarea(formulario("resumo"), 'id -> "resumo", 'rows -> "15", 'class -> "span10", '_label -> "Resumo: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.textarea(formulario("introducao"), 'id -> "introducao", 'rows -> "15", 'class -> "span10", '_label -> "Introdução: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.textarea(formulario("fundamentacaoTeorica"), 'id -> "fundamentacaoTeorica", 'rows -> "15", 'class -> "span10", '_label -> "Fundamentação Teorica: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.textarea(formulario("justificativa"), 'id -> "justificativa", 'rows -> "10", 'class -> "span10", '_label -> "Justificativa: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.textarea(formulario("objetivos"), 'id -> "objetivos", 'rows -> "10", 'class -> "span10", '_label -> "Objetivos: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.textarea(formulario("metodologia"), 'id -> "metodologia", 'rows -> "10", 'class -> "span10", '_label -> "Metodologia: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.textarea(formulario("referencias"), 'id -> "referencias", 'rows -> "10", 'class -> "span10", '_label -> "Referencias:", '_showConstraints -> false, '_showErrors -> true)
+				
+				<button type="submit" class="btn btn-primary">Editar o Projeto</button>
+				&nbsp;
+				<a class="btn" href="@routes.Projetos.index" >Cancelar</a>
+			}
+			
+		</div>
+	</div>	
+
+
+}

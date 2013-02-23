@@ -1,0 +1,67 @@
+@(projetos: List[Projeto])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Projetos</h1> 
+				
+				<div style="float:right; position:relative; top:8px;">
+					<h4>
+					   
+					  @projetos.size Projetos(s) Submetido(s).
+					  
+					</h4>
+				</div>
+			</div>
+			
+			@if(projetos.size == 0) {
+				<h3>Nenhum projeto submetido.</h3>			
+			} else {
+				@for(projeto <- projetos) {
+				<div class="item-lista">
+					<div class="item-lista">
+						<div class="item">
+							<h2>
+								<a href="@routes.Projetos.visualizar(projeto.id)">
+									@projeto.titulo
+									<small>
+									- @projeto.edital.getTitulo
+									</small>
+								</a>
+							</h2>
+							
+				               		
+							
+							<div style="font-size:12px;">
+								@* Nível de Dificuldade: <strong>@exercicio.nivelExercicio</strong> <br/> *@
+								Autor: <strong>@projeto.autor.getNome</strong>
+							</div>						
+						</div>
+						
+						@*
+						<div style="float:right; padding-top:15px;">
+							<a href="@routes.Exercicios.visualizar(exercicio.id)" class="btn btn-primary"><i class="icon-white icon-list-alt"></i> Visualizar o Exercício</a>
+							
+							@if(isLogado()) {
+								@if(getUsuarioLogado().isProfessor) {
+									<a href="@routes.Exercicios.editar(exercicio.id)" class="btn"><i class="icon-edit"></i> Editar</a>
+									<a href="@routes.Exercicios.deletar(exercicio.id)" onclick="return confirm('Deseja realmente excluir o exercício &quot;@exercicio.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
+								}
+							}
+						</div>
+						*@
+					</div>
+				</div>
+				}
+			}
+		</div>
+	</div>	
+
+}

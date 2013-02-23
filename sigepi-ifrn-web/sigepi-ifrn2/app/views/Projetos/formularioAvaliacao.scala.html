@@ -1,0 +1,26 @@
+@(formulario: Form[ProjetoAvaliado], projeto: Projeto)
+
+@* @(formulario: Form[Projeto], projetoAvaliado: ProjetoAvaliado)  *@
+
+@import tags._
+@import helper.twitterBootstrap._
+@import helper._
+@import helper.{FieldConstructor}
+
+
+@main {
+
+
+   @helper.form(action = routes.Projetos.avaliacaoProjeto(projeto.id), 'style -> "margin:0;"){
+
+          @helper.inputText(formulario("pontuacaoObtida"), 'id -> "pontuacaoObtida", 'rows -> "15", 'class -> "span2", '_label -> "Pontuação do Projeto: ", '_showConstraints -> false, '_showErrors -> true)
+   
+     <button type="submit" class="btn btn-primary">Enviar Pontuação</button>
+     
+     <a class="btn" href="@routes.Projetos.visualizar(projeto.id)" >Cancelar</a>
+				
+   
+   }
+   
+
+}

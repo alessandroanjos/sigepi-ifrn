@@ -1,0 +1,97 @@
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a data-target=".nav-collapse" data-toggle="collapse"
+				class="btn btn-navbar"> <span class="icon-bar"></span> <span
+				class="icon-bar"></span> <span class="icon-bar"></span>
+			</a> 
+			<div class="nav-collapse">
+				<ul class="nav">
+				<li><a href="@routes.Application.index" style="font-size: 28px;">SIGEPI</a></li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Sobre <b class="caret"></b></a>
+						@*
+						<ul class="dropdown-menu" style="width: 180px;">
+							<li class="nav-header">O Sistema</li>
+							<li><a href="@routes.Sobre.historia">História</a></li>
+							<li><a href="@routes.Sobre.documentacao">Documentação</a></li>
+							<li><a href="@routes.Sobre.equipeSigepi">Equipe</a></li>
+						</ul>
+						*@
+					</li>
+					<li><a href="routes.Application.contato">Contato</a></li>
+				</ul>
+				<ul class="nav pull-right">
+				<li> <a>Natal,	@{new java.util.Date().format("dd")} de 
+				
+							  @if( new java.util.Date().format("MM").toString == "01"){
+							        
+							        Janeiro 
+							    
+							   } 
+							    @if( new java.util.Date().format("MM").toString == "02"){
+							        
+							         Fevereiro
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "03"){
+							        
+							         Mar�o
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "04"){
+							        
+							         Abril
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "05"){
+							        
+							         Maio
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "06"){
+							        
+							         Junho
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "07"){
+							        
+							         Julho
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "08"){
+							        
+							         Agosto
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "09"){
+							        
+							         Setembro
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "10"){
+							        
+							         Outubro
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "11"){
+							        
+							         Novembro
+							  
+							   }
+							    @if( new java.util.Date().format("MM").toString == "12"){
+							        
+							         Dezembro
+							  
+							   }
+			             de @{new java.util.Date().format("yyyy")}
+				     </a>
+				</li>
+					<li class="divider-vertical"></li>
+					<li><a href="@routes.Sessions.login">Entrar no Sistema</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+@(formulario: Form[Edital], edital: Edital)
+
+@import tags._
+@import helper.twitterBootstrap._
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Edição do Edital: @edital.titulo</h1>
+			</div>
+			
+			@helper.form(action = routes.Editais.editar(edital.id), 'style -> "margin:0;", 'class -> "form-horizontal"){
+			
+				@helper.inputText(formulario("titulo"), 'id -> "titulo",'class -> "span6", '_label -> "Título do Edital: ", '_showConstraints -> false, '_showErrors -> true)
+				
+				<button type="submit" class="btn btn-primary">Editar o edital</button>
+				&nbsp;
+				<a class="btn" href="@routes.Editais.index" >Cancelar</a>
+			}
+			
+		</div>
+	</div>	
+}

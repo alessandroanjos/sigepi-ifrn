@@ -1,0 +1,46 @@
+@(meuProjeto: List[ProjetoAvaliado])
+
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+	<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;"> Projetos que eu ja avalei </h1>
+			</div>
+			
+			 @if(meuProjeto.size == 0) {
+				<h3>Nenhum projeto avaliado.</h3>			
+			} else {
+			<table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Edital</th>
+                  <th>Projeto</th>
+                  <th>Pontuação dada</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+            
+              
+               	@for(projetoAvaliado <- meuProjeto) {
+                <tr>
+               		<td style="width:30%;">
+               			@projetoAvaliado.projeto.getEdital.getTitulo
+               		</td>
+               		<td>@projetoAvaliado.projeto.getTitulo</td>
+               	@*	<td style="width:15%;">@exercicioResolvido.exercicio.getPontuacao Pontos</td> *@
+                @*  <td>@getPontuacaoUsuario(projetoAvaliado.id)</td> *@
+               	    <td style="width:15%;">@projetoAvaliado.pontuacaoObtida Pontos</td> 
+                </tr>
+				}
+			}
+              </tbody>
+            </table>
+		</div>
+	</div>	
+}

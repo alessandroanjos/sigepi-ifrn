@@ -1,0 +1,65 @@
+@(projetos: List[Projeto])
+
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main  {
+	<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;"> Meus Projetos Submetidos </h1>
+				
+							
+				@if(isLogado()) {
+					@if(getUsuarioLogado().isProfessor) {
+					<div style="float:right; position:relative; top:8px;">
+						<a href="@routes.Projetos.formulario" class="btn"><i class="icon-plus"></i> Submeter Novo Projeto</a>
+					</div>
+					}
+				}	
+				
+			</div>
+			
+			@if(projetos.size == 0) {
+				<h3>Nenhum projeto foi submetido.</h3>			
+			} else {
+			
+			<table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  
+                  <th>Edital</th>
+                  <th>Projeto</th>
+                  <th>Pontuacao Obtida</th>
+                  <th>Situacao</th>
+                </tr>
+              </thead>
+              <tbody>
+              @getUsuarioLogado().nome
+              
+               	@for(projeto  <- projetos) {
+                <tr>
+               		<td style="width:30%;">
+               			@projeto.getEdital.getTitulo
+               		</td>
+               		<td>
+               		   @projeto.getTitulo
+               		</td>
+               	    <td>
+               	       @getPontuacaoProjeto(projeto.id)
+               	    </td>
+               	    <td> 
+               	    
+               	    </td>
+                </tr>
+				}
+				
+              </tbody>
+            </table>
+           }
+		</div>
+	</div>	
+}
