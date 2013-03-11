@@ -6,6 +6,15 @@
 GET     /                           controllers.Application.index()
 
 
+#GET   /error                        controllers.Global.onError(t : Throwable)
+#GET   /error                        controllers.Global.onError()
+#GET /error      controllers.Global.error(t : Throwable)
+
+# Web Service
+GET /usuario-hello                 ws.Usuario.sayHello(id: Long)
+#GET  /service
+
+ 
 # Cadastro dos Usuários no Sistema
 
 GET     /cadastro-professor                                 controllers.Professores.formulario()

@@ -19,7 +19,7 @@ public class Editais extends Controller{
 		return ok(views.html.Editais.index.render(editais));
 	}
 	
-	public static Result visualizar(Long id){
+	public static Result visualizar(Long id) throws Throwable{
 		Edital edital = Edital.find.byId(id);
 		
 		return ok(views.html.Editais.visualizar.render(edital));
