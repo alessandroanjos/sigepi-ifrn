@@ -15,6 +15,8 @@ GET /usuario-hello                 ws.Usuario.sayHello(id: Long)
 #GET  /service
 # Webservices SERVICO
 GET    /ws/client/json              ws.Servico.getListaEditais
+GET    /ws/client/ola               ws.Servico.ola
+#GET	/ws/client/listarprojetos	ws.Servico.getListarProjetos
 
  
 # Cadastro dos Usuários no Sistema

@@ -7,6 +7,8 @@ import java.util.List;
 
 import play.mvc.Controller;
 import models.Edital;
+import models.Projeto;
+
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
@@ -80,4 +82,42 @@ public class Servico extends Controller{
 		//	result.putPOJO("editais:", Edital.find.findList().get();
 		return ok(result);
 	}
+	
+	// webservice de teste
+	public static Result ola() {
+		ObjectNode resultado = Json.newObject();
+		resultado.put("id", 1);
+		resultado.put("msgText", "Ola, funcionou :D");
+		return ok(resultado);
+	}
+	
+	public static Result getListarProjetos(){
+	      List<Projeto> projetos = Projeto.find.findList();
+	     
+	      ArrayList<String> lista = new ArrayList<String>();
+	        WSRequestHolder service = WS.url(url);
+	        Promise<Response> promise = service.get();
+	      	Response response = promise.get();
+	      	JsonNode json = response.asJson();
+			
+			ObjectNode info = Json.newObject();
+			info.put("url", url);
+			info.put("size", json.size());
+
+			ObjectNode result = Json.newObject();
+			result.put("message", "OK");
+			result.put("info", info);
+			
+			for (Projeto e : projetos) {
+				//result.put("edital",e.getTitulo());
+				lista.add(Json.toJson(e.getTitulo()).toString());
+			}
+			
+			result.putPOJO("projetos", lista);
+			
+			/*("projetos", projetos.listIterator().next().titulo);
+			result.POJONode(projetos.get(1).titulo);
+			result.putPOJO("projetos:", Projeto.find.findList().get());*/
+			return ok(result);
+		}
 }
