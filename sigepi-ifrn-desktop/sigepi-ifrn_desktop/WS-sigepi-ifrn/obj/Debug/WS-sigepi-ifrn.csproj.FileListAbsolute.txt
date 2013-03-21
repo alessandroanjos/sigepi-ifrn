@@ -1,0 +1,5 @@
+C:\Users\Alessandro\sigepi-ifrn\trunk\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\bin\WS-sigepi-ifrn.dll
+C:\Users\Alessandro\sigepi-ifrn\trunk\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\bin\WS-sigepi-ifrn.pdb
+C:\Users\Alessandro\sigepi-ifrn\trunk\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Alessandro\sigepi-ifrn\trunk\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\WS-sigepi-ifrn.dll
+C:\Users\Alessandro\sigepi-ifrn\trunk\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\WS-sigepi-ifrn.pdb

@@ -26,6 +26,8 @@ namespace sigepiApp01
 
         private void FormEditais_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'sigepi2DataSet.usuario'. Você pode movê-la ou removê-la conforme necessário.
+            this.usuarioTableAdapter.Fill(this.sigepi2DataSet.usuario);
             // TODO: esta linha de código carrega dados na tabela 'sigepi2DataSet.edital'. Você pode movê-la ou removê-la conforme necessário.
             this.editalTableAdapter.Fill(this.sigepi2DataSet.edital);
 
