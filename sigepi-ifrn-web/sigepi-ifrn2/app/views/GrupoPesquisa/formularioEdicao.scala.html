@@ -1,9 +1,27 @@
-@* @(formulario: Form[Campus], campus: Campus) *@
+@(formulario: Form[GrupoPesquisa], grupos: GrupoPesquisa) 
 
 @import tags._
 @import helper.twitterBootstrap._
 
 @main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Edição dos Grupos de Pesquisa: @grupos.nome</h1>
+			</div>
+			
+			@helper.form(action = routes.GrupoPesquisaController.editar(grupos.id), 'style -> "margin:0;", 'class -> "form-horizontal"){
+			
+				@helper.inputText(formulario("nome"), 'id -> "nome",'class -> "span6", '_label -> "Nome do Grupo: ", '_showConstraints -> false, '_showErrors -> true)
+				
+				<button type="submit" class="btn btn-primary">Editar o grupo</button>
+				&nbsp;
+				<a class="btn" href="@routes.GrupoPesquisaController.index" >Cancelar</a>
+			}
+			
+		</div>
+	</div>	
 
 }
 

@@ -1,4 +1,4 @@
-@* @(formulario: Form[Campus]) *@
+@(formulario: Form[GrupoPesquisa]) 
 
 @import tags._
 @import helper._
@@ -9,5 +9,21 @@
 
 @main {
 
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Cadastro de Grupos de Pesquisa</h1>
+			</div>
+			
+			@helper.form(action = routes.GrupoPesquisaController.cadastrar(), 'style -> "margin:0;"){
+				@helper.inputText(formulario("nome"), 'id -> "nome", 'class -> "span6", '_label -> "Nome do Grupo: ", '_showConstraints -> false, '_showErrors -> true)
+				
+				<button type="submit" class="btn btn-primary">Cadastrar Grupo</button>
+				&nbsp;
+				<a class="btn" href="@routes.GrupoPesquisaController.index" >Cancelar</a>
+			}
+			
+		</div>
+	</div>
 }
 

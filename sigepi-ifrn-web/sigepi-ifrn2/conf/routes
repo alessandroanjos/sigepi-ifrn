@@ -17,7 +17,7 @@ GET /usuario-hello                 ws.Usuario.sayHello(id: Long)
 # Webservices SERVICO
 GET    /ws/client/json              ws.Servico.getListaEditais
 
-
+ 
 
 # Cadastro dos Usuários no Sistema
 
@@ -96,11 +96,11 @@ POST 	/administracao/campus/:id/editar					controllers.CampusController.editar(i
 GET 	/administracao/campus/:id/excluir					controllers.CampusController.deletar(id: Long)
 
 # Administração de Grupos de Pesquisa
-#GET 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.formulario()
-#POST 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.cadastrar()
-#GET 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.formularioEdicao(id: Long)
-#POST 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.editar(id: Long)
-#GET 	/administracao/grupos/:id/excluir					controllers.GrupoPesquisaController.deletar(id: Long)
+GET 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.formulario()
+POST 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.cadastrar()
+GET 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.formularioEdicao(id: Long)
+POST 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.editar(id: Long)
+GET 	/administracao/grupos/:id/excluir					controllers.GrupoPesquisaController.deletar(id: Long)
 
 
 # Administração dos Professores, Gestores e Avaliadores
