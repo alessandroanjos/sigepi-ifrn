@@ -5,20 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index()
 
-# Páginas de Error, Not Found 
-#GET   /error                        controllers.Global.onError(t : Throwable)
-#GET   /error                        controllers.Global.onError()
-#GET /error      controllers.Global.error(t : Throwable)
 
-# Web Service
-GET /usuario-hello                 ws.Usuario.sayHello(id: Long)
-#GET  /service
-# Webservices SERVICO
-GET    /ws/client/json              ws.Servico.getListaEditais
-GET    /ws/client/ola               ws.Servico.ola
-#GET	/ws/client/listarprojetos	ws.Servico.getListarProjetos
-
- 
 # Cadastro dos Usuários no Sistema
 
 GET     /cadastro-professor                                 controllers.Professores.formulario()
@@ -50,6 +37,15 @@ GET 	/administracao/campus/:id/visualizar				controllers.CampusController.visual
 
 # Ranking dos Projetos
 GET 	/ranking-dos-projetos/visualizar					controllers.Projetos.rankingProjetos()
+
+
+# Grupo de Pesquisa
+GET		/administracao/grupoPesquisa 						controllers.GrupoPesquisaController.index()
+GET 	/administracao/grupoPesquisa/:id/visualizar			controllers.GrupoPesquisaController.visualizar(id: Long)
+
+
+
+
 
 
 
@@ -85,6 +81,13 @@ POST 	/administracao/campus/cadastro						controllers.CampusController.cadastrar
 GET 	/administracao/campus/:id/editar					controllers.CampusController.formularioEdicao(id: Long)
 POST 	/administracao/campus/:id/editar					controllers.CampusController.editar(id: Long)
 GET 	/administracao/campus/:id/excluir					controllers.CampusController.deletar(id: Long)
+
+# Administração de Grupos de Pesquisa
+#GET 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.formulario()
+#POST 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.cadastrar()
+#GET 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.formularioEdicao(id: Long)
+#POST 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.editar(id: Long)
+#GET 	/administracao/grupos/:id/excluir					controllers.GrupoPesquisaController.deletar(id: Long)
 
 
 # Administração dos Professores, Gestores e Avaliadores
