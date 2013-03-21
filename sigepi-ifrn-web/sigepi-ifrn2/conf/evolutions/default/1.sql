@@ -19,6 +19,14 @@ create table edital (
   constraint pk_edital primary key (id))
 ;
 
+create table grupo_pesquisa (
+  id                        bigint auto_increment not null,
+  nome                      varchar(255),
+  campus_id                 bigint,
+  constraint uq_grupo_pesquisa_nome unique (nome),
+  constraint pk_grupo_pesquisa primary key (id))
+;
+
 create table projeto (
   id                        bigint auto_increment not null,
   titulo                    varchar(255),
@@ -63,18 +71,20 @@ create table usuario (
 
 alter table edital add constraint fk_edital_autor_1 foreign key (autor_id) references usuario (id) on delete restrict on update restrict;
 create index ix_edital_autor_1 on edital (autor_id);
-alter table projeto add constraint fk_projeto_edital_2 foreign key (edital_id) references edital (id) on delete restrict on update restrict;
-create index ix_projeto_edital_2 on projeto (edital_id);
-alter table projeto add constraint fk_projeto_autor_3 foreign key (autor_id) references usuario (id) on delete restrict on update restrict;
-create index ix_projeto_autor_3 on projeto (autor_id);
-alter table projeto add constraint fk_projeto_campus_4 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
-create index ix_projeto_campus_4 on projeto (campus_id);
-alter table projeto_avaliado add constraint fk_projeto_avaliado_usuario_5 foreign key (usuario_id) references usuario (id) on delete restrict on update restrict;
-create index ix_projeto_avaliado_usuario_5 on projeto_avaliado (usuario_id);
-alter table projeto_avaliado add constraint fk_projeto_avaliado_projeto_6 foreign key (projeto_id) references projeto (id) on delete restrict on update restrict;
-create index ix_projeto_avaliado_projeto_6 on projeto_avaliado (projeto_id);
-alter table usuario add constraint fk_usuario_campus_7 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
-create index ix_usuario_campus_7 on usuario (campus_id);
+alter table grupo_pesquisa add constraint fk_grupo_pesquisa_campus_2 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
+create index ix_grupo_pesquisa_campus_2 on grupo_pesquisa (campus_id);
+alter table projeto add constraint fk_projeto_edital_3 foreign key (edital_id) references edital (id) on delete restrict on update restrict;
+create index ix_projeto_edital_3 on projeto (edital_id);
+alter table projeto add constraint fk_projeto_autor_4 foreign key (autor_id) references usuario (id) on delete restrict on update restrict;
+create index ix_projeto_autor_4 on projeto (autor_id);
+alter table projeto add constraint fk_projeto_campus_5 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
+create index ix_projeto_campus_5 on projeto (campus_id);
+alter table projeto_avaliado add constraint fk_projeto_avaliado_usuario_6 foreign key (usuario_id) references usuario (id) on delete restrict on update restrict;
+create index ix_projeto_avaliado_usuario_6 on projeto_avaliado (usuario_id);
+alter table projeto_avaliado add constraint fk_projeto_avaliado_projeto_7 foreign key (projeto_id) references projeto (id) on delete restrict on update restrict;
+create index ix_projeto_avaliado_projeto_7 on projeto_avaliado (projeto_id);
+alter table usuario add constraint fk_usuario_campus_8 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
+create index ix_usuario_campus_8 on usuario (campus_id);
 
 
 
@@ -85,6 +95,8 @@ SET FOREIGN_KEY_CHECKS=0;
 drop table campus;
 
 drop table edital;
+
+drop table grupo_pesquisa;
 
 drop table projeto;
 

@@ -6,6 +6,19 @@
 GET     /                           controllers.Application.index()
 
 
+# Páginas de Error, Not Found 
+#GET   /error                        controllers.Global.onError(t : Throwable)
+#GET   /error                        controllers.Global.onError()
+#GET /error      controllers.Global.error(t : Throwable)
+
+# Web Service
+GET /usuario-hello                 ws.Usuario.sayHello(id: Long)
+#GET  /service
+# Webservices SERVICO
+GET    /ws/client/json              ws.Servico.getListaEditais
+
+
+
 # Cadastro dos Usuários no Sistema
 
 GET     /cadastro-professor                                 controllers.Professores.formulario()
