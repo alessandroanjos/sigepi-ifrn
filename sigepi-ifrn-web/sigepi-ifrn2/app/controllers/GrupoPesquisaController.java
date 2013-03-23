@@ -35,7 +35,8 @@ public class GrupoPesquisaController extends Controller {
 	// Permissão para Administrador
 	@Permissao("Administrador")
 	public static Result formulario() {
-		return ok(views.html.GrupoPesquisa.formulario.render(form(GrupoPesquisa.class)));
+		List<Campus> campus = Campus.find.findList();
+		return ok(views.html.GrupoPesquisa.formulario.render(form(GrupoPesquisa.class), campus));
 	}
 
 	//Cadastrar
@@ -43,14 +44,19 @@ public class GrupoPesquisaController extends Controller {
 	public static Result cadastrar(){
 		
 		Form<GrupoPesquisa> form = form(GrupoPesquisa.class).bindFromRequest();
+		Long idCampus = Long.valueOf(form.data().get("idCampus"));
 		
 		if(form.hasErrors()){
+			
+			List<Campus> campus = Campus.find.findList();
+			
 			flash().put("error", "Você deve preencher o campo corretamente. Tente novamente!");
-			return badRequest(views.html.GrupoPesquisa.formulario.render(form));
+			return badRequest(views.html.GrupoPesquisa.formulario.render(form, campus));
 		}
 		
+		
 		GrupoPesquisa grupos = form.get();
-		/*campus.autor = InformacoesUsuarioHelper.getUsuarioLogado();*/				
+		grupos.campus = Campus.find.byId(idCampus);
 		grupos.save();
 		
 		flash().put("success", "Campus \""+grupos.nome +"\" Cadastrado com Sucesso!");
@@ -65,21 +71,26 @@ public class GrupoPesquisaController extends Controller {
 		GrupoPesquisa grupos = GrupoPesquisa.find.byId(id);
 		
 		if(form.hasErrors()) {
+			List<Campus> campus  = Campus.find.findList();
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.GrupoPesquisa.formularioEdicao.render(form.fill(form.get()), grupos));
+			return badRequest(views.html.GrupoPesquisa.formularioEdicao.render((form), grupos, campus));
 		}
 		
 		grupos.setNome(form.get().nome);
+		grupos.setCampus(Campus.find.byId(Long.valueOf(form.data().get("idCampus"))));
 		grupos.update();
 		
 		flash().put("success", "Grupo de Pesquisa\""+ grupos.nome +"\" atualizado com sucesso!");
 		return redirect(routes.GrupoPesquisaController.index());
 	}
 
-		
+		//Formulario Edição
 		public static Result formularioEdicao(Long id) {
 		GrupoPesquisa grupos = GrupoPesquisa.find.byId(id);
-		return ok(views.html.GrupoPesquisa.formularioEdicao.render(form(GrupoPesquisa.class).fill(grupos), grupos));
+		List<Campus> campus  = Campus.find.findList();
+		
+		//return TODO;
+		return ok(views.html.GrupoPesquisa.formularioEdicao.render(form(GrupoPesquisa.class).fill(grupos), grupos, campus));
 		}
 		
 		//Deletar

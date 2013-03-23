@@ -24,8 +24,7 @@ public class Campus extends Model{
 	public Usuario usuario;
 
 	@OneToMany
-	public List<Projeto> projetos;
-	
+	public List<Projeto> projetos;	
 	
 	
 	
