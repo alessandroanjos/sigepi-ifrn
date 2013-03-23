@@ -9,12 +9,14 @@ GET     /                           controllers.Application.index()
 # Páginas de Error, Not Found 
 #GET   /error                        controllers.Global.onError(t : Throwable)
 #GET   /error                        controllers.Global.onError()
-#GET /error      controllers.Global.error(t : Throwable)
-
+#GET   /error                        controllers.Global.error(t : Throwable)
+ 
 # Web Service
-GET /usuario-hello                 ws.Usuario.sayHello(id: Long)
-#GET  /service
-# Webservices SERVICO
+GET /ola                             ws.Servico.ola
+GET /usuario-hello                   ws.Usuario.sayHello(id: Long)
+
+
+# Web Services SERVICO
 GET    /ws/client/json              ws.Servico.getListaEditais
 
  
@@ -57,8 +59,9 @@ GET		/administracao/grupoPesquisa 						controllers.GrupoPesquisaController.inde
 GET 	/administracao/grupoPesquisa/:id/visualizar			controllers.GrupoPesquisaController.visualizar(id: Long)
 
 
-
-
+# Area de Conhecimento
+GET     /administracao/area-conhecimento                    controllers.AreaConhecimentoController.index()
+GET 	/administracao/area-conhecimento/:id/visualizar  	controllers.AreaConhecimentoController.visualizar(id: Long)
 
 
 
@@ -101,6 +104,17 @@ POST 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.ca
 GET 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.formularioEdicao(id: Long)
 POST 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.editar(id: Long)
 GET 	/administracao/grupos/:id/excluir					controllers.GrupoPesquisaController.deletar(id: Long)
+
+
+# Administração das Áreas de Conhecimento
+GET 	/administracao/areas/cadastro						controllers.AreaConhecimentoController.formulario()
+POST 	/administracao/areas/cadastro						controllers.AreaConhecimentoController.cadastrar()
+GET 	/administracao/areas/:id/editar					    controllers.AreaConhecimentoController.formularioEdicao(id: Long)
+POST 	/administracao/areas/:id/editar					    controllers.AreaConhecimentoController.editar(id: Long)
+GET 	/administracao/areas/:id/excluir					controllers.AreaConhecimentoController.deletar(id: Long)
+
+
+
 
 
 # Administração dos Professores, Gestores e Avaliadores

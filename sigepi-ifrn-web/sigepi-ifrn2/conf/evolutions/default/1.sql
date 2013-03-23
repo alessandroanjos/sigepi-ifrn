@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table area_conhecimento (
+  id                        bigint auto_increment not null,
+  nome                      varchar(255),
+  constraint uq_area_conhecimento_nome unique (nome),
+  constraint pk_area_conhecimento primary key (id))
+;
+
 create table campus (
   id                        bigint auto_increment not null,
   nome                      varchar(255),
@@ -91,6 +98,8 @@ create index ix_usuario_campus_8 on usuario (campus_id);
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table area_conhecimento;
 
 drop table campus;
 

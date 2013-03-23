@@ -12,6 +12,8 @@ import models.Projeto;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import controllers.Editais;
 
@@ -56,30 +58,19 @@ public class Servico extends Controller{
 	public static Result getListaEditais(){
       List<Edital> editais = Edital.find.findList();
      
-      ArrayList<String> lista = new ArrayList<String>();
-      //  WSRequestHolder service = WS.url(url);
-	//	Promise<Response> promise = service.get();
-	//	Response response = promise.get();
-	//	JsonNode json = response.asJson();
-		
-		ObjectNode info = Json.newObject();
-		//info.put("url", url);
-		//info.put("size", json.size());
+      List<String> lista = new ArrayList<String>();
 
-		ObjectNode result = Json.newObject();
-		//result.put("message", "OK");
-		//result.put("info", info);
+		ObjectNode result = Json.newObject(); 
 		
 		for (Edital e : editais) {
 			//result.put("edital",e.getTitulo());
-			lista.add(Json.toJson(e.getTitulo()).toString());
+			//lista.add(Json.toJson(e.getTitulo()).toString());
+			lista.add(e.getTitulo());
 		}
 		
-		result.putPOJO("editais", lista);
+		JSONArray jsArray = new JSONArray(lista);
 		
-		//("editais", editais.llistIterator().next().titulo);
-		//result.POJONode(editais.get(1).titulo);
-		//	result.putPOJO("editais:", Edital.find.findList().get();
+		result.putPOJO("editais", jsArray);
 		return ok(result);
 	}
 	
@@ -95,7 +86,7 @@ public class Servico extends Controller{
 	      List<Projeto> projetos = Projeto.find.findList();
 	     
 	      ArrayList<String> lista = new ArrayList<String>();
-	        WSRequestHolder service = WS.url(url);
+	        WSRequestHolder service = WS.url(url); 
 	        Promise<Response> promise = service.get();
 	      	Response response = promise.get();
 	      	JsonNode json = response.asJson();
