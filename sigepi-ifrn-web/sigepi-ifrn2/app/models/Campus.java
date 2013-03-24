@@ -26,7 +26,8 @@ public class Campus extends Model{
 	@OneToMany
 	public List<Projeto> projetos;	
 	
-	
+	@OneToMany
+	public List<Bolsista> bolsistas;	
 	
 
 	public Long getId() {
@@ -59,8 +60,16 @@ public class Campus extends Model{
 
 	public void setProjetos(List<Projeto> projetos) {
 		this.projetos = projetos;
+	}	
+	
+	public List<Bolsista> getBolsistas() {
+		return bolsistas;
 	}
-	
-	
+
+	public void setBolsistas(List<Bolsista> bolsistas) {
+		this.bolsistas = bolsistas;
+	}
+
+
 	public static Finder<Long, Campus> find = new Finder<Long, Campus>(Long.class, Campus.class);
 }

@@ -29,6 +29,9 @@ GET     /cadastro-gestor                                    controllers.Gestores
 POST    /cadastro-gestor                                    controllers.Gestores.cadastrar()
 GET     /cadastro-avaliador                                 controllers.Avaliadores.formulario()
 POST    /cadastro-avaliador                                 controllers.Avaliadores.cadastrar()
+GET     /cadastro-coordenador                               controllers.Coordenadores.formulario()
+POST 	/cadastro-coordenador             					controllers.Coordenadores.cadastrar()
+
 
 
 # Sistema de Login
@@ -67,6 +70,10 @@ GET 	/administracao/area-conhecimento/:id/visualizar  	controllers.AreaConhecime
 # Curso
 GET     /administracao/curso                                controllers.Cursos.index()
 GET 	/administracao/curso/:id/visualizar  	            controllers.Cursos.visualizar(id: Long)
+
+
+# Bolsista
+GET     /administracao/bolsistas/listagem-bolsistas			controllers.Bolsistas.listaBolsistas()
 
 
 
@@ -127,36 +134,49 @@ GET 	/administracao/cursos/:id/editar					controllers.Cursos.formularioEdicao(id
 POST 	/administracao/cursos/:id/editar					controllers.Cursos.editar(id: Long)
 GET 	/administracao/cursos/:id/excluir					controllers.Cursos.deletar(id: Long)
 
+# Administração dos Bolsistas
+GET 	/administracao/bolsistas/cadastro					controllers.Bolsistas.formulario()
+POST 	/administracao/bolsistas/cadastro					controllers.Bolsistas.cadastrar()
+GET 	/administracao/bolsistas/:id/editar					controllers.Bolsistas.formularioEdicao(id: Long)
+POST 	/administracao/bolsistas/:id/editar					controllers.Bolsistas.editar(id: Long)
+GET 	/administracao/bolsistas/:id/deletar				controllers.Bolsistas.deletar(id: Long)
 
 
 
 
 
-# Administração dos Professores, Gestores e Avaliadores
-GET     /administracao/professores/listagem-professores     controllers.Professores.listaProfessores()
-GET 	/administracao/professores/:id/editar				controllers.Professores.formularioEdicao(id: Long)
-POST 	/administracao/professores/:id/editar				controllers.Professores.editar(id: Long)
-GET 	/administracao/professores/:id/deletar				controllers.Professores.deletar(id: Long)
-GET     /administracao/gestores/listagem-gestores           controllers.Gestores.listaGestores()
-GET 	/administracao/gestores/:id/editar				    controllers.Gestores.formularioEdicao(id: Long)
-POST 	/administracao/gestores/:id/editar				    controllers.Gestores.editar(id: Long)
-GET 	/administracao/gestores/:id/deletar				    controllers.Gestores.deletar(id: Long)
-GET     /administracao/avaliadores/listagem-avaliadores     controllers.Avaliadores.listaAvaliadores()
-GET 	/administracao/avaliadores/:id/editar				controllers.Avaliadores.formularioEdicao(id: Long)
-POST 	/administracao/avaliadores/:id/editar				controllers.Avaliadores.editar(id: Long)
-GET 	/administracao/avaliadores/:id/deletar				controllers.Avaliadores.deletar(id: Long)
+
+# Administração dos Professores, Gestores, Avaliadores e Coordenadores
+GET     /administracao/professores/listagem-professores       	controllers.Professores.listaProfessores()
+GET 	/administracao/professores/:id/editar					controllers.Professores.formularioEdicao(id: Long)
+POST 	/administracao/professores/:id/editar					controllers.Professores.editar(id: Long)
+GET 	/administracao/professores/:id/deletar					controllers.Professores.deletar(id: Long)
+GET     /administracao/gestores/listagem-gestores           	controllers.Gestores.listaGestores()
+GET 	/administracao/gestores/:id/editar				    	controllers.Gestores.formularioEdicao(id: Long)
+POST 	/administracao/gestores/:id/editar				    	controllers.Gestores.editar(id: Long)
+GET 	/administracao/gestores/:id/deletar				    	controllers.Gestores.deletar(id: Long)
+GET     /administracao/avaliadores/listagem-avaliadores     	controllers.Avaliadores.listaAvaliadores()
+GET 	/administracao/avaliadores/:id/editar					controllers.Avaliadores.formularioEdicao(id: Long)
+POST 	/administracao/avaliadores/:id/editar					controllers.Avaliadores.editar(id: Long)
+GET 	/administracao/avaliadores/:id/deletar					controllers.Avaliadores.deletar(id: Long)
+GET     /administracao/coordenadores/listagem-coordenadores  	controllers.Coordenadores.listaCoordenadores()
+GET 	/administracao/coordenadores/:id/editar					controllers.Coordenadores.formularioEdicao(id: Long)
+POST 	/administracao/coordenadores/:id/editar					controllers.Coordenadores.editar(id: Long)
+GET 	/administracao/coordenadores/:id/deletar				controllers.Coordenadores.deletar(id: Long)
+
+
 
 
 # Administração do Avaliador
-GET     /administracao/avaliador            				controllers.Avaliadores.index()    
+GET     /administracao/avaliador            					controllers.Avaliadores.index()    
 
 
 # Administração do Professor
-GET 	/administracao/professor							controllers.Professores.index()
+GET 	/administracao/professor								controllers.Professores.index()
 
 
 # Administração do Gestor
-GET     /administracao/gestor                               controllers.Gestores.index()
+GET     /administracao/gestor                               	controllers.Gestores.index()
 
 
 

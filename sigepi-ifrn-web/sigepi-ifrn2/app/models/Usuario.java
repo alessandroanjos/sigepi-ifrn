@@ -51,6 +51,7 @@ public class Usuario extends Model {
 	public boolean isGestor;
 	public boolean isAdministrador;
 	public boolean isAvaliador;
+	public boolean isCoordenador;
 	public boolean isAtivo;
 	
 	@ManyToOne
@@ -89,6 +90,14 @@ public class Usuario extends Model {
 
 	public void setAvaliador(boolean isAvaliador) {
 		this.isAvaliador = isAvaliador;
+	}
+
+	public boolean isCoordenador() {
+		return isCoordenador;
+	}
+
+	public void setCoordenador(boolean isCoordenador) {
+		this.isCoordenador = isCoordenador;
 	}
 
 	public boolean isGestor() {

@@ -25,7 +25,7 @@ public class PermissaoAction extends Action<Permissao> {
 				
 				configuration.value().equalsIgnoreCase("Avaliador") && !usuario.isAvaliador ||
 				
-				configuration.value().equalsIgnoreCase("Professor") && !usuario.isProfessor
+				( (configuration.value().equalsIgnoreCase("Professor") && !usuario.isProfessor) || (configuration.value().equalsIgnoreCase("Coordenador") && !usuario.isCoordenador) )
 				
 				) {
 			ctx.flash().put("error", "Você não tem permissão para acessar este conteúdo!");

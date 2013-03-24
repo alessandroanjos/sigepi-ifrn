@@ -1,0 +1,58 @@
+@(formulario: Form[Bolsista], campus: List[Campus], cursos: List[Curso])
+
+
+@import helper.twitterBootstrap._
+@import helper._
+@import helper.{FieldConstructor}
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Cadastro de Bolsista</h1>
+			</div>
+			
+			@helper.form(action = routes.Bolsistas.cadastrar(), 'style -> "margin:0;"){
+	    		@helper.inputText(formulario("nome"), 'id -> "nome", 'class -> "span5", '_label -> "Nome: ", '_showConstraints -> false, '_showErrors -> true)
+		    	@helper.inputText(formulario("matricula"), 'id -> "matricula", 'class -> "span5",  '_label -> "Matrícula: ", '_showConstraints -> false, '_showErrors -> true)
+		    	
+		    	<div class="clearfix" id="idCurso_field">
+					<label for="idCampus">Escolha o Campus:</label>
+					<div class="input">
+						<select id="idCampus" name="idCampus" class="span5">
+							@for(campi <- campus) {
+							  <option value="@campi.id">@campi.nome</option>
+							}						
+						</select>
+						<span class="help-inline"></span>
+						<span class="help-block"></span>
+					</div>
+				</div>
+				
+				<div class="clearfix" id="idCurso_fiel">
+					<label for="idCurso">Escolha o Curso:</label>
+					<div class="input">
+						<select id="idCurso" name="idCurso" class="span5">
+							@for(curso <- cursos) {
+							  <option value="@curso.id">@curso.nome</option>
+							}						
+						</select>
+						<span class="help-inline"></span>
+						<span class="help-block"></span>
+					</div>
+				</div>
+				
+		    	
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+				&nbsp;
+										 
+				 <a class="btn" href="@routes.Bolsistas.listaBolsistas" >Cancelar</a>
+						 
+			}
+			
+		</div>
+	</div>	
+
+}

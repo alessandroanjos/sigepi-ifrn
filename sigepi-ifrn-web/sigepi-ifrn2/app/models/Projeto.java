@@ -68,6 +68,9 @@ public class Projeto extends Model {
 	@ManyToOne
 	public Campus campus;
 	
+	@OneToMany
+	public List<Bolsista> bolsistas;
+	
 	
 	@OneToMany
 	public List<ProjetoAvaliado> progressoProjeto;
@@ -166,6 +169,44 @@ public class Projeto extends Model {
 		this.autor = autor;
 	}
 	
+	public List<Bolsista> getBolsistas() {
+		return bolsistas;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setBolsistas(List<Bolsista> bolsistas) {
+		this.bolsistas = bolsistas;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public Long getId() {
 		return id;
 	}

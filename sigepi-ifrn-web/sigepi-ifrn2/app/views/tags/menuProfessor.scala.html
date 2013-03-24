@@ -26,6 +26,19 @@
 						 	<li><a href="@routes.Projetos.formulario">Submeter Projeto</a></li>
 						</ul>
 					</li>
+					 @if(isLogado()) {
+
+							@if(getUsuarioLogado().isCoordenador) {
+
+								<li class="dropdown"><a data-toggle="dropdown"
+									class="dropdown-toggle" href="#">Bolsistas <b class="caret"></b></a>
+									<ul class="dropdown-menu" style="width: 180px;">
+									 	<li><a href="@routes.Bolsistas.listaBolsistas">Visualizar Bolsistas</a></li>
+									 	<li><a href="@routes.Bolsistas.formulario">Cadastrar Bolsista</a></li>
+									</ul>
+								</li>
+   	    					}
+   	    			}
 					@*
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#">Downloads <b class="caret"></b></a>
