@@ -1,4 +1,4 @@
-@(projetos: List[Projeto])
+@(projetos: List[Projeto], usuarios: List[Usuario])
 
 @import tags._
 @import helper._
@@ -7,6 +7,11 @@
 
 @main {
 
+
+@if(isLogado()) {
+      @if(getUsuarioLogado().isAdministrador) {
+								
+						
 <div class="row">
 		<div class="span12">
 			<div class="page-header" style="overflow:hidden;">
@@ -16,6 +21,73 @@
 					<h4>
 					   
 					  @projetos.size Projetos(s) Submetido(s).
+					  
+					</h4>
+				</div>
+			</div>			
+			
+			@if(projetos.size == 0) {
+				<h3>Nenhum projeto submetido.</h3>			
+			} else {
+				@for( projeto <- projetos ) {
+				
+				@helper.form(action = routes.Projetos.selecionarAvaliador(projeto.id), 'style -> "margin:0;") {
+				<div class="item-lista">
+					<div class="item-lista">
+						<div class="item">
+							<h2>
+								<a href="@routes.Projetos.visualizar(projeto.id)">
+									@projeto.titulo
+									<small>
+									- @projeto.edital.getTitulo
+									</small>
+								</a>
+							</h2>												
+						</div>						
+						
+						<div style="float:right; padding-top:15px;">							
+							
+							<div class="clearfix" id="idCampus_field">
+					             <label for="idProfessores">Professores:</label>
+					               <div class="input">
+						             <select id="idProfessores" name="idProfessores" class="span5">
+										@for(professor <- usuarios) {
+
+										   @if(projeto.areaConhecimento.id == professor.areaConhecimento.id && projeto.campus.id != professor.campus.id){
+
+										      <option value="@professor.id">@professor.nome</option>
+										  } 
+
+										}
+						            </select>
+						            <span class="help-inline"></span>
+						            <span class="help-block"></span>
+					              </div>
+				           </div>	           
+				           <button type="submit" class="btn btn-primary">Selecionar o Avaliador</button>
+						</div>						
+					</div>
+				   <hr>
+				</div>
+				}
+			}
+		}
+	   </div>
+	</div>	
+
+		}
+		
+		@if(getUsuarioLogado().isProfessor) {
+		  
+	 <div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem de Projetos para Avaliar</h1> 
+				
+				<div style="float:right; position:relative; top:8px;">
+					<h4>
+					   
+					  @projetos.size Projeto(s) Submetido(s).
 					  
 					</h4>
 				</div>
@@ -31,37 +103,16 @@
 							<h2>
 								<a href="@routes.Projetos.visualizar(projeto.id)">
 									@projeto.titulo
-									<small>
-									- @projeto.edital.getTitulo
-									</small>
 								</a>
-							</h2>
-							
-				               		
-							
-							<div style="font-size:12px;">
-								@* Nível de Dificuldade: <strong>@exercicio.nivelExercicio</strong> <br/> *@
-								Autor: <strong>@projeto.autor.getNome</strong>
-							</div>						
+							</h2>										          					
 						</div>
-						
-						@*
-						<div style="float:right; padding-top:15px;">
-							<a href="@routes.Exercicios.visualizar(exercicio.id)" class="btn btn-primary"><i class="icon-white icon-list-alt"></i> Visualizar o Exercício</a>
-							
-							@if(isLogado()) {
-								@if(getUsuarioLogado().isProfessor) {
-									<a href="@routes.Exercicios.editar(exercicio.id)" class="btn"><i class="icon-edit"></i> Editar</a>
-									<a href="@routes.Exercicios.deletar(exercicio.id)" onclick="return confirm('Deseja realmente excluir o exercício &quot;@exercicio.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
-								}
-							}
-						</div>
-						*@
 					</div>
 				</div>
 				}
 			}
 		</div>
-	</div>	
+	</div>			
+		}		
+    }	
 
 }

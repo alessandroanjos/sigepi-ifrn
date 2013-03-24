@@ -10,16 +10,12 @@
 				<li><a href="@routes.Application.index" style="font-size: 28px;">SIGEPI</a></li>
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#">Sobre <b class="caret"></b></a>
-						@*
 						<ul class="dropdown-menu" style="width: 180px;">
-							<li class="nav-header">O Sistema</li>
-							<li><a href="@routes.Sobre.historia">História</a></li>
-							<li><a href="@routes.Sobre.documentacao">Documentação</a></li>
-							<li><a href="@routes.Sobre.equipeSigepi">Equipe</a></li>
-						</ul>
-						*@
+							<li><a href="@routes.Sobre.index">O Sistema</a></li>
+							<li><a href="@routes.Sobre.manual">Manual</a></li>
+							<li><a href="@routes.Sobre.equipeSigepi">Equipe Sigepi</a></li>
+						</ul>		
 					</li>
-					<li><a href="routes.Application.contato">Contato</a></li>
 				</ul>
 				<ul class="nav pull-right">
 				<li> <a>Natal,	@{new java.util.Date().format("dd")} de 

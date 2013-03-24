@@ -1,0 +1,30 @@
+@main {
+<div class="row">
+	<div class="span8">
+		<div class="page-header">
+			<h1>Manual SIGEPI</h1>
+		</div>
+
+		<p> . 
+		
+		</p>
+	</div>
+	<div class="span3">
+		<div class="well sidebar-nav">
+			<ul class="nav nav-list">
+				<li class="nav-header">Sistema de Gestão de Pesquisa e Inovação</li>
+				<li><a href="@routes.Sobre.index">O Sistema</a></li>
+				<li><a href="@routes.Sobre.manual">Manual</a></li>
+				<li><a href="@routes.Sobre.equipeSigepi">Equipe Sigepi</a></li>
+				<li><a href="@routes.Sobre.equipeProReitoria">Equipe Reitoria</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+}
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".navbar .nav:nth-child(1) > li:nth-child(2)").addClass("active");
+	});
+</script>

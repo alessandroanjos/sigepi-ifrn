@@ -62,9 +62,11 @@ create table projeto (
   objetivos                 longtext,
   metodologia               longtext,
   referencias               longtext,
+  area_conhecimento_id      bigint,
   edital_id                 bigint,
   autor_id                  bigint,
   campus_id                 bigint,
+  usuario_avaliar           bigint,
   constraint pk_projeto primary key (id))
 ;
 
@@ -82,6 +84,7 @@ create table usuario (
   senha                     varchar(255),
   nome                      varchar(255),
   email                     varchar(255),
+  area_conhecimento_id      bigint,
   chave_redefinicao_senha   varchar(255),
   is_professor              tinyint(1) default 0,
   is_gestor                 tinyint(1) default 0,
@@ -105,18 +108,22 @@ alter table edital add constraint fk_edital_autor_4 foreign key (autor_id) refer
 create index ix_edital_autor_4 on edital (autor_id);
 alter table grupo_pesquisa add constraint fk_grupo_pesquisa_campus_5 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
 create index ix_grupo_pesquisa_campus_5 on grupo_pesquisa (campus_id);
-alter table projeto add constraint fk_projeto_edital_6 foreign key (edital_id) references edital (id) on delete restrict on update restrict;
-create index ix_projeto_edital_6 on projeto (edital_id);
-alter table projeto add constraint fk_projeto_autor_7 foreign key (autor_id) references usuario (id) on delete restrict on update restrict;
-create index ix_projeto_autor_7 on projeto (autor_id);
-alter table projeto add constraint fk_projeto_campus_8 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
-create index ix_projeto_campus_8 on projeto (campus_id);
-alter table projeto_avaliado add constraint fk_projeto_avaliado_usuario_9 foreign key (usuario_id) references usuario (id) on delete restrict on update restrict;
-create index ix_projeto_avaliado_usuario_9 on projeto_avaliado (usuario_id);
-alter table projeto_avaliado add constraint fk_projeto_avaliado_projeto_10 foreign key (projeto_id) references projeto (id) on delete restrict on update restrict;
-create index ix_projeto_avaliado_projeto_10 on projeto_avaliado (projeto_id);
-alter table usuario add constraint fk_usuario_campus_11 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
-create index ix_usuario_campus_11 on usuario (campus_id);
+alter table projeto add constraint fk_projeto_areaConhecimento_6 foreign key (area_conhecimento_id) references area_conhecimento (id) on delete restrict on update restrict;
+create index ix_projeto_areaConhecimento_6 on projeto (area_conhecimento_id);
+alter table projeto add constraint fk_projeto_edital_7 foreign key (edital_id) references edital (id) on delete restrict on update restrict;
+create index ix_projeto_edital_7 on projeto (edital_id);
+alter table projeto add constraint fk_projeto_autor_8 foreign key (autor_id) references usuario (id) on delete restrict on update restrict;
+create index ix_projeto_autor_8 on projeto (autor_id);
+alter table projeto add constraint fk_projeto_campus_9 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
+create index ix_projeto_campus_9 on projeto (campus_id);
+alter table projeto_avaliado add constraint fk_projeto_avaliado_usuario_10 foreign key (usuario_id) references usuario (id) on delete restrict on update restrict;
+create index ix_projeto_avaliado_usuario_10 on projeto_avaliado (usuario_id);
+alter table projeto_avaliado add constraint fk_projeto_avaliado_projeto_11 foreign key (projeto_id) references projeto (id) on delete restrict on update restrict;
+create index ix_projeto_avaliado_projeto_11 on projeto_avaliado (projeto_id);
+alter table usuario add constraint fk_usuario_areaConhecimento_12 foreign key (area_conhecimento_id) references area_conhecimento (id) on delete restrict on update restrict;
+create index ix_usuario_areaConhecimento_12 on usuario (area_conhecimento_id);
+alter table usuario add constraint fk_usuario_campus_13 foreign key (campus_id) references campus (id) on delete restrict on update restrict;
+create index ix_usuario_campus_13 on usuario (campus_id);
 
 
 

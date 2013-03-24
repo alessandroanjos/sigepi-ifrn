@@ -46,6 +46,9 @@ public class Usuario extends Model {
 	@Email(message="Você deve informar um email válido.")
 	public String email;
 	
+	@ManyToOne
+	public AreaConhecimento areaConhecimento;
+	
 	public String chaveRedefinicaoSenha;
 	public boolean isProfessor;
 	public boolean isGestor;
@@ -215,6 +218,19 @@ public class Usuario extends Model {
 
 	public void setProgresso(List<ProjetoAvaliado> progresso) {
 		this.progresso = progresso;
+	}
+
+	public AreaConhecimento getAreaConhecimento() {
+		return areaConhecimento;
+	}
+
+
+
+
+
+
+	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
+		this.areaConhecimento = areaConhecimento;
 	}
 
 	public static Finder<Long, Usuario> find = new Finder<Long, Usuario>(Long.class, Usuario.class);

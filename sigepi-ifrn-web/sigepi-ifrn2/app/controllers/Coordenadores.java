@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.AreaConhecimento;
 import models.Campus;
 import models.Usuario;
 import forms.AlterarUsuarioForm;
@@ -28,22 +29,25 @@ public class Coordenadores extends Controller{
 	
 	public static Result formulario(){
 		List<Campus> campus = Campus.find.findList();
+		List<AreaConhecimento> areas = AreaConhecimento.find.findList();
 		
-		return ok(views.html.Coordenadores.formulario.render(form(Usuario.class), campus));
+		return ok(views.html.Coordenadores.formulario.render(form(Usuario.class), campus, areas));
 	}
 	
 	public static Result cadastrar() {
 		Form<Usuario> form = form(Usuario.class).bindFromRequest();
 		Long idCampus = Long.valueOf(form.data().get("idCampus"));
+		Long idAreaConhecimento = Long.valueOf(form.data().get("idAreaConhecimento"));
 		
 		
 		
 		if(form.hasErrors() || !form.get().senha.equals(form.data().get("confirmacaoSenha"))) {
 			
 			List<Campus> campus = Campus.find.findList();
+			List<AreaConhecimento> areas = AreaConhecimento.find.findList();
 			
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Coordenadores.formulario.render(form, campus));
+			return badRequest(views.html.Coordenadores.formulario.render(form, campus, areas));
 		}
 		
 		Usuario cordenador = form.get();
@@ -51,6 +55,7 @@ public class Coordenadores extends Controller{
 		cordenador.isProfessor = true;
 		cordenador.isCoordenador = true;
 		cordenador.campus = Campus.find.byId(idCampus);
+		cordenador.areaConhecimento = AreaConhecimento.find.byId(idAreaConhecimento);
 		cordenador.save();
 		
 		// Envia o email de confirmação de cadastro no sistema!
@@ -67,31 +72,35 @@ public class Coordenadores extends Controller{
 	public static Result formularioEdicao(Long id) {
 		Usuario cordenador = Usuario.find.byId(id);
 		List<Campus> campus  = Campus.find.findList();
+		List<AreaConhecimento> areas = AreaConhecimento.find.findList();
 		
 		AlterarUsuarioForm formulario = new AlterarUsuarioForm();
 		formulario.nome = cordenador.nome;
 		formulario.email = cordenador .email;
 		
-		return ok(views.html.Coordenadores.formularioEdicao.render(form(AlterarUsuarioForm.class).fill(formulario), cordenador, campus));
+		return ok(views.html.Coordenadores.formularioEdicao.render(form(AlterarUsuarioForm.class).fill(formulario), cordenador, campus, areas));
 	}
 	
 	@helpers.Seguranca.Permissao("Administrador")
 	public static Result editar(Long id) {
 		Form<AlterarUsuarioForm> form = form(AlterarUsuarioForm.class).bindFromRequest();
-		Usuario cordenador = Usuario.find.byId(id);
+		Usuario coordenador = Usuario.find.byId(id);
 		
 		if(form.hasErrors()) {
 			List<Campus> campus  = Campus.find.findList();
+			List<AreaConhecimento> areas = AreaConhecimento.find.findList();
+			
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Professor.formularioEdicao.render(form, cordenador, campus));
+			return badRequest(views.html.Coordenadores.formularioEdicao.render(form, coordenador, campus, areas));
 		}
 		
-		cordenador.setCampus(Campus.find.byId(Long.valueOf(form.data().get("idCampus"))));
-		cordenador.setNome(form.get().nome);
-		cordenador.setEmail(form.get().email);
-		cordenador.update();
+		coordenador.setCampus(Campus.find.byId(Long.valueOf(form.data().get("idCampus"))));
+		coordenador.setAreaConhecimento(AreaConhecimento.find.byId(Long.valueOf(form.data().get("idAreaConhecimento"))));
+		coordenador.setNome(form.get().nome);
+		coordenador.setEmail(form.get().email);
+		coordenador.update();
 		
-		flash().put("success", "Coordenador \""+ cordenador.nome +"\" atualizado com sucesso!");
+		flash().put("success", "Coordenador \""+ coordenador.nome +"\" atualizado com sucesso!");
 		return redirect(routes.Coordenadores.listaCoordenadores());
 	}
 	

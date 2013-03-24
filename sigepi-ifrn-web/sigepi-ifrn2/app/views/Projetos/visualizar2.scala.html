@@ -14,7 +14,7 @@
 					@projeto.titulo
 					<small> 
 						- @projeto.edital.getTitulo <br/>
-						Submetido por: @projeto.autor.getNome
+
 						
 						<br/>
 					@*	<span class="label label-info">Nível: @exercicio.nivelExercicio</span>  *@
@@ -39,7 +39,7 @@
 						<a href="@routes.Projetos.deletar(projeto.id)" onclick="return confirm('Deseja realmente excluir o projeto &quot;@projeto.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
 						}
 					
-					@if(getUsuarioLogado().isGestor || getUsuarioLogado().isAdministrador || getUsuarioLogado().isAvaliador) {
+					@if(getUsuarioLogado().isGestor || getUsuarioLogado().isAdministrador || getUsuarioLogado().isProfessor) {
 					 <div style=" position:relative; top:35px;">
 					    <a href="@routes.Projetos.formularioAvaliacao(projeto.id)" class="btn btn-danger"><i class="icon-edit"></i> Avaliar esse Projeto </a>
 					 </div>

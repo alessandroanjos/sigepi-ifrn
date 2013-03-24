@@ -25,80 +25,83 @@ public class Projetos extends Controller{
 
 	//@Permissao("Administrador")
 	public static Result index(){
-		//List<Projeto> projetos = Projeto.find.findList();
 		
-		//pegando o id do campus do usuario q está logado atualmente
-		Long campusId = InformacoesUsuarioHelper.getUsuarioLogado().campus.id;
+		Long meuId = InformacoesUsuarioHelper.getUsuarioLogado().id;		
+		List<Projeto> projetos = Projeto.find.where().eq("usuario_avaliar", meuId).findList();
+		List<Usuario> professores  = Usuario.find.where().eq("isProfessor", true).findList();
 		
-		
-		
-		
-		if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador
-				|| InformacoesUsuarioHelper.getUsuarioLogado().isAvaliador
-				|| InformacoesUsuarioHelper.getUsuarioLogado().isGestor) {
-		
-			//listo os projetos q batem com o mesmo resultado de campus iguais.
-			List<Projeto> projetos = Projeto.find.where()
-					.eq("campus_id", campusId).findList();
-			
-			return ok(views.html.Projetos.index.render(projetos));
-		}else{
-			flash().put("error", "Você não tem permissão para ver os projetos!");
-			//redirect(routes.Sessions.login());
+		if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador)
+		{
+			return ok(views.html.Projetos.index.render(projetos, professores));
 		}
-		
-		return ok(views.html.Professor.index.render());
-		
+		if(InformacoesUsuarioHelper.getUsuarioLogado().isProfessor)
+		{
+			return ok(views.html.Projetos.index.render(projetos, professores));
+		}
+		return ok(views.html.Administrador.index.render());	
 	}
 	
 	public static Result visualizar(Long id) {
-		Form<ProjetoForm> form = form(ProjetoForm.class);
-		Projeto projeto = Projeto.find.byId(id);
 		
-		if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador || InformacoesUsuarioHelper.getUsuarioLogado().isAvaliador
-			|| InformacoesUsuarioHelper.getUsuarioLogado().isGestor	) {
-			
-			if(projeto.campus.id == InformacoesUsuarioHelper.getUsuarioLogado().campus.id){
+        Usuario usuarioLogado = InformacoesUsuarioHelper.getUsuarioLogado();
+		
+		if(InformacoesUsuarioHelper.isLogado()){
+
+		Projeto projeto = Projeto.find.byId(id);
+		int findRowCount = Projeto.find.where().eq("usuario_avaliar", usuarioLogado.id).findRowCount();
+		System.out.println("Visualizar: "+findRowCount);
+		
+
+		if (InformacoesUsuarioHelper.getUsuarioLogado().isProfessor) {
+
+			if (projeto.campus.id != InformacoesUsuarioHelper.getUsuarioLogado().campus.id && 0 != findRowCount && projeto.usuarioAvaliar !=1) {
 				return ok(views.html.Projetos.visualizar2.render(projeto));
-			}else{
-				flash().put("error", "Projeto de campus diferente. Tente novamente!");
+			} else {
+				flash().put("error", "Acesso Negado. Tente novamente!");
 				redirect(routes.Projetos.index());
 			}
-			
+
 			return ok(views.html.Projetos.visualizar.render(projeto));
 		}
-		else{
+
+		else if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador) {
+
+			return ok(views.html.Projetos.visualizar2.render(projeto));
+
+		} else {
 			return ok(views.html.Projetos.visualizar.render(projeto));
 		}
-			
+		
+	  }
+		return redirect(routes.Sessions.login());
+
 	}
 	
 	@Permissao("Professor")	
 	public static Result formulario() {
 		List<Edital> editais = Edital.find.findList();
-		List<Campus> campus  = Campus.find.findList();
 		
-		return ok(views.html.Projetos.formulario.render(form(Projeto.class), editais, campus));
+		return ok(views.html.Projetos.formulario.render(form(Projeto.class), editais ));
 	}
 	
 	@Permissao("Professor")
 	public static Result submeter() {
 		Form<Projeto> form = form(Projeto.class).bindFromRequest();
 		Long idEdital = Long.valueOf(form.data().get("idEdital"));
-		Long idCampus = Long.valueOf(form.data().get("idCampus"));
 		
 		if(form.hasErrors()) {
 			List<Edital> editais = Edital.find.findList();
-			List<Campus> campus  = Campus.find.findList();
-			
+
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Projetos.formulario.render(form, editais, campus));
+			return badRequest(views.html.Projetos.formulario.render(form, editais));
 		}
 		
 		Projeto projeto = form.get();
 		projeto.autor = InformacoesUsuarioHelper.getUsuarioLogado();
 		projeto.edital = Edital.find.byId(idEdital);
-		projeto.campus = Campus.find.byId(idCampus);
+		projeto.campus = InformacoesUsuarioHelper.getUsuarioLogado().campus;
+		projeto.areaConhecimento = InformacoesUsuarioHelper.getUsuarioLogado().areaConhecimento;
+		projeto.usuarioAvaliar = 1L;
 		
 		projeto.save();
 		
@@ -166,22 +169,37 @@ public class Projetos extends Controller{
 	
 	
 	public static Result formularioAvaliacao(Long id) {
+
+		Usuario usuarioLogado = InformacoesUsuarioHelper.getUsuarioLogado();
 		
-		
-		/*Form<ProjetoForm> form = form(ProjetoForm.class);*/
+		if(InformacoesUsuarioHelper.isLogado()){
 		Projeto projeto = Projeto.find.byId(id);
-		
-		/*ProjetoAvaliado projetoAvaliado = ProjetoAvaliado.find.byId(id);*/
+		int findRowCount = Projeto.find.where().eq("usuario_avaliar", usuarioLogado.id).findRowCount();
+		System.out.println("form avaliacao: "+findRowCount);
 		
 		if (InformacoesUsuarioHelper.isProjetoAvaliado(id)) {
 			flash().put("error", "Você Já avaliou este projeto!");
 			return badRequest(views.html.Projetos.visualizar2.render(projeto));
-		} else if(InformacoesUsuarioHelper.isCampusIgual(id)==false){
-			flash().put("error", "Você não tem permissão para avaliar este projeto!");
-			return ok(views.html.Projetos.visualizar.render(projeto));
+
+		} else if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador) {
+
+			return ok(views.html.Projetos.formularioAvaliacao.render(
+					form(ProjetoAvaliado.class), projeto));
+
+		} else if ( projeto.campus.id != InformacoesUsuarioHelper.getUsuarioLogado().campus.id && 0!= findRowCount && projeto.usuarioAvaliar !=1) {
+                  //se der true é pq o cara selecionado pelo admin é o que tbm pode avaliar
+			
+			return ok(views.html.Projetos.formularioAvaliacao.render(
+					form(ProjetoAvaliado.class), projeto));
+
+		} else {
+			flash().put("error",
+					"Você não tem permissão para avaliar este projeto!");
+			redirect(routes.Projetos.index());
 		}
-		
-		return ok(views.html.Projetos.formularioAvaliacao.render(form(ProjetoAvaliado.class), projeto));
+		return ok(views.html.Projetos.visualizar.render(projeto));
+		}
+		return redirect(routes.Sessions.login());
 	}
 	
 	
@@ -244,6 +262,31 @@ public class Projetos extends Controller{
 		rankingProjetos.putAll(pontuacaoProjetos);
 		
         return ok(views.html.Projetos.ranking.render(rankingProjetos));
+		
+	}
+	
+	public static Result selecionarAvaliador(Long id) throws Exception {
+		
+		try {
+			Form<Projeto> form = form(Projeto.class).bindFromRequest();
+			
+			Long idProfessor = Long.valueOf(form.data().get("idProfessores"));
+			Projeto projeto = Projeto.find.byId(id);
+			
+			projeto.setUsuarioAvaliar(idProfessor);
+			
+			projeto.update();
+			
+			flash().put("success", "Projeto \""+ projeto.titulo +"\" Selecionado para Avaliação com sucesso!");
+			
+			return redirect(routes.Projetos.index());
+			
+						
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return internalServerError("Comportamento Inesperado..");
+		}
 		
 	}
 	

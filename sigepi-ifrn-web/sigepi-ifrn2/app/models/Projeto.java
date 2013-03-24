@@ -60,6 +60,9 @@ public class Projeto extends Model {
 	public String referencias;
 	
 	@ManyToOne
+	public AreaConhecimento areaConhecimento;
+	
+	@ManyToOne
 	public Edital edital;
 	
 	@ManyToOne
@@ -75,6 +78,8 @@ public class Projeto extends Model {
 	@OneToMany
 	public List<ProjetoAvaliado> progressoProjeto;
 	
+	public Long usuarioAvaliar;
+	
 	
 	
 	public Projeto(){
@@ -82,16 +87,6 @@ public class Projeto extends Model {
 		this.progressoProjeto = new ArrayList<ProjetoAvaliado>();
 	}
 
-
-	
-	
-	
-
-
-	
-	
-	
-	
 	
 	
 	
@@ -173,39 +168,9 @@ public class Projeto extends Model {
 		return bolsistas;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public void setBolsistas(List<Bolsista> bolsistas) {
 		this.bolsistas = bolsistas;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public Long getId() {
 		return id;
@@ -223,7 +188,6 @@ public class Projeto extends Model {
 		this.titulo = titulo;
 	}
 
-
 	public Campus getCampus() {
 		return campus;
 	}
@@ -231,9 +195,6 @@ public class Projeto extends Model {
 	public void setCampus(Campus campus) {
 		this.campus = campus;
 	}
-	
-	
-
 
 	public List<ProjetoAvaliado> getProgressoProjeto() {
 		return progressoProjeto;
@@ -241,6 +202,30 @@ public class Projeto extends Model {
 
 	public void setProgressoProjeto(List<ProjetoAvaliado> progressoProjeto) {
 		this.progressoProjeto = progressoProjeto;
+	}
+
+	public Long getUsuarioAvaliar() {
+		return usuarioAvaliar;
+	}
+
+	public void setUsuarioAvaliar(Long usuarioAvaliar) {
+		this.usuarioAvaliar = usuarioAvaliar;
+	}
+
+
+
+
+	public AreaConhecimento getAreaConhecimento() {
+		return areaConhecimento;
+	}
+
+
+
+
+
+
+	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
+		this.areaConhecimento = areaConhecimento;
 	}
 
 

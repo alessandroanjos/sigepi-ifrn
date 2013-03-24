@@ -1,5 +1,12 @@
 package global;
 
+import java.util.ArrayList;
+import java.util.Date;
+
+import models.AreaConhecimento;
+import models.Campus;
+import models.Edital;
+import models.Usuario;
 import play.*;
 import play.api.mvc.RequestHeader;
 import play.mvc.*;
@@ -10,7 +17,50 @@ public class Global extends GlobalSettings{
 	
 	@Override
 	public void onStart(Application app) {
-		Logger.info("Aplication Iniciada!!!");
+		
+		if(AreaConhecimento.find.all().size() == 0){
+		   AreaConhecimento area = new AreaConhecimento();
+		   area.nome = "Ciência da Computação";
+		   area.save();
+		   
+		   Logger.info("Cadastrando as Áreas de Conhecimento.");
+		
+		}
+		
+		if(Campus.find.all().size() ==0){
+		  Campus campus = new Campus();
+		  campus.nome = "Natal - Central";
+		  campus.save();
+		  
+		  Logger.info("Cadastrando Campus.");
+		}
+				
+		
+		if (Usuario.find.all().size() == 0) {
+			Usuario administrador = new Usuario();
+			administrador.nome = "Admin";
+			administrador.email = "admin-sigepi@ifrn.edu.br";
+			administrador.login = "admin";
+			administrador.senha = "admin";
+			administrador.isAtivo = true;
+			administrador.isAdministrador = true;
+			administrador.areaConhecimento = AreaConhecimento.find.all().get(0);
+			
+			administrador.save();
+			
+			Logger.info("Cadastrando o Administrador do Sistema.");
+		}
+		
+		if (Edital.find.all().size() == 0) {
+			Edital edital = new Edital();
+			edital.titulo = "PIBITI";
+			edital.dataCadastro = new Date();
+			edital.autor = Usuario.find.all().get(0);
+			edital.save();
+			
+			Logger.info("Cadastrando os Editais.");
+		}
+		
 	}
 	
 	@Override

@@ -6,6 +6,14 @@
 GET     /                           controllers.Application.index()
 
 
+# Páginas de Sobre
+GET     /sobre			                      				controllers.Sobre.index()
+GET     /sobre/sigepi/manual     					   		controllers.Sobre.manual()
+GET     /sobre/sigepi/equipe-sigepi		            		controllers.Sobre.equipeSigepi()
+GET     /sobre/sigepi/o-projeto					           	controllers.Sobre.oProjeto()
+GET     /sobre/sigepi/equipe-reitoria			           	controllers.Sobre.equipeProReitoria()
+
+
 # Páginas de Error, Not Found 
 #GET   /error                        controllers.Global.onError(t : Throwable)
 #GET   /error                        controllers.Global.onError()
@@ -39,8 +47,10 @@ GET     /acesso              		        				controllers.Sessions.login()
 POST    /acessar-minha-conta        		 				controllers.Sessions.efetuarLogin()
 GET     /sair-do-sistema            						controllers.Sessions.efetuarlogout()
 
+
 # Administração do Sistema
 GET     /administracao/admin								controllers.Administracao.index()
+POST    /administracao/selecionar-avaliador                 controllers.Projetos.selecionarAvaliador(id: Long)
 
 
 # Editais
@@ -177,7 +187,6 @@ GET 	/administracao/professor								controllers.Professores.index()
 
 # Administração do Gestor
 GET     /administracao/gestor                               	controllers.Gestores.index()
-
 
 
 
