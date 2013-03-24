@@ -1,0 +1,62 @@
+@(cursos: List[Curso])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Cursos</h1>
+				
+				@if(isLogado()) {
+					@if(getUsuarioLogado().isAdministrador) {
+					<div style="float:right; position:relative; top:8px;">
+						<a href="@routes.Cursos.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Novo Curso</a>
+					</div>
+					}
+				}
+			</div>
+			
+			@if(cursos.size == 0) {
+				<h3>Nenhum curso cadastrado.</h3>			
+			} else {
+				@for(curso <- cursos) {
+				<div class="item-lista">
+					<div class="item-lista">
+						<div class="item">
+							
+							<h2>
+								<a href="@routes.Cursos.visualizar(curso.id)">
+									@curso.nome 
+								</a>
+							</h2>
+							
+												
+						
+						
+						<div style=" padding-top:10px;">
+							<a href="@routes.Cursos.visualizar(curso.id)" class="btn btn-primary"><i class="icon-white icon-list-alt"></i> Visualizar o curso</a>
+							
+							@if(isLogado()) {
+								@if(getUsuarioLogado().isAdministrador) {
+									<a href="@routes.Cursos.editar(curso.id)" class="btn"><i class="icon-edit"></i> Editar</a>
+									<a href="@routes.Cursos.deletar(curso.id)" onclick="return confirm('Deseja realmente excluir o curso &quot;@curso.nome&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
+								}
+							}
+						</div>
+						
+						 <br /><br />
+						
+						</div> 
+					</div>
+				</div>
+				}
+			}
+		</div>
+		</div>
+
+}

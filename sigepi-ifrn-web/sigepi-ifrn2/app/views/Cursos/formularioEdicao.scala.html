@@ -1,0 +1,26 @@
+@(formulario: Form[Curso], curso: Curso)
+
+@import tags._
+@import helper.twitterBootstrap._
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Edição do Curso: @curso.nome</h1>
+			</div>
+			
+			@helper.form(action = routes.Cursos.editar(curso.id), 'style -> "margin:0;", 'class -> "form-horizontal"){
+			
+				@helper.inputText(formulario("nome"), 'id -> "nome",'class -> "span6", '_label -> "Nome do Curso: ", '_showConstraints -> false, '_showErrors -> true)
+				
+				<button type="submit" class="btn btn-primary">Editar o curso</button>
+				&nbsp;
+				<a class="btn" href="@routes.Cursos.index" >Cancelar</a>
+			}
+			
+		</div>
+	</div>	
+
+}

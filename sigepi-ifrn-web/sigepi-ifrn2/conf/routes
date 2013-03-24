@@ -64,6 +64,12 @@ GET     /administracao/area-conhecimento                    controllers.AreaConh
 GET 	/administracao/area-conhecimento/:id/visualizar  	controllers.AreaConhecimentoController.visualizar(id: Long)
 
 
+# Curso
+GET     /administracao/curso                                controllers.Cursos.index()
+GET 	/administracao/curso/:id/visualizar  	            controllers.Cursos.visualizar(id: Long)
+
+
+
 
 
 
@@ -112,6 +118,15 @@ POST 	/administracao/areas/cadastro						controllers.AreaConhecimentoController.
 GET 	/administracao/areas/:id/editar					    controllers.AreaConhecimentoController.formularioEdicao(id: Long)
 POST 	/administracao/areas/:id/editar					    controllers.AreaConhecimentoController.editar(id: Long)
 GET 	/administracao/areas/:id/excluir					controllers.AreaConhecimentoController.deletar(id: Long)
+
+
+# Administração dos Cursos
+GET 	/administracao/cursos/cadastro						controllers.Cursos.formulario()
+POST 	/administracao/cursos/cadastro						controllers.Cursos.cadastrar()
+GET 	/administracao/cursos/:id/editar					controllers.Cursos.formularioEdicao(id: Long)
+POST 	/administracao/cursos/:id/editar					controllers.Cursos.editar(id: Long)
+GET 	/administracao/cursos/:id/excluir					controllers.Cursos.deletar(id: Long)
+
 
 
 

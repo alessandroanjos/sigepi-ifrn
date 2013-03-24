@@ -17,6 +17,13 @@ create table campus (
   constraint pk_campus primary key (id))
 ;
 
+create table curso (
+  id                        bigint auto_increment not null,
+  nome                      varchar(255),
+  constraint uq_curso_nome unique (nome),
+  constraint pk_curso primary key (id))
+;
+
 create table edital (
   id                        bigint auto_increment not null,
   titulo                    varchar(255),
@@ -102,6 +109,8 @@ SET FOREIGN_KEY_CHECKS=0;
 drop table area_conhecimento;
 
 drop table campus;
+
+drop table curso;
 
 drop table edital;
 

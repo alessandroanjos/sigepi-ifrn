@@ -1,0 +1,29 @@
+@(formulario: Form[Curso])
+
+@import tags._
+@import helper._
+@import helper.twitterBootstrap._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+@import helper.{FieldConstructor}
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Cadastro de Cursos</h1>
+			</div>
+			
+			@helper.form(action = routes.Cursos.cadastrar(), 'style -> "margin:0;"){
+				@helper.inputText(formulario("nome"), 'id -> "nome", 'class -> "span6", '_label -> "Nome do Curso: ", '_showConstraints -> false, '_showErrors -> true)
+				
+				<button type="submit" class="btn btn-primary">Cadastrar Curso</button>
+				&nbsp;
+				<a class="btn" href="@routes.AreaConhecimentoController.index" >Cancelar</a>
+			}
+			
+		</div>
+	</div>
+
+}
