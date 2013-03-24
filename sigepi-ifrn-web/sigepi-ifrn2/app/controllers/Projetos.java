@@ -50,11 +50,11 @@ public class Projetos extends Controller{
 		Projeto projeto = Projeto.find.byId(id);
 		int findRowCount = Projeto.find.where().eq("usuario_avaliar", usuarioLogado.id).findRowCount();
 		System.out.println("Visualizar: "+findRowCount);
-		
+		Long meuId = InformacoesUsuarioHelper.getUsuarioLogado().id;
 
 		if (InformacoesUsuarioHelper.getUsuarioLogado().isProfessor) {
 
-			if (projeto.campus.id != InformacoesUsuarioHelper.getUsuarioLogado().campus.id && 0 != findRowCount && projeto.usuarioAvaliar !=1) {
+			if (projeto.campus.id != InformacoesUsuarioHelper.getUsuarioLogado().campus.id && 0 != findRowCount && projeto.usuarioAvaliar == meuId) {
 				return ok(views.html.Projetos.visualizar2.render(projeto));
 			} else {
 				flash().put("error", "Acesso Negado. Tente novamente!");
@@ -177,6 +177,8 @@ public class Projetos extends Controller{
 		int findRowCount = Projeto.find.where().eq("usuario_avaliar", usuarioLogado.id).findRowCount();
 		System.out.println("form avaliacao: "+findRowCount);
 		
+		Long meuId = InformacoesUsuarioHelper.getUsuarioLogado().id;
+		
 		if (InformacoesUsuarioHelper.isProjetoAvaliado(id)) {
 			flash().put("error", "Você Já avaliou este projeto!");
 			return badRequest(views.html.Projetos.visualizar2.render(projeto));
@@ -186,7 +188,7 @@ public class Projetos extends Controller{
 			return ok(views.html.Projetos.formularioAvaliacao.render(
 					form(ProjetoAvaliado.class), projeto));
 
-		} else if ( projeto.campus.id != InformacoesUsuarioHelper.getUsuarioLogado().campus.id && 0!= findRowCount && projeto.usuarioAvaliar !=1) {
+		} else if ( projeto.campus.id != InformacoesUsuarioHelper.getUsuarioLogado().campus.id && 0!= findRowCount && projeto.usuarioAvaliar == meuId) {
                   //se der true é pq o cara selecionado pelo admin é o que tbm pode avaliar
 			
 			return ok(views.html.Projetos.formularioAvaliacao.render(
