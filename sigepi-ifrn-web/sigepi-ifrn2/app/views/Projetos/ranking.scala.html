@@ -1,4 +1,4 @@
-@(rankingProjetos: TreeMap[Projeto,Integer])
+@(rankingProjetos: TreeMap[Projeto,Integer], editais: List[Edital])
 
 @import tags._
 @import helper._
@@ -11,6 +11,31 @@
 			<div class="page-header" style="overflow:hidden;">
 				<h1 style="float:left;">Ranking dos Projetos</h1>
 			</div>
+			
+						
+						
+						
+		    					@for(edital <- editais) {
+		
+										<div class="item-lista">
+												<div class="item-lista">
+													<div class="item">
+														<h2>
+															<a href="@routes.Editais.visualizar(edital.id)">
+																 @edital.titulo
+															</a>								       		 
+														</h2>								          					
+													</div>
+													<div style="float:right; padding-top:15px;">
+														<a href="@routes.Projetos.rankingProjetosEdital(edital.id)" class="btn btn-inverse"> Listar</a>
+												   </div>					
+												</div>
+											</div>
+									 
+		                         }
+		                         
+		          	
+			
 			
 			<table class="table table-bordered table-hover">
               <thead>

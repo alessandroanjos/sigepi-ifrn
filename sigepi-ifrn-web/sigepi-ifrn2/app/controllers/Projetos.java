@@ -256,7 +256,7 @@ public class Projetos extends Controller{
 	
 	public static Result rankingProjetos(){
 		List<Projeto> projetos = Projeto.find.findList();
-		
+		List<Edital> editais = Edital.find.findList();
 		
 		HashMap<Projeto, Integer> pontuacaoProjetos = new HashMap<Projeto, Integer>();
         PontuacaoComparator bvc = new PontuacaoComparator(pontuacaoProjetos);
@@ -268,7 +268,32 @@ public class Projetos extends Controller{
 
 		rankingProjetos.putAll(pontuacaoProjetos);
 		
-        return ok(views.html.Projetos.ranking.render(rankingProjetos));
+        return ok(views.html.Projetos.ranking.render(rankingProjetos, editais));
+		
+	}
+	
+	public static Result rankingProjetosEdital(Long id) throws Exception {
+		try {
+			List<Projeto> projetos = Projeto.find.where().eq("edital_id", id).findList();
+			List<Edital> editais = Edital.find.findList();
+
+			HashMap<Projeto, Integer> pontuacaoProjetos = new HashMap<Projeto, Integer>();
+			PontuacaoComparator bvc = new PontuacaoComparator(pontuacaoProjetos);
+			TreeMap<Projeto, Integer> rankingProjetos = new TreeMap<Projeto, Integer>(bvc);
+
+			for (Projeto projeto : projetos) {
+				pontuacaoProjetos.put(projeto, InformacoesUsuarioHelper.getPontuacaoProjeto(projeto.id));
+			}
+
+			rankingProjetos.putAll(pontuacaoProjetos);
+
+			return ok(views.html.Projetos.ranking.render(rankingProjetos, editais));
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return internalServerError("Comportamento Inesperado..");
+		}
 		
 	}
 	

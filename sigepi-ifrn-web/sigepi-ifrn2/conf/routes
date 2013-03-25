@@ -65,6 +65,7 @@ GET 	/administracao/campus/:id/visualizar				controllers.CampusController.visual
 
 # Ranking dos Projetos
 GET 	/ranking-dos-projetos/visualizar					controllers.Projetos.rankingProjetos()
+GET     /ranking-dos-projetos/:id/selecionar-edital			controllers.Projetos.rankingProjetosEdital(id: Long)
 
 
 # Grupo de Pesquisa
