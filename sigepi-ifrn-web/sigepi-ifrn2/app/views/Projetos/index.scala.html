@@ -87,7 +87,7 @@
 				<div style="float:right; position:relative; top:8px;">
 					<h4>
 					   
-					  @projetos.size Projeto(s) Submetido(s).
+					  @projetos.size Projeto(s) Selecionado(s) para avaliação.
 					  
 					</h4>
 				</div>
@@ -103,9 +103,16 @@
 							<h2>
 								<a href="@routes.Projetos.visualizar(projeto.id)">
 									@projeto.titulo
-								</a>
-							</h2>										          					
+								</a>								       		 
+							</h2>								          					
 						</div>
+						<div style="float:right; padding-top:15px;">
+							@if(isProjetoAvaliado(projeto.id)) {
+								<span class="label label-success">Avaliado - @getProjetoAvaliado(projeto.id).pontuacaoObtida Pontos Obtidos!</span>
+							 } else {
+							    <span class="label label-important">Pendente!</span>
+					        }
+					   </div>					
 					</div>
 				</div>
 				}

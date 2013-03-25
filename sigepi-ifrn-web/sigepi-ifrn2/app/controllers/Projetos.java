@@ -41,6 +41,11 @@ public class Projetos extends Controller{
 		return ok(views.html.Administrador.index.render());	
 	}
 	
+	public static Result listaProjetos() {
+		List<Projeto> projetos = Projeto.find.findList();
+		return ok(views.html.Projetos.listaProjetos.render(projetos));
+	}
+	
 	public static Result visualizar(Long id) {
 		
         Usuario usuarioLogado = InformacoesUsuarioHelper.getUsuarioLogado();

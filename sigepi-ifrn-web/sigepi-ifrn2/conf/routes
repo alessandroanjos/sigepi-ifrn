@@ -7,7 +7,7 @@ GET     /                           controllers.Application.index()
 
 
 # Páginas de Sobre
-GET     /sobre			                      				controllers.Sobre.index()
+GET     /sobre/sigepi			                      		controllers.Sobre.index()
 GET     /sobre/sigepi/manual     					   		controllers.Sobre.manual()
 GET     /sobre/sigepi/equipe-sigepi		            		controllers.Sobre.equipeSigepi()
 GET     /sobre/sigepi/o-projeto					           	controllers.Sobre.oProjeto()
@@ -92,6 +92,7 @@ GET     /administracao/bolsistas/listagem-bolsistas			controllers.Bolsistas.list
 
 # Projetos
 GET 	/administracao/projetos								controllers.Projetos.index()
+GET     /administracao/listagem-projetos					controllers.Projetos.listaProjetos()
 GET 	/administracao/projetos/submeter					controllers.Projetos.formulario()
 POST 	/administracao/projetos/submeter					controllers.Projetos.submeter()
 GET 	/administracao/projetos/:id/visualizar				controllers.Projetos.visualizar(id: Long)
