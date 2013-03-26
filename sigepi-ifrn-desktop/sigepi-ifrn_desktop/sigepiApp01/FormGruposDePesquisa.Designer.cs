@@ -1,6 +1,6 @@
 ﻿namespace sigepiApp01
 {
-    partial class FormCampus
+    partial class FormGruposDePesquisa
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCampus));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGruposDePesquisa));
             this.sigepi2DataSet = new sigepiApp01.sigepi2DataSet();
-            this.campusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.campusTableAdapter = new sigepiApp01.sigepi2DataSetTableAdapters.campusTableAdapter();
+            this.grupo_pesquisaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.grupo_pesquisaTableAdapter = new sigepiApp01.sigepi2DataSetTableAdapters.grupo_pesquisaTableAdapter();
             this.tableAdapterManager = new sigepiApp01.sigepi2DataSetTableAdapters.TableAdapterManager();
-            this.campusBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.campusTableAdapter = new sigepiApp01.sigepi2DataSetTableAdapters.campusTableAdapter();
+            this.grupo_pesquisaBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
@@ -46,14 +47,17 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.campusBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.campusDataGridView = new System.Windows.Forms.DataGridView();
+            this.grupo_pesquisaBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.grupo_pesquisaDataGridView = new System.Windows.Forms.DataGridView();
+            this.campusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.sigepi2DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaBindingNavigator)).BeginInit();
+            this.grupo_pesquisaBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.campusBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.campusBindingNavigator)).BeginInit();
-            this.campusBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.campusDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // sigepi2DataSet
@@ -61,14 +65,14 @@
             this.sigepi2DataSet.DataSetName = "sigepi2DataSet";
             this.sigepi2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // campusBindingSource
+            // grupo_pesquisaBindingSource
             // 
-            this.campusBindingSource.DataMember = "campus";
-            this.campusBindingSource.DataSource = this.sigepi2DataSet;
+            this.grupo_pesquisaBindingSource.DataMember = "grupo_pesquisa";
+            this.grupo_pesquisaBindingSource.DataSource = this.sigepi2DataSet;
             // 
-            // campusTableAdapter
+            // grupo_pesquisaTableAdapter
             // 
-            this.campusTableAdapter.ClearBeforeFill = true;
+            this.grupo_pesquisaTableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
@@ -78,20 +82,24 @@
             this.tableAdapterManager.campusTableAdapter = this.campusTableAdapter;
             this.tableAdapterManager.cursoTableAdapter = null;
             this.tableAdapterManager.editalTableAdapter = null;
-            this.tableAdapterManager.grupo_pesquisaTableAdapter = null;
+            this.tableAdapterManager.grupo_pesquisaTableAdapter = this.grupo_pesquisaTableAdapter;
             this.tableAdapterManager.play_evolutionsTableAdapter = null;
             this.tableAdapterManager.projeto_avaliadoTableAdapter = null;
             this.tableAdapterManager.projetoTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = sigepiApp01.sigepi2DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.usuarioTableAdapter = null;
             // 
-            // campusBindingNavigator
+            // campusTableAdapter
             // 
-            this.campusBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.campusBindingNavigator.BindingSource = this.campusBindingSource;
-            this.campusBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.campusBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.campusBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.campusTableAdapter.ClearBeforeFill = true;
+            // 
+            // grupo_pesquisaBindingNavigator
+            // 
+            this.grupo_pesquisaBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.grupo_pesquisaBindingNavigator.BindingSource = this.grupo_pesquisaBindingSource;
+            this.grupo_pesquisaBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.grupo_pesquisaBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.grupo_pesquisaBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -103,17 +111,17 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.campusBindingNavigatorSaveItem});
-            this.campusBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.campusBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.campusBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.campusBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.campusBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.campusBindingNavigator.Name = "campusBindingNavigator";
-            this.campusBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.campusBindingNavigator.Size = new System.Drawing.Size(784, 25);
-            this.campusBindingNavigator.TabIndex = 0;
-            this.campusBindingNavigator.Text = "bindingNavigator1";
+            this.grupo_pesquisaBindingNavigatorSaveItem});
+            this.grupo_pesquisaBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.grupo_pesquisaBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.grupo_pesquisaBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.grupo_pesquisaBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.grupo_pesquisaBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.grupo_pesquisaBindingNavigator.Name = "grupo_pesquisaBindingNavigator";
+            this.grupo_pesquisaBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.grupo_pesquisaBindingNavigator.Size = new System.Drawing.Size(784, 25);
+            this.grupo_pesquisaBindingNavigator.TabIndex = 0;
+            this.grupo_pesquisaBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -200,51 +208,69 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // campusBindingNavigatorSaveItem
+            // grupo_pesquisaBindingNavigatorSaveItem
             // 
-            this.campusBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.campusBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("campusBindingNavigatorSaveItem.Image")));
-            this.campusBindingNavigatorSaveItem.Name = "campusBindingNavigatorSaveItem";
-            this.campusBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.campusBindingNavigatorSaveItem.Text = "Salvar Dados";
-            this.campusBindingNavigatorSaveItem.Click += new System.EventHandler(this.campusBindingNavigatorSaveItem_Click);
+            this.grupo_pesquisaBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.grupo_pesquisaBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("grupo_pesquisaBindingNavigatorSaveItem.Image")));
+            this.grupo_pesquisaBindingNavigatorSaveItem.Name = "grupo_pesquisaBindingNavigatorSaveItem";
+            this.grupo_pesquisaBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
+            this.grupo_pesquisaBindingNavigatorSaveItem.Text = "Save Data";
+            this.grupo_pesquisaBindingNavigatorSaveItem.Click += new System.EventHandler(this.grupo_pesquisaBindingNavigatorSaveItem_Click);
             // 
-            // campusDataGridView
+            // grupo_pesquisaDataGridView
             // 
-            this.campusDataGridView.AutoGenerateColumns = false;
-            this.campusDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.campusDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2});
-            this.campusDataGridView.DataSource = this.campusBindingSource;
-            this.campusDataGridView.Location = new System.Drawing.Point(0, 28);
-            this.campusDataGridView.Name = "campusDataGridView";
-            this.campusDataGridView.Size = new System.Drawing.Size(784, 402);
-            this.campusDataGridView.TabIndex = 1;
-            this.campusDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.campusDataGridView_CellContentClick);
+            this.grupo_pesquisaDataGridView.AutoGenerateColumns = false;
+            this.grupo_pesquisaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grupo_pesquisaDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.grupo_pesquisaDataGridView.DataSource = this.grupo_pesquisaBindingSource;
+            this.grupo_pesquisaDataGridView.Location = new System.Drawing.Point(0, 28);
+            this.grupo_pesquisaDataGridView.Name = "grupo_pesquisaDataGridView";
+            this.grupo_pesquisaDataGridView.Size = new System.Drawing.Size(784, 402);
+            this.grupo_pesquisaDataGridView.TabIndex = 1;
+            // 
+            // campusBindingSource
+            // 
+            this.campusBindingSource.DataMember = "campus";
+            this.campusBindingSource.DataSource = this.sigepi2DataSet;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "nome";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nome do Grupo";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 740;
+            this.dataGridViewTextBoxColumn2.Width = 500;
             // 
-            // FormCampus
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "campus_id";
+            this.dataGridViewTextBoxColumn3.DataSource = this.campusBindingSource;
+            this.dataGridViewTextBoxColumn3.DisplayMember = "nome";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Câmpus";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn3.ValueMember = "id";
+            this.dataGridViewTextBoxColumn3.Width = 240;
+            // 
+            // FormGruposDePesquisa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 442);
-            this.Controls.Add(this.campusDataGridView);
-            this.Controls.Add(this.campusBindingNavigator);
-            this.Name = "FormCampus";
-            this.Text = "Gerenciar Câmpus";
-            this.Load += new System.EventHandler(this.FormCampus_Load);
+            this.Controls.Add(this.grupo_pesquisaDataGridView);
+            this.Controls.Add(this.grupo_pesquisaBindingNavigator);
+            this.Name = "FormGruposDePesquisa";
+            this.Text = "Gerenciar Grupos de Pesquisa";
+            this.Load += new System.EventHandler(this.FormGruposDePesquisa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sigepi2DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaBindingNavigator)).EndInit();
+            this.grupo_pesquisaBindingNavigator.ResumeLayout(false);
+            this.grupo_pesquisaBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.campusBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.campusBindingNavigator)).EndInit();
-            this.campusBindingNavigator.ResumeLayout(false);
-            this.campusBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.campusDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,10 +279,10 @@
         #endregion
 
         private sigepi2DataSet sigepi2DataSet;
-        private System.Windows.Forms.BindingSource campusBindingSource;
-        private sigepi2DataSetTableAdapters.campusTableAdapter campusTableAdapter;
+        private System.Windows.Forms.BindingSource grupo_pesquisaBindingSource;
+        private sigepi2DataSetTableAdapters.grupo_pesquisaTableAdapter grupo_pesquisaTableAdapter;
         private sigepi2DataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingNavigator campusBindingNavigator;
+        private System.Windows.Forms.BindingNavigator grupo_pesquisaBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -268,8 +294,12 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton campusBindingNavigatorSaveItem;
-        private System.Windows.Forms.DataGridView campusDataGridView;
+        private System.Windows.Forms.ToolStripButton grupo_pesquisaBindingNavigatorSaveItem;
+        private sigepi2DataSetTableAdapters.campusTableAdapter campusTableAdapter;
+        private System.Windows.Forms.DataGridView grupo_pesquisaDataGridView;
+        private System.Windows.Forms.BindingSource campusBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn3;
+
     }
 }

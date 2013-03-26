@@ -16,15 +16,28 @@ namespace sigepiApp01
             InitializeComponent();
         }
 
+        private void logout(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void formEditais(object sender, EventArgs e)
         {
             FormEditais editais = new FormEditais();
             editais.Show();
         }
 
-        private void logout(object sender, EventArgs e)
+        private void formCampus(object sender, EventArgs e)
         {
-            Application.Exit();
+            FormCampus campus = new FormCampus();
+            campus.Show();
         }
+
+        private void formGruposDePesquisa(object sender, EventArgs e)
+        {
+            FormGruposDePesquisa gruposDePesquisa = new FormGruposDePesquisa();
+            gruposDePesquisa.Show();
+        }
+
     }
 }

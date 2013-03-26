@@ -68,6 +68,12 @@
     <Compile Include="FormCampus.Designer.cs">
       <DependentUpon>FormCampus.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGruposDePesquisa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGruposDePesquisa.Designer.cs">
+      <DependentUpon>FormGruposDePesquisa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditais.resx">
       <DependentUpon>FormEditais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGruposDePesquisa.resx">
+      <DependentUpon>FormGruposDePesquisa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

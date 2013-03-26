@@ -32,5 +32,10 @@ namespace sigepiApp01
             this.editalTableAdapter.Fill(this.sigepi2DataSet.edital);
 
         }
+
+        private void editalDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

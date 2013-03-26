@@ -30,5 +30,10 @@ namespace sigepiApp01
             this.campusTableAdapter.Fill(this.sigepi2DataSet.campus);
 
         }
+
+        private void campusDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -77,9 +77,13 @@
             // 
             // tableAdapterManager
             // 
+            this.tableAdapterManager.area_conhecimentoTableAdapter = null;
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.bolsistaTableAdapter = null;
             this.tableAdapterManager.campusTableAdapter = null;
+            this.tableAdapterManager.cursoTableAdapter = null;
             this.tableAdapterManager.editalTableAdapter = this.editalTableAdapter;
+            this.tableAdapterManager.grupo_pesquisaTableAdapter = null;
             this.tableAdapterManager.play_evolutionsTableAdapter = null;
             this.tableAdapterManager.projeto_avaliadoTableAdapter = null;
             this.tableAdapterManager.projetoTableAdapter = null;
@@ -112,7 +116,7 @@
             this.editalBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.editalBindingNavigator.Name = "editalBindingNavigator";
             this.editalBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.editalBindingNavigator.Size = new System.Drawing.Size(359, 25);
+            this.editalBindingNavigator.Size = new System.Drawing.Size(784, 25);
             this.editalBindingNavigator.TabIndex = 0;
             this.editalBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -222,8 +226,9 @@
             this.editalDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.editalDataGridView.Location = new System.Drawing.Point(0, 25);
             this.editalDataGridView.Name = "editalDataGridView";
-            this.editalDataGridView.Size = new System.Drawing.Size(359, 253);
+            this.editalDataGridView.Size = new System.Drawing.Size(784, 417);
             this.editalDataGridView.TabIndex = 1;
+            this.editalDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.editalDataGridView_CellContentClick);
             // 
             // usuarioBindingSource
             // 
@@ -237,13 +242,14 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "titulo";
-            this.dataGridViewTextBoxColumn2.HeaderText = "titulo";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Título do Edital";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 500;
             // 
             // data_cadastro
             // 
             this.data_cadastro.DataPropertyName = "data_cadastro";
-            this.data_cadastro.HeaderText = "data_cadastro";
+            this.data_cadastro.HeaderText = "Data de cadastramento do Edital";
             this.data_cadastro.Name = "data_cadastro";
             // 
             // dataGridViewTextBoxColumn4
@@ -251,17 +257,18 @@
             this.dataGridViewTextBoxColumn4.DataPropertyName = "autor_id";
             this.dataGridViewTextBoxColumn4.DataSource = this.usuarioBindingSource;
             this.dataGridViewTextBoxColumn4.DisplayMember = "nome";
-            this.dataGridViewTextBoxColumn4.HeaderText = "autor_id";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Autor";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn4.ValueMember = "id";
+            this.dataGridViewTextBoxColumn4.Width = 140;
             // 
             // FormEditais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 278);
+            this.ClientSize = new System.Drawing.Size(784, 442);
             this.Controls.Add(this.editalDataGridView);
             this.Controls.Add(this.editalBindingNavigator);
             this.Name = "FormEditais";
