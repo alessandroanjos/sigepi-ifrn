@@ -11,7 +11,7 @@
         <Image Height="80" HorizontalAlignment="Left" Margin="24,22,0,0" Name="sigepi" Stretch="Fill" VerticalAlignment="Top" Width="170" Source="/sigepiApp01;component/sigepi.jpg" />
         <GroupBox Header="Entrar no SIGEPI" Height="200" HorizontalAlignment="Left" Margin="229,127,0,0" Name="groupBox1" VerticalAlignment="Top" Width="350">
             <Grid>
-                <Button Content="Entrar" Height="23" HorizontalAlignment="Left" Margin="205,123,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="autenticarLogin_Click" />
+                <Button Content="Entrar" Height="23" HorizontalAlignment="Left" Margin="205,123,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="autenticarLogin_Click" IsDefault="True" />
                 <TextBox Height="23" HorizontalAlignment="Left" Margin="80,27,0,0" Name="textBox1" VerticalAlignment="Top" Width="200" />
                 <PasswordBox Height="23" HorizontalAlignment="Left" Margin="80,0,0,79" Name="passwordBox1" VerticalAlignment="Bottom" Width="200" />
                 <Label Content="Senha:" Height="28" HorizontalAlignment="Left" Margin="29,70,0,0" Name="label2" VerticalAlignment="Top" />

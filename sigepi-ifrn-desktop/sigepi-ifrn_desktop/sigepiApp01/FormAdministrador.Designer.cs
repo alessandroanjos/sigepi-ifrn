@@ -133,8 +133,9 @@
             // gerenciarToolStripMenuItem3
             // 
             this.gerenciarToolStripMenuItem3.Name = "gerenciarToolStripMenuItem3";
-            this.gerenciarToolStripMenuItem3.Size = new System.Drawing.Size(133, 22);
+            this.gerenciarToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.gerenciarToolStripMenuItem3.Text = "Gerenciar...";
+            this.gerenciarToolStripMenuItem3.Click += new System.EventHandler(this.formAreasDeConhecimento);
             // 
             // cursosToolStripMenuItem
             // 
@@ -147,8 +148,9 @@
             // gerenciarToolStripMenuItem2
             // 
             this.gerenciarToolStripMenuItem2.Name = "gerenciarToolStripMenuItem2";
-            this.gerenciarToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.gerenciarToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.gerenciarToolStripMenuItem2.Text = "Gerenciar...";
+            this.gerenciarToolStripMenuItem2.Click += new System.EventHandler(this.formCursos);
             // 
             // usuáriosToolStripMenuItem
             // 
@@ -172,6 +174,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormAdministrador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Área do Administrador";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -39,5 +39,17 @@ namespace sigepiApp01
             gruposDePesquisa.Show();
         }
 
+        private void formAreasDeConhecimento(object sender, EventArgs e)
+        {
+            FormAreasDeConhecimento areasDeConhecimento = new FormAreasDeConhecimento();
+            areasDeConhecimento.Show();
+        }
+
+        private void formCursos(object sender, EventArgs e)
+        {
+            FormCursos cursos = new FormCursos();
+            cursos.Show();
+        }
+
     }
 }

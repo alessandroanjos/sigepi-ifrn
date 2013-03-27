@@ -49,9 +49,9 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.grupo_pesquisaBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.grupo_pesquisaDataGridView = new System.Windows.Forms.DataGridView();
-            this.campusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.campusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.sigepi2DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupo_pesquisaBindingNavigator)).BeginInit();
@@ -230,11 +230,6 @@
             this.grupo_pesquisaDataGridView.Size = new System.Drawing.Size(784, 402);
             this.grupo_pesquisaDataGridView.TabIndex = 1;
             // 
-            // campusBindingSource
-            // 
-            this.campusBindingSource.DataMember = "campus";
-            this.campusBindingSource.DataSource = this.sigepi2DataSet;
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "nome";
@@ -254,6 +249,11 @@
             this.dataGridViewTextBoxColumn3.ValueMember = "id";
             this.dataGridViewTextBoxColumn3.Width = 240;
             // 
+            // campusBindingSource
+            // 
+            this.campusBindingSource.DataMember = "campus";
+            this.campusBindingSource.DataSource = this.sigepi2DataSet;
+            // 
             // FormGruposDePesquisa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,6 +262,7 @@
             this.Controls.Add(this.grupo_pesquisaDataGridView);
             this.Controls.Add(this.grupo_pesquisaBindingNavigator);
             this.Name = "FormGruposDePesquisa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciar Grupos de Pesquisa";
             this.Load += new System.EventHandler(this.FormGruposDePesquisa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sigepi2DataSet)).EndInit();

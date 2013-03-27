@@ -56,6 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FormAreasDeConhecimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAreasDeConhecimento.Designer.cs">
+      <DependentUpon>FormAreasDeConhecimento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBolsistas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,12 @@
     </Compile>
     <Compile Include="FormCampus.Designer.cs">
       <DependentUpon>FormCampus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCursos.Designer.cs">
+      <DependentUpon>FormCursos.cs</DependentUpon>
     </Compile>
     <Compile Include="FormGruposDePesquisa.cs">
       <SubType>Form</SubType>
@@ -135,11 +147,17 @@
     <EmbeddedResource Include="FormAdministrador.resx">
       <DependentUpon>FormAdministrador.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAreasDeConhecimento.resx">
+      <DependentUpon>FormAreasDeConhecimento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBolsistas.resx">
       <DependentUpon>FormBolsistas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCampus.resx">
       <DependentUpon>FormCampus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCursos.resx">
+      <DependentUpon>FormCursos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditais.resx">
       <DependentUpon>FormEditais.cs</DependentUpon>

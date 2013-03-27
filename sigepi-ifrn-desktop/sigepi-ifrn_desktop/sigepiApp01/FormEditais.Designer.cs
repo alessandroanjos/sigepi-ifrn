@@ -48,11 +48,11 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.editalBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.editalDataGridView = new System.Windows.Forms.DataGridView();
-            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usuarioTableAdapter = new sigepiApp01.sigepi2DataSetTableAdapters.usuarioTableAdapter();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data_cadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usuarioTableAdapter = new sigepiApp01.sigepi2DataSetTableAdapters.usuarioTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.sigepi2DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editalBindingNavigator)).BeginInit();
@@ -230,15 +230,6 @@
             this.editalDataGridView.TabIndex = 1;
             this.editalDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.editalDataGridView_CellContentClick);
             // 
-            // usuarioBindingSource
-            // 
-            this.usuarioBindingSource.DataMember = "usuario";
-            this.usuarioBindingSource.DataSource = this.sigepi2DataSet;
-            // 
-            // usuarioTableAdapter
-            // 
-            this.usuarioTableAdapter.ClearBeforeFill = true;
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "titulo";
@@ -264,6 +255,15 @@
             this.dataGridViewTextBoxColumn4.ValueMember = "id";
             this.dataGridViewTextBoxColumn4.Width = 140;
             // 
+            // usuarioBindingSource
+            // 
+            this.usuarioBindingSource.DataMember = "usuario";
+            this.usuarioBindingSource.DataSource = this.sigepi2DataSet;
+            // 
+            // usuarioTableAdapter
+            // 
+            this.usuarioTableAdapter.ClearBeforeFill = true;
+            // 
             // FormEditais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +272,7 @@
             this.Controls.Add(this.editalDataGridView);
             this.Controls.Add(this.editalBindingNavigator);
             this.Name = "FormEditais";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerenciar Editais";
             this.Load += new System.EventHandler(this.FormEditais_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sigepi2DataSet)).EndInit();
