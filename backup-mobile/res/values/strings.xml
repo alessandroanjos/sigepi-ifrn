@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SIGEPI_mobile</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_exibir_acoes">ExibirAcoes</string>
+    <string name="title_activity_projetos_para_avaliar">ProjetosParaAvaliarActivity</string>
+    <string name="title_activity_editais_abertos">EditaisAbertosActivity</string>
+
+</resources>
