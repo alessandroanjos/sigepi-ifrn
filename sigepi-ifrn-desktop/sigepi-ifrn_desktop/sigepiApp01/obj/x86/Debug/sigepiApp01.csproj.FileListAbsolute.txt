@@ -98,3 +98,4 @@ C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\sigep
 C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.FormGruposDePesquisa.resources
 C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.FormAreasDeConhecimento.resources
 C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.FormCursos.resources
+C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\sigepiApp01\obj\x86\Debug\sigepiApp01.FormUsuarios.resources

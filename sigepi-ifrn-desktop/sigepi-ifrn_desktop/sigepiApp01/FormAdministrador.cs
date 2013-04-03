@@ -51,5 +51,11 @@ namespace sigepiApp01
             cursos.Show();
         }
 
+        private void formUsuarios(object sender, EventArgs e)
+        {
+            FormUsuarios usuarios = new FormUsuarios();
+            usuarios.Show();
+        }
+
     }
 }

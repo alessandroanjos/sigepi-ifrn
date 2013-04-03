@@ -103,7 +103,7 @@
             // gerenciarToolStripMenuItem5
             // 
             this.gerenciarToolStripMenuItem5.Name = "gerenciarToolStripMenuItem5";
-            this.gerenciarToolStripMenuItem5.Size = new System.Drawing.Size(133, 22);
+            this.gerenciarToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
             this.gerenciarToolStripMenuItem5.Text = "Gerenciar...";
             this.gerenciarToolStripMenuItem5.Click += new System.EventHandler(this.formCampus);
             // 
@@ -133,7 +133,7 @@
             // gerenciarToolStripMenuItem3
             // 
             this.gerenciarToolStripMenuItem3.Name = "gerenciarToolStripMenuItem3";
-            this.gerenciarToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.gerenciarToolStripMenuItem3.Size = new System.Drawing.Size(133, 22);
             this.gerenciarToolStripMenuItem3.Text = "Gerenciar...";
             this.gerenciarToolStripMenuItem3.Click += new System.EventHandler(this.formAreasDeConhecimento);
             // 
@@ -163,8 +163,9 @@
             // gerenciarToolStripMenuItem1
             // 
             this.gerenciarToolStripMenuItem1.Name = "gerenciarToolStripMenuItem1";
-            this.gerenciarToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.gerenciarToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.gerenciarToolStripMenuItem1.Text = "Gerenciar...";
+            this.gerenciarToolStripMenuItem1.Click += new System.EventHandler(this.formUsuarios);
             // 
             // FormAdministrador
             // 
