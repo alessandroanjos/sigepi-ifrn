@@ -66,6 +66,8 @@ namespace sigepiApp01 {
         
         private global::System.Data.DataRelation relationfk_grupo_pesquisa_campus_5;
         
+        private global::System.Data.DataRelation relationfk_usuario_areaConhecimento_12;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -443,6 +445,7 @@ namespace sigepiApp01 {
             this.relationfk_bolsista_curso_1 = this.Relations["fk_bolsista_curso_1"];
             this.relationfk_bolsista_projeto_3 = this.Relations["fk_bolsista_projeto_3"];
             this.relationfk_grupo_pesquisa_campus_5 = this.Relations["fk_grupo_pesquisa_campus_5"];
+            this.relationfk_usuario_areaConhecimento_12 = this.Relations["fk_usuario_areaConhecimento_12"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -517,6 +520,10 @@ namespace sigepiApp01 {
                         this.tablecampus.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablegrupo_pesquisa.campus_idColumn}, false);
             this.Relations.Add(this.relationfk_grupo_pesquisa_campus_5);
+            this.relationfk_usuario_areaConhecimento_12 = new global::System.Data.DataRelation("fk_usuario_areaConhecimento_12", new global::System.Data.DataColumn[] {
+                        this.tablearea_conhecimento.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableusuario.area_conhecimento_idColumn}, false);
+            this.Relations.Add(this.relationfk_usuario_areaConhecimento_12);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2353,19 +2360,17 @@ namespace sigepiApp01 {
             
             private global::System.Data.DataColumn columnemail;
             
-            private global::System.Data.DataColumn columnchave_redefinicao_senha;
-            
             private global::System.Data.DataColumn columnis_professor;
             
-            private global::System.Data.DataColumn columnis_gestor;
-            
             private global::System.Data.DataColumn columnis_administrador;
-            
-            private global::System.Data.DataColumn columnis_avaliador;
             
             private global::System.Data.DataColumn columnis_ativo;
             
             private global::System.Data.DataColumn columncampus_id;
+            
+            private global::System.Data.DataColumn columnarea_conhecimento_id;
+            
+            private global::System.Data.DataColumn columnis_coordenador;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2442,14 +2447,6 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn chave_redefinicao_senhaColumn {
-                get {
-                    return this.columnchave_redefinicao_senha;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn is_professorColumn {
                 get {
                     return this.columnis_professor;
@@ -2458,25 +2455,9 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn is_gestorColumn {
-                get {
-                    return this.columnis_gestor;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn is_administradorColumn {
                 get {
                     return this.columnis_administrador;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn is_avaliadorColumn {
-                get {
-                    return this.columnis_avaliador;
                 }
             }
             
@@ -2493,6 +2474,22 @@ namespace sigepiApp01 {
             public global::System.Data.DataColumn campus_idColumn {
                 get {
                     return this.columncampus_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn area_conhecimento_idColumn {
+                get {
+                    return this.columnarea_conhecimento_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn is_coordenadorColumn {
+                get {
+                    return this.columnis_coordenador;
                 }
             }
             
@@ -2533,7 +2530,7 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public usuarioRow AddusuarioRow(string login, string senha, string nome, string email, string chave_redefinicao_senha, bool is_professor, bool is_gestor, bool is_administrador, bool is_avaliador, bool is_ativo, campusRow parentcampusRowByfk_usuario_campus_7) {
+            public usuarioRow AddusuarioRow(string login, string senha, string nome, string email, bool is_professor, bool is_administrador, bool is_ativo, campusRow parentcampusRowByfk_usuario_campus_7, area_conhecimentoRow parentarea_conhecimentoRowByfk_usuario_areaConhecimento_12, bool is_coordenador) {
                 usuarioRow rowusuarioRow = ((usuarioRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2541,15 +2538,17 @@ namespace sigepiApp01 {
                         senha,
                         nome,
                         email,
-                        chave_redefinicao_senha,
                         is_professor,
-                        is_gestor,
                         is_administrador,
-                        is_avaliador,
                         is_ativo,
-                        null};
+                        null,
+                        null,
+                        is_coordenador};
                 if ((parentcampusRowByfk_usuario_campus_7 != null)) {
-                    columnValuesArray[11] = parentcampusRowByfk_usuario_campus_7[0];
+                    columnValuesArray[8] = parentcampusRowByfk_usuario_campus_7[0];
+                }
+                if ((parentarea_conhecimentoRowByfk_usuario_areaConhecimento_12 != null)) {
+                    columnValuesArray[9] = parentarea_conhecimentoRowByfk_usuario_areaConhecimento_12[0];
                 }
                 rowusuarioRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowusuarioRow);
@@ -2585,13 +2584,12 @@ namespace sigepiApp01 {
                 this.columnsenha = base.Columns["senha"];
                 this.columnnome = base.Columns["nome"];
                 this.columnemail = base.Columns["email"];
-                this.columnchave_redefinicao_senha = base.Columns["chave_redefinicao_senha"];
                 this.columnis_professor = base.Columns["is_professor"];
-                this.columnis_gestor = base.Columns["is_gestor"];
                 this.columnis_administrador = base.Columns["is_administrador"];
-                this.columnis_avaliador = base.Columns["is_avaliador"];
                 this.columnis_ativo = base.Columns["is_ativo"];
                 this.columncampus_id = base.Columns["campus_id"];
+                this.columnarea_conhecimento_id = base.Columns["area_conhecimento_id"];
+                this.columnis_coordenador = base.Columns["is_coordenador"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2607,20 +2605,18 @@ namespace sigepiApp01 {
                 base.Columns.Add(this.columnnome);
                 this.columnemail = new global::System.Data.DataColumn("email", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnemail);
-                this.columnchave_redefinicao_senha = new global::System.Data.DataColumn("chave_redefinicao_senha", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnchave_redefinicao_senha);
                 this.columnis_professor = new global::System.Data.DataColumn("is_professor", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnis_professor);
-                this.columnis_gestor = new global::System.Data.DataColumn("is_gestor", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnis_gestor);
                 this.columnis_administrador = new global::System.Data.DataColumn("is_administrador", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnis_administrador);
-                this.columnis_avaliador = new global::System.Data.DataColumn("is_avaliador", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnis_avaliador);
                 this.columnis_ativo = new global::System.Data.DataColumn("is_ativo", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnis_ativo);
                 this.columncampus_id = new global::System.Data.DataColumn("campus_id", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncampus_id);
+                this.columnarea_conhecimento_id = new global::System.Data.DataColumn("area_conhecimento_id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnarea_conhecimento_id);
+                this.columnis_coordenador = new global::System.Data.DataColumn("is_coordenador", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnis_coordenador);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnlogin}, false));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -2638,7 +2634,6 @@ namespace sigepiApp01 {
                 this.columnnome.MaxLength = 255;
                 this.columnemail.Unique = true;
                 this.columnemail.MaxLength = 255;
-                this.columnchave_redefinicao_senha.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4965,22 +4960,6 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string chave_redefinicao_senha {
-                get {
-                    try {
-                        return ((string)(this[this.tableusuario.chave_redefinicao_senhaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'chave_redefinicao_senha\' in table \'usuario\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableusuario.chave_redefinicao_senhaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool is_professor {
                 get {
                     try {
@@ -4997,22 +4976,6 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool is_gestor {
-                get {
-                    try {
-                        return ((bool)(this[this.tableusuario.is_gestorColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'is_gestor\' in table \'usuario\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableusuario.is_gestorColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool is_administrador {
                 get {
                     try {
@@ -5024,22 +4987,6 @@ namespace sigepiApp01 {
                 }
                 set {
                     this[this.tableusuario.is_administradorColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool is_avaliador {
-                get {
-                    try {
-                        return ((bool)(this[this.tableusuario.is_avaliadorColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'is_avaliador\' in table \'usuario\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableusuario.is_avaliadorColumn] = value;
                 }
             }
             
@@ -5077,12 +5024,55 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long area_conhecimento_id {
+                get {
+                    try {
+                        return ((long)(this[this.tableusuario.area_conhecimento_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'area_conhecimento_id\' in table \'usuario\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableusuario.area_conhecimento_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool is_coordenador {
+                get {
+                    try {
+                        return ((bool)(this[this.tableusuario.is_coordenadorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'is_coordenador\' in table \'usuario\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableusuario.is_coordenadorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public campusRow campusRow {
                 get {
                     return ((campusRow)(this.GetParentRow(this.Table.ParentRelations["fk_usuario_campus_7"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["fk_usuario_campus_7"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public area_conhecimentoRow area_conhecimentoRow {
+                get {
+                    return ((area_conhecimentoRow)(this.GetParentRow(this.Table.ParentRelations["fk_usuario_areaConhecimento_12"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["fk_usuario_areaConhecimento_12"]);
                 }
             }
             
@@ -5136,18 +5126,6 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Ischave_redefinicao_senhaNull() {
-                return this.IsNull(this.tableusuario.chave_redefinicao_senhaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setchave_redefinicao_senhaNull() {
-                this[this.tableusuario.chave_redefinicao_senhaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isis_professorNull() {
                 return this.IsNull(this.tableusuario.is_professorColumn);
             }
@@ -5160,18 +5138,6 @@ namespace sigepiApp01 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isis_gestorNull() {
-                return this.IsNull(this.tableusuario.is_gestorColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setis_gestorNull() {
-                this[this.tableusuario.is_gestorColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isis_administradorNull() {
                 return this.IsNull(this.tableusuario.is_administradorColumn);
             }
@@ -5180,18 +5146,6 @@ namespace sigepiApp01 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setis_administradorNull() {
                 this[this.tableusuario.is_administradorColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isis_avaliadorNull() {
-                return this.IsNull(this.tableusuario.is_avaliadorColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setis_avaliadorNull() {
-                this[this.tableusuario.is_avaliadorColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5216,6 +5170,30 @@ namespace sigepiApp01 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setcampus_idNull() {
                 this[this.tableusuario.campus_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isarea_conhecimento_idNull() {
+                return this.IsNull(this.tableusuario.area_conhecimento_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setarea_conhecimento_idNull() {
+                this[this.tableusuario.area_conhecimento_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isis_coordenadorNull() {
+                return this.IsNull(this.tableusuario.is_coordenadorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setis_coordenadorNull() {
+                this[this.tableusuario.is_coordenadorColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5303,6 +5281,17 @@ namespace sigepiApp01 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetnomeNull() {
                 this[this.tablearea_conhecimento.nomeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public usuarioRow[] GetusuarioRows() {
+                if ((this.Table.ChildRelations["fk_usuario_areaConhecimento_12"] == null)) {
+                    return new usuarioRow[0];
+                }
+                else {
+                    return ((usuarioRow[])(base.GetChildRows(this.Table.ChildRelations["fk_usuario_areaConhecimento_12"])));
+                }
             }
         }
         
@@ -9237,17 +9226,16 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("senha", "senha");
             tableMapping.ColumnMappings.Add("nome", "nome");
             tableMapping.ColumnMappings.Add("email", "email");
-            tableMapping.ColumnMappings.Add("chave_redefinicao_senha", "chave_redefinicao_senha");
             tableMapping.ColumnMappings.Add("is_professor", "is_professor");
-            tableMapping.ColumnMappings.Add("is_gestor", "is_gestor");
             tableMapping.ColumnMappings.Add("is_administrador", "is_administrador");
-            tableMapping.ColumnMappings.Add("is_avaliador", "is_avaliador");
             tableMapping.ColumnMappings.Add("is_ativo", "is_ativo");
             tableMapping.ColumnMappings.Add("campus_id", "campus_id");
+            tableMapping.ColumnMappings.Add("area_conhecimento_id", "area_conhecimento_id");
+            tableMapping.ColumnMappings.Add("is_coordenador", "is_coordenador");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `usuario` WHERE ((`id` = @Original_id) AND ((@IsNull_login = 1 AND `login` IS NULL) OR (`login` = @Original_login)) AND ((@IsNull_senha = 1 AND `senha` IS NULL) OR (`senha` = @Original_senha)) AND ((@IsNull_nome = 1 AND `nome` IS NULL) OR (`nome` = @Original_nome)) AND ((@IsNull_email = 1 AND `email` IS NULL) OR (`email` = @Original_email)) AND ((@IsNull_chave_redefinicao_senha = 1 AND `chave_redefinicao_senha` IS NULL) OR (`chave_redefinicao_senha` = @Original_chave_redefinicao_senha)) AND ((@IsNull_is_professor = 1 AND `is_professor` IS NULL) OR (`is_professor` = @Original_is_professor)) AND ((@IsNull_is_gestor = 1 AND `is_gestor` IS NULL) OR (`is_gestor` = @Original_is_gestor)) AND ((@IsNull_is_administrador = 1 AND `is_administrador` IS NULL) OR (`is_administrador` = @Original_is_administrador)) AND ((@IsNull_is_avaliador = 1 AND `is_avaliador` IS NULL) OR (`is_avaliador` = @Original_is_avaliador)) AND ((@IsNull_is_ativo = 1 AND `is_ativo` IS NULL) OR (`is_ativo` = @Original_is_ativo)) AND ((@IsNull_campus_id = 1 AND `campus_id` IS NULL) OR (`campus_id` = @Original_campus_id)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `usuario` WHERE ((`id` = @Original_id) AND ((@IsNull_login = 1 AND `login` IS NULL) OR (`login` = @Original_login)) AND ((@IsNull_senha = 1 AND `senha` IS NULL) OR (`senha` = @Original_senha)) AND ((@IsNull_nome = 1 AND `nome` IS NULL) OR (`nome` = @Original_nome)) AND ((@IsNull_email = 1 AND `email` IS NULL) OR (`email` = @Original_email)) AND ((@IsNull_is_professor = 1 AND `is_professor` IS NULL) OR (`is_professor` = @Original_is_professor)) AND ((@IsNull_is_administrador = 1 AND `is_administrador` IS NULL) OR (`is_administrador` = @Original_is_administrador)) AND ((@IsNull_is_ativo = 1 AND `is_ativo` IS NULL) OR (`is_ativo` = @Original_is_ativo)) AND ((@IsNull_campus_id = 1 AND `campus_id` IS NULL) OR (`campus_id` = @Original_campus_id)) AND ((@IsNull_area_conhecimento_id = 1 AND `area_conhecimento_id` IS NULL) OR (`area_conhecimento_id` = @Original_area_conhecimento_id)) AND ((@IsNull_is_coordenador = 1 AND `is_coordenador` IS NULL) OR (`is_coordenador` = @Original_is_coordenador)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_id";
@@ -9326,23 +9314,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@IsNull_chave_redefinicao_senha";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "chave_redefinicao_senha";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@Original_chave_redefinicao_senha";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "chave_redefinicao_senha";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@IsNull_is_professor";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
@@ -9360,23 +9331,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@IsNull_is_gestor";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "is_gestor";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@Original_is_gestor";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_gestor";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@IsNull_is_administrador";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
@@ -9391,23 +9345,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
             param.SourceColumn = "is_administrador";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@IsNull_is_avaliador";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "is_avaliador";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@Original_is_avaliador";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_avaliador";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -9444,9 +9381,43 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceColumn = "campus_id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@IsNull_area_conhecimento_id";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "area_conhecimento_id";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@Original_area_conhecimento_id";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
+            param.IsNullable = true;
+            param.SourceColumn = "area_conhecimento_id";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@IsNull_is_coordenador";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "is_coordenador";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@Original_is_coordenador";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "is_coordenador";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `usuario` (`login`, `senha`, `nome`, `email`, `chave_redefinicao_senha`, `is_professor`, `is_gestor`, `is_administrador`, `is_avaliador`, `is_ativo`, `campus_id`) VALUES (@login, @senha, @nome, @email, @chave_redefinicao_senha, @is_professor, @is_gestor, @is_administrador, @is_avaliador, @is_ativo, @campus_id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `usuario` (`login`, `senha`, `nome`, `email`, `is_professor`, `is_administrador`, `is_ativo`, `campus_id`, `area_conhecimento_id`, `is_coordenador`) VALUES (@login, @senha, @nome, @email, @is_professor, @is_administrador, @is_ativo, @campus_id, @area_conhecimento_id, @is_coordenador)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@login";
@@ -9477,13 +9448,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceColumn = "email";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@chave_redefinicao_senha";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "chave_redefinicao_senha";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@is_professor";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
@@ -9491,25 +9455,11 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceColumn = "is_professor";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@is_gestor";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_gestor";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@is_administrador";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
             param.SourceColumn = "is_administrador";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@is_avaliador";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_avaliador";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@is_ativo";
@@ -9525,9 +9475,23 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "campus_id";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@area_conhecimento_id";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
+            param.IsNullable = true;
+            param.SourceColumn = "area_conhecimento_id";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@is_coordenador";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "is_coordenador";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `usuario` SET `login` = @login, `senha` = @senha, `nome` = @nome, `email` = @email, `chave_redefinicao_senha` = @chave_redefinicao_senha, `is_professor` = @is_professor, `is_gestor` = @is_gestor, `is_administrador` = @is_administrador, `is_avaliador` = @is_avaliador, `is_ativo` = @is_ativo, `campus_id` = @campus_id WHERE ((`id` = @Original_id) AND ((@IsNull_login = 1 AND `login` IS NULL) OR (`login` = @Original_login)) AND ((@IsNull_senha = 1 AND `senha` IS NULL) OR (`senha` = @Original_senha)) AND ((@IsNull_nome = 1 AND `nome` IS NULL) OR (`nome` = @Original_nome)) AND ((@IsNull_email = 1 AND `email` IS NULL) OR (`email` = @Original_email)) AND ((@IsNull_chave_redefinicao_senha = 1 AND `chave_redefinicao_senha` IS NULL) OR (`chave_redefinicao_senha` = @Original_chave_redefinicao_senha)) AND ((@IsNull_is_professor = 1 AND `is_professor` IS NULL) OR (`is_professor` = @Original_is_professor)) AND ((@IsNull_is_gestor = 1 AND `is_gestor` IS NULL) OR (`is_gestor` = @Original_is_gestor)) AND ((@IsNull_is_administrador = 1 AND `is_administrador` IS NULL) OR (`is_administrador` = @Original_is_administrador)) AND ((@IsNull_is_avaliador = 1 AND `is_avaliador` IS NULL) OR (`is_avaliador` = @Original_is_avaliador)) AND ((@IsNull_is_ativo = 1 AND `is_ativo` IS NULL) OR (`is_ativo` = @Original_is_ativo)) AND ((@IsNull_campus_id = 1 AND `campus_id` IS NULL) OR (`campus_id` = @Original_campus_id)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `usuario` SET `login` = @login, `senha` = @senha, `nome` = @nome, `email` = @email, `is_professor` = @is_professor, `is_administrador` = @is_administrador, `is_ativo` = @is_ativo, `campus_id` = @campus_id, `area_conhecimento_id` = @area_conhecimento_id, `is_coordenador` = @is_coordenador WHERE ((`id` = @Original_id) AND ((@IsNull_login = 1 AND `login` IS NULL) OR (`login` = @Original_login)) AND ((@IsNull_senha = 1 AND `senha` IS NULL) OR (`senha` = @Original_senha)) AND ((@IsNull_nome = 1 AND `nome` IS NULL) OR (`nome` = @Original_nome)) AND ((@IsNull_email = 1 AND `email` IS NULL) OR (`email` = @Original_email)) AND ((@IsNull_is_professor = 1 AND `is_professor` IS NULL) OR (`is_professor` = @Original_is_professor)) AND ((@IsNull_is_administrador = 1 AND `is_administrador` IS NULL) OR (`is_administrador` = @Original_is_administrador)) AND ((@IsNull_is_ativo = 1 AND `is_ativo` IS NULL) OR (`is_ativo` = @Original_is_ativo)) AND ((@IsNull_campus_id = 1 AND `campus_id` IS NULL) OR (`campus_id` = @Original_campus_id)) AND ((@IsNull_area_conhecimento_id = 1 AND `area_conhecimento_id` IS NULL) OR (`area_conhecimento_id` = @Original_area_conhecimento_id)) AND ((@IsNull_is_coordenador = 1 AND `is_coordenador` IS NULL) OR (`is_coordenador` = @Original_is_coordenador)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@login";
@@ -9558,13 +9522,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceColumn = "email";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@chave_redefinicao_senha";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "chave_redefinicao_senha";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@is_professor";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
@@ -9572,25 +9529,11 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceColumn = "is_professor";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@is_gestor";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_gestor";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@is_administrador";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
             param.SourceColumn = "is_administrador";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@is_avaliador";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_avaliador";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@is_ativo";
@@ -9605,6 +9548,20 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
             param.IsNullable = true;
             param.SourceColumn = "campus_id";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@area_conhecimento_id";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
+            param.IsNullable = true;
+            param.SourceColumn = "area_conhecimento_id";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@is_coordenador";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "is_coordenador";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_id";
@@ -9683,23 +9640,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@IsNull_chave_redefinicao_senha";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "chave_redefinicao_senha";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@Original_chave_redefinicao_senha";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "chave_redefinicao_senha";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@IsNull_is_professor";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
@@ -9717,23 +9657,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@IsNull_is_gestor";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "is_gestor";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@Original_is_gestor";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_gestor";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@IsNull_is_administrador";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
@@ -9748,23 +9671,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
             param.SourceColumn = "is_administrador";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@IsNull_is_avaliador";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "is_avaliador";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@Original_is_avaliador";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "is_avaliador";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -9801,6 +9707,40 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             param.SourceColumn = "campus_id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@IsNull_area_conhecimento_id";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "area_conhecimento_id";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@Original_area_conhecimento_id";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int64;
+            param.IsNullable = true;
+            param.SourceColumn = "area_conhecimento_id";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@IsNull_is_coordenador";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "is_coordenador";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@Original_is_coordenador";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "is_coordenador";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9816,14 +9756,13 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[2];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `id`, `login`, `senha`, `nome`, `email`, `chave_redefinicao_senha`, `is_pr" +
-                "ofessor`, `is_gestor`, `is_administrador`, `is_avaliador`, `is_ativo`, `campus_i" +
-                "d` FROM `usuario`";
+            this._commandCollection[0].CommandText = "SELECT id, login, senha, nome, email, is_professor, is_administrador, is_ativo, c" +
+                "ampus_id, area_conhecimento_id, is_coordenador FROM usuario";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        senha, is_administrador, login\r\nFROM            usuario\r\nWHERE     " +
-                "   (senha = @senha) ";
+            this._commandCollection[1].CommandText = "SELECT senha, is_administrador, login, area_conhecimento_id, is_coordenador FROM " +
+                "usuario WHERE (senha = @senha)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@senha";
@@ -9911,7 +9850,7 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_id, string Original_login, string Original_senha, string Original_nome, string Original_email, string Original_chave_redefinicao_senha, global::System.Nullable<byte> Original_is_professor, global::System.Nullable<byte> Original_is_gestor, global::System.Nullable<byte> Original_is_administrador, global::System.Nullable<byte> Original_is_avaliador, global::System.Nullable<byte> Original_is_ativo, global::System.Nullable<long> Original_campus_id) {
+        public virtual int Delete(long Original_id, string Original_login, string Original_senha, string Original_nome, string Original_email, global::System.Nullable<byte> Original_is_professor, global::System.Nullable<byte> Original_is_administrador, global::System.Nullable<byte> Original_is_ativo, global::System.Nullable<long> Original_campus_id, global::System.Nullable<long> Original_area_conhecimento_id, global::System.Nullable<byte> Original_is_coordenador) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_id));
             if ((Original_login == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -9945,61 +9884,53 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_email));
             }
-            if ((Original_chave_redefinicao_senha == null)) {
+            if ((Original_is_professor.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((byte)(Original_is_professor.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_chave_redefinicao_senha));
-            }
-            if ((Original_is_professor.HasValue == true)) {
+            if ((Original_is_administrador.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((byte)(Original_is_professor.Value));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((byte)(Original_is_administrador.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((Original_is_gestor.HasValue == true)) {
+            if ((Original_is_ativo.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((byte)(Original_is_gestor.Value));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((byte)(Original_is_ativo.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((Original_is_administrador.HasValue == true)) {
+            if ((Original_campus_id.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((byte)(Original_is_administrador.Value));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((long)(Original_campus_id.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((Original_is_avaliador.HasValue == true)) {
+            if ((Original_area_conhecimento_id.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((byte)(Original_is_avaliador.Value));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((long)(Original_area_conhecimento_id.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((Original_is_ativo.HasValue == true)) {
+            if ((Original_is_coordenador.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((byte)(Original_is_ativo.Value));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((byte)(Original_is_coordenador.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
-            if ((Original_campus_id.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((long)(Original_campus_id.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10021,7 +9952,7 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string login, string senha, string nome, string email, string chave_redefinicao_senha, global::System.Nullable<byte> is_professor, global::System.Nullable<byte> is_gestor, global::System.Nullable<byte> is_administrador, global::System.Nullable<byte> is_avaliador, global::System.Nullable<byte> is_ativo, global::System.Nullable<long> campus_id) {
+        public virtual int Insert(string login, string senha, string nome, string email, global::System.Nullable<byte> is_professor, global::System.Nullable<byte> is_administrador, global::System.Nullable<byte> is_ativo, global::System.Nullable<long> campus_id, global::System.Nullable<long> area_conhecimento_id, global::System.Nullable<byte> is_coordenador) {
             if ((login == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -10046,47 +9977,41 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(email));
             }
-            if ((chave_redefinicao_senha == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((is_professor.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(is_professor.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(chave_redefinicao_senha));
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((is_professor.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(is_professor.Value));
+            if ((is_administrador.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((byte)(is_administrador.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((is_gestor.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(is_gestor.Value));
+            if ((is_ativo.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((byte)(is_ativo.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((is_administrador.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((byte)(is_administrador.Value));
+            if ((campus_id.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((long)(campus_id.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((is_avaliador.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((byte)(is_avaliador.Value));
+            if ((area_conhecimento_id.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((long)(area_conhecimento_id.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((is_ativo.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((byte)(is_ativo.Value));
+            if ((is_coordenador.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((byte)(is_coordenador.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((campus_id.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((long)(campus_id.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10113,25 +10038,23 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     string senha, 
                     string nome, 
                     string email, 
-                    string chave_redefinicao_senha, 
                     global::System.Nullable<byte> is_professor, 
-                    global::System.Nullable<byte> is_gestor, 
                     global::System.Nullable<byte> is_administrador, 
-                    global::System.Nullable<byte> is_avaliador, 
                     global::System.Nullable<byte> is_ativo, 
                     global::System.Nullable<long> campus_id, 
+                    global::System.Nullable<long> area_conhecimento_id, 
+                    global::System.Nullable<byte> is_coordenador, 
                     long Original_id, 
                     string Original_login, 
                     string Original_senha, 
                     string Original_nome, 
                     string Original_email, 
-                    string Original_chave_redefinicao_senha, 
                     global::System.Nullable<byte> Original_is_professor, 
-                    global::System.Nullable<byte> Original_is_gestor, 
                     global::System.Nullable<byte> Original_is_administrador, 
-                    global::System.Nullable<byte> Original_is_avaliador, 
                     global::System.Nullable<byte> Original_is_ativo, 
-                    global::System.Nullable<long> Original_campus_id) {
+                    global::System.Nullable<long> Original_campus_id, 
+                    global::System.Nullable<long> Original_area_conhecimento_id, 
+                    global::System.Nullable<byte> Original_is_coordenador) {
             if ((login == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -10156,136 +10079,122 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(email));
             }
-            if ((chave_redefinicao_senha == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((is_professor.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(is_professor.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(chave_redefinicao_senha));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((is_professor.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((byte)(is_professor.Value));
+            if ((is_administrador.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((byte)(is_administrador.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((is_gestor.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((byte)(is_gestor.Value));
+            if ((is_ativo.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((byte)(is_ativo.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((is_administrador.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((byte)(is_administrador.Value));
+            if ((campus_id.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((long)(campus_id.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((is_avaliador.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((byte)(is_avaliador.Value));
+            if ((area_conhecimento_id.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((long)(area_conhecimento_id.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((is_ativo.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(is_ativo.Value));
+            if ((is_coordenador.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((byte)(is_coordenador.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((campus_id.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((long)(campus_id.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((long)(Original_id));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((long)(Original_id));
             if ((Original_login == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_login));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_login));
             }
             if ((Original_senha == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_senha));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_senha));
             }
             if ((Original_nome == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_nome));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_nome));
             }
             if ((Original_email == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_email));
-            }
-            if ((Original_chave_redefinicao_senha == null)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_chave_redefinicao_senha));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_email));
             }
             if ((Original_is_professor.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((byte)(Original_is_professor.Value));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((byte)(Original_is_professor.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((Original_is_gestor.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((byte)(Original_is_gestor.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             if ((Original_is_administrador.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((byte)(Original_is_administrador.Value));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((byte)(Original_is_administrador.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
-            }
-            if ((Original_is_avaliador.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((byte)(Original_is_avaliador.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             if ((Original_is_ativo.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((byte)(Original_is_ativo.Value));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((byte)(Original_is_ativo.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             if ((Original_campus_id.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((long)(Original_campus_id.Value));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((long)(Original_campus_id.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            if ((Original_area_conhecimento_id.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((long)(Original_area_conhecimento_id.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            if ((Original_is_coordenador.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((byte)(Original_is_coordenador.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -12461,6 +12370,15 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(sigepi2DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._area_conhecimentoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.area_conhecimento.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._area_conhecimentoTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._campusTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.campus.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -12488,15 +12406,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._cursoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.curso.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._cursoTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._projetoTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.projeto.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -12506,12 +12415,12 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._bolsistaTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.bolsista.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._cursoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.curso.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._bolsistaTableAdapter.Update(updatedRows));
+                    result = (result + this._cursoTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -12521,6 +12430,15 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._grupo_pesquisaTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._bolsistaTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.bolsista.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._bolsistaTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -12542,15 +12460,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._area_conhecimentoTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.area_conhecimento.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._area_conhecimentoTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -12561,6 +12470,14 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(sigepi2DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._area_conhecimentoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.area_conhecimento.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._area_conhecimentoTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._campusTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.campus.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -12585,14 +12502,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._cursoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.curso.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._cursoTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._projetoTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.projeto.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -12601,11 +12510,11 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._bolsistaTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.bolsista.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._cursoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.curso.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._bolsistaTableAdapter.Update(addedRows));
+                    result = (result + this._cursoTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -12614,6 +12523,14 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._grupo_pesquisaTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._bolsistaTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.bolsista.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._bolsistaTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -12633,14 +12550,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._area_conhecimentoTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.area_conhecimento.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._area_conhecimentoTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -12651,14 +12560,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(sigepi2DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._area_conhecimentoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.area_conhecimento.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._area_conhecimentoTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._projeto_avaliadoTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.projeto_avaliado.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -12675,14 +12576,6 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._grupo_pesquisaTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.grupo_pesquisa.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._grupo_pesquisaTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._bolsistaTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.bolsista.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -12691,11 +12584,11 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._projetoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.projeto.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._grupo_pesquisaTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.grupo_pesquisa.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._projetoTableAdapter.Update(deletedRows));
+                    result = (result + this._grupo_pesquisaTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -12704,6 +12597,14 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._cursoTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._projetoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.projeto.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._projetoTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -12728,6 +12629,14 @@ namespace sigepiApp01.sigepi2DataSetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._campusTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._area_conhecimentoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.area_conhecimento.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._area_conhecimentoTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
