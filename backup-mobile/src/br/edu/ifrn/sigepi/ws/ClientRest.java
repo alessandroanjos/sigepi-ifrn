@@ -15,13 +15,18 @@ import com.google.gson.JsonParser;
 import android.util.JsonWriter;
 import android.util.Log;
 import br.edu.ifrn.sigepi.modelo.Edital;
+import br.edu.ifrn.sigepi.modelo.Projeto;
 
 public class ClientRest {
 
 	//private String ip = "10.20.6.5:9000";
     //  private String ip = "127.0.0.1:9000";
 	// private String ip = "192.168.43.5:9000";
-      private String ip = "169.254.21.42:9000";
+     private String ip = "10.20.9.57:9000";
+	// private String ip = "10.20.12.3:9000";
+	//private static String ip = "10.17.2.7:9000";
+	//private String ip = "10.17.2.94:9000";
+
 
 	/*
 	 * public List<Edital> getListaEdital(String dataInicial, String dataFinal,
@@ -48,70 +53,6 @@ public class ClientRest {
 	 * 
 	 * }
 	 */
-	public List<Edital> getListaEditais() throws Exception {
-		String url = "http://" + ip + "/ws/client/json";
-		System.out.println("Passei aq");
-		Log.i("URL: ", url);
-
-		
-		String[] resposta = new WebServiceClient().get(url);
-		List<Edital> listaEditais = new ArrayList<Edital>();
-
-		Log.i("######", resposta[0]);
-		Log.i("######", resposta[1]);
-
-		if (resposta[0].equals("200")) {
-		
-			GsonBuilder gsonb = new GsonBuilder();
-			Gson gson = gsonb.create();
-			
-			//Gson gson = new Gson();
-
-			// resposta[1]
-			String sJson = resposta[1].substring(12, resposta[1].length()-2);
-			String novoSJson = "[\""+"editais"+"\":"+sJson+"]";
-			
-			System.out.println("Array de Json: "+novoSJson);
-			
-		//	String a = resposta[1].substring(0);
-		//	String b = resposta[1].substring(10);
-		//	String c = "[\""+"editais"+"\":{"+"}";
-			 //String a = resposta[1].substring(12, resposta[1].length()-2);
-			// String b = "{\""+"editais"+"\":"+ a +"}";
-
-			// System.out.println(b);
-
-			//JsonParser parser = new JsonParser();
-					
-			//JsonArray array = parser.parse(resposta[1]).getAsJsonArray();
-			//JSONArray jo = new JSONArray(resposta[1]);
-			JSONArray jo = new JSONArray(novoSJson);
-		    System.out.println("Array Json: "+jo.toString());
-		    
-		    for(int i=0; i< jo.length(); i++){
-		    	listaEditais.add(gson.fromJson(jo.toString(), Edital.class));	
-		    	System.out.println("Lista de editais: "
-						+ listaEditais.size());
-		    
-		    }
-		    
-/*			
-		//	JSONArray mtUsers = jo.getJSONArray("editais");
-			// Log.i("###", (String) ja.get(1));
-			for (JsonParser jsonElement : mtUsers) {
-				listaEditais.add(gson.fromJson(jsonElement, Edital.class));
-				System.out.println("Lista de editais: "
-						+ listaEditais.toString());
-			}
-*/
-			return listaEditais;
-
-		} else {
-			throw new Exception(resposta[1]);
-		}
-
-	}
-	
 	
 	
 	public List<Edital> getListaEditais1() throws Exception {
@@ -131,13 +72,58 @@ public class ClientRest {
 			Gson gson = new Gson();
 			
 			JsonParser parser = new JsonParser();
-			JsonArray array = parser.parse(resposta[1]).getAsJsonArray();
+			JsonObject jsonObject = parser.parse(resposta[1]).getAsJsonObject();
+			JsonArray jsonArray = jsonObject.getAsJsonArray("editais");
 			
-			for (JsonElement jsonElement : array) {
-				listaEditais.add(gson.fromJson(jsonElement, Edital.class));
+			for (JsonElement element : jsonArray) {
+				Edital edital = new Edital();
+				edital.setTitulo(element.getAsString());
+				listaEditais.add(edital);
 			}
+//			JsonArray array = parser.parse(resposta[1]).getAsJsonArray();
+//			
+//			for (JsonElement jsonElement : array) {
+//				listaEditais.add(gson.fromJson(jsonElement, Edital.class));
+//			}
 			
 			return listaEditais;
+		} else {
+			throw new Exception(resposta[1]);
+		}
+	}
+	
+	public List<Projeto> getListaProjetos() throws Exception {
+		String url = "http://" + ip + "/ws/client/listaprojetos";
+		
+		Log.i("URL: ", url);
+		
+		
+		String[] resposta = new WebServiceClient().get(url);
+		List<Projeto> listaProjetos = new ArrayList<Projeto>();
+
+		Log.i("######Código", resposta[0]);
+		Log.i("######Json", resposta[1]);
+		
+		
+		if (resposta[0].equals("200")) {
+			Gson gson = new Gson();
+			
+			JsonParser parser = new JsonParser();
+			JsonObject jsonObject = parser.parse(resposta[1]).getAsJsonObject();
+			JsonArray jsonArray = jsonObject.getAsJsonArray("projetos");
+			
+			for (JsonElement element : jsonArray) {
+				Projeto p = new Projeto();
+				p.setNomeDoProjeto(element.getAsString());				
+				listaProjetos.add(p);
+			}
+//			JsonArray array = parser.parse(resposta[1]).getAsJsonArray();
+//			
+//			for (JsonElement jsonElement : array) {
+//				listaEditais.add(gson.fromJson(jsonElement, Edital.class));
+//			}
+			
+			return listaProjetos;
 		} else {
 			throw new Exception(resposta[1]);
 		}

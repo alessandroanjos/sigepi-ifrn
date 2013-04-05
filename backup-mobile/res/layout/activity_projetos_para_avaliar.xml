@@ -14,7 +14,7 @@
         android:text="Projetos para Avaliar" />
 
     <ListView
-        android:id="@+id/IsProjetos"
+        android:id="@+id/tela_Projetos_avaliar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textProjetosAvaliar"

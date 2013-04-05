@@ -14,17 +14,6 @@
         android:layout_marginTop="24dp"
         android:text="Editais" />
 
-    <!-- 
-    <ListView
-        android:id="@+id/tela_edital_listview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textEdital"
-        android:layout_marginTop="42dp" >
-    </ListView>
-    -->
-    
      <ListView
          android:id="@+id/tela_edital_listview"
          android:layout_width="match_parent"
