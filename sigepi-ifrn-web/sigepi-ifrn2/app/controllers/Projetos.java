@@ -24,21 +24,24 @@ import play.mvc.Result;
 public class Projetos extends Controller{
 
 	//@Permissao("Administrador")
-	public static Result index(){
-		
-		Long meuId = InformacoesUsuarioHelper.getUsuarioLogado().id;		
-		List<Projeto> projetos = Projeto.find.where().eq("usuario_avaliar", meuId).findList();
-		List<Usuario> professores  = Usuario.find.where().eq("isProfessor", true).findList();
-		
-		if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador)
-		{
-			return ok(views.html.Projetos.index.render(projetos, professores));
+	public static Result index() {
+
+		if (InformacoesUsuarioHelper.isLogado()) {
+			Long meuId = InformacoesUsuarioHelper.getUsuarioLogado().id;
+			List<Projeto> projetos = Projeto.find.where().eq("usuario_avaliar", meuId).findList();
+			List<Usuario> professores = Usuario.find.where().eq("isProfessor", true).findList();
+
+			if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador) {
+				return ok(views.html.Projetos.index.render(projetos,
+						professores));
+			}
+			if (InformacoesUsuarioHelper.getUsuarioLogado().isProfessor) {
+				return ok(views.html.Projetos.index.render(projetos,
+						professores));
+			}
+			return ok(views.html.Administrador.index.render());
 		}
-		if(InformacoesUsuarioHelper.getUsuarioLogado().isProfessor)
-		{
-			return ok(views.html.Projetos.index.render(projetos, professores));
-		}
-		return ok(views.html.Administrador.index.render());	
+		return redirect(routes.Sessions.login());
 	}
 	
 	public static Result listaProjetos() {
@@ -238,12 +241,19 @@ public class Projetos extends Controller{
 	}
 	
 	
-	public static Result meusProjetosAvaliados() {
-		List<ProjetoAvaliado> progresso = InformacoesUsuarioHelper.getUsuarioLogado().progresso;
-		
-		return ok(views.html.Projetos.visualizar3.render(progresso));
+	public static Result meusProjetosAvaliados() throws Exception {
+		try {
+			List<ProjetoAvaliado> progresso = InformacoesUsuarioHelper.getUsuarioLogado().progresso;
+
+			return ok(views.html.Projetos.visualizar3.render(progresso));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return internalServerError("Comportamento Inesperado...");
+		}
 	}
 	
+	@Permissao("Professor")
 	public static Result meusProjetos(){
 		
 		Long autorId = InformacoesUsuarioHelper.getUsuarioLogado().id;
@@ -254,6 +264,7 @@ public class Projetos extends Controller{
 		return ok(views.html.Projetos.visualizar4.render(projetos));
 	}
 	
+	@Permissao("Administrador")
 	public static Result rankingProjetos(){
 		List<Projeto> projetos = Projeto.find.findList();
 		List<Edital> editais = Edital.find.findList();
@@ -272,6 +283,7 @@ public class Projetos extends Controller{
 		
 	}
 	
+	@Permissao("Administrador")
 	public static Result rankingProjetosEdital(Long id) throws Exception {
 		try {
 			List<Projeto> projetos = Projeto.find.where().eq("edital_id", id).findList();
@@ -297,6 +309,7 @@ public class Projetos extends Controller{
 		
 	}
 	
+	@Permissao("Administrador")
 	public static Result selecionarAvaliador(Long id) throws Exception {
 		
 		try {

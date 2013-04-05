@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           						controllers.Application.index()
 
 
 # Páginas de Sobre
@@ -15,17 +15,19 @@ GET     /sobre/sigepi/equipe-reitoria			           	controllers.Sobre.equipeProR
 
 
 # Páginas de Error, Not Found 
-#GET   /error                        controllers.Global.onError(t : Throwable)
-#GET   /error                        controllers.Global.onError()
-#GET   /error                        controllers.Global.error(t : Throwable)
+#GET   /error                     						    controllers.Global.onError(t : Throwable)
+#GET   /error                        						controllers.Global.onError()
+#GET   /error                        						controllers.Global.error(t : Throwable)
  
 # Web Service
-GET /ola                             ws.Servico.ola
-GET /usuario-hello                   ws.Usuario.sayHello(id: Long)
+GET /ola                             						ws.Servico.ola
+GET /usuario-hello                   						ws.Usuario.sayHello(id: Long)
 
 
 # Web Services SERVICO
-GET    /ws/client/json              ws.Servico.getListaEditais
+GET   	 /ws/client/json              						ws.Servico.getListaEditais
+GET    	 /ws/client/json/projetos-avaliar    				ws.Servico.getListaProjetosParaAvaliar
+GET      /ws/client/json/projetos                           ws.Servico.getListaProjetos
 
  
 

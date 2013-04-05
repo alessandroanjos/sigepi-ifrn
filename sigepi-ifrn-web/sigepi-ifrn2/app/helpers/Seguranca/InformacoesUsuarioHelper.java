@@ -13,10 +13,18 @@ import models.Usuario;
 public class InformacoesUsuarioHelper extends Controller {
 
 	
-	public static Usuario getUsuarioLogado() {
+	public static Usuario getUsuarioLogado(){
+		try {
 		Long idUsuario = Long.parseLong(session("usuarioLogadoID"));
 		
 		return Usuario.find.byId(idUsuario);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			internalServerError("Comportamento Inesperado..");
+		}
+		return null;
+		
 	}
 
 	public static Boolean isLogado() {

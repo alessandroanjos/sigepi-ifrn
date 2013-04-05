@@ -1,5 +1,7 @@
 package controllers;
 
+import helpers.Seguranca.Permissao;
+
 import java.util.List;
 
 import forms.AlterarUsuarioForm;
@@ -25,6 +27,7 @@ public class Bolsistas extends Controller{
 	 * Lista todos os bolsistas.
 	 * @return
 	 */
+	@Permissao("Coordenador")
 	public static Result listaBolsistas(){
 		List<Bolsista> bolsistas  = Bolsista.find.findList();
 		return ok(views.html.Bolsistas.listaBolsistas.render(bolsistas));

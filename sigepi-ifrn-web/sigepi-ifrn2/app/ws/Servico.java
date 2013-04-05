@@ -1,5 +1,7 @@
 package ws;
 
+import helpers.Seguranca.InformacoesUsuarioHelper;
+
 import java.awt.image.renderable.RenderableImage;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,12 +10,16 @@ import java.util.List;
 import play.mvc.Controller;
 import models.Edital;
 import models.Projeto;
+import models.Usuario;
 
 import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.reflections.serializers.JsonSerializer;
 
 import controllers.Editais;
 
@@ -27,53 +33,53 @@ import play.libs.WS.WSRequestHolder;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+public class Servico extends Controller {
 
-public class Servico extends Controller{
-
-	//https://api.github.com/events
+	// https://api.github.com/events
 	final private static String url = "";
 
 	public static Result getXmlResponse() {
 		return badRequest("Not yet implemented");
 	}
-	
+
 	public static Result getJsonResponse() {
 		WSRequestHolder service = WS.url(url);
 		Promise<Response> promise = service.get();
 		Response response = promise.get();
 		JsonNode json = response.asJson();
-		
+
 		ObjectNode info = Json.newObject();
 		info.put("url", url);
-//		info.
+		// info.
 		info.put("size", json.size());
 
 		ObjectNode result = Json.newObject();
 		result.put("message", "OK");
 		result.put("info", info);
-		
-	//	result.putPOJO("teste", new Pessoa());
+
+		// result.putPOJO("teste", new Pessoa());
 		return ok(result);
 	}
-	public static Result getListaEditais(){
-      List<Edital> editais = Edital.find.findList();
-     
-      List<String> lista = new ArrayList<String>();
 
-		ObjectNode result = Json.newObject(); 
-		
+	public static Result getListaEditais() {
+		List<Edital> editais = Edital.find.findList();
+
+		List<String> lista = new ArrayList<String>();
+
+		ObjectNode result = Json.newObject();
+
 		for (Edital e : editais) {
-			//result.put("edital",e.getTitulo());
-			//lista.add(Json.toJson(e.getTitulo()).toString());
+			// result.put("edital",e.getTitulo());
+			// lista.add(Json.toJson(e.getTitulo()).toString());
 			lista.add(e.getTitulo());
 		}
-		
+
 		JSONArray jsArray = new JSONArray(lista);
-		
-		result.putPOJO("editais", jsArray);
+		result.putPOJO("editais", jsArray.toString());
+
 		return ok(result);
 	}
-	
+
 	// webservice de teste
 	public static Result ola() {
 		ObjectNode resultado = Json.newObject();
@@ -82,33 +88,57 @@ public class Servico extends Controller{
 		return ok(resultado);
 	}
 	
-	public static Result getListarProjetos(){
-	      List<Projeto> projetos = Projeto.find.findList();
-	     
-	      ArrayList<String> lista = new ArrayList<String>();
-	        WSRequestHolder service = WS.url(url); 
-	        Promise<Response> promise = service.get();
-	      	Response response = promise.get();
-	      	JsonNode json = response.asJson();
-			
-			ObjectNode info = Json.newObject();
-			info.put("url", url);
-			info.put("size", json.size());
+	public static Result getListaProjetos(){
+		List<Projeto> projetos = Projeto.find.findList();
 
-			ObjectNode result = Json.newObject();
-			result.put("message", "OK");
-			result.put("info", info);
-			
-			for (Projeto e : projetos) {
-				//result.put("edital",e.getTitulo());
-				lista.add(Json.toJson(e.getTitulo()).toString());
-			}
-			
-			result.putPOJO("projetos", lista);
-			
-			/*("projetos", projetos.listIterator().next().titulo);
-			result.POJONode(projetos.get(1).titulo);
-			result.putPOJO("projetos:", Projeto.find.findList().get());*/
-			return ok(result);
+		  ArrayList<String> lista = new ArrayList<String>();
+		  
+		  ObjectNode result = Json.newObject();
+
+		  for (Projeto p : projetos) {
+			  lista.add(p.getTitulo());
+		  }
+
+			JSONArray jsArray = new JSONArray(lista);
+		  result.putPOJO("projetos", jsArray.toString());
+		  
+		  return ok(result);
+	
+	}
+
+	public static Result getListarProjetos() {
+		List<Projeto> projetos = Projeto.find.findList();
+
+		ArrayList<String> lista = new ArrayList<String>();
+		WSRequestHolder service = WS.url(url);
+		Promise<Response> promise = service.get();
+		Response response = promise.get();
+		JsonNode json = response.asJson();
+
+		ObjectNode info = Json.newObject();
+		info.put("url", url);
+		info.put("size", json.size());
+
+		ObjectNode result = Json.newObject();
+		result.put("message", "OK");
+		result.put("info", info);
+
+		for (Projeto e : projetos) {
+			// result.put("edital",e.getTitulo());
+			lista.add(Json.toJson(e.getTitulo()).toString());
 		}
+
+		result.putPOJO("projetos", lista);
+
+		/*
+		 * ("projetos", projetos.listIterator().next().titulo);
+		 * result.POJONode(projetos.get(1).titulo); result.putPOJO("projetos:",
+		 * Projeto.find.findList().get());
+		 */
+		return ok(result);
+	}
+
+	public static Result getListaProjetosParaAvaliar() {
+		return TODO;
+	}
 }
