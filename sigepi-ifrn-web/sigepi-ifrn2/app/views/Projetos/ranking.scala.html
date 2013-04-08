@@ -27,7 +27,7 @@
 														</h2>								          					
 													</div>
 													<div style="float:right; padding-top:15px;">
-														<a href="@routes.Projetos.rankingProjetosEdital(edital.id)" class="btn btn-inverse"> Listar</a>
+														<a href="@routes.Projetos.rankingProjetosEdital(edital.id)" class="btn btn-primary"> <i class="icon-white icon-list-alt"></i> Listar</a>
 												   </div>					
 												</div>
 											</div>
@@ -43,9 +43,10 @@
            
                   <th>Edital</th> 
                   <th>Colocação</th>
-                  <th>Nome</th>
-                 
+                  <th>Nome</th>                 
                   <th>Pontuação Total</th>
+                  <th>Ações/Situação</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -64,10 +65,22 @@
 	               		<td>@ranking._1.titulo</td>
 	               		
 	               		<td style="width:15%;">@ranking._2 ponto(s)</td>
+	               		<td style="width:15%;"> 
+	               		
+	               		@if(isProjetoAprovado(ranking._1.id)){
+	               		
+	               		 Aprovado
+	               		 
+	               		 } else {
+	               		   <a href="@routes.Projetos.aprovarProjeto(ranking._1.id)" onclick="return confirm('Deseja realmente aprovar o projeto: &quot;@ranking._1.titulo&quot;?')" class="btn btn-success"> Aprovar</a>
+	               		 }
+	               		</td>
+	               		
 	                
                   @* } *@
                  </tr>
 				}
+				
               </tbody>
             </table>
 		</div>

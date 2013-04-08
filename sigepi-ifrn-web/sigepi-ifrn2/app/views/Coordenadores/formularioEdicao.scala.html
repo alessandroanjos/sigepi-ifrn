@@ -1,9 +1,10 @@
-@(formulario: Form[forms.AlterarUsuarioForm], coordenador: Usuario, campus: List[Campus], areasConhecimento: List[AreaConhecimento])
+@(formulario: Form[forms.AlterarUsuarioForm], coordenador: Usuario, campus: List[Campus], areasConhecimento: List[AreaConhecimento] , gruposPesquisa: List[GrupoPesquisa])
 
 
 @import helper.twitterBootstrap._
 @import helper._
 @import helper.{FieldConstructor}
+@implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
 
 @main {
 
@@ -34,6 +35,19 @@
 						<select id="idAreaConhecimento" name="idAreaConhecimento" class="span5">
 							@for(area <- areasConhecimento) {
 							  <option value="@area.id">@area.nome</option>
+							}						
+						</select>
+						<span class="help-inline"></span>
+						<span class="help-block"></span>
+					</div>
+				</div>
+				
+				<div class="clearfix" id="idCampus_field">
+					<label for="idGrupoPesquisa">Escolha o seu Grupo de Pesquisa:</label>
+					<div class="input">
+						<select id="idGrupoPesquisa" name="idGrupoPesquisa" class="span5">
+							@for(grupo <- gruposPesquisa) {
+							  <option value="@grupo.id">@grupo.nome</option>
 							}						
 						</select>
 						<span class="help-inline"></span>

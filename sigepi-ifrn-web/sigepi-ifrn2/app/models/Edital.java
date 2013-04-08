@@ -4,14 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.validator.constraints.URL;
 
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
@@ -25,6 +29,15 @@ public class Edital extends Model{
 	@Column(unique=true)
 	@Required(message="O campo deve ser preenchido.")
 	public String titulo;
+	
+	@Lob
+	@Required(message="O campo deve ser preenchido.")
+	@Basic(fetch=FetchType.EAGER)
+	public String descricao;
+	
+	@URL(message="Você deve informar uma URL válida.")
+	@Required(message="O campo deve ser preenchido.")
+	public String url;
 	
 	@Temporal(TemporalType.DATE)
 	public Date	dataCadastro;
@@ -75,5 +88,23 @@ public class Edital extends Model{
 		this.projetos = projetos;
 	}
 	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
 	public static Finder<Long, Edital> find = new Finder<Long, Edital>(Long.class, Edital.class);
 }

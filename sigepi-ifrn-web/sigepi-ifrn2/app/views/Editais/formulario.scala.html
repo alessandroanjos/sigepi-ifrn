@@ -5,6 +5,8 @@
 @import helper._
 @import helpers.Seguranca.InformacoesUsuarioHelper._
 @import helper.{FieldConstructor}
+@implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
+
 
 
 
@@ -17,8 +19,11 @@
 			</div>
 			
 			@helper.form(action = routes.Editais.cadastrar(), 'style -> "margin:0;"){
-				@helper.inputText(formulario("titulo"), 'id -> "titulo", 'class -> "span6", '_label -> "Título do Edital: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.inputText(formulario("titulo"), 'id -> "titulo", 'class -> "span6", '_label -> "Título do Edital: ", '_showConstraints -> false, '_showErrors -> true ,  'placeholder -> "ex: PIBITI")
+				@helper.inputText(formulario("url"), 'id -> "url", 'class -> "span6", '_label -> "URL de download do Edital: ", '_showConstraints -> false, '_showErrors -> true ,  'placeholder -> "ex: http://www.ifrn.edu.br")
 				
+				@helper.textarea(formulario("descricao"), 'id -> "descricao", 'rows -> "15", 'class -> "span10", '_label -> " Descrição: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Insira Aqui a Descrição do Edital.")
+			
 				<button type="submit" class="btn btn-primary">Cadastrar Edital</button>
 				&nbsp;
 				<a class="btn" href="@routes.Editais.index" >Cancelar</a>
@@ -30,8 +35,18 @@
 
 }
 
+<script type="text/javascript" src="@routes.Assets.at("tinymce/tiny_mce.js")"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".navbar .nav:nth-child(1) > li:nth-child(2)").addClass("active");
+	@if(isLogado()) {
+		
+			$(".navbar .nav:nth-child(1) > li:nth-child(5)").addClass("active");
+	}
+	
+	tinyMCE.init({
+		mode : "textareas",
+		elements : "resumo",
+		language: "pt"
+	});
 });
 </script>

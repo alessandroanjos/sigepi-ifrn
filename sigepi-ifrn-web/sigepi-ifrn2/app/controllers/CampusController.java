@@ -25,7 +25,10 @@ public class CampusController extends Controller {
 	public static Result visualizar(Long id){
 		
 		Campus campus = Campus.find.byId(id);
-		
+		if(campus == null){
+			flash().put("error", "O Campus informado não foi encontrado no Sistema.");
+			return redirect(routes.CampusController.index());
+		}
 		return ok(views.html.Campus.visualizar.render(campus));
 	}
 	
@@ -62,7 +65,7 @@ public class CampusController extends Controller {
 		
 		if(form.hasErrors()) {
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Campus.formularioEdicao.render(form.fill(form.get()), campus));
+			return badRequest(views.html.Campus.formularioEdicao.render((form), campus));
 		}
 		
 		campus.setNome(form.get().nome);
@@ -75,6 +78,10 @@ public class CampusController extends Controller {
 	
 	public static Result formularioEdicao(Long id) {
 		Campus campus = Campus.find.byId(id);
+		if(campus == null){
+			flash().put("error", "O Campus informado não foi encontrado no Sistema.");
+			return redirect(routes.CampusController.index());
+		}
 		return ok(views.html.Campus.formularioEdicao.render(form(Campus.class).fill(campus), campus));
 	}
 	
@@ -82,7 +89,9 @@ public class CampusController extends Controller {
 		Campus campus = Campus.find.byId(id);
 		if(campus == null){
 			flash().put("error", "O Campus informado não foi encontrado no Sistema.");
-		}else{
+		}else if(campus.projetos.size() > 0 || campus.bolsistas.size() > 0 ){
+			flash().put("error", "O Campus não pode ser excluído, pois existem outros objetos impedindo a sua exclusão!");
+		}else {
 			campus.delete();
 			flash().put("success", "Campus \""+ campus.nome +"\" excluído com sucesso!");
 		}

@@ -4,7 +4,9 @@ import java.util.Date;
 
 import models.AreaConhecimento;
 import models.Campus;
+import models.Curso;
 import models.Edital;
+import models.GrupoPesquisa;
 import models.Usuario;
 import play.*;
 import play.api.mvc.RequestHeader;
@@ -33,6 +35,23 @@ public class Global extends GlobalSettings{
 		  
 		  Logger.info("Cadastrando Campus.");
 		}
+		
+		
+		if (GrupoPesquisa.find.all().size() == 0) {
+			GrupoPesquisa grupo = new GrupoPesquisa();
+			grupo.nome = "Núcleo de Desenvolvimento de Software";
+			grupo.campus = Campus.find.all().get(0);
+			grupo.save();
+
+			Logger.info("Cadastrando Grupos de Pesquisa.");
+		}
+		
+		if(Curso.find.all().size() == 0){
+			Curso curso = new Curso();
+			curso.nome = "Tecnologia em Análise e Desenvolvimento de Sistemas";
+			curso.save();
+			Logger.info("Cadastrando Curso.");
+		}
 				
 		
 		if (Usuario.find.all().size() == 0) {
@@ -53,8 +72,15 @@ public class Global extends GlobalSettings{
 		if (Edital.find.all().size() == 0) {
 			Edital edital = new Edital();
 			edital.titulo = "PIBITI";
+			edital.descricao = "O Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte - IFRN, através da Pró-Reitoria de Pesquisa e" +
+					" Inovação torna público o presente Edital de Convocação para a apresentação de propostas de projetos de " +
+					"pesquisa e seleção de estudantes de 3º grau como bolsistas dos Programas Institucionais de Bolsas de Iniciação em Desenvolvimento " +
+					"Tecnológico e Inovação – PIBITI, e de Iniciação Científica – PIBIC, do Conselho Nacional de Desenvolvimento Científico e Tecnológico – " +
+					"CNPq, que visam estimular estudantes dos cursos de graduação para o desenvolvimento (geração, difusão e transferência) de novas tecnologias e" +
+					" inovação e o desenvolvimento científico e tecnológico.";
 			edital.dataCadastro = new Date();
 			edital.autor = Usuario.find.all().get(0);
+			edital.url = "http://www.ifrn.edu.br";
 			edital.save();
 			
 			Logger.info("Cadastrando os Editais.");

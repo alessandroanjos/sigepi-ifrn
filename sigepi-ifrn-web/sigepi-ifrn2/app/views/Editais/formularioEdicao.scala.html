@@ -1,7 +1,10 @@
 @(formulario: Form[Edital], edital: Edital)
 
 @import tags._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
 @import helper.twitterBootstrap._
+@import helper.{FieldConstructor}
+@implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
 
 @main {
 
@@ -13,8 +16,11 @@
 			
 			@helper.form(action = routes.Editais.editar(edital.id), 'style -> "margin:0;", 'class -> "form-horizontal"){
 			
-				@helper.inputText(formulario("titulo"), 'id -> "titulo",'class -> "span6", '_label -> "Título do Edital: ", '_showConstraints -> false, '_showErrors -> true)
+				@helper.inputText(formulario("titulo"), 'id -> "titulo", 'class -> "span6", '_label -> "Título do Edital: ", '_showConstraints -> false, '_showErrors -> true ,  'placeholder -> "ex: PIBITI")
+				@helper.inputText(formulario("url"), 'id -> "url", 'class -> "span6", '_label -> "URL de download do Edital: ", '_showConstraints -> false, '_showErrors -> true ,  'placeholder -> "ex: http://www.ifrn.edu.br")
 				
+				@helper.textarea(formulario("descricao"), 'id -> "descricao", 'rows -> "15", 'class -> "span10", '_label -> " Descrição: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Insira Aqui a Descrição do Edital.")
+						
 				<button type="submit" class="btn btn-primary">Editar o edital</button>
 				&nbsp;
 				<a class="btn" href="@routes.Editais.index" >Cancelar</a>
@@ -23,3 +29,20 @@
 		</div>
 	</div>	
 }
+
+
+<script type="text/javascript" src="@routes.Assets.at("tinymce/tiny_mce.js")"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	@if(isLogado()) {
+		
+			$(".navbar .nav:nth-child(1) > li:nth-child(5)").addClass("active");
+	}
+	
+	tinyMCE.init({
+		mode : "textareas",
+		elements : "resumo",
+		language: "pt"
+	});
+});
+</script>

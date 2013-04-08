@@ -1,8 +1,10 @@
 @(formulario: Form[Projeto], editais: List[Edital], campus: List[Campus], projeto: Projeto)
+
 @import tags._
 @import helper.twitterBootstrap._
 @import helper._
-
+@import helper.{FieldConstructor}
+@implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
 
 
 @main {

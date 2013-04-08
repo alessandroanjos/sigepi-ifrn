@@ -25,6 +25,11 @@ public class GrupoPesquisa extends Model {
 	@ManyToOne
 	public Campus campus;
 	
+	@OneToMany
+	public List<Usuario> usuarios;
+	
+	@OneToMany
+	public List<Projeto> projetos;
 	
 
 	
@@ -51,6 +56,24 @@ public class GrupoPesquisa extends Model {
 
 	public void setCampus(Campus campus) {
 		this.campus = campus;
+	}
+
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+
+	public List<Projeto> getProjetos() {
+		return projetos;
+	}
+
+	public void setProjetos(List<Projeto> projetos) {
+		this.projetos = projetos;
 	}
 
 

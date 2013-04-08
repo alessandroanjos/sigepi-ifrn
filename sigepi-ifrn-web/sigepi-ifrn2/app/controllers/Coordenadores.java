@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.AreaConhecimento;
 import models.Campus;
+import models.GrupoPesquisa;
 import models.Usuario;
 import forms.AlterarUsuarioForm;
 import play.data.Form;
@@ -30,14 +31,16 @@ public class Coordenadores extends Controller{
 	public static Result formulario(){
 		List<Campus> campus = Campus.find.findList();
 		List<AreaConhecimento> areas = AreaConhecimento.find.findList();
+		List<GrupoPesquisa> grupos = GrupoPesquisa.find.findList();
 		
-		return ok(views.html.Coordenadores.formulario.render(form(Usuario.class), campus, areas));
+		return ok(views.html.Coordenadores.formulario.render(form(Usuario.class), campus, areas, grupos));
 	}
 	
 	public static Result cadastrar() {
 		Form<Usuario> form = form(Usuario.class).bindFromRequest();
 		Long idCampus = Long.valueOf(form.data().get("idCampus"));
 		Long idAreaConhecimento = Long.valueOf(form.data().get("idAreaConhecimento"));
+		Long idGrupoPesquisa  = Long.valueOf(form.data().get("idGrupoPesquisa"));
 		
 		
 		
@@ -45,9 +48,10 @@ public class Coordenadores extends Controller{
 			
 			List<Campus> campus = Campus.find.findList();
 			List<AreaConhecimento> areas = AreaConhecimento.find.findList();
+			List<GrupoPesquisa> grupos = GrupoPesquisa.find.findList();
 			
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Coordenadores.formulario.render(form, campus, areas));
+			return badRequest(views.html.Coordenadores.formulario.render(form, campus, areas, grupos));
 		}
 		
 		Usuario cordenador = form.get();
@@ -56,15 +60,18 @@ public class Coordenadores extends Controller{
 		cordenador.isCoordenador = true;
 		cordenador.campus = Campus.find.byId(idCampus);
 		cordenador.areaConhecimento = AreaConhecimento.find.byId(idAreaConhecimento);
-		cordenador.save();
-		
+		cordenador.grupoPesquisa = GrupoPesquisa.find.byId(idGrupoPesquisa);
+
+		if(cordenador.grupoPesquisa.campus.id == idCampus){
+			cordenador.save();
+			flash().put("success", "Coordenador \""+ cordenador.nome +"\" cadastrado com sucesso!");
+		} else {
+			flash().put("error", "O seu Grupo de Pesquisa não bate com o seu Campus. Tente novamente!");
+			return redirect(routes.Coordenadores.formulario());
+		}
 		// Envia o email de confirmação de cadastro no sistema!
 		//RegistroMailer.enviarMensagemRegistro(professor);
-		
-		flash().put("success", "Coordenador \""+ cordenador.nome +"\" cadastrado com sucesso!");
-		
-		
-			return redirect(routes.Administracao.index());
+    	return redirect(routes.Administracao.index());
 
 	}
 	
@@ -73,12 +80,13 @@ public class Coordenadores extends Controller{
 		Usuario cordenador = Usuario.find.byId(id);
 		List<Campus> campus  = Campus.find.findList();
 		List<AreaConhecimento> areas = AreaConhecimento.find.findList();
+		List<GrupoPesquisa> grupos = GrupoPesquisa.find.findList();
 		
 		AlterarUsuarioForm formulario = new AlterarUsuarioForm();
 		formulario.nome = cordenador.nome;
 		formulario.email = cordenador .email;
 		
-		return ok(views.html.Coordenadores.formularioEdicao.render(form(AlterarUsuarioForm.class).fill(formulario), cordenador, campus, areas));
+		return ok(views.html.Coordenadores.formularioEdicao.render(form(AlterarUsuarioForm.class).fill(formulario), cordenador, campus, areas, grupos));
 	}
 	
 	@helpers.Seguranca.Permissao("Administrador")
@@ -89,13 +97,15 @@ public class Coordenadores extends Controller{
 		if(form.hasErrors()) {
 			List<Campus> campus  = Campus.find.findList();
 			List<AreaConhecimento> areas = AreaConhecimento.find.findList();
+			List<GrupoPesquisa> grupos = GrupoPesquisa.find.findList();
 			
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Coordenadores.formularioEdicao.render(form, coordenador, campus, areas));
+			return badRequest(views.html.Coordenadores.formularioEdicao.render(form, coordenador, campus, areas, grupos));
 		}
 		
 		coordenador.setCampus(Campus.find.byId(Long.valueOf(form.data().get("idCampus"))));
 		coordenador.setAreaConhecimento(AreaConhecimento.find.byId(Long.valueOf(form.data().get("idAreaConhecimento"))));
+		coordenador.setGrupoPesquisa(GrupoPesquisa.find.byId(Long.valueOf(form.data().get("idGrupoPesquisa"))));
 		coordenador.setNome(form.get().nome);
 		coordenador.setEmail(form.get().email);
 		coordenador.update();

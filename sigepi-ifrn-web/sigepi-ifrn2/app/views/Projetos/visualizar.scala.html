@@ -7,6 +7,100 @@
 
 @main {
 
-
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 class="pull-left">
+					@projeto.titulo
+					<small> 
+						- @projeto.edital.getTitulo <br/>						
+						<br/>				 	
+					</small>						
+				</h1>
+				
+				@if(isLogado()) {
+					@if(getUsuarioLogado().isAdministrador) {
+					<div style="float:right; position:relative; top:8px;">
+						<a href="@routes.Projetos.editar(projeto.id)" class="btn"><i class="icon-edit"></i> Editar</a>
+						<a href="@routes.Projetos.deletar(projeto.id)" onclick="return confirm('Deseja realmente excluir o projeto &quot;@projeto.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
+						}					
+					</div>
+					
+				}
+			</div>
+			
+			<div class="row">
+				<div class="span5">
+					
+					<div class="row">
+						<div class="span5">
+							<h3 class="page-header">Resumo:</h3>
+							<pre>
+								@Html(projeto.resumo)
+							</pre>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="span5">
+							<h3 class="page-header">Introdução:</h3>
+							<pre>
+								@Html(projeto.introducao)
+							</pre>
+						</div>
+					</div>
+				</div>
+				
+				<div class="span5 offset1">
+						<div class="span5">
+							<h3 class="page-header"> Fundamentação Teorica: </h3>
+							<pre>
+								@Html(projeto.fundamentacaoTeorica)
+							</pre>
+						</div>
+						
+						<div class="span5">
+							<h3 class="page-header"> Justifivativa: </h3>
+							<pre>
+								@Html(projeto.justificativa)
+							</pre>
+						</div>
+				 </div>
+				 
+				 <div class="span5">
+					<div class="row">
+						<div class="span5">
+							<h3 class="page-header">Objetivos:</h3>
+							<pre>
+								@Html(projeto.objetivos)
+							</pre>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="span5">
+							<h3 class="page-header">Referencias:</h3>
+							<pre>
+								
+								@Html(projeto.referencias)
+							</pre>
+						</div>
+					</div>
+				</div>
+								 
+				 <div class="span5 offset1">
+												
+						<div class="span5">
+							<h3 class="page-header"> Metodologia: </h3>
+							<pre>
+								@Html(projeto.metodologia)
+							</pre>
+						</div>
+				 </div>
+					
+				</div>
+			</div>
+		</div>
+	</div>	
 
 }

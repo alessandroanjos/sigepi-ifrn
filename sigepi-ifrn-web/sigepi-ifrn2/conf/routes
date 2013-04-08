@@ -3,90 +3,88 @@
 # ~~~~
 
 # Home page
-GET     /                           						controllers.Application.index()
+GET     /                           									controllers.Application.index()
 
 
 # Páginas de Sobre
-GET     /sobre/sigepi			                      		controllers.Sobre.index()
-GET     /sobre/sigepi/manual     					   		controllers.Sobre.manual()
-GET     /sobre/sigepi/equipe-sigepi		            		controllers.Sobre.equipeSigepi()
-GET     /sobre/sigepi/o-projeto					           	controllers.Sobre.oProjeto()
-GET     /sobre/sigepi/equipe-reitoria			           	controllers.Sobre.equipeProReitoria()
+GET     /sobre/sigepi			                      					controllers.Sobre.index()
+GET     /sobre/sigepi/manual     					   					controllers.Sobre.manual()
+GET     /sobre/sigepi/equipe-sigepi		            					controllers.Sobre.equipeSigepi()
+GET     /sobre/sigepi/o-projeto					           				controllers.Sobre.oProjeto()
+GET     /sobre/sigepi/equipe-reitoria			           				controllers.Sobre.equipeProReitoria()
+GET     /sobre/sigepi/processo-de-software                              controllers.Sobre.oProcessoDeSoftware()
 
 
 # Páginas de Error, Not Found 
-#GET   /error                     						    controllers.Global.onError(t : Throwable)
-#GET   /error                        						controllers.Global.onError()
-#GET   /error                        						controllers.Global.error(t : Throwable)
+#GET   /error                     						    			controllers.Global.onError(t : Throwable)
+#GET   /error                        									controllers.Global.onError()
+#GET   /error                        									controllers.Global.error(t : Throwable)
+
  
 # Web Service
-GET /ola                             						ws.Servico.ola
-GET /usuario-hello                   						ws.Usuario.sayHello(id: Long)
+GET /ola                             									ws.Servico.ola
+GET /usuario-hello                   									ws.Usuario.sayHello(id: Long)
 
 
 # Web Services SERVICO
-GET   	 /ws/client/json              						ws.Servico.getListaEditais
-GET    	 /ws/client/json/projetos-avaliar    				ws.Servico.getListaProjetosParaAvaliar
-GET      /ws/client/json/projetos                           ws.Servico.getListaProjetos
+GET   	 /ws/client/json/editais       									ws.Servico.getListaEditais
+GET    	 /ws/client/json/projetos-avaliar    							ws.Servico.getListaProjetosParaAvaliar
+GET      /ws/client/json/projetos                           			ws.Servico.getListaProjetos
 
- 
 
 # Cadastro dos Usuários no Sistema
-
-GET     /cadastro-professor                                 controllers.Professores.formulario()
-POST 	/cadastro-professor             					controllers.Professores.cadastrar()
-GET     /cadastro-gestor                                    controllers.Gestores.formulario()
-POST    /cadastro-gestor                                    controllers.Gestores.cadastrar()
-GET     /cadastro-avaliador                                 controllers.Avaliadores.formulario()
-POST    /cadastro-avaliador                                 controllers.Avaliadores.cadastrar()
-GET     /cadastro-coordenador                               controllers.Coordenadores.formulario()
-POST 	/cadastro-coordenador             					controllers.Coordenadores.cadastrar()
-
+GET     /cadastro-professor                                 			controllers.Professores.formulario()
+POST 	/cadastro-professor             								controllers.Professores.cadastrar()
+GET     /cadastro-gestor                                   				controllers.Gestores.formulario()
+POST    /cadastro-gestor                                    			controllers.Gestores.cadastrar()
+GET     /cadastro-avaliador                                				controllers.Avaliadores.formulario()
+POST    /cadastro-avaliador                                	 			controllers.Avaliadores.cadastrar()
+GET     /cadastro-coordenador                              	 			controllers.Coordenadores.formulario()
+POST 	/cadastro-coordenador             								controllers.Coordenadores.cadastrar()
 
 
 # Sistema de Login
-GET     /acesso              		        				controllers.Sessions.login()
-POST    /acessar-minha-conta        		 				controllers.Sessions.efetuarLogin()
-GET     /sair-do-sistema            						controllers.Sessions.efetuarlogout()
+GET     /acesso              		        							controllers.Sessions.login()
+POST    /acessar-minha-conta        		 							controllers.Sessions.efetuarLogin()
+GET     /sair-do-sistema            									controllers.Sessions.efetuarlogout()
 
 
-# Administração do Sistema
-GET     /administracao/admin								controllers.Administracao.index()
-POST    /administracao/selecionar-avaliador                 controllers.Projetos.selecionarAvaliador(id: Long)
+# Selecionar Avaliador
+POST    /sigepi/administracao/selecionar-avaliador              		controllers.Projetos.selecionarAvaliador(id: Long)
 
 
 # Editais
-GET 	/administracao/editais								controllers.Editais.index()
-GET 	/administracao/editais/:id/visualizar				controllers.Editais.visualizar(id: Long)
+GET 	/sigepi/administracao/editais									controllers.Editais.index()
+GET 	/sigepi/administracao/editais/:id/visualizar					controllers.Editais.visualizar(id: Long)
 
 
 # Campus
-GET     /administracao/campus                               controllers.CampusController.index()
-GET 	/administracao/campus/:id/visualizar				controllers.CampusController.visualizar(id: Long)
+GET     /sigepi/administracao/campus                               		controllers.CampusController.index()
+GET 	/sigepi/administracao/campus/:id/visualizar						controllers.CampusController.visualizar(id: Long)
 
 
 # Ranking dos Projetos
-GET 	/ranking-dos-projetos/visualizar					controllers.Projetos.rankingProjetos()
-GET     /ranking-dos-projetos/:id/selecionar-edital			controllers.Projetos.rankingProjetosEdital(id: Long)
+GET 	/sigepi/ranking-dos-projetos/visualizar							controllers.Projetos.rankingProjetos()
+GET     /sigepi/ranking-dos-projetos/:id/listar-por-edital				controllers.Projetos.rankingProjetosEdital(id: Long)
 
 
 # Grupo de Pesquisa
-GET		/administracao/grupoPesquisa 						controllers.GrupoPesquisaController.index()
-GET 	/administracao/grupoPesquisa/:id/visualizar			controllers.GrupoPesquisaController.visualizar(id: Long)
+GET		/sigepi/administracao/grupo-pesquisa 							controllers.GrupoPesquisaController.index()
+GET 	/sigepi/administracao/grupo-pesquisa/:id/visualizar				controllers.GrupoPesquisaController.visualizar(id: Long)
 
 
 # Area de Conhecimento
-GET     /administracao/area-conhecimento                    controllers.AreaConhecimentoController.index()
-GET 	/administracao/area-conhecimento/:id/visualizar  	controllers.AreaConhecimentoController.visualizar(id: Long)
+GET     /sigepi/administracao/area-conhecimento                    		controllers.AreaConhecimentoController.index()
+GET 	/sigepi/administracao/area-conhecimento/:id/visualizar  		controllers.AreaConhecimentoController.visualizar(id: Long)
 
 
 # Curso
-GET     /administracao/curso                                controllers.Cursos.index()
-GET 	/administracao/curso/:id/visualizar  	            controllers.Cursos.visualizar(id: Long)
+GET     /sigepi/administracao/curso                                		controllers.Cursos.index()
+GET 	/sigepi/administracao/curso/:id/visualizar  	            	controllers.Cursos.visualizar(id: Long)
 
 
 # Bolsista
-GET     /administracao/bolsistas/listagem-bolsistas			controllers.Bolsistas.listaBolsistas()
+GET     /sigepi/administracao/bolsistas/listagem-bolsistas				controllers.Bolsistas.listaBolsistas()
 
 
 
@@ -94,103 +92,107 @@ GET     /administracao/bolsistas/listagem-bolsistas			controllers.Bolsistas.list
 
 
 # Projetos
-GET 	/administracao/projetos								controllers.Projetos.index()
-GET     /administracao/listagem-projetos					controllers.Projetos.listaProjetos()
-GET 	/administracao/projetos/submeter					controllers.Projetos.formulario()
-POST 	/administracao/projetos/submeter					controllers.Projetos.submeter()
-GET 	/administracao/projetos/:id/visualizar				controllers.Projetos.visualizar(id: Long)
-GET     /administracao/projetos/avaliados           		controllers.Projetos.meusProjetosAvaliados()
-GET     /administracao/projetos/meus-projetos         		controllers.Projetos.meusProjetos()
+GET 	/sigepi/administracao/projetos									controllers.Projetos.index()
+GET     /sigepi/administracao/listagem-projetos							controllers.Projetos.listaProjetos()
+GET 	/sigepi/administracao/projetos/submeter							controllers.Projetos.formulario()
+POST 	/sigepi/administracao/projetos/submeter							controllers.Projetos.submeter()
+GET 	/sigepi/administracao/projetos/:id/visualizar					controllers.Projetos.visualizar(id: Long)
+GET     /sigepi/administracao/projetos/avaliados           				controllers.Projetos.meusProjetosAvaliados()
+GET     /sigepi/administracao/projetos/meus-projetos         			controllers.Projetos.meusProjetos()
+GET     /sigepi/administracao/projetos/status-campus                    controllers.Projetos.visualizarStatusProjetosCampus()
+GET     /sigepi/administracao/projetos/:id/aprovar-projeto              controllers.Projetos.aprovarProjeto(id: Long)
+GET     /sigepi/administracao/projetos/aprovados						controllers.Projetos.visualizarProjetosAprovados()
+GET     /sigepi/administracao/projetos/visualizar-opniao-avaliacao		controllers.Projetos.visualizarOpniaoAvaliacao()
+GET     /sigepi/administracao/projetos/visualizar-bolsistas-projetos    controllers.Projetos.visualizarBolsistasProjetosSubmetidos()
 
 
 # Administracao dos Projetos
-GET 	/administracao/projetos/:id/editar					controllers.Projetos.formularioEdicao(id: Long)
-POST 	/administracao/projetos/:id/editar					controllers.Projetos.editar(id: Long)
-GET 	/administracao/projetos/:id/excluir					controllers.Projetos.deletar(id: Long)
-GET     /administracao/projetos/:id/avaliar                 controllers.Projetos.formularioAvaliacao(id: Long)
-POST    /administracao/projetos/avaliar                     controllers.Projetos.avaliacaoProjeto(id: Long)
+GET 	/sigepi/administracao/projetos/:id/editar						controllers.Projetos.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/projetos/:id/editar						controllers.Projetos.editar(id: Long)
+GET 	/sigepi/administracao/projetos/:id/excluir						controllers.Projetos.deletar(id: Long)
+GET     /sigepi/administracao/projetos/:id/avaliar                 		controllers.Projetos.formularioAvaliacao(id: Long)
+POST    /sigepi/administracao/projetos/avaliar                     		controllers.Projetos.avaliacaoProjeto(id: Long)
 
 # Administração dos Editais
-GET 	/administracao/editais/cadastro						controllers.Editais.formulario()
-POST 	/administracao/editais/cadastro						controllers.Editais.cadastrar()
-GET 	/administracao/editais/:id/editar					controllers.Editais.formularioEdicao(id: Long)
-POST 	/administracao/editais/:id/editar					controllers.Editais.editar(id: Long)
-GET 	/administracao/editais/:id/excluir					controllers.Editais.deletar(id: Long)
+GET 	/sigepi/administracao/editais/cadastro							controllers.Editais.formulario()
+POST 	/sigepi/administracao/editais/cadastro							controllers.Editais.cadastrar()
+GET 	/sigepi/administracao/editais/:id/editar						controllers.Editais.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/editais/:id/editar						controllers.Editais.editar(id: Long)
+GET 	/sigepi/administracao/editais/:id/excluir						controllers.Editais.deletar(id: Long)
 
 
 # Administração dos Campus
-GET 	/administracao/campus/cadastro						controllers.CampusController.formulario()
-POST 	/administracao/campus/cadastro						controllers.CampusController.cadastrar()
-GET 	/administracao/campus/:id/editar					controllers.CampusController.formularioEdicao(id: Long)
-POST 	/administracao/campus/:id/editar					controllers.CampusController.editar(id: Long)
-GET 	/administracao/campus/:id/excluir					controllers.CampusController.deletar(id: Long)
+GET 	/sigepi/administracao/campus/cadastro							controllers.CampusController.formulario()
+POST 	/sigepi/administracao/campus/cadastro							controllers.CampusController.cadastrar()
+GET 	/sigepi/administracao/campus/:id/editar							controllers.CampusController.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/campus/:id/editar							controllers.CampusController.editar(id: Long)
+GET 	/sigepi/administracao/campus/:id/excluir						controllers.CampusController.deletar(id: Long)
 
 # Administração de Grupos de Pesquisa
-GET 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.formulario()
-POST 	/administracao/grupos/cadastro						controllers.GrupoPesquisaController.cadastrar()
-GET 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.formularioEdicao(id: Long)
-POST 	/administracao/grupos/:id/editar					controllers.GrupoPesquisaController.editar(id: Long)
-GET 	/administracao/grupos/:id/excluir					controllers.GrupoPesquisaController.deletar(id: Long)
+GET 	/sigepi/administracao/grupos/cadastro							controllers.GrupoPesquisaController.formulario()
+POST 	/sigepi/administracao/grupos/cadastro							controllers.GrupoPesquisaController.cadastrar()
+GET 	/sigepi/administracao/grupos/:id/editar							controllers.GrupoPesquisaController.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/grupos/:id/editar							controllers.GrupoPesquisaController.editar(id: Long)
+GET 	/sigepi/administracao/grupos/:id/excluir						controllers.GrupoPesquisaController.deletar(id: Long)
 
 
 # Administração das Áreas de Conhecimento
-GET 	/administracao/areas/cadastro						controllers.AreaConhecimentoController.formulario()
-POST 	/administracao/areas/cadastro						controllers.AreaConhecimentoController.cadastrar()
-GET 	/administracao/areas/:id/editar					    controllers.AreaConhecimentoController.formularioEdicao(id: Long)
-POST 	/administracao/areas/:id/editar					    controllers.AreaConhecimentoController.editar(id: Long)
-GET 	/administracao/areas/:id/excluir					controllers.AreaConhecimentoController.deletar(id: Long)
+GET 	/sigepi/administracao/areas/cadastro							controllers.AreaConhecimentoController.formulario()
+POST 	/sigepi/administracao/areas/cadastro							controllers.AreaConhecimentoController.cadastrar()
+GET 	/sigepi/administracao/areas/:id/editar					    	controllers.AreaConhecimentoController.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/areas/:id/editar					    	controllers.AreaConhecimentoController.editar(id: Long)
+GET 	/sigepi/administracao/areas/:id/excluir							controllers.AreaConhecimentoController.deletar(id: Long)
 
 
 # Administração dos Cursos
-GET 	/administracao/cursos/cadastro						controllers.Cursos.formulario()
-POST 	/administracao/cursos/cadastro						controllers.Cursos.cadastrar()
-GET 	/administracao/cursos/:id/editar					controllers.Cursos.formularioEdicao(id: Long)
-POST 	/administracao/cursos/:id/editar					controllers.Cursos.editar(id: Long)
-GET 	/administracao/cursos/:id/excluir					controllers.Cursos.deletar(id: Long)
+GET 	/sigepi/administracao/cursos/cadastro							controllers.Cursos.formulario()
+POST 	/sigepi/administracao/cursos/cadastro							controllers.Cursos.cadastrar()
+GET 	/sigepi/administracao/cursos/:id/editar							controllers.Cursos.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/cursos/:id/editar							controllers.Cursos.editar(id: Long)
+GET 	/sigepi/administracao/cursos/:id/excluir						controllers.Cursos.deletar(id: Long)
+
 
 # Administração dos Bolsistas
-GET 	/administracao/bolsistas/cadastro					controllers.Bolsistas.formulario()
-POST 	/administracao/bolsistas/cadastro					controllers.Bolsistas.cadastrar()
-GET 	/administracao/bolsistas/:id/editar					controllers.Bolsistas.formularioEdicao(id: Long)
-POST 	/administracao/bolsistas/:id/editar					controllers.Bolsistas.editar(id: Long)
-GET 	/administracao/bolsistas/:id/deletar				controllers.Bolsistas.deletar(id: Long)
-
-
-
-
+GET 	/sigepi/administracao/bolsistas/cadastro						controllers.Bolsistas.formulario()
+POST 	/sigepi/administracao/bolsistas/cadastro						controllers.Bolsistas.cadastrar()
+GET 	/sigepi/administracao/bolsistas/:id/editar						controllers.Bolsistas.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/bolsistas/:id/editar						controllers.Bolsistas.editar(id: Long)
+GET 	/sigepi/administracao/bolsistas/:id/deletar						controllers.Bolsistas.deletar(id: Long)
 
 
 # Administração dos Professores, Gestores, Avaliadores e Coordenadores
-GET     /administracao/professores/listagem-professores       	controllers.Professores.listaProfessores()
-GET 	/administracao/professores/:id/editar					controllers.Professores.formularioEdicao(id: Long)
-POST 	/administracao/professores/:id/editar					controllers.Professores.editar(id: Long)
-GET 	/administracao/professores/:id/deletar					controllers.Professores.deletar(id: Long)
-GET     /administracao/gestores/listagem-gestores           	controllers.Gestores.listaGestores()
-GET 	/administracao/gestores/:id/editar				    	controllers.Gestores.formularioEdicao(id: Long)
-POST 	/administracao/gestores/:id/editar				    	controllers.Gestores.editar(id: Long)
-GET 	/administracao/gestores/:id/deletar				    	controllers.Gestores.deletar(id: Long)
-GET     /administracao/avaliadores/listagem-avaliadores     	controllers.Avaliadores.listaAvaliadores()
-GET 	/administracao/avaliadores/:id/editar					controllers.Avaliadores.formularioEdicao(id: Long)
-POST 	/administracao/avaliadores/:id/editar					controllers.Avaliadores.editar(id: Long)
-GET 	/administracao/avaliadores/:id/deletar					controllers.Avaliadores.deletar(id: Long)
-GET     /administracao/coordenadores/listagem-coordenadores  	controllers.Coordenadores.listaCoordenadores()
-GET 	/administracao/coordenadores/:id/editar					controllers.Coordenadores.formularioEdicao(id: Long)
-POST 	/administracao/coordenadores/:id/editar					controllers.Coordenadores.editar(id: Long)
-GET 	/administracao/coordenadores/:id/deletar				controllers.Coordenadores.deletar(id: Long)
+GET     /sigepi/administracao/professores/listagem-professores       	controllers.Professores.listaProfessores()
+GET 	/sigepi/administracao/professores/:id/editar					controllers.Professores.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/professores/:id/editar					controllers.Professores.editar(id: Long)
+GET 	/sigepi/administracao/professores/:id/deletar					controllers.Professores.deletar(id: Long)
+GET     /sigepi/administracao/gestores/listagem-gestores           		controllers.Gestores.listaGestores()
+GET 	/sigepi/administracao/gestores/:id/editar				    	controllers.Gestores.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/gestores/:id/editar				    	controllers.Gestores.editar(id: Long)
+GET 	/sigepi/administracao/gestores/:id/deletar				    	controllers.Gestores.deletar(id: Long)
+GET     /sigepi/administracao/avaliadores/listagem-avaliadores     		controllers.Avaliadores.listaAvaliadores()
+GET 	/sigepi/administracao/avaliadores/:id/editar					controllers.Avaliadores.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/avaliadores/:id/editar					controllers.Avaliadores.editar(id: Long)
+GET 	/sigepi/administracao/avaliadores/:id/deletar					controllers.Avaliadores.deletar(id: Long)
+GET     /sigepi/administracao/coordenadores/listagem-coordenadores  	controllers.Coordenadores.listaCoordenadores()
+GET 	/sigepi/administracao/coordenadores/:id/editar					controllers.Coordenadores.formularioEdicao(id: Long)
+POST 	/sigepi/administracao/coordenadores/:id/editar					controllers.Coordenadores.editar(id: Long)
+GET 	/sigepi/administracao/coordenadores/:id/deletar					controllers.Coordenadores.deletar(id: Long)
 
 
+# Área de Início do Administrador 
+GET     /sigepi/administracao/admin										controllers.Administracao.index()
 
 
-# Administração do Avaliador
-GET     /administracao/avaliador            					controllers.Avaliadores.index()    
+# Área de Início do Avaliador
+GET     /sigepi/administracao/avaliador            						controllers.Avaliadores.index()    
 
 
-# Administração do Professor
-GET 	/administracao/professor								controllers.Professores.index()
+# Área de Início do Professor
+GET 	/sigepi/administracao/professor									controllers.Professores.index()
 
 
-# Administração do Gestor
-GET     /administracao/gestor                               	controllers.Gestores.index()
+# Área de Início do Gestor
+GET     /sigepi/administracao/gestor                               		controllers.Gestores.index()
 
 
 

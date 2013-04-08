@@ -1,8 +1,11 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
@@ -16,6 +19,9 @@ public class AreaConhecimento extends Model{
 	@Column(unique=true)
 	@Required(message="O campo deve ser preenchido.")
 	public String nome;
+	
+	@OneToMany
+	public List<Usuario> usuarios;
 
 	public Long getId() {
 		return id;

@@ -159,4 +159,15 @@ public class InformacoesUsuarioHelper extends Controller {
 			return false;	
 			
 	}
+	
+	public static Boolean isProjetoAprovado(Long id){
+		Projeto projeto = Projeto.find.byId(id);
+		if(projeto.situacao == true){
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
 }

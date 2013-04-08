@@ -40,6 +40,10 @@ public class AreaConhecimentoController extends Controller {
 	public static Result visualizar(Long id) {
 
 		AreaConhecimento area = AreaConhecimento.find.byId(id);
+		if(area == null){
+			flash().put("error", "A Área informada não foi encontrada no Sistema.");
+			return redirect(routes.AreaConhecimentoController.index());
+		}
 		return ok(views.html.AreaConhecimento.visualizar.render(area));
 	}
 	
@@ -99,8 +103,7 @@ public class AreaConhecimentoController extends Controller {
 		area.setNome(form.get().nome);
 		area.update();
 
-		flash().put("success",
-				"Área \"" + area.nome + "\" atualizado com sucesso!");
+		flash().put("success",	"Área \"" + area.nome + "\" atualizado com sucesso!");
 		return redirect(routes.AreaConhecimentoController.index());
 	}
 
@@ -111,7 +114,11 @@ public class AreaConhecimentoController extends Controller {
 	 */
 	public static Result formularioEdicao(Long id) {
 		
-		AreaConhecimento area = AreaConhecimento.find.byId(id);		
+		AreaConhecimento area = AreaConhecimento.find.byId(id);
+		if(area == null){
+			flash().put("error", "A Área informada não foi encontrada no Sistema.");
+			return redirect(routes.AreaConhecimentoController.index());
+		}
 		return ok(views.html.AreaConhecimento.formularioEdicao.render(form(AreaConhecimento.class).fill(area), area));
 	
 	}
@@ -125,12 +132,12 @@ public class AreaConhecimentoController extends Controller {
 	public static Result deletar(Long id) {
 		AreaConhecimento area = AreaConhecimento.find.byId(id);
 		if (area == null) {
-			flash().put("error",
-					"A Área informada não foi encontrada no Sistema.");
-		} else {
+			flash().put("error", "A Área informada não foi encontrada no Sistema.");
+		} else if(area.usuarios.size() > 0){
+			flash().put("error", "A Área de Conhecimento não pode ser excluída, pois existem outros objetos impedindo a sua exclusão!");
+		}else {
 			area.delete();
-			flash().put("success",
-					"Área \"" + area.nome + "\" excluída com sucesso!");
+			flash().put("success", "Área \"" + area.nome + "\" excluída com sucesso!");
 		}
 
 		return redirect(routes.AreaConhecimentoController.index());

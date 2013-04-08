@@ -28,6 +28,9 @@ public class Curso extends Model{
 	
 	@OneToMany
 	public List<Bolsista> bolsistas;
+	
+	@OneToMany
+	public List<Projeto> projetos;
 
 	
 

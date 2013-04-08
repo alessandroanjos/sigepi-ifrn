@@ -37,6 +37,10 @@ public class Cursos extends Controller{
 	public static Result visualizar(Long id) {
 
 		Curso curso = Curso.find.byId(id);
+		if(curso == null){
+			flash().put("error", "O Curso informado não foi encontrado no Sistema.");
+			return redirect(routes.Cursos.index());
+		}
 		return ok(views.html.Cursos.visualizar.render(curso));
 	}
 	
@@ -108,7 +112,11 @@ public class Cursos extends Controller{
 	 */
 	public static Result formularioEdicao(Long id) {
 		
-		Curso curso = Curso.find.byId(id);		
+		Curso curso = Curso.find.byId(id);
+		if(curso == null){
+			flash().put("error", "O Curso informado não foi encontrado no Sistema.");
+			return redirect(routes.Cursos.index());
+		}
 		return ok(views.html.Cursos.formularioEdicao.render(form(Curso.class).fill(curso), curso));
 	
 	}
@@ -122,12 +130,14 @@ public class Cursos extends Controller{
 	public static Result deletar(Long id) {
 		Curso curso = Curso.find.byId(id);
 		if (curso == null) {
-			flash().put("error",
-					"O Curso informado não foi encontrado no Sistema.");
+			flash().put("error", "O Curso informado não foi encontrado no Sistema.");
+			
+		} else if (curso.bolsistas.size() > 0 || curso.projetos.size() > 0){
+			flash().put("error", "O Curso não pode ser excluído, pois existem outros objetos impedindo a sua exclusão!");
+		
 		} else {
 			curso.delete();
-			flash().put("success",
-					"Curso \"" + curso.nome + "\" excluído com sucesso!");
+			flash().put("success",	"Curso \"" + curso.nome + "\" excluído com sucesso!");
 		}
 
 		return redirect(routes.Cursos.index());

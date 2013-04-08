@@ -68,7 +68,13 @@
 			
 			
 			} else{
-			   //Informa os dados do edital como a descricao do edital
+			<h2> Informações do Edital: </h2> <br>
+			   <p>
+			  @Html(edital.descricao)
+			   </p>
+			   <br>
+			<a href="@edital.url" target="_blank" class="btn btn-primary"><i class="icon-white icon-download-alt"></i> Fazer o Download do Edital</a>
+			   
 			}
 		}	
 		

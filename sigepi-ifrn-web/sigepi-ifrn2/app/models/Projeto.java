@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import play.data.validation.Constraints.Max;
+import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -21,6 +24,7 @@ public class Projeto extends Model {
 	@Id
 	public Long id;
 	
+	@Column(unique=true)
 	@Required(message="O campo deve ser preenchido.")
 	public String titulo;
 	
@@ -63,6 +67,9 @@ public class Projeto extends Model {
 	public AreaConhecimento areaConhecimento;
 	
 	@ManyToOne
+	public GrupoPesquisa grupoPesquisa;
+	
+	@ManyToOne
 	public Edital edital;
 	
 	@ManyToOne
@@ -72,25 +79,35 @@ public class Projeto extends Model {
 	public Campus campus;
 	
 	@OneToMany
-	public List<Bolsista> bolsistas;
-	
+	public List<Bolsista> bolsistas;	
 	
 	@OneToMany
 	public List<ProjetoAvaliado> progressoProjeto;
 	
 	public Long usuarioAvaliar;
 	
+	public boolean situacao;
 	
+	@Required(message="O campo deve ser preenchido.")
+	public String primeiroBolsistaNome;
 	
+	@Column(unique=true)
+	@Required(message="O campo deve ser preenchido.")
+	public String primeiroBolsistaMatricula;
+	
+	@Min(0)
+	@Max(100)
+	@Required(message="O campo deve ser preenchido.")
+	public int primeiroBolsistaIRA;
+	
+	@ManyToOne
+	public Curso curso;
+
 	public Projeto(){
 		
 		this.progressoProjeto = new ArrayList<ProjetoAvaliado>();
 	}
 
-	
-	
-	
-	
 
 	public String getResumo() {
 		return resumo;
@@ -212,24 +229,68 @@ public class Projeto extends Model {
 		this.usuarioAvaliar = usuarioAvaliar;
 	}
 
-
-
-
 	public AreaConhecimento getAreaConhecimento() {
 		return areaConhecimento;
 	}
-
-
-
-
-
 
 	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
 		this.areaConhecimento = areaConhecimento;
 	}
 
+	public boolean isSituacao() {
+		return situacao;
+	}
 
 
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
+	}
+
+	public GrupoPesquisa getGrupoPesquisa() {
+		return grupoPesquisa;
+	}
+
+
+	public void setGrupoPesquisa(GrupoPesquisa grupoPesquisa) {
+		this.grupoPesquisa = grupoPesquisa;
+	}
+
+	public String getPrimeiroBolsistaNome() {
+		return primeiroBolsistaNome;
+	}
+
+
+	public void setPrimeiroBolsistaNome(String primeiroBolsistaNome) {
+		this.primeiroBolsistaNome = primeiroBolsistaNome;
+	}
+
+
+	public String getPrimeiroBolsistaMatricula() {
+		return primeiroBolsistaMatricula;
+	}
+
+
+	public void setPrimeiroBolsistaMatricula(String primeiroBolsistaMatricula) {
+		this.primeiroBolsistaMatricula = primeiroBolsistaMatricula;
+	}
+
+	public int getPrimeiroBolsistaIRA() {
+		return primeiroBolsistaIRA;
+	}
+
+
+	public void setPrimeiroBolsistaIRA(int primeiroBolsistaIRA) {
+		this.primeiroBolsistaIRA = primeiroBolsistaIRA;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
 
 	public static Finder<Long, Projeto> find = new Finder<Long, Projeto>(Long.class, Projeto.class);
 }

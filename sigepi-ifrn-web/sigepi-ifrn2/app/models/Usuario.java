@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import controllers.GrupoPesquisaController;
+
 import play.data.validation.Constraints.Email;
 import play.data.validation.Constraints.MinLength;
 import play.data.validation.Constraints.Required;
@@ -48,6 +50,9 @@ public class Usuario extends Model {
 	
 	@ManyToOne
 	public AreaConhecimento areaConhecimento;
+	
+	@ManyToOne
+	public GrupoPesquisa grupoPesquisa;
 	
 	public String chaveRedefinicaoSenha;
 	public boolean isProfessor;
@@ -231,6 +236,19 @@ public class Usuario extends Model {
 
 	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
 		this.areaConhecimento = areaConhecimento;
+	}
+
+	public GrupoPesquisa getGrupoPesquisa() {
+		return grupoPesquisa;
+	}
+
+
+
+
+
+
+	public void setGrupoPesquisa(GrupoPesquisa grupoPesquisa) {
+		this.grupoPesquisa = grupoPesquisa;
 	}
 
 	public static Finder<Long, Usuario> find = new Finder<Long, Usuario>(Long.class, Usuario.class);

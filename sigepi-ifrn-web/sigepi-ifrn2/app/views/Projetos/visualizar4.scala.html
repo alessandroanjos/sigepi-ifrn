@@ -33,7 +33,6 @@
                   
                   <th>Edital</th>
                   <th>Projeto</th>
-                  <th>Pontuacao Obtida</th>
                   <th>Situacao</th>
                 </tr>
               </thead>
@@ -46,12 +45,24 @@
                			@projeto.getEdital.getTitulo
                		</td>
                		<td>
-               		   @projeto.getTitulo
+               		<a href="@routes.Projetos.visualizar(projeto.id)">@projeto.getTitulo</a>               		   
                		</td>
+               		
+               		@*
                	    <td>
                	       @getPontuacaoProjeto(projeto.id)
                	    </td>
+               	    *@
                	    <td> 
+               	     @if(projeto.isSituacao == true){
+               	      
+               	       Aprovado
+               	       
+               	     } else {
+               	       
+               	       Em Avaliação
+               	       
+               	     }
                	    
                	    </td>
                 </tr>

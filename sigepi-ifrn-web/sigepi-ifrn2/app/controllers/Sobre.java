@@ -5,6 +5,7 @@ import play.mvc.Result;
 
 /**
  * Classe controladora das páginas de Sobre.
+ * 
  * @author Alessandro
  *
  */
@@ -51,6 +52,14 @@ public class Sobre extends Controller{
 	 */
 	public static Result oProjeto() {
 		return ok(views.html.Sobre.oProjeto.render());
+	}
+	
+	/**
+	 * Renderiza a página do Processo de Software.
+	 * @return
+	 */
+	public static Result oProcessoDeSoftware(){
+		return TODO;
 	}
 
 }

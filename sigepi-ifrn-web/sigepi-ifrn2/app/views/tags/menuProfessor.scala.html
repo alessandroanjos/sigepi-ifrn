@@ -27,6 +27,10 @@
 							 		<li class="nav-header">Avaliação</li>
 							    <li><a href="@routes.Projetos.index"> Ver Projetos para Avaliar</a></li>
 							 	<li><a href="@routes.Projetos.meusProjetosAvaliados"> Ver Projetos já avaliados</a></li>
+							 	@if(getUsuarioLogado().isCoordenador) {
+							 	<li class="nav-header">Situação dos Projetos</li>
+								    <li><a href="@routes.Projetos.visualizarStatusProjetosCampus"> Ver Status dos Projetos</a></li>
+								}
 						</ul>
 					</li>
 					 @if(isLogado()) {
@@ -38,8 +42,10 @@
 									<ul class="dropdown-menu" style="width: 180px;">
 									 	<li><a href="@routes.Bolsistas.listaBolsistas">Visualizar Bolsistas</a></li>
 									 	<li><a href="@routes.Bolsistas.formulario">Cadastrar Bolsista</a></li>
+									 	<li><a href="@routes.Projetos.visualizarBolsistasProjetosSubmetidos">Ver Bolsistas do Projetos</a></li>
 									</ul>
 								</li>
+								
    	    					}
    	    			}
 					@*
