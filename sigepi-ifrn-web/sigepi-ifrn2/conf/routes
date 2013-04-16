@@ -102,7 +102,7 @@ GET     /sigepi/administracao/projetos/meus-projetos         			controllers.Proj
 GET     /sigepi/administracao/projetos/status-campus                    controllers.Projetos.visualizarStatusProjetosCampus()
 GET     /sigepi/administracao/projetos/:id/aprovar-projeto              controllers.Projetos.aprovarProjeto(id: Long)
 GET     /sigepi/administracao/projetos/aprovados						controllers.Projetos.visualizarProjetosAprovados()
-GET     /sigepi/administracao/projetos/visualizar-opniao-avaliacao		controllers.Projetos.visualizarOpniaoAvaliacao()
+GET     /sigepi/administracao/projetos/visualizar-opiniao-avaliacao		controllers.Projetos.visualizarOpiniaoAvaliacao()
 GET     /sigepi/administracao/projetos/visualizar-bolsistas-projetos    controllers.Projetos.visualizarBolsistasProjetosSubmetidos()
 
 

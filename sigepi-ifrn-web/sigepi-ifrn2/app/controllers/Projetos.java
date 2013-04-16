@@ -60,6 +60,11 @@ public class Projetos extends Controller{
 			if (InformacoesUsuarioHelper.isLogado()) {
 
 				Projeto projeto = Projeto.find.byId(id);
+				
+				if(projeto == null){
+					
+					flash().put("error", "O Projeto informado não foi encontrado no Sistema.");
+				} else {
 				int findRowCount = Projeto.find.where()
 						.eq("usuario_avaliar", usuarioLogado.id).findRowCount();
 				System.out.println("Visualizar: " + findRowCount);
@@ -86,6 +91,9 @@ public class Projetos extends Controller{
 				} else {
 					return redirect(routes.Administracao.index());
 				}
+				
+				}
+				return redirect(routes.Projetos.index());
 
 			}
 			return redirect(routes.Administracao.index());
@@ -216,35 +224,48 @@ public class Projetos extends Controller{
 	public static Result formularioAvaliacao(Long id) {
 
 		Usuario usuarioLogado = InformacoesUsuarioHelper.getUsuarioLogado();
-		
-		if(InformacoesUsuarioHelper.isLogado()){
-		Projeto projeto = Projeto.find.byId(id);
-		int findRowCount = Projeto.find.where().eq("usuario_avaliar", usuarioLogado.id).findRowCount();
-		System.out.println("form avaliacao: "+findRowCount);
-		
-		Long meuId = InformacoesUsuarioHelper.getUsuarioLogado().id;
-		
-		if (InformacoesUsuarioHelper.isProjetoAvaliado(id)) {
-			flash().put("error", "Você Já avaliou este projeto!");
-			return badRequest(views.html.Projetos.visualizar2.render(projeto));
 
-		} else if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador) {
+		Projeto proj = Projeto.find.byId(id);
 
-			return ok(views.html.Projetos.formularioAvaliacao.render(
-					form(ProjetoAvaliado.class), projeto));
+		if (InformacoesUsuarioHelper.isLogado()) {
+			if (proj == null) {
+				flash().put("error", "O Projeto informado não foi encontrado no Sistema.");
+			} else {
 
-		} else if ( projeto.campus.id != InformacoesUsuarioHelper.getUsuarioLogado().campus.id && 0!= findRowCount && projeto.usuarioAvaliar == meuId) {
-                  //se der true é pq o cara selecionado pelo admin é o que tbm pode avaliar
-			
-			return ok(views.html.Projetos.formularioAvaliacao.render(
-					form(ProjetoAvaliado.class), projeto));
+				Projeto projeto = Projeto.find.byId(id);
+				int findRowCount = Projeto.find.where()
+						.eq("usuario_avaliar", usuarioLogado.id).findRowCount();
+				System.out.println("form avaliacao: " + findRowCount);
+				
+				Long meuId = InformacoesUsuarioHelper.getUsuarioLogado().id;
+				
+				if (InformacoesUsuarioHelper.isProjetoAvaliado(id)) {
+					flash().put("error", "Você Já avaliou este projeto!");
+					return badRequest(views.html.Projetos.visualizar2
+							.render(projeto));
 
-		} else {
-			flash().put("error",
-					"Você não tem permissão para avaliar este projeto!");
-			redirect(routes.Projetos.index());
-		}
-		return ok(views.html.Projetos.visualizar.render(projeto));
+				} else if (InformacoesUsuarioHelper.getUsuarioLogado().isAdministrador) {
+
+					return ok(views.html.Projetos.formularioAvaliacao.render(
+							form(ProjetoAvaliado.class), projeto));
+
+				} else if (InformacoesUsuarioHelper.getUsuarioLogado().isProfessor
+						&& (projeto.campus.id != InformacoesUsuarioHelper
+								.getUsuarioLogado().campus.id)
+						&& 0 != findRowCount && projeto.usuarioAvaliar == meuId) {
+					// se der true é pq o cara selecionado pelo admin é o que
+					// tbm pode avaliar
+
+					return ok(views.html.Projetos.formularioAvaliacao.render(
+							form(ProjetoAvaliado.class), projeto));
+
+				} else {
+					flash().put("error", "Você não tem permissão para avaliar este projeto!");
+					redirect(routes.Projetos.index());
+				}
+				return ok(views.html.Projetos.visualizar.render(projeto));
+			}
+			return redirect(routes.Projetos.index());
 		}
 		return redirect(routes.Sessions.login());
 	}
@@ -421,10 +442,10 @@ public class Projetos extends Controller{
 	}
 	
 	@Permissao("Administrador")
-	public static Result visualizarOpniaoAvaliacao() {
+	public static Result visualizarOpiniaoAvaliacao() {
 		
 		List<ProjetoAvaliado> projetos = ProjetoAvaliado.find.findList();
-		return ok(views.html.Projetos.visualizarOpniaoAvaliacao.render(projetos));
+		return ok(views.html.Projetos.visualizarOpiniaoAvaliacao.render(projetos));
 	}
 	
 	public static Result visualizarBolsistasProjetosSubmetidos(){
