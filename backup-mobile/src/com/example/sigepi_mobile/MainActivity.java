@@ -22,26 +22,26 @@ public class MainActivity extends Activity {
 		//textSenha = (EditText) findViewById(R.id.campTextSenha);
 		
 		Button btEntrar = (Button) findViewById(R.id.btEntrar);
-		Button btCancelar = (Button) findViewById(R.id.btCancelar);
+		Button btLimpar = (Button) findViewById(R.id.btLimpar);
 		
 		btEntrar.setOnClickListener(new View.OnClickListener() {
 			
 			
 			public void onClick(View arg0) {
-				/*String usuario = textUsuario.getText().toString();
-				String senha = textSenha.getText().toString();
 				
-				if(usuario != null && usuario.equals("hellen_lemos")){
-					if(senha != null && senha.equals("teste")){*/
 						Intent it = new Intent(MainActivity.this, ExibirAcoes.class);
 						startActivity(it);
-						
-						/*AlertDialog.Builder sucesso = new AlertDialog.Builder(MainActivity.this);
-						sucesso.setMessage("Login realizado com sucesso!");
-						sucesso.show();*/
-				/*	}
-				}*/
-				
+			}
+		});
+		
+		btLimpar.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				String text = textCPF.getText().toString();
+				if(text != null){
+					textCPF.setText("");
+				}
 				
 			}
 		});

@@ -42,24 +42,24 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/campTextCPF"
         android:layout_centerHorizontal="true"
-        android:text="Digite seu CPF aqui!" />
+        android:text="Digite seu login aqui!" />
 
     <Button
-        android:id="@+id/btCancelar"
+        android:id="@+id/btLimpar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/campTextCPF"
         android:layout_below="@+id/campTextCPF"
         android:layout_marginTop="46dp"
-        android:text="Cancelar" />
+        android:text="Limpar" />
 
     <Button
         android:id="@+id/btEntrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btCancelar"
-        android:layout_alignBottom="@+id/btCancelar"
-        android:layout_toLeftOf="@+id/btCancelar"
+        android:layout_alignBaseline="@+id/btLimpar"
+        android:layout_alignBottom="@+id/btLimpar"
+        android:layout_toLeftOf="@+id/btLimpar"
         android:text="Entrar" />
 
 </RelativeLayout>
