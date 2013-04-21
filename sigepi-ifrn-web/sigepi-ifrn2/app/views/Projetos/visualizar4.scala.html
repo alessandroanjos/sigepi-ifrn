@@ -54,16 +54,19 @@
                	    </td>
                	    *@
                	    <td> 
-               	     @if(projeto.isSituacao == true){
-               	      
-               	       Aprovado
-               	       
-               	     } else {
+               	     @if(projeto.getSituacao == 1){               	      
+               	         Aprovado               	       
+               	     }  
+               	     
+               	     @if(projeto.getSituacao == 0)	{
+			   	   	     Reprovado
+			   	     }
+			              	     
+               	     @if(projeto.getSituacao == -1) {
                	       
                	       Em Avaliação
                	       
-               	     }
-               	    
+               	     }    
                	    </td>
                 </tr>
 				}

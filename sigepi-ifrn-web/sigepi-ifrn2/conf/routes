@@ -25,11 +25,13 @@ GET     /sobre/sigepi/processo-de-software                              controll
 GET /ola                             									ws.Servico.ola
 GET /usuario-hello                   									ws.Usuario.sayHello(id: Long)
 
-
+ 
 # Web Services SERVICO
 GET   	 /ws/client/json/editais       									ws.Servico.getListaEditais
-GET    	 /ws/client/json/projetos-avaliar    							ws.Servico.getListaProjetosParaAvaliar
+GET    	 /ws/client/json/professor/:id/projetos-avaliar    				ws.Servico.getListaProjetosParaAvaliar(id: Long)
 GET      /ws/client/json/projetos                           			ws.Servico.getListaProjetos
+GET      /ws/client/json/professor/:id/meus-projetos                   	ws.Servico.getListaMeusProjetos(id: Long)
+GET      /ws/client/json/professor/projeto/:id/situacao					ws.Servico.getMeuProjetoSituacao(id: Long)
 
 
 # Cadastro dos Usuários no Sistema

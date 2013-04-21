@@ -53,17 +53,17 @@
 							               		
 							               		
 							               	    <td> 
-							               	    
-							               	    @if(projeto.isSituacao == true){
-               	      
-								               	       Aprovado
-								               	       
-								               	 } else {
-								               	       
+													@if(projeto.getSituacao == 1){               	      
+								               	         Aprovado               	       
+								               	     }  
+
+								               	     @if(projeto.getSituacao == 0)	{
+											   	   	     Reprovado
+											   	     }
+
+								               	     @if(projeto.getSituacao == -1) {
 								               	       Em Avaliação
-								               	       
-								               	 }
-							               	    
+								               	   	 } 
 							               	    </td>
 							                </tr>
 											}
@@ -121,17 +121,17 @@
 							               		
 							               	    <td> 
 							               	    
-							               	    @if(projeto.isSituacao == true){
-               	      
-								               	       Aprovado
-								               	       
-								               	 } else {
-								               	       <a href="@routes.Projetos.aprovarProjeto(projeto.id)" onclick="return confirm('Deseja realmente aprovar o projeto: &quot;@projeto.titulo&quot;?')" class="btn btn-success"> Aprovar</a> /
-	               		
-								               	       Em Avaliação
-								               	       
-								               	 }
-							               	    
+	     						               	   @if(projeto.getSituacao == 1){               	      
+								               	         Aprovado               	       
+								               	   }  
+
+  							               	       @if(projeto.getSituacao == 0)	{
+											   	   	     Reprovado
+											   	   }
+
+								               	   @if(projeto.getSituacao == -1) {
+								               	     <a href="@routes.Projetos.aprovarProjeto(projeto.id)" onclick="return confirm('Deseja realmente aprovar o projeto: &quot;@projeto.titulo&quot;?')" class="btn btn-success"> Aprovar</a> / Em Avaliação
+								               	   } 
 							               	    </td>
 							                </tr>
 											}

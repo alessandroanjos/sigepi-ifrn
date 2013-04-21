@@ -70,7 +70,7 @@ create table projeto (
   autor_id                  bigint,
   campus_id                 bigint,
   usuario_avaliar           bigint,
-  situacao                  tinyint(1) default 0,
+  situacao                  integer,
   primeiro_bolsista_nome    varchar(255),
   primeiro_bolsista_matricula varchar(255),
   primeiro_bolsista_ira     integer,

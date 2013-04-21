@@ -143,7 +143,7 @@ public class Projetos extends Controller{
 					.getUsuarioLogado().areaConhecimento;
 			projeto.grupoPesquisa = InformacoesUsuarioHelper.getUsuarioLogado().grupoPesquisa;
 			projeto.usuarioAvaliar = 1L;
-			projeto.situacao = false;
+			projeto.situacao = -1;
 			projeto.curso = Curso.find.byId(idCurso);
 
 			projeto.save();
@@ -424,7 +424,7 @@ public class Projetos extends Controller{
 
 		if (projeto != null) {
 
-			projeto.setSituacao(true);
+			projeto.setSituacao(1);
 			projeto.update();
 
 			flash().put("success","Projeto \"" + projeto.titulo + "\" Aprovado com sucesso!");

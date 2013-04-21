@@ -86,8 +86,8 @@ public class Projeto extends Model {
 	
 	public Long usuarioAvaliar;
 	
-	public boolean situacao;
-	
+	public int situacao;
+
 	@Required(message="O campo deve ser preenchido.")
 	public String primeiroBolsistaNome;
 	
@@ -237,15 +237,6 @@ public class Projeto extends Model {
 		this.areaConhecimento = areaConhecimento;
 	}
 
-	public boolean isSituacao() {
-		return situacao;
-	}
-
-
-	public void setSituacao(boolean situacao) {
-		this.situacao = situacao;
-	}
-
 	public GrupoPesquisa getGrupoPesquisa() {
 		return grupoPesquisa;
 	}
@@ -290,6 +281,15 @@ public class Projeto extends Model {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public int getSituacao() {
+		return situacao;
+	}
+
+
+	public void setSituacao(int situacao) {
+		this.situacao = situacao;
 	}
 
 	public static Finder<Long, Projeto> find = new Finder<Long, Projeto>(Long.class, Projeto.class);

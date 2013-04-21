@@ -162,7 +162,8 @@ public class InformacoesUsuarioHelper extends Controller {
 	
 	public static Boolean isProjetoAprovado(Long id){
 		Projeto projeto = Projeto.find.byId(id);
-		if(projeto.situacao == true){
+		//1 - Aprovado , 0 - Reprovado , -1 - Em avaliação
+		if(projeto.situacao == 1){
 			return true;
 		}else {
 			return false;

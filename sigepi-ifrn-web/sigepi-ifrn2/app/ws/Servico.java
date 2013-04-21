@@ -80,6 +80,7 @@ public class Servico extends Controller {
 		return ok(result);
 	}
 
+
 	// webservice de teste
 	public static Result ola() {
 		ObjectNode resultado = Json.newObject();
@@ -138,7 +139,61 @@ public class Servico extends Controller {
 		return ok(result);
 	}
 
-	public static Result getListaProjetosParaAvaliar() {
-		return TODO;
+	public static Result getListaProjetosParaAvaliar(Long id) {
+		
+		List<Projeto> projetos = Projeto.find.where().eq("usuario_avaliar", id).findList();
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		  
+		  ObjectNode result = Json.newObject();
+
+		  for (Projeto p : projetos) {
+			  lista.add(p.getTitulo());
+		  }
+
+		  JSONArray jsArray = new JSONArray(lista);
+		  result.putPOJO("projetos", jsArray.toString());
+		  
+		  return ok(result);
 	}
+	
+	
+	public static Result getListaMeusProjetos(Long id){
+		
+		List<Projeto> projetos = Projeto.find.where().eq("autor_id", id).findList();
+
+		  ArrayList<String> lista = new ArrayList<String>();
+		  
+		  ObjectNode result = Json.newObject();
+
+		  for (Projeto p : projetos) {
+			  lista.add(p.getTitulo());
+		  }
+
+		  JSONArray jsArray = new JSONArray(lista);
+		  result.putPOJO("projetos", jsArray.toString());
+		  
+		  return ok(result);
+	
+	}
+	
+	public static Result getMeuProjetoSituacao(Long id) {
+
+		List<Projeto> projetos = Projeto.find.where().eq("id", id).findList();
+		ObjectNode result = Json.newObject();
+
+		for (Projeto p : projetos) {
+			// result.put("projeto", String.valueOf(p.getSituacao()));
+			if (p.getSituacao() == 1) {
+				result.put("projeto", "Aprovado");
+			} else if (p.getSituacao() == 0) {
+				result.put("projeto", "Reprovado");
+			} else {
+				result.put("projeto", "Em Avaliação");
+			}
+		}
+
+		return ok(result);
+	}
+	
 }
