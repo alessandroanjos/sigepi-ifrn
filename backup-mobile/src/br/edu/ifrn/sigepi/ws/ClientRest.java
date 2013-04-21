@@ -22,11 +22,13 @@ public class ClientRest {
 	//private String ip = "10.20.6.5:9000";
     //  private String ip = "127.0.0.1:9000";
 	// private String ip = "192.168.43.5:9000";
-     private String ip = "10.20.9.57:9000";
+     //private String ip = "10.20.9.57:9000";
 	// private String ip = "10.20.12.3:9000";
 	//private static String ip = "10.17.2.7:9000";
 	//private String ip = "10.17.2.94:9000";
-
+	//private String ip = "10.20.2.161:9000";
+	private String ip = "10.0.0.3:9000";
+	
 
 	/*
 	 * public List<Edital> getListaEdital(String dataInicial, String dataFinal,
@@ -56,7 +58,7 @@ public class ClientRest {
 	
 	
 	public List<Edital> getListaEditais1() throws Exception {
-		String url = "http://" + ip + "/ws/client/json";
+		String url = "http://" + ip + "/ws/client/json/editais";
 		
 		Log.i("URL: ", url);
 		
@@ -93,7 +95,7 @@ public class ClientRest {
 	}
 	
 	public List<Projeto> getListaProjetos() throws Exception {
-		String url = "http://" + ip + "/ws/client/listaprojetos";
+		String url = "http://" + ip + "/ws/client/json/projetos";
 		
 		Log.i("URL: ", url);
 		

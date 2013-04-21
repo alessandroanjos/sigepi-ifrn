@@ -4,31 +4,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textUsuario"
+    <!--
+     <TextView
+        android:id="@+id/textCPF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="144dp"
-        android:text="Usuário" />
+        android:text="CPF: " />
+    -->
 
-    <TextView
-        android:id="@+id/textSenha"
+    <EditText
+        android:id="@+id/campTextCPF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textUsuario"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Senha" />
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/sigepi2" />
+
+    <TextView
+        android:id="@+id/textDigitarCPF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/campTextCPF"
+        android:layout_centerHorizontal="true"
+        android:text="Digite seu CPF aqui!" />
 
     <Button
         android:id="@+id/btCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/campTextUsuario"
-        android:layout_below="@+id/campTextSenha"
-        android:layout_marginTop="45dp"
+        android:layout_alignRight="@+id/campTextCPF"
+        android:layout_below="@+id/campTextCPF"
+        android:layout_marginTop="46dp"
         android:text="Cancelar" />
 
     <Button
@@ -37,29 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btCancelar"
         android:layout_alignBottom="@+id/btCancelar"
-        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@+id/btCancelar"
         android:text="Entrar" />
-
-    <EditText
-        android:id="@+id/campTextUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textUsuario"
-        android:layout_alignBottom="@+id/textUsuario"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/textUsuario"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/campTextSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/campTextUsuario"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="textPassword" />
 
 </RelativeLayout>

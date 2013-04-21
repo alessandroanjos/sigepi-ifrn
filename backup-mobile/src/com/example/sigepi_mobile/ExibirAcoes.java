@@ -14,8 +14,8 @@ public class ExibirAcoes extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_exibir_acoes);
 		
-		Button btProjetosAvaliar = (Button) findViewById(R.id.btProjetosAvaliar);
-		Button btEditaisAbertos = (Button) findViewById(R.id.btEditaisAbertos);
+		Button btProjetosAvaliar = (Button) findViewById(R.id.btSimProjetos);
+		Button btEditaisAbertos = (Button) findViewById(R.id.btSimEditais);
 		
 		
 		btProjetosAvaliar.setOnClickListener(new View.OnClickListener() {

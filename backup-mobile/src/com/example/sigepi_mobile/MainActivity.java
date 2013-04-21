@@ -11,15 +11,15 @@ import android.widget.DialerFilter;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
-	private EditText textUsuario;
-	private EditText textSenha;
+	private EditText textCPF;
+	//private EditText textSenha;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		textUsuario = (EditText) findViewById(R.id.campTextUsuario);
-		textSenha = (EditText) findViewById(R.id.campTextSenha);
+		textCPF = (EditText) findViewById(R.id.campTextCPF);
+		//textSenha = (EditText) findViewById(R.id.campTextSenha);
 		
 		Button btEntrar = (Button) findViewById(R.id.btEntrar);
 		Button btCancelar = (Button) findViewById(R.id.btCancelar);
@@ -28,13 +28,21 @@ public class MainActivity extends Activity {
 			
 			
 			public void onClick(View arg0) {
+				/*String usuario = textUsuario.getText().toString();
+				String senha = textSenha.getText().toString();
 				
-				Intent it = new Intent(MainActivity.this, ExibirAcoes.class);
-				startActivity(it);
+				if(usuario != null && usuario.equals("hellen_lemos")){
+					if(senha != null && senha.equals("teste")){*/
+						Intent it = new Intent(MainActivity.this, ExibirAcoes.class);
+						startActivity(it);
+						
+						/*AlertDialog.Builder sucesso = new AlertDialog.Builder(MainActivity.this);
+						sucesso.setMessage("Login realizado com sucesso!");
+						sucesso.show();*/
+				/*	}
+				}*/
 				
-				AlertDialog.Builder sucesso = new AlertDialog.Builder(MainActivity.this);
-				sucesso.setMessage("Login realizado com sucesso!");
-				sucesso.show();
+				
 			}
 		});
 	}

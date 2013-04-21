@@ -4,24 +4,65 @@
     android:layout_height="match_parent"
     tools:context=".ExibirAcoes" >
 
-    <Button
-        android:id="@+id/btProjetosAvaliar"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="96dp"
-        android:text="Projetos para Avaliar" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/sigepi2" />
 
     <Button
-        android:id="@+id/btEditaisAbertos"
+        android:id="@+id/btNaoProjetos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/btProjetosAvaliar"
+        android:layout_alignRight="@+id/imageView1"
+        android:layout_below="@+id/textViewProjetos"
         android:layout_marginTop="18dp"
-        android:text="Editais Abertos" />
+        android:text="Não" />
+
+    <Button
+        android:id="@+id/btSimProjetos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btNaoProjetos"
+        android:layout_alignBottom="@+id/btNaoProjetos"
+        android:layout_toLeftOf="@+id/btNaoProjetos"
+        android:text="Sim" />
+
+    <TextView
+        android:id="@+id/textViewProjetos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/btNaoProjetos"
+        android:layout_centerVertical="true"
+        android:text="Deseja ver os projetos para avaliar?" />
+
+    <TextView
+        android:id="@+id/textViewEditais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btSimEditais"
+        android:layout_alignLeft="@+id/textViewProjetos"
+        android:layout_marginBottom="24dp"
+        android:text="Deseja ver os editais abertos?" />
+
+    <Button
+        android:id="@+id/btNaoEditais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewEditais"
+        android:layout_toRightOf="@+id/btSimProjetos"
+        android:text="Não" />
+
+    <Button
+        android:id="@+id/btSimEditais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btSimProjetos"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp"
+        android:text="Sim" />
 
 </RelativeLayout>
