@@ -293,4 +293,9 @@ public class Projeto extends Model {
 	}
 
 	public static Finder<Long, Projeto> find = new Finder<Long, Projeto>(Long.class, Projeto.class);
+	
+	@Override
+	public String toString(){
+		return this.titulo +" - "+ this.getEdital().getTitulo().toString();
+	}
 }

@@ -32,7 +32,7 @@ GET    	 /ws/client/json/professor/:id/projetos-avaliar    				ws.Servico.getLis
 GET      /ws/client/json/projetos                           			ws.Servico.getListaProjetos
 GET      /ws/client/json/professor/:id/meus-projetos                   	ws.Servico.getListaMeusProjetos(id: Long)
 GET      /ws/client/json/professor/projeto/:id/situacao					ws.Servico.getMeuProjetoSituacao(id: Long)
-
+GET      /ws/client/json/campus/coordenador/:id/projetos				ws.Servico.getStatusProjetosCampus(id: Long)
 
 # Cadastro dos Usuários no Sistema
 GET     /cadastro-professor                                 			controllers.Professores.formulario()

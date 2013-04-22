@@ -21,6 +21,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.reflections.serializers.JsonSerializer;
 
+import com.avaje.ebean.ExpressionList;
+
 import controllers.Editais;
 
 //import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
@@ -167,7 +169,14 @@ public class Servico extends Controller {
 		  ObjectNode result = Json.newObject();
 
 		  for (Projeto p : projetos) {
-			  lista.add(p.getTitulo());
+			  
+			  if(p.getSituacao() == 1){
+				  lista.add(p.toString() + " - "+"Aprovado");
+			  } else if(p.getSituacao() == 0){
+				  lista.add(p.toString() + " - "+"Rprovado");
+			  } else {
+				  lista.add(p.toString() + " - "+"Em Avaliação");
+			  }
 		  }
 
 		  JSONArray jsArray = new JSONArray(lista);
@@ -194,6 +203,36 @@ public class Servico extends Controller {
 		}
 
 		return ok(result);
+	}
+	
+	public static Result getStatusProjetosCampus(Long id) {
+
+		Usuario camp = Usuario.find.where().eq("id", id).eq("is_coordenador", true).findUnique();
+		System.out.println("Campus: "+camp);
+		Long x = camp.getCampus().getId();
+		
+		
+		List<Projeto> projetos = Projeto.find.where().eq("campus_id", x).findList();
+
+		  ArrayList<String> lista = new ArrayList<String>();
+		  
+		  ObjectNode result = Json.newObject();
+
+		  for (Projeto p : projetos) {
+			  
+			  if(p.getSituacao() == 1){
+				  lista.add(p.toString() + " - "+"Aprovado");
+			  } else if(p.getSituacao() == 0){
+				  lista.add(p.toString() + " - "+"Rprovado");
+			  } else {
+				  lista.add(p.toString() + " - "+"Em Avaliação");
+			  }
+		  }
+
+		  JSONArray jsArray = new JSONArray(lista);
+		  result.putPOJO("projetos", jsArray.toString());
+		  
+		  return ok(result);
 	}
 	
 }
