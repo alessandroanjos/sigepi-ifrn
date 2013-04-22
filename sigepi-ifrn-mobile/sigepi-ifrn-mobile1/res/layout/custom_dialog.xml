@@ -1,0 +1,31 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+      
+
+        <TextView
+            android:id="@+id/exibiNomeEditalDialog"
+            android:text="" />
+    </TableRow>
+
+   
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <Button
+            android:id="@+id/bt_ok"
+            android:layout_span="2"
+            android:text="Fechar" />
+    </TableRow>
+
+</TableLayout>

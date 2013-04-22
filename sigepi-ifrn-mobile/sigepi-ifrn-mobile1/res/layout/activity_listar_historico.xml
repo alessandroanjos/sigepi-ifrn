@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:text="@string/lista_de_editais"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Button
+                android:id="@+id/btLimparHistorico"
+                android:layout_weight="1"
+                android:text="Limpar Histórico" />
+        </TableRow>
+    </TableLayout>
+
+    <ListView
+        android:id="@+id/tela_editais_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#ECECEC"
+        android:dividerHeight="1sp" />
+
+</LinearLayout>

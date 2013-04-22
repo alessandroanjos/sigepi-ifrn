@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- activity_main -->
+    <string name="app_name">Sistema de Gestão de Pesquisa e Inovação</string>
+    <string name="fazer">O que deseja fazer?</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">SIGEPI</string>
+    
+    
+    <!-- activity_splash -->
+    <string name="imagem_logo">SIGEPI</string>
+    <string name="carregando_splash">Carregando&#8230;</string>
+    
+    <!-- activity_buscar_por_cpf -->
+	<string name="buscar_projetos">Buscar Projetos</string>
+	<string name="cpf">CPF</string>
+	<string name="digite_seu_cpf_hint">Digite seu CPF</string>
+	<string name="informacoes">Informações da consulta</string>
+	<string name="nome">Nome: </string>
+	<string name="data">Data: </string>
+	<string name="hora">Hora: </string>
+	<string name="clinica">Clinica: </string>
+	<string name="status">Status: </string>
+	<string name="status_op_confirmar">Confirmar</string>
+	<string name="status_op_cancelar">Cancelar</string>
+	<string name="continuar">Continuar</string>
+	
+	 <!-- activity_listar_historico -->
+	<string name="lista_de_editais">Lista de Editais</string>
+
+</resources>
