@@ -20,6 +20,21 @@ public class RepositorioEdital {
 	
 	public RepositorioEdital(Context ctx){
 		db = ctx.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
+		Log.i(RepositorioEdital.class.getName(), "Banco de dados aberto : [" + db.isOpen() + "][" + db.isReadOnly() + "]");
+		Log.i(RepositorioEdital.class.getName(), "Verificando se tabela existe");
+		Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='" + NOME_TABELA + "'", null);
+		cursor.moveToFirst();
+		if (cursor.getCount() == 0) {
+			Log.i(RepositorioEdital.class.getName(), "Criando tabela");
+			String createQuery = "CREATE TABLE " + NOME_TABELA +
+					"(" + Edital.ID + " integer primary key autoincrement" + 
+					", " + Edital.TITULO + " TEXT);";
+
+			db.execSQL(createQuery);
+			Log.i(RepositorioEdital.class.getName(), "Tabela criada!");
+		}
+		cursor.close();
+		Log.i(RepositorioEdital.class.getName(), "Verificação concluída!");
 	}
 	
 	public void close(){
@@ -30,7 +45,7 @@ public class RepositorioEdital {
 		int qtd = 0;
 		
 		for (Edital edital : editais) {
-			edital.setId(0);
+//			edital.setId(0);
 			salvar(edital);
 			qtd++;
 		}
@@ -52,7 +67,7 @@ public class RepositorioEdital {
 	private int inserir(Edital edital) {
 		ContentValues values = new ContentValues();
 		
-		values.put(Edital.ID_EDITAL, edital.getId_edital());
+		values.put(Edital.ID, edital.getId());
 		values.put(Edital.TITULO, edital.getTitulo());
 		
 		
@@ -72,7 +87,7 @@ public class RepositorioEdital {
 		
 		String _id = String.valueOf(edital.getId());
 		
-		values.put(Edital.ID_EDITAL, edital.getId_edital());
+		values.put(Edital.ID, edital.getId());
 		values.put(Edital.TITULO, edital.getTitulo());
 		
 		
@@ -92,27 +107,38 @@ public class RepositorioEdital {
 	}
 	
 	public Cursor getCursor(){
-		return db.query(NOME_TABELA, null, null, null, null, null, null);
+		return db.query(NOME_TABELA, new String[] {Edital.ID, Edital.TITULO}, null, null, null, null, Edital.TITULO);
 	}
 	
 	public List<Edital> listarEditais(){
+		Log.i(RepositorioEdital.class.getName(), "DB-Cursor : Query");
 		Cursor cursor = getCursor();
+		Log.i(RepositorioEdital.class.getName(), "DB-Cursor : Query finalizado!");
 		
-		List<Edital> listaEdital = new ArrayList<Edital>();
+		Log.i(RepositorioEdital.class.getName(), "DB-Cursor : Convertendo em objetos java");
+		Log.i(RepositorioEdital.class.getName(), "DB-Cursor : getCount");
+		List<Edital> listaEdital = new ArrayList<Edital>(cursor.getCount());
 		
-		if(cursor.moveToFirst()){	
+		Log.i(RepositorioEdital.class.getName(), "DB-Cursor : moveToFirst");
+		if(cursor.moveToFirst()){
+			Log.i(RepositorioEdital.class.getName(), "DB-Cursor : isAfterLast");
 			while(!cursor.isAfterLast()) {
+				Log.i(RepositorioEdital.class.getName(), "DB-Cursor : get");
 				Edital edital = new Edital();
-				edital.setId(cursor.getInt(0));
-				edital.setId_edital(cursor.getInt(1));
-				edital.setTitulo(cursor.getString(2));
-				
+				edital.setId(cursor.getInt( cursor.getColumnIndex(Edital.ID) ));
+//				edital.setId_edital(cursor.getInt(1));
+				edital.setTitulo(cursor.getString( cursor.getColumnIndex(Edital.TITULO) ));
+				Log.i(RepositorioEdital.class.getName(), "Edital [" + edital.getId() + "] " + edital.getTitulo());
 
 				listaEdital.add(edital);
 				
+				Log.i(RepositorioEdital.class.getName(), "DB-Cursor : moveToNext");
 			    cursor.moveToNext();
 			}
 		}
+		Log.i(RepositorioEdital.class.getName(), "DB-Cursor : close");
+		cursor.close();
+		Log.i(RepositorioEdital.class.getName(), "DB-Cursor : Convertendo em objetos java - FINALIZADO!");
 		
 		return listaEdital;
 	}

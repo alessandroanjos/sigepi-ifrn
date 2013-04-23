@@ -23,11 +23,13 @@ public class ClientRest {
 	 public static boolean cod500 = false;
 
 	 //private String ip = "10.20.10.13:9000";
-	   private String ip = "10.17.3.33:9000";
+	   //private String ip = "10.17.3.33:9000";
 	 //private String ip = "10.20.6.5:9000";
 	 //  private String ip = "127.0.0.1:9000";
 	 //private String ip = "192.168.43.5:9000";
      // private String ip = "169.254.21.42:9000";
+	   //private String ip = "10.20.2.161:9000";
+	private String ip = "10.18.1.177:9000";
 	
 	public List<Edital> getListaEditais() throws Exception {
 		String url = "http://" + ip + "/ws/client/json/editais";
