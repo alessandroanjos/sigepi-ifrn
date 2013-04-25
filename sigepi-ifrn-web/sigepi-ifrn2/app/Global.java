@@ -24,13 +24,7 @@ public class Global extends GlobalSettings{
 		   area.nome = "Ciência da Computação";
 		   area.save();
 		   
-		   Logger.info("Cadastrando as Áreas de Conhecimento: "+ area.nome);
-		   
-		   AreaConhecimento area2 = new AreaConhecimento();
-		   area2.nome = "Linguística";
-		   area2.save();
-		   
-		   Logger.info("Cadastrando as Áreas de Conhecimento: " + area2.nome);
+		   Logger.info("Cadastrando as Áreas de Conhecimento: " + area.nome);
 		
 		}
 		
@@ -40,12 +34,7 @@ public class Global extends GlobalSettings{
 		  campus.save();
 		  
 		  Logger.info("Cadastrando Campus: "+campus.nome);
-		  
-		  Campus campus2 = new Campus();
-		  campus2.nome = "Mossoró";
-		  campus2.save();
-		  
-		  Logger.info("Cadastrando Campus."+campus.nome);
+
 		}
 		
 		
@@ -54,13 +43,6 @@ public class Global extends GlobalSettings{
 			grupo.nome = "Núcleo de Desenvolvimento de Software";
 			grupo.campus = Campus.find.all().get(0);
 			grupo.save();
-
-			Logger.info("Cadastrando Grupos de Pesquisa: "+grupo.nome);
-			
-			GrupoPesquisa grupo2 = new GrupoPesquisa();
-			grupo2.nome = "Grupo de Letras";
-			grupo2.campus = Campus.find.all().get(1);
-			grupo2.save();
 
 			Logger.info("Cadastrando Grupos de Pesquisa: "+grupo.nome);
 		}
@@ -77,6 +59,7 @@ public class Global extends GlobalSettings{
 			Usuario administrador = new Usuario();
 			administrador.nome = "Admin";
 			administrador.email = "admin-sigepi@ifrn.edu.br";
+			administrador.cpf = "";
 			administrador.login = "admin";
 			administrador.senha = "admin";
 			administrador.campus = Campus.find.all().get(0);

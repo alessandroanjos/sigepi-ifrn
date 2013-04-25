@@ -42,13 +42,21 @@
 					@if(getUsuarioLogado().isGestor || getUsuarioLogado().isAdministrador || getUsuarioLogado().isProfessor) {
 					 <div style=" position:relative; top:35px;">
 					    <a href="@routes.Projetos.formularioAvaliacao(projeto.id)" class="btn btn-danger"><i class="icon-edit"></i> Avaliar esse Projeto </a>
+					    
+					    
+						<a href="@routes.Projetos.getDocumento(projeto.id)" class="btn btn-primary"> <i class="icon-white icon-download-alt"> </i>Faça o Download do Arquivo PDF</a>
+					    
 					 </div>
+					 <br>
+					 <br>
+					 <br>
+					 <br>
 					 }
 					
-					</div>
+					
 					
 				}
-			</div>
+				
 			
 			<div class="row">
 				<div class="span5">
@@ -60,65 +68,7 @@
 								@Html(projeto.resumo)
 							</pre>
 						</div>
-					</div>
-					
-					<div class="row">
-						<div class="span5">
-							<h3 class="page-header">Introdução:</h3>
-							<pre>
-								@Html(projeto.introducao)
-							</pre>
-						</div>
-					</div>
-				</div>
-				
-				<div class="span5 offset1">
-						<div class="span5">
-							<h3 class="page-header"> Fundamentação Teorica: </h3>
-							<pre>
-								@Html(projeto.fundamentacaoTeorica)
-							</pre>
-						</div>
-						
-						<div class="span5">
-							<h3 class="page-header"> Justifivativa: </h3>
-							<pre>
-								@Html(projeto.justificativa)
-							</pre>
-						</div>
-				 </div>
-				 
-				 <div class="span5">
-					<div class="row">
-						<div class="span5">
-							<h3 class="page-header">Objetivos:</h3>
-							<pre>
-								@Html(projeto.objetivos)
-							</pre>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="span5">
-							<h3 class="page-header">Referencias:</h3>
-							<pre>
-								
-								@Html(projeto.referencias)
-							</pre>
-						</div>
-					</div>
-				</div>
-								 
-				 <div class="span5 offset1">
-												
-						<div class="span5">
-							<h3 class="page-header"> Metodologia: </h3>
-							<pre>
-								@Html(projeto.metodologia)
-							</pre>
-						</div>
-				 </div>
-					
+					</div>					
 				</div>
 			</div>
 		</div>

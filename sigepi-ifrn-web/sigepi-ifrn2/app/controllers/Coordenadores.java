@@ -85,6 +85,7 @@ public class Coordenadores extends Controller{
 		AlterarUsuarioForm formulario = new AlterarUsuarioForm();
 		formulario.nome = cordenador.nome;
 		formulario.email = cordenador .email;
+		formulario.cpf = cordenador.cpf;
 		
 		return ok(views.html.Coordenadores.formularioEdicao.render(form(AlterarUsuarioForm.class).fill(formulario), cordenador, campus, areas, grupos));
 	}
@@ -108,6 +109,7 @@ public class Coordenadores extends Controller{
 		coordenador.setGrupoPesquisa(GrupoPesquisa.find.byId(Long.valueOf(form.data().get("idGrupoPesquisa"))));
 		coordenador.setNome(form.get().nome);
 		coordenador.setEmail(form.get().email);
+		coordenador.setCpf(form.get().cpf);
 		coordenador.update();
 		
 		flash().put("success", "Coordenador \""+ coordenador.nome +"\" atualizado com sucesso!");

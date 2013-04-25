@@ -92,6 +92,7 @@ public class Professores extends Controller{
 		AlterarUsuarioForm formulario = new AlterarUsuarioForm();
 		formulario.nome = professor.nome;
 		formulario.email = professor.email;
+		formulario.cpf = professor.cpf;
 		
 		return ok(views.html.Professor.formularioEdicao.render(form(AlterarUsuarioForm.class).fill(formulario), professor, campus, areas, grupos));
 	}
@@ -115,6 +116,7 @@ public class Professores extends Controller{
 		professor.setGrupoPesquisa(GrupoPesquisa.find.byId(Long.valueOf(form.data().get("idGrupoPesquisa"))));
 		professor.setNome(form.get().nome);
 		professor.setEmail(form.get().email);
+		professor.setCpf(form.get().cpf);
 		
 		Long idCampus = Long.valueOf(form.data().get("idCampus"));
 		

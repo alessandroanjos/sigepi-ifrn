@@ -24,15 +24,16 @@ GET     /sobre/sigepi/processo-de-software                              controll
 # Web Service
 GET /ola                             									ws.Servico.ola
 GET /usuario-hello                   									ws.Usuario.sayHello(id: Long)
-
+GET /editais															ws.Servico.getEditais
  
 # Web Services SERVICO
 GET   	 /ws/client/json/editais       									ws.Servico.getListaEditais
 GET    	 /ws/client/json/professor/:id/projetos-avaliar    				ws.Servico.getListaProjetosParaAvaliar(id: Long)
 GET      /ws/client/json/projetos                           			ws.Servico.getListaProjetos
-GET      /ws/client/json/professor/:id/meus-projetos                   	ws.Servico.getListaMeusProjetos(id: Long)
+GET      /ws/client/json/professor/:cpf/meus-projetos                   ws.Servico.getListaMeusProjetos(cpf: String)
 GET      /ws/client/json/professor/projeto/:id/situacao					ws.Servico.getMeuProjetoSituacao(id: Long)
-GET      /ws/client/json/campus/coordenador/:id/projetos				ws.Servico.getStatusProjetosCampus(id: Long)
+GET      /ws/client/json/campus/coordenador/:cpf/projetos				ws.Servico.getStatusProjetosCampus(cpf: String)
+GET      /ws/client/json/professor/:cpf/projetos-avaliar-cpf            ws.Servico.getListaProjetosParaAvaliarCPF(cpf: String)
 
 # Cadastro dos Usuários no Sistema
 GET     /cadastro-professor                                 			controllers.Professores.formulario()
@@ -106,7 +107,7 @@ GET     /sigepi/administracao/projetos/:id/aprovar-projeto              controll
 GET     /sigepi/administracao/projetos/aprovados						controllers.Projetos.visualizarProjetosAprovados()
 GET     /sigepi/administracao/projetos/visualizar-opiniao-avaliacao		controllers.Projetos.visualizarOpiniaoAvaliacao()
 GET     /sigepi/administracao/projetos/visualizar-bolsistas-projetos    controllers.Projetos.visualizarBolsistasProjetosSubmetidos()
-
+GET     /sigepi/administracao/projetos/:id/documento                	controllers.Projetos.getDocumento(id: Long)
 
 # Administracao dos Projetos
 GET 	/sigepi/administracao/projetos/:id/editar						controllers.Projetos.formularioEdicao(id: Long)

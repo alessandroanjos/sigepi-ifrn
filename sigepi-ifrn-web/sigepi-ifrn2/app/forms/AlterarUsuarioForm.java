@@ -11,4 +11,7 @@ public class AlterarUsuarioForm {
 	@Required(message="O campo deve ser preenchido.")
 	@Email(message="Você deve informar um email válido.")
 	public String email;
+	
+	@Required(message="O campo deve ser preenchido.")
+	public String cpf;
 }

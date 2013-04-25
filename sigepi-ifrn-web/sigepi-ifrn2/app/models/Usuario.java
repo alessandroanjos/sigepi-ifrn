@@ -48,6 +48,10 @@ public class Usuario extends Model {
 	@Email(message="Você deve informar um email válido.")
 	public String email;
 	
+	@Required(message="O campo deve ser preenchido.")
+	@Column(unique=true)
+	public String cpf;
+	
 	@ManyToOne
 	public AreaConhecimento areaConhecimento;
 	
@@ -171,6 +175,24 @@ public class Usuario extends Model {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+
+
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+
+
+
 
 	public String getChaveRedefinicaoSenha() {
 		return chaveRedefinicaoSenha;

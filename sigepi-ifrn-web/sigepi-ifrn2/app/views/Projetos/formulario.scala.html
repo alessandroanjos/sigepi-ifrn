@@ -16,7 +16,7 @@
 				<h1>Submissão de Projeto</h1>
 			</div>
 			
-			@helper.form(action = routes.Projetos.submeter(), 'style -> "margin:0;"){
+			@helper.form(action = routes.Projetos.submeter(), 'style -> "margin:0;", 'enctype -> "multipart/form-data"){
 			
 			<fieldset>
 				@helper.inputText(formulario("titulo"), 'id -> "titulo", 'class -> "span8", '_label -> "Título do Projeto: ", '_showConstraints -> false, '_showErros -> true)
@@ -37,18 +37,12 @@
 				 
 				
 				@helper.textarea(formulario("resumo"), 'id -> "resumo", 'rows -> "15", 'class -> "span10", '_label -> "Resumo: ", '_showConstraints -> false, '_showErrors -> true)
-				@helper.textarea(formulario("introducao"), 'id -> "introducao", 'rows -> "15", 'class -> "span10", '_label -> "Introdução: ", '_showConstraints -> false, '_showErrors -> true)
-				@helper.textarea(formulario("fundamentacaoTeorica"), 'id -> "fundamentacaoTeorica", 'rows -> "15", 'class -> "span10", '_label -> "Fundamentação Teórica: ", '_showConstraints -> false, '_showErrors -> true)
-				@helper.textarea(formulario("justificativa"), 'id -> "justificativa", 'rows -> "10", 'class -> "span10", '_label -> "Justificativa: ", '_showConstraints -> false, '_showErrors -> true)
-				@helper.textarea(formulario("objetivos"), 'id -> "objetivos", 'rows -> "10", 'class -> "span10", '_label -> "Objetivos: ", '_showConstraints -> false, '_showErrors -> true)
-				@helper.textarea(formulario("metodologia"), 'id -> "metodologia", 'rows -> "10", 'class -> "span10", '_label -> "Metodologia: ", '_showConstraints -> false, '_showErrors -> true)
-				@helper.textarea(formulario("referencias"), 'id -> "referencias", 'rows -> "10", 'class -> "span10", '_label -> "Referências:", '_showConstraints -> false, '_showErrors -> true)
 				
 			</fieldset>
 			
 			<fieldset>
 			
-		            <legend>Informação do Bolsista</legend>
+		            <legend>Informações do Bolsista</legend>
 		            
 		            <div id="profiles">            
 				             <div class="twipsies well ">
@@ -72,9 +66,14 @@
 		            </div>
 	            
        		 </fieldset>
-				
-				 <hr>
+  
+       			 <hr>
 				 
+				        <p>
+						    <label>Insira o Arquivo do disco:</label>
+						    <input type="file" name="arquivo">
+					    </p>
+				<hr>			
             
 		            @checkbox(
 		                formulario("accept"), 
@@ -84,7 +83,7 @@
 		            
 		            <br>
             
-        		
+        		 		
 				
 				<button type="submit" class="btn btn-primary">Submeter Projeto</button>
 				&nbsp;

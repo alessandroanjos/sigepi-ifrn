@@ -6,11 +6,17 @@ import helpers.Pontuacao.PontuacaoComparator;
 import helpers.Seguranca.Permissao;
 import helpers.Seguranca.InformacoesUsuarioHelper;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import org.apache.commons.io.IOUtils;
+
+import com.mysql.jdbc.Blob;
 
 import models.Campus;
 import models.Curso;
@@ -23,6 +29,8 @@ import models.Bolsista;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Http.MultipartFormData.FilePart;
 
 public class Projetos extends Controller{
 
@@ -134,6 +142,9 @@ public class Projetos extends Controller{
 				return badRequest(views.html.Projetos.formulario.render(form,
 						editais, cursos));
 			}
+			
+			MultipartFormData body = request().body().asMultipartFormData();
+			FilePart article = body.getFile("arquivo");	
 
 			Projeto projeto = form.get();
 			projeto.autor = InformacoesUsuarioHelper.getUsuarioLogado();
@@ -143,9 +154,25 @@ public class Projetos extends Controller{
 					.getUsuarioLogado().areaConhecimento;
 			projeto.grupoPesquisa = InformacoesUsuarioHelper.getUsuarioLogado().grupoPesquisa;
 			projeto.usuarioAvaliar = 1L;
+			projeto.usuarioAvaliarCPF = "";
 			projeto.situacao = -1;
 			projeto.curso = Curso.find.byId(idCurso);
 
+			if (article != null) {
+				System.out.println("diferente de null");
+				File file = article.getFile();
+
+				try {
+					byte barr[]= new byte[(int)file.length()];
+					//barr=b.getBytes(1,(int)b.length()); 
+					
+					 barr= IOUtils.toByteArray(new FileInputStream(file));
+					 
+					 projeto.arquivo = barr;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			projeto.save();
 
 			flash().put("success",	"Projeto \""+ projeto.titulo
@@ -188,12 +215,6 @@ public class Projetos extends Controller{
 		projeto.setCampus(Campus.find.byId(Long.valueOf(form.data().get("idCampus"))));
 		projeto.setTitulo(form.get().titulo);
 		projeto.setResumo(form.get().resumo);
-		projeto.setIntroducao(form.get().introducao);
-		projeto.setFundamentacaoTeorica(form.get().fundamentacaoTeorica);
-		projeto.setJustificativa(form.get().justificativa);
-		projeto.setObjetivos(form.get().objetivos);
-		projeto.setMetodologia(form.get().metodologia);
-		projeto.setReferencias(form.get().referencias);
 		projeto.update();
 				
 		flash().put("success", "Projeto \""+ projeto.titulo +"\" atualizado com sucesso!");
@@ -383,7 +404,10 @@ public class Projetos extends Controller{
 			Long idProfessor = Long.valueOf(form.data().get("idProfessores"));
 			Projeto projeto = Projeto.find.byId(id);
 			
+			String usuarioCPF = Usuario.find.byId(idProfessor).cpf;
+			
 			projeto.setUsuarioAvaliar(idProfessor);
+			projeto.setUsuarioAvaliarCPF(usuarioCPF);
 			
 			projeto.update();
 			
@@ -466,5 +490,16 @@ public class Projetos extends Controller{
 			return ok(views.html.Administrador.index.render());
 		}
 		return redirect(routes.Sessions.login());
+	}
+	
+	public static Result getDocumento(Long id) {
+		Projeto projeto = Projeto.find.byId(id);
+		if (projeto != null) {
+			response().setContentType("application/pdf");
+			response().setHeader("Content-disposition", "attachment; filename="+projeto.id+"-Projeto.pdf");
+			response().setHeader("Content-Length", ""+projeto.arquivo.length);
+			return ok(projeto.arquivo);
+		}
+		return badRequest("Projeto inválido!");
 	}
 }

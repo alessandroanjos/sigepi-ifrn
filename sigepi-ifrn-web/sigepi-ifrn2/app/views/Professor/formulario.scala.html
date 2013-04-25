@@ -17,6 +17,8 @@
 			@helper.form(action = routes.Professores.cadastrar(), 'style -> "margin:0;"){
 	    		@helper.inputText(formulario("nome"), 'id -> "nome", 'class -> "span5", '_label -> "Nome: ", '_showConstraints -> false, '_showErrors -> true)
 		    	@helper.inputText(formulario("email"), 'id -> "email", 'class -> "span5",  '_label -> "Email: ", '_showConstraints -> false, '_showErrors -> true)
+		    	@helper.inputText(formulario("cpf"), 'id -> "cpf", 'class -> "span5",  '_label -> "CPF: ", '_showConstraints -> false, '_showErrors -> true)
+		    	
 		    	
 		    	<div class="clearfix" id="idCurso_field">
 					<label for="idCampus">Escolha o seu Campus:</label>

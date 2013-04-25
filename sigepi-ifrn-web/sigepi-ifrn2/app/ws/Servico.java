@@ -24,6 +24,7 @@ import org.reflections.serializers.JsonSerializer;
 import com.avaje.ebean.ExpressionList;
 
 import controllers.Editais;
+import controllers.routes;
 
 //import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
@@ -35,6 +36,12 @@ import play.libs.WS.WSRequestHolder;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+/**
+ * Classe de Serviço do sistema.
+ * 
+ * @author Alessandro
+ *
+ */
 public class Servico extends Controller {
 
 	// https://api.github.com/events
@@ -63,6 +70,11 @@ public class Servico extends Controller {
 		return ok(result);
 	}
 
+
+	/**
+	 * Método de Serviço que consulta os editais no Banco.
+	 * @return um result de ObjectNode de Json
+	 */
 	public static Result getListaEditais() {
 		List<Edital> editais = Edital.find.findList();
 
@@ -74,6 +86,9 @@ public class Servico extends Controller {
 			// result.put("edital",e.getTitulo());
 			// lista.add(Json.toJson(e.getTitulo()).toString());
 			lista.add(e.getTitulo());
+			
+			
+			
 		}
 
 		JSONArray jsArray = new JSONArray(lista);
@@ -159,9 +174,45 @@ public class Servico extends Controller {
 		  return ok(result);
 	}
 	
+	/**
+	 * Consulta os projetos que o professor tem para avaliar 
+	 * @param cpf o cpf do professor
+	 * @return um result de ObjectNode de Json
+	 */
+	public static Result getListaProjetosParaAvaliarCPF(String cpf) {
+
+		try {
+			List<Projeto> projetos = Projeto.find.where()
+					.eq("usuario_avaliar_cpf", cpf).findList();
+
+			ArrayList<String> lista = new ArrayList<String>();
+
+			ObjectNode result = Json.newObject();
+
+			for (Projeto p : projetos) {
+				lista.add(p.getTitulo());
+			}
+
+			JSONArray jsArray = new JSONArray(lista);
+			result.putPOJO("projetos", jsArray.toString());
+
+			return ok(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return badRequest("Algum erro ocorreu talvez pela Url mal formada");
+		}
+	}
 	
-	public static Result getListaMeusProjetos(Long id){
+	/**
+	 * Retorna a lista de projetos que o professor já submeteu.
+	 * @param cpf o cpf do professor
+	 * @return um result de ObjectNode de Json
+	 */
+	public static Result getListaMeusProjetos(String cpf){
 		
+		try {
+		Usuario camp = Usuario.find.where().eq("cpf", cpf).findUnique();
+		Long id = camp.id;
 		List<Projeto> projetos = Projeto.find.where().eq("autor_id", id).findList();
 
 		  ArrayList<String> lista = new ArrayList<String>();
@@ -183,6 +234,11 @@ public class Servico extends Controller {
 		  result.putPOJO("projetos", jsArray.toString());
 		  
 		  return ok(result);
+		  
+		} catch (Exception e) {
+			e.printStackTrace();
+			return badRequest("Algum erro ocorreu talvez pela Url mal formada");
+		}
 	
 	}
 	
@@ -205,34 +261,86 @@ public class Servico extends Controller {
 		return ok(result);
 	}
 	
-	public static Result getStatusProjetosCampus(Long id) {
+	/**
+	 * Retorna a lista de projetos de lotação do campus do coordenador
+	 * @param cpf o cpf do coordenador
+	 * @return um result de ObjectNode de Json
+	 */
+	public static Result getStatusProjetosCampus(String cpf) {
 
-		Usuario camp = Usuario.find.where().eq("id", id).eq("is_coordenador", true).findUnique();
-		System.out.println("Campus: "+camp);
-		Long x = camp.getCampus().getId();
-		
-		
-		List<Projeto> projetos = Projeto.find.where().eq("campus_id", x).findList();
+		try {
 
-		  ArrayList<String> lista = new ArrayList<String>();
-		  
-		  ObjectNode result = Json.newObject();
+			Usuario usuario = Usuario.find.where().eq("cpf", cpf).findUnique();
+			Long id = usuario.id;
+			Usuario camp = Usuario.find.where().eq("id", id)
+					.eq("is_coordenador", true).findUnique();
+			Long x = camp.getCampus().getId();
+			List<Projeto> projetos = Projeto.find.where().eq("campus_id", x)
+					.findList();
 
-		  for (Projeto p : projetos) {
-			  
-			  if(p.getSituacao() == 1){
-				  lista.add(p.toString() + " - "+"Aprovado");
-			  } else if(p.getSituacao() == 0){
-				  lista.add(p.toString() + " - "+"Rprovado");
-			  } else {
-				  lista.add(p.toString() + " - "+"Em Avaliação");
-			  }
-		  }
+			ArrayList<String> lista = new ArrayList<String>();
 
-		  JSONArray jsArray = new JSONArray(lista);
-		  result.putPOJO("projetos", jsArray.toString());
-		  
-		  return ok(result);
+			ObjectNode result = Json.newObject();
+
+			for (Projeto p : projetos) {
+
+				if (p.getSituacao() == 1) {
+					lista.add(p.toString() + " - " + "Aprovado");
+				} else if (p.getSituacao() == 0) {
+					lista.add(p.toString() + " - " + "Rprovado");
+				} else {
+					lista.add(p.toString() + " - " + "Em Avaliação");
+				}
+			}
+
+			JSONArray jsArray = new JSONArray(lista);
+			result.putPOJO("projetos", jsArray.toString());
+
+			return ok(result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return badRequest("Algum erro ocorreu talvez pela Url mal formada");
+		}
+
+	}
+	
+	
+	public static Result getEditais() {
+
+		List<Edital> editais = Edital.find.findList();
+
+		List<String> lista = new ArrayList<String>();
+
+		ObjectNode result = Json.newObject();
+
+		for (Edital e : editais) {
+			// result.put("edital",e.getTitulo());
+			// lista.add(Json.toJson(e.getTitulo()).toString());
+			// lista.add(e.getTitulo());
+
+			StringBuffer sb = new StringBuffer();
+
+			sb.append("{");
+
+			sb.append(JSONObject.quote("edital"));
+			sb.append(":");
+			sb.append(JSONObject.quote(e.getTitulo()));
+
+			sb.append(",");
+
+			sb.append(JSONObject.quote("ID"));
+			sb.append(":");
+			sb.append(e.getId());
+
+			sb.append("}");
+
+			lista.add(sb.toString());
+		}
+
+		JSONArray jsArray = new JSONArray(lista);
+		result.putPOJO("editais", jsArray.toString());
+		return ok(result);
 	}
 	
 }

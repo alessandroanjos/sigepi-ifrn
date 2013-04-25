@@ -33,7 +33,7 @@ public class Projeto extends Model {
 	@Required(message="O campo deve ser preenchido.")
 	public String resumo;
 	
-	@Lob
+	/*@Lob
 	@Basic(fetch=FetchType.EAGER)
 	@Required(message="O campo deve ser preenchido.")
 	public String introducao;
@@ -61,7 +61,7 @@ public class Projeto extends Model {
 	@Lob
 	@Basic(fetch=FetchType.EAGER)
 	@Required(message="O campo deve ser preenchido.")
-	public String referencias;
+	public String referencias;*/
 	
 	@ManyToOne
 	public AreaConhecimento areaConhecimento;
@@ -86,6 +86,8 @@ public class Projeto extends Model {
 	
 	public Long usuarioAvaliar;
 	
+	public String usuarioAvaliarCPF;
+	
 	public int situacao;
 
 	@Required(message="O campo deve ser preenchido.")
@@ -102,6 +104,10 @@ public class Projeto extends Model {
 	
 	@ManyToOne
 	public Curso curso;
+	
+	@Lob
+	@Basic
+	public byte[] arquivo;
 
 	public Projeto(){
 		
@@ -117,6 +123,7 @@ public class Projeto extends Model {
 		this.resumo = resumo;
 	}
 
+	/*
 	public String getIntroducao() {
 		return introducao;
 	}
@@ -164,7 +171,7 @@ public class Projeto extends Model {
 	public void setReferencias(String referencias) {
 		this.referencias = referencias;
 	}
-
+*/
 	public Edital getEdital() {
 		return edital;
 	}
@@ -229,6 +236,16 @@ public class Projeto extends Model {
 		this.usuarioAvaliar = usuarioAvaliar;
 	}
 
+	public String getUsuarioAvaliarCPF() {
+		return usuarioAvaliarCPF;
+	}
+
+
+	public void setUsuarioAvaliarCPF(String usuarioAvaliarCPF) {
+		this.usuarioAvaliarCPF = usuarioAvaliarCPF;
+	}
+
+
 	public AreaConhecimento getAreaConhecimento() {
 		return areaConhecimento;
 	}
@@ -290,6 +307,15 @@ public class Projeto extends Model {
 
 	public void setSituacao(int situacao) {
 		this.situacao = situacao;
+	}
+
+	public byte[] getArquivo() {
+		return arquivo;
+	}
+
+
+	public void setArquivo(byte[] arquivo) {
+		this.arquivo = arquivo;
 	}
 
 	public static Finder<Long, Projeto> find = new Finder<Long, Projeto>(Long.class, Projeto.class);
