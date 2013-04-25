@@ -3,22 +3,24 @@ package com.sigepi.professor.banco;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sigepi.professor.modelo.Projeto;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-public class RepositorioProjeto {
+import com.sigepi.professor.modelo.Projeto;
+import com.sigepi.professor.modelo.ProjetoAvaliar;
+import com.sigepi.professor.modelo.ProjetoStatusCampus;
+
+public class RepositorioProjetoStatusCampus {
 
 	private final String NOME_BANCO = "sigepi.db";
-	private final String NOME_TABELA = "projetos";
+	private final String NOME_TABELA = "projetosStatusCampus";
 
 	private SQLiteDatabase db;
 	
-	public RepositorioProjeto(Context ctx){
+	public RepositorioProjetoStatusCampus(Context ctx){
 		db = ctx.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
 	}
 
@@ -26,32 +28,32 @@ public class RepositorioProjeto {
 		db.close();
 	}
 	
-	public int salvarLista(List<Projeto> projetos){
+	public int salvarLista(List<ProjetoStatusCampus> projetos){
 		int qtd = 0;
 		
-		for (Projeto projeto : projetos) {
-			projeto.setId(0);
-			salvar(projeto);
+		for (ProjetoStatusCampus projetoStatusCampus : projetos) {
+			projetoStatusCampus.setId(0);
+			salvar(projetoStatusCampus);
 			qtd++;
 		}
 		
 		return qtd;
 	}
 	
-	public int salvar(Projeto projeto){
-		int id = projeto.getId();
+	public int salvar(ProjetoStatusCampus projetoStatusCampus){
+		int id = projetoStatusCampus.getId();
 
 		if(id != 0)
-			atualizar(projeto);
+			atualizar(projetoStatusCampus);
 		else
-			id = inserir(projeto);
+			id = inserir(projetoStatusCampus);
 
 		return id;
 	}
 
-	private int inserir(Projeto projeto) {
+	private int inserir(ProjetoStatusCampus projetoStatusCampus) {
 		ContentValues values = new ContentValues();		
-		values.put(Projeto.PROJETO, projeto.getProjeto());
+		values.put(ProjetoAvaliar.PROJETO_AVALIAR, projetoStatusCampus.getProjetoStatusCampus());
 
 		int id = (int) inserir(values);
 		return id;
@@ -64,11 +66,11 @@ public class RepositorioProjeto {
 		return id;
 	}
 
-	private int atualizar(Projeto projeto) {
+	private int atualizar(ProjetoStatusCampus projetoStatusCampus) {
 		ContentValues values = new ContentValues();
 
-		String _id = String.valueOf(projeto.getId());
-		values.put(Projeto.PROJETO, projeto.getProjeto());
+		String _id = String.valueOf(projetoStatusCampus.getId());
+		values.put(ProjetoStatusCampus.PROJETO_STATUS_CAMPUS, projetoStatusCampus.getProjetoStatusCampus());
 				
 		String where = Projeto.ID + "=?";
 		String[] whereArgs = new String[] { _id };
@@ -89,24 +91,24 @@ public class RepositorioProjeto {
 		return db.query(NOME_TABELA, null, null, null, null, null, null);
 	}
 	
-	public List<Projeto> listarProjetos(){
+	public List<ProjetoStatusCampus> listarProjetosStatusCampus(){
 		Cursor cursor = getCursor();
-		
-		List<Projeto> listaConsulta = new ArrayList<Projeto>();
-		
+
+		List<ProjetoStatusCampus> listaProjetosStatusCampus = new ArrayList<ProjetoStatusCampus>();
+
 		if(cursor.moveToFirst()){	
 			while(!cursor.isAfterLast()) {
-				Projeto projeto = new Projeto();
-				projeto.setId(cursor.getInt(0));
-				projeto.setProjeto(cursor.getString(1));
+				ProjetoStatusCampus projetoStatusCampus = new ProjetoStatusCampus();
+				projetoStatusCampus.setId(cursor.getInt(0));
+				projetoStatusCampus.setProjetoStatusCampus(cursor.getString(1));
 
-				listaConsulta.add(projeto);
-				
+				listaProjetosStatusCampus.add(projetoStatusCampus);
+
 			    cursor.moveToNext();
 			}
 		}
 		
-		return listaConsulta;
+		return listaProjetosStatusCampus;
 	}
 	
 	public int deletarTodos(){
