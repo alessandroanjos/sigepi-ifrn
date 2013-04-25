@@ -42,17 +42,12 @@ public class ListarEditaisActivity extends Activity implements	OnItemClickListen
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editais_abertos);
-		
-		
-        
-        
 
 		listView = (ListView) findViewById(R.id.tela_edital_listview);
 		listView.setOnItemClickListener(this);
 		
 		btSalvarHistorico = (Button) findViewById(R.id.btSalvarHistorico);
 		btSalvarHistorico.setOnClickListener(btSalvarHistoricoListener);
-		
 		
 		 progressDialog = ProgressDialog.show(ListarEditaisActivity.this,
 		 "Aguarde", "Processando...");
@@ -65,10 +60,7 @@ public class ListarEditaisActivity extends Activity implements	OnItemClickListen
 		 showCustomDialog(e);
 	}
 
-	
 	  private void showCustomDialog(Edital edital) { final Dialog dialog = new
-	  
-			  
 	  Dialog(this); dialog.setContentView(R.layout.custom_dialog);
 	  dialog.setTitle("Informações do edital");
 	  
@@ -82,8 +74,8 @@ public class ListarEditaisActivity extends Activity implements	OnItemClickListen
 		  
 		  public void onClick(View v) { 
 			  dialog.dismiss();
-	     } 
-		  
+	     }
+
 	    });
 	  
 	  dialog.show(); 
@@ -97,7 +89,7 @@ public class ListarEditaisActivity extends Activity implements	OnItemClickListen
 		
 		private void exibirAlerta() {	
 			AlertDialog.Builder dialog = new AlertDialog.Builder(ListarEditaisActivity.this);
-			dialog.setMessage("Ao salvar seu historico seus dados anteriores serão perdidos. \nDeseja continuar?");
+			dialog.setMessage("Ao salvar seu histórico seus dados anteriores serão perdidos. \nDeseja continuar?");
 			
 			dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface di, int arg) {	
@@ -107,7 +99,7 @@ public class ListarEditaisActivity extends Activity implements	OnItemClickListen
 
 					Toast.makeText(ListarEditaisActivity.this, 
 							"Editais salvos: " + qtd +
-							"\nConsultas excluidas: " + qtdExcluidas, 
+							"\nEditais excluidos: " + qtdExcluidas, 
 							Toast.LENGTH_LONG).show();
 				}
 			});

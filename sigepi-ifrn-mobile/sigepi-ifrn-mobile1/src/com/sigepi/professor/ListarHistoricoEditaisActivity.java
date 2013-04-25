@@ -99,11 +99,19 @@ OnItemClickListener, Runnable {
 	};
 
 	public void run() {
-		int tipoClinica = -1;
+		
 		try {
 			listaEdital = repositorioEdital.listarEditais();
 
-			listInfoConsultas = new ArrayList<ItemListView>();		
+			listInfoConsultas = new ArrayList<ItemListView>();	
+			
+			for (Edital edital : listaEdital) {
+
+								
+				ItemListView itens = new ItemListView(edital.getTitulo());
+
+				listInfoConsultas.add(itens);
+			}
 
 			adapterListView = new AdapterListView(this, listInfoConsultas);
 			
@@ -118,7 +126,7 @@ OnItemClickListener, Runnable {
 		final RepositorioEdital rc = new RepositorioEdital(ListarHistoricoEditaisActivity.this);
 		
 		AlertDialog.Builder dialog = new AlertDialog.Builder(ListarHistoricoEditaisActivity.this);
-		dialog.setMessage("Deseja excluir todos os editais do seu histórico? \n(Essa ação não irá excluir as infomações no servidor.)");
+		dialog.setMessage("Deseja excluir todos os editais do seu histórico? \n(Essa ação não irá excluir as informações no servidor.)");
 	
 		dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface di, int arg) {
