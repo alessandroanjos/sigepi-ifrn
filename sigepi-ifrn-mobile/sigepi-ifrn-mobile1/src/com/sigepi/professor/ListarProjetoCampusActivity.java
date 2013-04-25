@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sigepi.professor.banco.RepositorioProjeto;
+import com.sigepi.professor.banco.RepositorioProjetoStatusCampus;
 import com.sigepi.professor.listview.AdapterListView;
 import com.sigepi.professor.listview.ItemListView;
 import com.sigepi.professor.modelo.Projeto;
+import com.sigepi.professor.modelo.ProjetoStatusCampus;
 import com.sigepi.professor.ws.ClientRest;
 
 import android.annotation.SuppressLint;
@@ -34,9 +36,9 @@ public class ListarProjetoCampusActivity extends Activity implements OnItemClick
 	private ProgressDialog progressDialog;
 	
 	private ArrayList<ItemListView> listInfoConsultas;
-	private List<Projeto> listaProjetos;
+	private List<ProjetoStatusCampus> listaProjetos;
 	private String cpf;
-	private RepositorioProjeto repositorioProjeto;
+	private RepositorioProjetoStatusCampus repositorioProjetoStatusCampus;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,18 +65,18 @@ public class ListarProjetoCampusActivity extends Activity implements OnItemClick
     @Override
     public void onPause(){
         super.onPause();
-        if(repositorioProjeto != null)
-        	repositorioProjeto.close();
+        if(repositorioProjetoStatusCampus != null)
+        	repositorioProjetoStatusCampus.close();
     }
 
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent intent = new Intent(ListarProjetoCampusActivity.this, BuscarProjetoCpfActivity.class);
 		Bundle param = new Bundle();
 
-		Projeto c = listaProjetos.get(arg2);
+		ProjetoStatusCampus p = listaProjetos.get(arg2);
 
-		param.putInt(Projeto.ID, c.getId()); //id da consulta no banco local
-		param.putInt(Projeto.ID_PROJETO, c.getId_projeto()); //id da consulta no servidor
+		param.putInt(ProjetoStatusCampus.ID, p.getId()); //id da consulta no banco local
+		param.putString(ProjetoStatusCampus.PROJETO_STATUS_CAMPUS, p.getProjetoStatusCampus()); //id da consulta no servidor
 		
 
 		intent.putExtras(param);
@@ -94,9 +96,9 @@ public class ListarProjetoCampusActivity extends Activity implements OnItemClick
 			listaProjetos = clienteRest.getStatusProjetosCampus(cpf);
 			listInfoConsultas = new ArrayList<ItemListView>();
 
-			for (Projeto projeto : listaProjetos) {
+			for (ProjetoStatusCampus projeto : listaProjetos) {
 
-				ItemListView itens = new ItemListView(projeto.getProjeto());
+				ItemListView itens = new ItemListView(projeto.getProjetoStatusCampus());
 
 				listInfoConsultas.add(itens);
 			}
@@ -117,9 +119,9 @@ public class ListarProjetoCampusActivity extends Activity implements OnItemClick
 		
 		dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface di, int arg) {	
-				repositorioProjeto = new RepositorioProjeto(ListarProjetoCampusActivity.this);
+				repositorioProjetoStatusCampus = new RepositorioProjetoStatusCampus(ListarProjetoCampusActivity.this);
 				//int qtdExcluidas = repositorioProjeto.deletarTodos();
-				int qtd = repositorioProjeto.salvarLista(listaProjetos);
+				int qtd = repositorioProjetoStatusCampus.salvarLista(listaProjetos);
 				
 				
 				

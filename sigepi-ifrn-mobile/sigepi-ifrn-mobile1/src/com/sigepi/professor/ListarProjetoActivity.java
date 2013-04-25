@@ -35,7 +35,7 @@ public class ListarProjetoActivity extends Activity implements OnItemClickListen
 	private ListView listView;
 	private ProgressDialog progressDialog;
 	
-	private ArrayList<ItemListView> listInfoConsultas;
+	private ArrayList<ItemListView> listInfoEditais;
 	private List<Projeto> listaProjetos;
 	private String cpf;
 	private RepositorioProjeto repositorioProjeto;
@@ -73,10 +73,10 @@ public class ListarProjetoActivity extends Activity implements OnItemClickListen
 		Intent intent = new Intent(ListarProjetoActivity.this, BuscarProjetoCpfActivity.class);
 		Bundle param = new Bundle();
 
-		Projeto c = listaProjetos.get(arg2);
+		Projeto p = listaProjetos.get(arg2);
 
-		param.putInt(Projeto.ID, c.getId()); //id da consulta no banco local
-		param.putInt(Projeto.ID_PROJETO, c.getId_projeto()); //id da consulta no servidor
+		param.putInt(Projeto.ID, p.getId()); //id da consulta no banco local
+		param.putString(Projeto.PROJETO, p.getProjeto());
 		
 
 		intent.putExtras(param);
@@ -91,20 +91,19 @@ public class ListarProjetoActivity extends Activity implements OnItemClickListen
 
 	public void run() {
 		ClientRest clienteRest = new ClientRest();
-		int tipoClinica = -1;
-
+		
 		try {
 			listaProjetos = clienteRest.getListaMeusProjetos(cpf);
-			listInfoConsultas = new ArrayList<ItemListView>();
+			listInfoEditais = new ArrayList<ItemListView>();
 
 			for (Projeto projeto : listaProjetos) {
 
 				ItemListView itens = new ItemListView(projeto.getProjeto());
 
-				listInfoConsultas.add(itens);
+				listInfoEditais.add(itens);
 			}
 			
-			adapterListView = new AdapterListView(this, listInfoConsultas);
+			adapterListView = new AdapterListView(this, listInfoEditais);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,19 +115,19 @@ public class ListarProjetoActivity extends Activity implements OnItemClickListen
 	private void exibirAlerta() {	
 		AlertDialog.Builder dialog = new AlertDialog.Builder(ListarProjetoActivity.this);
 		
-		dialog.setMessage("Ao salvar seu historico seus dados anteriores serão perdidos. \nDeseja continuar?");
+		dialog.setMessage("Ao salvar seu histórico seus dados anteriores serão perdidos. \nDeseja continuar?");
 		
 		dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface di, int arg) {	
 				repositorioProjeto = new RepositorioProjeto(ListarProjetoActivity.this);
-				//int qtdExcluidas = repositorioProjeto.deletarTodos();
+				int qtdExcluidas = repositorioProjeto.deletarTodos();
 				int qtd = repositorioProjeto.salvarLista(listaProjetos);
 				
 				
 				
 				Toast.makeText(ListarProjetoActivity.this, 
-						"Consultas salvas: " + qtd ,
-					//	"\nConsultas excluidas: " + qtdExcluidas, 
+						"Projetos salvos: " + qtd +
+						"\nProjetos excluidas: " + qtdExcluidas, 
 						Toast.LENGTH_LONG).show();
 			}
 		});

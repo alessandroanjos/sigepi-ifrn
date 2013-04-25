@@ -3,15 +3,16 @@ package com.sigepi.professor;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sigepi.professor.banco.RepositorioProjeto;
-import com.sigepi.professor.banco.RepositorioProjetoAvaliar;
+//import com.sigepi.professor.banco.RepositorioProjetoStatusCampus;
+//import com.sigepi.professor.banco.RepositorioProjetoAvaliar;
 import com.sigepi.professor.banco.RepositorioProjetoStatusCampus;
 import com.sigepi.professor.listview.AdapterListView;
 import com.sigepi.professor.listview.ItemListView;
-import com.sigepi.professor.modelo.Projeto;
-import com.sigepi.professor.modelo.ProjetoAvaliar;
+//import com.sigepi.professor.modelo.Projeto;
+//import com.sigepi.professor.modelo.ProjetoAvaliar;
 import com.sigepi.professor.modelo.ProjetoStatusCampus;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -27,6 +28,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+@SuppressLint("HandlerLeak")
 public class ListarHistoricoProjetosStatusCampusActivity extends Activity implements
 OnItemClickListener, Runnable {
 	
@@ -106,7 +108,7 @@ private void showCustomDialog(ProjetoStatusCampus p){}
 		}
 	};
 	private void exibirAlerta() {
-		final RepositorioProjetoAvaliar rc = new RepositorioProjetoAvaliar(ListarHistoricoProjetosStatusCampusActivity.this);
+		final RepositorioProjetoStatusCampus rc = new RepositorioProjetoStatusCampus(ListarHistoricoProjetosStatusCampusActivity.this);
 		
 		AlertDialog.Builder dialog = new AlertDialog.Builder(ListarHistoricoProjetosStatusCampusActivity.this);
 		dialog.setMessage("Deseja excluir todos os projetos do seu histórico? \n(Essa ação não irá excluir as informações no servidor.)");
@@ -130,6 +132,7 @@ private void showCustomDialog(ProjetoStatusCampus p){}
 		dialog.setTitle("Aviso");
 		dialog.show();
 	}
+	
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
