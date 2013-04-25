@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".ListarHistoricoProjetosStatusCampusActivity" >
+
+    <!--
+         Main ListView 
+		 Always give id value as list(@android:id/list)
+    -->
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/sigepi2" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:text="@string/lista_de_projetos"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <!--
+        <TableRow>
+        </TableRow>
+        -->
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btLimparHistorico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tableLayout1"
+        android:text="Limpar Histórico" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btLimparHistorico" >
+    </ListView>
+
+</RelativeLayout>
