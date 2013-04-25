@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sigepi.professor.banco.RepositorioProjeto;
+import com.sigepi.professor.banco.RepositorioProjetoAvaliar;
 import com.sigepi.professor.listview.AdapterListView;
 import com.sigepi.professor.listview.ItemListView;
 import com.sigepi.professor.modelo.Edital;
 import com.sigepi.professor.modelo.Projeto;
+import com.sigepi.professor.modelo.ProjetoAvaliar;
 import com.sigepi.professor.ws.ClientRest;
 
 import android.annotation.SuppressLint;
@@ -37,9 +39,9 @@ public class ListarProjetosAvaliarActivity extends Activity implements OnItemCli
 	private ProgressDialog progressDialog;
 	
 	private ArrayList<ItemListView> listInfoConsultas;
-	private List<Projeto> listaProjetos;
+	private List<ProjetoAvaliar> listaProjetosAvaliar;
 	private String cpf;
-	private RepositorioProjeto repositorioProjeto;
+	private RepositorioProjetoAvaliar repositorioProjetoAvaliar;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,22 +64,22 @@ public class ListarProjetosAvaliarActivity extends Activity implements OnItemCli
 		Thread thread = new Thread(ListarProjetosAvaliarActivity.this);
 		thread.start();
 	}
-	
+
     @Override
     public void onPause(){
         super.onPause();
-        if(repositorioProjeto != null)
-        	repositorioProjeto.close();
+        if(repositorioProjetoAvaliar != null)
+        	repositorioProjetoAvaliar.close();
     }
 
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent intent = new Intent(ListarProjetosAvaliarActivity.this, BuscarProjetoCpfActivity.class);
 		Bundle param = new Bundle();
 
-		Projeto c = listaProjetos.get(arg2);
+		ProjetoAvaliar p = listaProjetosAvaliar.get(arg2);
 
-		param.putInt(Projeto.ID, c.getId()); //id da consulta no banco local
-		param.putInt(Projeto.ID_PROJETO, c.getId_projeto()); //id da consulta no servidor
+		param.putInt(Projeto.ID, p.getId()); //id da consulta no banco local
+		param.putString(ProjetoAvaliar.PROJETO_AVALIAR, p.getProjetoAvaliar()); //id da consulta no servidor
 		
 
 		intent.putExtras(param);
@@ -94,12 +96,12 @@ public class ListarProjetosAvaliarActivity extends Activity implements OnItemCli
 		ClientRest clienteRest = new ClientRest();
 
 		try {
-			listaProjetos = clienteRest.getListaProjetosParaAvaliar(cpf);
+			listaProjetosAvaliar = clienteRest.getListaProjetosParaAvaliar(cpf);
 			listInfoConsultas = new ArrayList<ItemListView>();
 
-			for (Projeto projeto : listaProjetos) {
+			for (ProjetoAvaliar projeto : listaProjetosAvaliar) {
 
-				ItemListView itens = new ItemListView(projeto.getProjeto());
+				ItemListView itens = new ItemListView(projeto.getProjetoAvaliar());
 
 				listInfoConsultas.add(itens);
 			}
@@ -120,13 +122,13 @@ public class ListarProjetosAvaliarActivity extends Activity implements OnItemCli
 		
 		dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface di, int arg) {	
-				repositorioProjeto = new RepositorioProjeto(ListarProjetosAvaliarActivity.this);
-				//int qtdExcluidas = repositorioProjeto.deletarTodos();
-				int qtd = repositorioProjeto.salvarLista(listaProjetos);
+				repositorioProjetoAvaliar = new RepositorioProjetoAvaliar(ListarProjetosAvaliarActivity.this);
+				int qtdExcluidas = repositorioProjetoAvaliar.deletarTodos();
+				int qtd = repositorioProjetoAvaliar.salvarLista(listaProjetosAvaliar);
 				
 				Toast.makeText(ListarProjetosAvaliarActivity.this, 
-						"Projetos salvos: " + qtd ,
-					//	"\nProjetos excluidos: " + qtdExcluidas, 
+						"Projetos salvos: " + qtd +
+						"\nProjetos excluidos: " + qtdExcluidas, 
 						Toast.LENGTH_LONG).show();
 			}
 		});

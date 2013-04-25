@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
@@ -36,11 +37,33 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        ImageButton btEditais = (ImageButton) findViewById(R.id.btEditais);
+        Button btEditais = (Button) findViewById(R.id.btEditais);
         btEditais.setOnClickListener(btEditaisOnClickListener);
         
-        ImageButton btHistorico = (ImageButton) findViewById(R.id.btEditaisSalvos);
-        btHistorico.setOnClickListener(btHistoricoOnClickListener);
+        Button btHistoricoEditais = (Button) findViewById(R.id.btEditaisSalvos);
+        btHistoricoEditais.setOnClickListener(btHistoricoOnClickListener);
+        
+        Button btProjetos = (Button) findViewById(R.id.btProjetos);
+        btProjetos.setOnClickListener(btProjetosOnClickListener);
+        
+        Button btAvaliar = (Button) findViewById(R.id.btAvaliar);
+        btAvaliar.setOnClickListener(btAvaliarOnClickListener);
+        
+        Button btStatus = (Button) findViewById(R.id.btStatus);
+        btStatus.setOnClickListener(btStatusOnClickListener);
+        
+        Button btHistoricoProjetos = (Button) findViewById(R.id.btProjetosSalvos);
+        btHistoricoProjetos.setOnClickListener(btProjetosSalvosOnClickListener);
+        
+        
+        
+        
+        
+        /* ImageButton btEditais = (ImageButton) findViewById(R.id.btEditais);
+        btEditais.setOnClickListener(btEditaisOnClickListener);
+        
+        ImageButton btHistoricoEditais = (ImageButton) findViewById(R.id.btEditaisSalvos);
+        btHistoricoEditais.setOnClickListener(btHistoricoOnClickListener);
         
         ImageButton btProjetos = (ImageButton) findViewById(R.id.btProjetos);
         btProjetos.setOnClickListener(btProjetosOnClickListener);
@@ -50,6 +73,9 @@ public class MainActivity extends Activity {
         
         ImageButton btStatus = (ImageButton) findViewById(R.id.btStatus);
         btStatus.setOnClickListener(btStatusOnClickListener);
+        
+        ImageButton btHistoricoProjetos = (ImageButton) findViewById(R.id.btProjetosSalvos);
+        btHistoricoProjetos.setOnClickListener(btProjetosSalvosOnClickListener);*/
         
     }
     
@@ -84,6 +110,13 @@ public class MainActivity extends Activity {
     private OnClickListener btStatusOnClickListener = new OnClickListener() {
         public void onClick(View v) {
         	Intent it = new Intent(MainActivity.this, BuscarProjetosCampusCpfActivity.class);
+			startActivity(it);
+        }
+    };
+    
+    private OnClickListener btProjetosSalvosOnClickListener = new OnClickListener() {
+        public void onClick(View v) {
+        	Intent it = new Intent(MainActivity.this, ListarHistoricoProjetosActivity.class);
 			startActivity(it);
         }
     };
