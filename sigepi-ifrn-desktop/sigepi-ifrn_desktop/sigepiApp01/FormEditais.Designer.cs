@@ -49,16 +49,15 @@
             this.editalBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.editalDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.data_cadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usuarioTableAdapter = new sigepiApp01.sigepi2DataSetTableAdapters.usuarioTableAdapter();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.sigepi2DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editalBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editalBindingNavigator)).BeginInit();
             this.editalBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.editalDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // sigepi2DataSet
@@ -116,7 +115,7 @@
             this.editalBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.editalBindingNavigator.Name = "editalBindingNavigator";
             this.editalBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.editalBindingNavigator.Size = new System.Drawing.Size(784, 25);
+            this.editalBindingNavigator.Size = new System.Drawing.Size(617, 25);
             this.editalBindingNavigator.TabIndex = 0;
             this.editalBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -211,8 +210,8 @@
             this.editalBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("editalBindingNavigatorSaveItem.Image")));
             this.editalBindingNavigatorSaveItem.Name = "editalBindingNavigatorSaveItem";
             this.editalBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.editalBindingNavigatorSaveItem.Text = "Salvar Dados";
-            this.editalBindingNavigatorSaveItem.Click += new System.EventHandler(this.editalBindingNavigatorSaveItem_Click);
+            this.editalBindingNavigatorSaveItem.Text = "Save Data";
+            this.editalBindingNavigatorSaveItem.Click += new System.EventHandler(this.editalBindingNavigatorSaveItem_Click_1);
             // 
             // editalDataGridView
             // 
@@ -220,55 +219,53 @@
             this.editalDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.editalDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
-            this.data_cadastro,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn4});
             this.editalDataGridView.DataSource = this.editalBindingSource;
-            this.editalDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.editalDataGridView.Location = new System.Drawing.Point(0, 25);
+            this.editalDataGridView.Location = new System.Drawing.Point(0, 28);
             this.editalDataGridView.Name = "editalDataGridView";
-            this.editalDataGridView.Size = new System.Drawing.Size(784, 417);
+            this.editalDataGridView.Size = new System.Drawing.Size(614, 331);
             this.editalDataGridView.TabIndex = 1;
-            this.editalDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.editalDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "titulo";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Título do Edital";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Título";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 500;
             // 
-            // data_cadastro
+            // dataGridViewTextBoxColumn5
             // 
-            this.data_cadastro.DataPropertyName = "data_cadastro";
-            this.data_cadastro.HeaderText = "Data de cadastramento do Edital";
-            this.data_cadastro.Name = "data_cadastro";
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "descricao";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Descrição";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "data_cadastro";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Data do Cadastro";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "url";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Link";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 120;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "autor_id";
-            this.dataGridViewTextBoxColumn4.DataSource = this.usuarioBindingSource;
-            this.dataGridViewTextBoxColumn4.DisplayMember = "nome";
             this.dataGridViewTextBoxColumn4.HeaderText = "Autor";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn4.ValueMember = "id";
-            this.dataGridViewTextBoxColumn4.Width = 140;
-            // 
-            // usuarioBindingSource
-            // 
-            this.usuarioBindingSource.DataMember = "usuario";
-            this.usuarioBindingSource.DataSource = this.sigepi2DataSet;
-            // 
-            // usuarioTableAdapter
-            // 
-            this.usuarioTableAdapter.ClearBeforeFill = true;
             // 
             // FormEditais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 442);
+            this.ClientSize = new System.Drawing.Size(617, 362);
             this.Controls.Add(this.editalDataGridView);
             this.Controls.Add(this.editalBindingNavigator);
             this.Name = "FormEditais";
@@ -281,7 +278,6 @@
             this.editalBindingNavigator.ResumeLayout(false);
             this.editalBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.editalDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,10 +303,13 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton editalBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView editalDataGridView;
-        private System.Windows.Forms.BindingSource usuarioBindingSource;
-        private sigepi2DataSetTableAdapters.usuarioTableAdapter usuarioTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn data_cadastro;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+
+
+
     }
 }

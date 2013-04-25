@@ -8,3 +8,8 @@ C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-si
 C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\WS-sigepi-ifrn.dll
 C:\Users\Tarso\Desktop\sigepi-ifrn\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\WS-sigepi-ifrn.pdb
+C:\Users\Italo\Documents\Ecipse.Projets\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\bin\WS-sigepi-ifrn.dll
+C:\Users\Italo\Documents\Ecipse.Projets\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\bin\WS-sigepi-ifrn.pdb
+C:\Users\Italo\Documents\Ecipse.Projets\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Italo\Documents\Ecipse.Projets\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\WS-sigepi-ifrn.dll
+C:\Users\Italo\Documents\Ecipse.Projets\sigepi-ifrn-desktop\sigepi-ifrn_desktop\WS-sigepi-ifrn\obj\Debug\WS-sigepi-ifrn.pdb

@@ -26,10 +26,18 @@ namespace sigepiApp01
 
         private void FormEditais_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'sigepi2DataSet.usuario'. Você pode movê-la ou removê-la conforme necessário.
-            this.usuarioTableAdapter.Fill(this.sigepi2DataSet.usuario);
-            // TODO: esta linha de código carrega dados na tabela 'sigepi2DataSet.edital'. Você pode movê-la ou removê-la conforme necessário.
+            // TODO: This line of code loads data into the 'sigepi2DataSet.edital' table. You can move, or remove it, as needed.
             this.editalTableAdapter.Fill(this.sigepi2DataSet.edital);
+            // TODO: This line of code loads data into the 'sigepi2DataSet.edital' table. You can move, or remove it, as needed.
+            this.editalTableAdapter.Fill(this.sigepi2DataSet.edital);
+
+        }
+
+        private void editalBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.editalBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.sigepi2DataSet);
 
         }
 
@@ -37,5 +45,12 @@ namespace sigepiApp01
         {
 
         }
+
+        private void data_cadastroDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
