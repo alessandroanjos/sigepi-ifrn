@@ -120,15 +120,10 @@ public class BuscarProjetoCpfActivity extends Activity {
 	private Projeto montarObjetoConsulta(Bundle param) {
 		Projeto consulta = new Projeto();
 
-		consulta.setId(param.getInt(Projeto.ID)); // id da consulta no banco
-													// local
-		consulta.setId_projeto(param.getInt(Projeto.ID_PROJETO)); // id da
-																		// consulta
-																		// no
-																		// servidor
+		consulta.setId(param.getInt(Projeto.ID)); // id da consulta no banco local
+	
 		consulta.setProjeto(param.getString(Projeto.PROJETO));
 		
-
 		return consulta;
 	}
 

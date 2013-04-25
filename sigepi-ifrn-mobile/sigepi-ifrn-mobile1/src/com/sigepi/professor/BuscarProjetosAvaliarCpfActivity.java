@@ -1,6 +1,7 @@
 package com.sigepi.professor;
 
 import com.sigepi.professor.modelo.Projeto;
+import com.sigepi.professor.modelo.ProjetoAvaliar;
 import com.sigepi.professor.ws.ClientRest;
 
 import android.annotation.SuppressLint;
@@ -47,7 +48,7 @@ public class BuscarProjetosAvaliarCpfActivity extends Activity {
 		// no caso para exibir detalhes da consulta selecionada
 		paramConsulta = intent.getExtras();
 		if (paramConsulta != null) {
-			Projeto consultaAtual = montarObjetoConsulta(paramConsulta);
+			ProjetoAvaliar consultaAtual = montarObjetoConsulta(paramConsulta);
 			preencherCampos(consultaAtual);
 		}
 
@@ -117,31 +118,25 @@ public class BuscarProjetosAvaliarCpfActivity extends Activity {
 	}
 	
 	
-	private Projeto montarObjetoConsulta(Bundle param) {
-		Projeto consulta = new Projeto();
+	private ProjetoAvaliar montarObjetoConsulta(Bundle param) {
+		ProjetoAvaliar projeto = new ProjetoAvaliar();
 
-		consulta.setId(param.getInt(Projeto.ID)); // id da consulta no banco
-													// local
-		consulta.setId_projeto(param.getInt(Projeto.ID_PROJETO)); // id da
-																		// consulta
-																		// no
-																		// servidor
-		consulta.setProjeto(param.getString(Projeto.PROJETO));
-		
+		projeto.setId(param.getInt(ProjetoAvaliar.ID)); // id da consulta no banco local
+		projeto.setProjetoAvaliar(param.getString(ProjetoAvaliar.PROJETO_AVALIAR));
 
-		return consulta;
+		return projeto;
 	}
 
 	
 	
-	private void preencherCampos(Projeto c) {
+	private void preencherCampos(ProjetoAvaliar p) {
 		layoutInformacoes.setVisibility(View.VISIBLE);
 		layoutBusca.setVisibility(View.GONE);
 		isCheckSalvarConsulta.setVisibility(View.VISIBLE);
 
-		idAtual = c.getId();
+		idAtual = p.getId();
 
-		exibirNome.setText(c.getProjeto());
+		exibirNome.setText(p.getProjetoAvaliar());
 	}
 	
 

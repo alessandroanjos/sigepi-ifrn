@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sigepi.professor.modelo.Projeto;
+import com.sigepi.professor.modelo.ProjetoStatusCampus;
 
 @SuppressLint("HandlerLeak")
 public class BuscarProjetosCampusCpfActivity extends Activity {
@@ -46,7 +47,7 @@ public class BuscarProjetosCampusCpfActivity extends Activity {
 		// no caso para exibir detalhes da consulta selecionada
 		paramConsulta = intent.getExtras();
 		if (paramConsulta != null) {
-			Projeto consultaAtual = montarObjetoConsulta(paramConsulta);
+			ProjetoStatusCampus consultaAtual = montarObjetoConsulta(paramConsulta);
 			preencherCampos(consultaAtual);
 		}
 
@@ -116,30 +117,24 @@ public class BuscarProjetosCampusCpfActivity extends Activity {
 	}
 	
 	
-	private Projeto montarObjetoConsulta(Bundle param) {
-		Projeto consulta = new Projeto();
+	private ProjetoStatusCampus montarObjetoConsulta(Bundle param) {
+		ProjetoStatusCampus projeto = new ProjetoStatusCampus();
 
-		consulta.setId(param.getInt(Projeto.ID)); // id da consulta no banco
-													// local
-		consulta.setId_projeto(param.getInt(Projeto.ID_PROJETO)); // id da
-																		// consulta
-																		// no
-																		// servidor
-		consulta.setProjeto(param.getString(Projeto.PROJETO));
-		
+		projeto.setId(param.getInt(ProjetoStatusCampus.ID)); // id da consulta no banco local
+		projeto.setProjetoStatusCampus(param.getString(ProjetoStatusCampus.PROJETO_STATUS_CAMPUS));
 
-		return consulta;
+		return projeto;
 	}
 
 	
 	
-	private void preencherCampos(Projeto c) {
+	private void preencherCampos(ProjetoStatusCampus p) {
 		layoutInformacoes.setVisibility(View.VISIBLE);
 		layoutBusca.setVisibility(View.GONE);
 		isCheckSalvarConsulta.setVisibility(View.VISIBLE);
 
-		idAtual = c.getId();
+		idAtual = p.getId();
 
-		exibirNome.setText(c.getProjeto());
+		exibirNome.setText(p.getProjetoStatusCampus());
 	}
 }
