@@ -13,6 +13,13 @@ import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
+/**
+ * Classe responsável pelo projetos avaliados no sistema.
+ *
+ * @author Alessandro
+ *
+ */
+
 @Entity
 public class ProjetoAvaliado extends Model {
 	
@@ -44,8 +51,7 @@ public class ProjetoAvaliado extends Model {
 	@Max(10)
 	@Required(message="O campo deve ser preenchido. Minímo 0 Máximo 10")
 	public int execucaoProjeto;
-	
-	
+
 	public int pontuacaoObtida;
 	
 	@Lob
@@ -91,8 +97,7 @@ public class ProjetoAvaliado extends Model {
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
 	}
-	
-	
+
 	public int getRelevanciaTema() {
 		return relevanciaTema;
 	}
@@ -132,8 +137,6 @@ public class ProjetoAvaliado extends Model {
 	public void setExecucaoProjeto(int execucaoProjeto) {
 		this.execucaoProjeto = execucaoProjeto;
 	}
-
-
 	public String getComentarios() {
 		return comentarios;
 	}
@@ -142,7 +145,6 @@ public class ProjetoAvaliado extends Model {
 		this.comentarios = comentarios;
 	}
 
-
 	public String getRecomendacao() {
 		return recomendacao;
 	}
@@ -150,7 +152,6 @@ public class ProjetoAvaliado extends Model {
 	public void setRecomendacao(String recomendacao) {
 		this.recomendacao = recomendacao;
 	}
-
 
 	public static Finder<Long, ProjetoAvaliado> find = new Finder<Long, ProjetoAvaliado>(Long.class, ProjetoAvaliado.class);
 

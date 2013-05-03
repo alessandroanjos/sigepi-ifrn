@@ -1,0 +1,57 @@
+@(projetos: List[Projeto], usuarios: List[Usuario])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+@if(isLogado()) {
+     		
+		@if(getUsuarioLogado().isProfessor) {
+		  
+	 <div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem de Projetos para Avaliar</h1> 
+				
+				<div style="float:right; position:relative; top:8px;">
+					<h4>
+					   
+					  @projetos.size Projeto(s) Selecionado(s) para avaliação.
+					  
+					</h4>
+				</div>
+			</div>
+			
+			@if(projetos.size == 0) {
+				<h3>Nenhum projeto para avaliação.</h3>			
+			} else {
+				@for(projeto <- projetos) {
+				<div class="item-lista">
+					<div class="item-lista">
+						<div class="item">
+							<h2>
+								<a href="@routes.Projetos.visualizar(projeto.id)">
+									@projeto.titulo
+								</a>								       		 
+							</h2>								          					
+						</div>
+						<div style="float:right; padding-top:15px;">
+							@if(isProjetoAvaliado(projeto.id)) {
+								<span class="label label-success">Avaliado - @getProjetoAvaliado(projeto.id).pontuacaoObtida Pontos Obtidos!</span>
+							 } else {
+							    <span class="label label-important">Pendente!</span>
+					        }
+					   </div>					
+					</div>
+				</div>
+				}
+			}
+		</div>
+	</div>			
+		}		
+    }	
+
+}

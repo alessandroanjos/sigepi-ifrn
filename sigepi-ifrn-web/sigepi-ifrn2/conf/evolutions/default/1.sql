@@ -70,7 +70,7 @@ create table projeto (
   primeiro_bolsista_matricula varchar(255),
   primeiro_bolsista_ira     integer,
   curso_id                  bigint,
-  arquivo                   longblob,
+  arquivo                   LONGBLOB NOT NULL,
   constraint uq_projeto_titulo unique (titulo),
   constraint uq_projeto_primeiro_bolsista_mat unique (primeiro_bolsista_matricula),
   constraint pk_projeto primary key (id))

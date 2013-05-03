@@ -108,6 +108,7 @@ GET     /sigepi/administracao/projetos/aprovados						controllers.Projetos.visua
 GET     /sigepi/administracao/projetos/visualizar-opiniao-avaliacao		controllers.Projetos.visualizarOpiniaoAvaliacao()
 GET     /sigepi/administracao/projetos/visualizar-bolsistas-projetos    controllers.Projetos.visualizarBolsistasProjetosSubmetidos()
 GET     /sigepi/administracao/projetos/:id/documento                	controllers.Projetos.getDocumento(id: Long)
+GET     /sigepi/administracao/projetos/avaliar							controllers.Projetos.projetosAvaliar()
 
 # Administracao dos Projetos
 GET 	/sigepi/administracao/projetos/:id/editar						controllers.Projetos.formularioEdicao(id: Long)

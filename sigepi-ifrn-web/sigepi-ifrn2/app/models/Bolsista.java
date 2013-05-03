@@ -11,29 +11,30 @@ import play.db.ebean.Model.Finder;
 
 /**
  * Classe responsável pela representação dos bolsistas na base de dados.
+ *
  * @author Alessandro
  *
  */
 
 @Entity
-public class Bolsista extends Model{
-	
+public class Bolsista extends Model {
+
 	@Id
 	public Long id;
-	
+
 	@Required(message="O campo deve ser preenchido.")
 	public String nome;
-	
+
 	@Column(unique=true)
 	@Required(message="O campo deve ser preenchido.")
 	public Long matricula;
-	
+
 	@ManyToOne
 	public Curso curso;
-	
+
 	@ManyToOne
 	public Campus campus;
-	
+
 	@ManyToOne
 	public Projeto projeto;
 
@@ -84,8 +85,7 @@ public class Bolsista extends Model{
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
 	}
-	
-	
+
 	public static Finder<Long, Bolsista> find = new Finder<Long, Bolsista>(Long.class, Bolsista.class);
 
 }

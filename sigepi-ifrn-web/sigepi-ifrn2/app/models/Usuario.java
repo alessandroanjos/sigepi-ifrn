@@ -83,11 +83,6 @@ public class Usuario extends Model {
 		
 	}
 	
-	
-	
-	
-	
-	
 	public List<Projeto> getProjeto() {
 		return projetos;
 	}
@@ -126,14 +121,6 @@ public class Usuario extends Model {
 
 	public void setAdministrador(boolean isAdministrador) {
 		this.isAdministrador = isAdministrador;
-	}
-
-	public static Finder<Long, Usuario> getFind() {
-		return find;
-	}
-
-	public static void setFind(Finder<Long, Usuario> find) {
-		Usuario.find = find;
 	}
 
 	public Long getId() {
@@ -180,19 +167,9 @@ public class Usuario extends Model {
 		return cpf;
 	}
 
-
-
-
-
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
-
-
-
-
 
 	public String getChaveRedefinicaoSenha() {
 		return chaveRedefinicaoSenha;
@@ -238,11 +215,6 @@ public class Usuario extends Model {
 		return progresso;
 	}
 
-
-
-
-
-
 	public void setProgresso(List<ProjetoAvaliado> progresso) {
 		this.progresso = progresso;
 	}
@@ -250,11 +222,6 @@ public class Usuario extends Model {
 	public AreaConhecimento getAreaConhecimento() {
 		return areaConhecimento;
 	}
-
-
-
-
-
 
 	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
 		this.areaConhecimento = areaConhecimento;
@@ -264,18 +231,11 @@ public class Usuario extends Model {
 		return grupoPesquisa;
 	}
 
-
-
-
-
-
 	public void setGrupoPesquisa(GrupoPesquisa grupoPesquisa) {
 		this.grupoPesquisa = grupoPesquisa;
 	}
 
 	public static Finder<Long, Usuario> find = new Finder<Long, Usuario>(Long.class, Usuario.class);
-
-	
 	
 	/**
 	 * Método <strong>Save()</strong> sobrescrito para criptografar 

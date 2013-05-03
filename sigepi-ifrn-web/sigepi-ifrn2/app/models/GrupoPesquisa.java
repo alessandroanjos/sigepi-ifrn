@@ -12,12 +12,17 @@ import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
+/**
+ * Classe que representa os grupos de pesquisa no sistema. 
+ * @author Alessandro
+ *
+ */
 @Entity
 public class GrupoPesquisa extends Model {
-	
+
 	@Id
 	public Long id;
-	
+
 	@Column(unique=true)
 	@Required(message="O campo deve ser preenchido.")
 	public String nome;
@@ -30,9 +35,7 @@ public class GrupoPesquisa extends Model {
 	
 	@OneToMany
 	public List<Projeto> projetos;
-	
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -49,7 +52,6 @@ public class GrupoPesquisa extends Model {
 		this.nome = nome;
 	}
 
-	
 	public Campus getCampus() {
 		return campus;
 	}
@@ -57,7 +59,6 @@ public class GrupoPesquisa extends Model {
 	public void setCampus(Campus campus) {
 		this.campus = campus;
 	}
-
 
 	public List<Usuario> getUsuarios() {
 		return usuarios;
@@ -67,7 +68,6 @@ public class GrupoPesquisa extends Model {
 		this.usuarios = usuarios;
 	}
 
-
 	public List<Projeto> getProjetos() {
 		return projetos;
 	}
@@ -76,9 +76,6 @@ public class GrupoPesquisa extends Model {
 		this.projetos = projetos;
 	}
 
-
 	public static Finder<Long, GrupoPesquisa> find = new Finder<Long, GrupoPesquisa>(Long.class, GrupoPesquisa.class);
-	
-	
 
 }

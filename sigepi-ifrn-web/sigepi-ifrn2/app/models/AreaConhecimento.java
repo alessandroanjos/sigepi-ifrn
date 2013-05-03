@@ -10,16 +10,23 @@ import javax.persistence.OneToMany;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
+/**
+ * Classe responsável pelas áreas de conhecimento do sistema.
+ *
+ * @author Alessandro
+ *
+ */
+
 @Entity
 public class AreaConhecimento extends Model{
 
 	@Id
 	public Long id;
-	
+
 	@Column(unique=true)
 	@Required(message="O campo deve ser preenchido.")
 	public String nome;
-	
+
 	@OneToMany
 	public List<Usuario> usuarios;
 

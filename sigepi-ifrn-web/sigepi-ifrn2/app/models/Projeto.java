@@ -107,11 +107,14 @@ public class Projeto extends Model {
 	
 	@Lob
 	@Basic
+	@Column(name = "arquivo", columnDefinition = "LONGBLOB NOT NULL")
+	@Required(message="Não feito o uploud do arquivo.")
 	public byte[] arquivo;
 
 	public Projeto(){
 		
 		this.progressoProjeto = new ArrayList<ProjetoAvaliado>();
+		arquivo = new byte[25 * 1024 * 1024];
 	}
 
 

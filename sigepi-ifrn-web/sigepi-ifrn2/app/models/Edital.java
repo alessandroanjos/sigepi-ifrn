@@ -20,6 +20,12 @@ import org.hibernate.validator.constraints.URL;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
+/**
+ * Classe que representa os editais no sistema.
+ *
+ * @author Alessandro
+ *
+ */
 @Entity
 public class Edital extends Model{
 
@@ -96,7 +102,6 @@ public class Edital extends Model{
 		this.url = url;
 	}
 
-
 	public String getDescricao() {
 		return descricao;
 	}
@@ -104,7 +109,6 @@ public class Edital extends Model{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
 
 	public static Finder<Long, Edital> find = new Finder<Long, Edital>(Long.class, Edital.class);
 }
