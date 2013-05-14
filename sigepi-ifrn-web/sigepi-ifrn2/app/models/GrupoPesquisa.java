@@ -13,7 +13,8 @@ import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
 /**
- * Classe que representa os grupos de pesquisa no sistema. 
+ * Classe que representa os grupos de pesquisa no sistema.
+ *
  * @author Alessandro
  *
  */

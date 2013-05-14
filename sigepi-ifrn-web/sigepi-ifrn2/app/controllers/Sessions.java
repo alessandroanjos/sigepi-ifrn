@@ -15,11 +15,12 @@ import play.mvc.Result;
  * 
  * @author Alessandro
  */
-
 public class Sessions extends Controller {
-	
+
 	/**
-	 * Metodo para abrir a tela de Login
+	 * Metodo para abrir a tela de Login.
+	 *
+	 * @return
 	 */
 	public static Result login() {
 	
@@ -27,23 +28,25 @@ public class Sessions extends Controller {
 	}
 
 	/**
-	 * Metodo para efetuar o login
+	 * Metodo para efetuar o login.
+	 *
+	 * @return
+	 * @throws NoSuchAlgorithmException
 	 */
 	public static Result efetuarLogin() throws NoSuchAlgorithmException {
-		
+
 		Form<LoginForm> loginForm = form(LoginForm.class).bindFromRequest();
 		String login = loginForm.field("login").value();
-		
+
 		System.out.println("LOGIN:"+login);
 		if (loginForm.hasErrors()) {
 			flash("error","Login ou Senha Inválida(s). Tente novamente!");
 			return redirect(routes.Sessions.login());
 		} else {
 			Usuario usuario = Usuario.find.where().ilike("login", login).findUnique();
-			
-			
+
 				session().put("usuarioLogadoID", usuario.id.toString());
-				
+
 				if (usuario.isProfessor)
 					return redirect(controllers.routes.Professores.index());
 				else if(usuario.isAvaliador){
@@ -55,17 +58,15 @@ public class Sessions extends Controller {
 				}
 				else
 					return redirect(controllers.routes.Application.index());
-			
 		}
 	}
-	
-	
-	
+
 	/**
-	 * Metodo para efetuar o logout
+	 * Metodo para efetuar o logout.
+	 *
+	 * @return
 	 */
 	public static Result efetuarlogout() {
-		
 		session().clear();
         flash("success", "Logout realizado com sucesso!");
         return redirect( routes.Sessions.login());

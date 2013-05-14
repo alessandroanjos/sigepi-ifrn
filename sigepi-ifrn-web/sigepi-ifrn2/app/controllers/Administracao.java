@@ -3,11 +3,19 @@ package controllers;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+/**
+ * Classe controladora do Administrador.
+ *
+ * @author Alessandro
+ *
+ */
 public class Administracao extends Controller{
 
 	/**
-     * Area de incio do Administrador
-     */
+	 * Retorna a área de início do Administrador.
+	 *
+	 * @return
+	 */
 	@helpers.Seguranca.Permissao("Administrador")
 	public static Result index(){
         return ok(views.html.Administrador.index.render());

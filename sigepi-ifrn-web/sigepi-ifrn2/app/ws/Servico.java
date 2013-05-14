@@ -37,8 +37,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 /**
- * Classe de Serviço do sistema.
- * 
+ * Classe reponsável pelo Serviço Web do sistema para utilização no Dispositivo Móvel.
+ *
  * @author Alessandro
  *
  */
@@ -70,30 +70,24 @@ public class Servico extends Controller {
 		return ok(result);
 	}
 
-
 	/**
-	 * Método de Serviço que consulta os editais no Banco.
+	 * Método de Serviço que consulta os editais na base de dados.
+	 *
 	 * @return um result de ObjectNode de Json
 	 */
 	public static Result getListaEditais() {
 		List<Edital> editais = Edital.find.findList();
-
 		List<String> lista = new ArrayList<String>();
-
 		ObjectNode result = Json.newObject();
 
 		for (Edital e : editais) {
 			// result.put("edital",e.getTitulo());
 			// lista.add(Json.toJson(e.getTitulo()).toString());
 			lista.add(e.getTitulo());
-			
-			
-			
 		}
 
 		JSONArray jsArray = new JSONArray(lista);
 		result.putPOJO("editais", jsArray.toString());
-
 		return ok(result);
 	}
 
@@ -175,9 +169,10 @@ public class Servico extends Controller {
 	}
 	
 	/**
-	 * Consulta os projetos que o professor tem para avaliar 
+	 * Consulta os projetos que o professor tem para avaliar.
+	 *
 	 * @param cpf o cpf do professor
-	 * @return um result de ObjectNode de Json
+	 * @return um result de ObjectNode no formato Json
 	 */
 	public static Result getListaProjetosParaAvaliarCPF(String cpf) {
 
@@ -205,8 +200,9 @@ public class Servico extends Controller {
 	
 	/**
 	 * Retorna a lista de projetos que o professor já submeteu.
+	 *
 	 * @param cpf o cpf do professor
-	 * @return um result de ObjectNode de Json
+	 * @return um result de ObjectNode no envolepe Json
 	 */
 	public static Result getListaMeusProjetos(String cpf){
 		
@@ -262,9 +258,10 @@ public class Servico extends Controller {
 	}
 	
 	/**
-	 * Retorna a lista de projetos de lotação do campus do coordenador
+	 * Retorna a lista de projetos de lotação do campus do coordenador.
+	 *
 	 * @param cpf o cpf do coordenador
-	 * @return um result de ObjectNode de Json
+	 * @return um result de ObjectNode no formato Json.
 	 */
 	public static Result getStatusProjetosCampus(String cpf) {
 
@@ -302,10 +299,8 @@ public class Servico extends Controller {
 			e.printStackTrace();
 			return badRequest("Algum erro ocorreu talvez pela Url mal formada");
 		}
-
 	}
-	
-	
+
 	public static Result getEditais() {
 
 		List<Edital> editais = Edital.find.findList();

@@ -16,27 +16,24 @@ import play.mvc.Result;
  * @author Alessandro
  *
  */
-
 public class AreaConhecimentoController extends Controller {
 
 	/**
 	 * Método de início irá listas todas as áreas de conhecimento.
+	 *
 	 * @return as áreas renderizadas.
 	 */
 	public static Result index() {
-		
 		List<AreaConhecimento> areas = AreaConhecimento.find.findList();
-		
 		return ok(views.html.AreaConhecimento.index.render(areas));
-		
 	}
 
 	/**
 	 * Visualizar uma área de conhecimento.
+	 *
 	 * @param id
 	 * @return uma área de conhecimento.
 	 */
-
 	public static Result visualizar(Long id) {
 
 		AreaConhecimento area = AreaConhecimento.find.byId(id);
@@ -49,9 +46,9 @@ public class AreaConhecimentoController extends Controller {
 	
 	/**
 	 * Abrir o formulario do cadastro de nova área de conhecimento.
+	 *
 	 * @return um form de Campus.
 	 */
-
 	@Permissao("Administrador")
 	public static Result formulario() {	
 		return ok(views.html.AreaConhecimento.formulario.render(form(AreaConhecimento.class)));
@@ -59,9 +56,9 @@ public class AreaConhecimentoController extends Controller {
 	
 	/**
 	 * Cadastra uma nova área de conhecimento.
+	 *
 	 * @return
 	 */
-
 	@Permissao("Administrador")
 	public static Result cadastrar() {
 
@@ -74,21 +71,19 @@ public class AreaConhecimentoController extends Controller {
 		}
 
 		AreaConhecimento area = form.get();
-		/* campus.autor = InformacoesUsuarioHelper.getUsuarioLogado(); */
 		area.save();
 
-		flash().put("success",
-				"Área \"" + area.nome + "\" Cadastrado com Sucesso!");
+		flash().put("success", "Área \"" + area.nome + "\" Cadastrado com Sucesso!");
 
 		return redirect(routes.AreaConhecimentoController.index());
 	}
-	
+
 	/**
 	 * Atualiza uma área de conhecimento.
+	 *
 	 * @param id
 	 * @return
 	 */
-
 	public static Result editar(Long id) {
 
 		Form<AreaConhecimento> form = form(AreaConhecimento.class).bindFromRequest();
@@ -109,26 +104,25 @@ public class AreaConhecimentoController extends Controller {
 
 	/**
 	 * Abre um formulário para a atualização da área de conhecimento.
+	 *
 	 * @param id
 	 * @return
 	 */
 	public static Result formularioEdicao(Long id) {
-		
 		AreaConhecimento area = AreaConhecimento.find.byId(id);
 		if(area == null){
 			flash().put("error", "A Área informada não foi encontrada no Sistema.");
 			return redirect(routes.AreaConhecimentoController.index());
 		}
 		return ok(views.html.AreaConhecimento.formularioEdicao.render(form(AreaConhecimento.class).fill(area), area));
-	
 	}
-	
+
 	/**
-	 * Exlui uma área de conhecimento.
+	 * Exlui uma área de conhecimento da base de dados.
+	 *
 	 * @param id
 	 * @return
 	 */
-
 	public static Result deletar(Long id) {
 		AreaConhecimento area = AreaConhecimento.find.byId(id);
 		if (area == null) {
@@ -139,8 +133,6 @@ public class AreaConhecimentoController extends Controller {
 			area.delete();
 			flash().put("success", "Área \"" + area.nome + "\" excluída com sucesso!");
 		}
-
 		return redirect(routes.AreaConhecimentoController.index());
 	}
-
 }

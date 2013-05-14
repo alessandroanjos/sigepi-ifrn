@@ -18,6 +18,12 @@ import play.data.validation.Constraints.Min;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
+/**
+ * Classe que representa o Projeto na base de dados.
+ * 
+ * @author Alessandro
+ *
+ */
 @Entity
 public class Projeto extends Model {
 

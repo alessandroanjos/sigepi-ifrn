@@ -5,7 +5,7 @@ import play.mvc.Result;
 
 /**
  * Classe controladora das páginas de Sobre.
- * 
+ *
  * @author Alessandro
  *
  */
@@ -13,6 +13,7 @@ import play.mvc.Result;
 public class Sobre extends Controller{
 	/**
 	 * Chama o método oProjeto.
+	 *
 	 * @return
 	 */
 	public static Result index(){
@@ -21,6 +22,7 @@ public class Sobre extends Controller{
 	
 	/**
 	 * Renderiza a página de manual.
+	 *
 	 * @return
 	 */
 		
@@ -30,6 +32,7 @@ public class Sobre extends Controller{
 	
 	/**
 	 * renderiza a página de equipe do sigepi.
+	 *
 	 * @return
 	 */
 	
@@ -39,6 +42,7 @@ public class Sobre extends Controller{
 	
 	/**
 	 * Renderiza a página da equipe da reitoria.
+	 *
 	 * @return
 	 */
 	public static Result equipeProReitoria() {
@@ -48,6 +52,7 @@ public class Sobre extends Controller{
 	
 	/**
 	 * Renderiza a página do projeto.
+	 *
 	 * @return
 	 */
 	public static Result oProjeto() {
@@ -56,6 +61,7 @@ public class Sobre extends Controller{
 	
 	/**
 	 * Renderiza a página do Processo de Software.
+	 *
 	 * @return
 	 */
 	public static Result oProcessoDeSoftware(){

@@ -12,6 +12,7 @@ import play.db.ebean.Model;
 
 /**
  * Classe que representa os campus do IFRN no sitema.
+ *
  * @author Alessandro
  *
  */
