@@ -47,7 +47,7 @@ public class AreaConhecimentoController extends Controller {
 	/**
 	 * Abrir o formulario do cadastro de nova área de conhecimento.
 	 *
-	 * @return um form de Campus.
+	 * @return
 	 */
 	@Permissao("Administrador")
 	public static Result formulario() {	
@@ -81,9 +81,10 @@ public class AreaConhecimentoController extends Controller {
 	/**
 	 * Atualiza uma área de conhecimento.
 	 *
-	 * @param id
+	 * @param id o id da area de conhecimento
 	 * @return
 	 */
+	@Permissao("Administrador")
 	public static Result editar(Long id) {
 
 		Form<AreaConhecimento> form = form(AreaConhecimento.class).bindFromRequest();
@@ -105,9 +106,10 @@ public class AreaConhecimentoController extends Controller {
 	/**
 	 * Abre um formulário para a atualização da área de conhecimento.
 	 *
-	 * @param id
+	 * @param id o id da área de conhecimento
 	 * @return
 	 */
+	@Permissao("Administrador")
 	public static Result formularioEdicao(Long id) {
 		AreaConhecimento area = AreaConhecimento.find.byId(id);
 		if(area == null){
@@ -120,9 +122,10 @@ public class AreaConhecimentoController extends Controller {
 	/**
 	 * Exlui uma área de conhecimento da base de dados.
 	 *
-	 * @param id
+	 * @param id o id da área de conhecimento
 	 * @return
 	 */
+	@Permissao("Administrador")
 	public static Result deletar(Long id) {
 		AreaConhecimento area = AreaConhecimento.find.byId(id);
 		if (area == null) {

@@ -7,72 +7,53 @@
 
 @main {
 
-<div class="row">
-		<div class="span12">
-			<div class="page-header" style="overflow:hidden;">
-				<h1 class="pull-left">
-					@projeto.titulo
-					<small> 
-						- @projeto.edital.getTitulo <br/>
+    @if(isLogado()) {
 
+	<div class="row">
+	  <div class="span8">
+		<div class="page-header">
+			<h1>@projeto.titulo
+
+			<small>
+				- @projeto.edital.getTitulo <br/>
 						
-						<br/>
-					@*	<span class="label label-info">Nível: @exercicio.nivelExercicio</span>  *@
-					@*	<span class="badge badge-inverse">@exercicio.pontuacao Pontos</span> *@
-					
-					@if(isProjetoAvaliado(projeto.id)) {
-								<span class="label label-success">Avaliado - @getProjetoAvaliado(projeto.id).pontuacaoObtida Pontos Obtidos!</span>
-					 } else {
-							    <span class="label label-important">Pendente!</span>
-					        }
-					        
-					 	
-					</small>
-					
-						
-				</h1>
-				
-				@if(isLogado()) {
-					@if(getUsuarioLogado().isAdministrador) {
-					<div style="float:right; position:relative; top:8px;">
-						<a href="@routes.Projetos.editar(projeto.id)" class="btn"><i class="icon-edit"></i> Editar</a>
-						<a href="@routes.Projetos.deletar(projeto.id)" onclick="return confirm('Deseja realmente excluir o projeto &quot;@projeto.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
-						}
-					
-					@if(getUsuarioLogado().isGestor || getUsuarioLogado().isAdministrador || getUsuarioLogado().isProfessor) {
-					 <div style=" position:relative; top:35px;">
-					    <a href="@routes.Projetos.formularioAvaliacao(projeto.id)" class="btn btn-danger"><i class="icon-edit"></i> Avaliar esse Projeto </a>
-					    
-					    
-						<a href="@routes.Projetos.getDocumento(projeto.id)" class="btn btn-primary"> <i class="icon-white icon-download-alt"> </i>Faça o Download do Arquivo PDF</a>
-					    
-					 </div>
-					 <br>
-					 <br>
-					 <br>
-					 <br>
-					 }
-					
-					
-					
-				}
-				
-			
-			<div class="row">
-				<div class="span5">
-					
-					<div class="row">
-						<div class="span5">
-							<h3 class="page-header">Resumo:</h3>
-							<pre>
-								@Html(projeto.resumo)
-							</pre>
-						</div>
-					</div>					
-				</div>
-			</div>
+				  @if(isProjetoAvaliado(projeto.id)) {
+						<span class="label label-success">Avaliado - @getProjetoAvaliado(projeto.id).pontuacaoObtida Pontos Obtidos!</span>
+				  } else {
+					    <span class="label label-important">Pendente!</span>
+				  }
+			</small>
+			 </h1>
 		</div>
-	</div>	
 
-
+		<p> 
+		  @if(isLogado()) {
+			<p>
+				<h4> Resumo:</h4>
+			</p>
+				<div class="row" >
+			       	<div class="span7 well pull-left" >			
+						<div style="height:300px; position:relative;" >
+							@Html(projeto.resumo)
+						</div>
+					</div>
+				</div>
+			}
+		</p>
+	</div>
+		<div class="span3">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<p><li class="nav-header">Ações</li></p>
+							@if(getUsuarioLogado().isAdministrador) {
+								<a href="@routes.Projetos.editar(projeto.id)" class="btn"><i class="icon-edit"></i> Editar</a>
+								<a href="@routes.Projetos.deletar(projeto.id)" onclick="return confirm('Deseja realmente excluir o projeto &quot;@projeto.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a> <br /> <br />
+							}
+						<a href="@routes.Projetos.formularioAvaliacao(projeto.id)" class="btn btn-danger"><i class="icon-edit"></i> Avaliar esse Projeto </a><br /><br />
+						<a href="@routes.Projetos.getDocumento(projeto.id)" class="btn btn-primary"> <i class="icon-white icon-download-alt"> </i>Faça o Download do Arquivo PDF</a><br />
+					</ul>
+				</div>
+		</div>
+	   }
+	</div>
 }

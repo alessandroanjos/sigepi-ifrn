@@ -44,9 +44,21 @@
 						</div>						
 						
 						<div style="float:right; padding-top:15px;">
+												
+						 @if(isProjetoAprovado(projeto.id)) {
+								<span class="label label-success">Aprovado!</span>
+					     } 
+					     
+					     @if(isProjetoReprovado(projeto.id)) {
+								<span class="label label-important">Reprovado!</span>
+					     } 
+					     
+					     @if(isProjetoEmAvaliacao(projeto.id)) {
+							   <span class="label label-info">Em Avaliação!</span>
+					     } 
 						</div>						
 					</div>
-				   <hr>
+				  
 				</div>
 
 			}

@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import models.Edital;
+import models.Projeto;
+import models.ProjetoAvaliado;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -130,11 +132,31 @@ public class Editais extends Controller{
 	@Permissao("Administrador")
 	public static Result deletar(Long id){
 		Edital edital = Edital.find.byId(id);
+		List<Projeto> projetos = Projeto.find.where().eq("situacao", -1).findList();
+
 		if(edital == null){
 			flash().put("error", "O Edital informado não foi encontrado no Sistema.");
-		}else if(edital.projetos.size() > 0 ){
+			//caso precise que o edital seja excluído apenas quando todos os projetos tenham sido aprovados ou reprovados
+			//utilizaria o código abaixo:
+
+		}else if(projetos.size() > 0 ){
 			flash().put("error", "O Edital não pode ser excluído, pois existem projetos em andamento para esse edital!");
 		}else {
+
+			//primeiro deletar todos os projetos que foram avaliados
+			List<ProjetoAvaliado> projetoAvaliados = ProjetoAvaliado.find.where().findList();
+    		for (ProjetoAvaliado p: projetoAvaliados){
+    			 p.delete();
+    		}
+
+    		//segundo deletar os projetos que são do edital informado.
+    		List<Projeto> projetosSubmetidosEdital = Projeto.find.where().eq("edital_id", id).findList(); //todos os projetos submetidos pelo edital que eu quero excluir	
+			for (Projeto projeto : projetosSubmetidosEdital) {
+				//terceiro eu excluo um por um os projetos do edital
+				projeto.delete();
+			}
+
+			//quarto eu deleto o edital
 			edital.delete();
 			flash().put("success", "Edital \""+ edital.titulo +"\" excluído com sucesso!");
 		}

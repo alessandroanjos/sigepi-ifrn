@@ -1,6 +1,5 @@
 @(projetosAvaliados: List[ProjetoAvaliado])
 
-
 @import tags._
 @import helper._
 @import helpers.Seguranca.InformacoesUsuarioHelper._
@@ -11,7 +10,6 @@
 			<div class="page-header" style="overflow:hidden;">
 				<h1 style="float:left;"> Opinião dos Projetos Avaliados</h1>
 			</div>
-			
 			 @if(projetosAvaliados.size == 0) {
 				<h3>Nenhum projeto foi avaliado até o momento.</h3>			
 			} else {
@@ -27,16 +25,14 @@
                 </tr>
               </thead>
               <tbody>
-              
-            
-              
+
                	@for(projetoA <- projetosAvaliados) {
                 <tr>
-               		<td >	@projetoA.projeto.getEdital.getTitulo</td>
-               		<td > @projetoA.projeto.getTitulo</td>
-               		<td> @projetoA.usuario.getNome </td>               		
-               	    <td >@projetoA.pontuacaoObtida Pontos</td> 
-               	    <td >@projetoA.recomendacao</td> 
+               		<td>@projetoA.projeto.getEdital.getTitulo</td>
+               		<td>@projetoA.projeto.getTitulo</td>
+               		<td>@projetoA.usuario.getNome</td>               		
+               	    <td>@projetoA.pontuacaoObtida Pontos</td> 
+               	    <td>@projetoA.recomendacao</td> 
                	    <td style="width:35%;">@Html(projetoA.comentarios)</td> 
                 </tr>
 				}

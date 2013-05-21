@@ -29,6 +29,7 @@ public class Cursos extends Controller{
 
 	/**
 	 * Visualizar um curso.
+	 *
 	 * @param id
 	 * @return um curso.
 	 */

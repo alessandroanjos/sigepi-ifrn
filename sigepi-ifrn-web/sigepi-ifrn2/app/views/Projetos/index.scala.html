@@ -4,14 +4,11 @@
 @import helper._
 @import helpers.Seguranca.InformacoesUsuarioHelper._
 
-
 @main {
 
-
 @if(isLogado()) {
-      @if(getUsuarioLogado().isAdministrador) {
-								
-						
+      @if(getUsuarioLogado().isAdministrador) {	
+
 <div class="row">
 		<div class="span12">
 			<div class="page-header" style="overflow:hidden;">
@@ -24,8 +21,7 @@
 					  
 					</h4>
 				</div>
-			</div>			
-			
+			</div>
 			@if(projetos.size == 0) {
 				<h3>Nenhum projeto novo foi submetido.</h3>			
 			} else {
@@ -43,10 +39,8 @@
 									</small>
 								</a>
 							</h2>												
-						</div>						
-						
-						<div style="float:right; padding-top:15px;">							
-							
+						</div>
+						<div style="float:right; padding-top:15px;">
 							<div class="clearfix" id="idCampus_field">
 					             <label for="idProfessores">Professores:</label>
 					               <div class="input">
@@ -57,7 +51,6 @@
 
 										      <option value="@professor.id">@professor.nome</option>
 										  } 
-
 										}
 						            </select>
 						            <span class="help-inline"></span>
@@ -69,14 +62,11 @@
 					</div>
 				   <hr>
 				</div>
-				}
+				 }
 			}
 		}
 	   </div>
-	</div>	
-
+</div>
 		}
-		
-    }	
-
+    }
 }

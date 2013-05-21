@@ -21,6 +21,13 @@
 					<li class="nav-header">Avaliação</li>
 				 <li><a href="@routes.Projetos.projetosAvaliar"> Ver Projetos para Avaliar</a></li>
 				<li><a href="@routes.Projetos.meusProjetosAvaliados"> Ver Projetos já avaliados</a></li>
+				@if(getUsuarioLogado().isCoordenador) {
+				      <li class="nav-header">Bolsistas Atuais</li>
+				  <li><a href="@routes.Bolsistas.listaBolsistas">Visualizar Bolsistas</a></li>
+			      <li><a href="@routes.Bolsistas.formulario">Cadastrar Bolsista</a></li>
+					  <li class="nav-header">Candidatos à Bolsista</li>
+				  <li><a href="@routes.Projetos.visualizarBolsistasProjetosSubmetidos">Ver Bolsistas do Projetos</a></li>
+				}
 			</ul>
 		</div>
 	</div>	

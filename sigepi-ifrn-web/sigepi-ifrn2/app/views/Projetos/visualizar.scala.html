@@ -7,6 +7,7 @@
 
 @main {
 
+@**
 <div class="row">
 		<div class="span12">
 			<div class="page-header" style="overflow:hidden;">
@@ -17,24 +18,6 @@
 						<br/>				 	
 					</small>						
 				</h1>
-				
-				@if(isLogado()) {
-					@if(getUsuarioLogado().isAdministrador) {
-					<div style="float:right; position:relative; top:8px;">
-						<a href="@routes.Projetos.editar(projeto.id)" class="btn"><i class="icon-edit"></i> Editar</a>
-						<a href="@routes.Projetos.deletar(projeto.id)" onclick="return confirm('Deseja realmente excluir o projeto &quot;@projeto.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
-						}					
-					</div>
-					
-				}
-				<div style="float:left; position:relative; top:8px;">
-				
-				<p>Download do Projeto</p><br>
-					<a href="@routes.Projetos.getDocumento(projeto.id)" class="btn btn-primary"> <i class="icon-white icon-download-alt"> </i>Faça o Download do Arquivo PDF</a>
-					<br>
-					<br>
-					<br>
-				</div>
 			</div>
 			
 			<div class="row">
@@ -53,5 +36,40 @@
 			</div>
 		</div>
 	</div>	
+	
+	*@
+	
+<div class="row">
+	<div class="span8">
+		<div class="page-header">
+			<h1>@projeto.titulo
 
+			<small>
+				- @projeto.edital.getTitulo <br/>
+		    </small>
+			 </h1>
+		</div>
+
+		<p> 
+	        <p>
+			   <h4>Resumo:</h4>
+			</p>
+			<div class="row" >
+	         	<div class="span7 well pull-left" >			
+						<div style="height:300px; position:relative;" >
+							@Html(projeto.resumo)
+						</div>
+					</div>
+			</div>
+		</p>
+	</div>
+		<div class="span3">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">Ação</li><br />
+						<a href="@routes.Projetos.getDocumento(projeto.id)" class="btn btn-primary"> <i class="icon-white icon-download-alt"> </i>Faça o Download do Arquivo PDF</a><br />
+					</ul>
+				</div>
+		</div>	
+	</div>
 }

@@ -73,6 +73,7 @@ public class Projetos extends Controller{
 	 *
 	 * @return
 	 */
+	@Permissao("Administrador")	
 	public static Result listaProjetos() {
 		List<Projeto> projetos = Projeto.find.findList();
 		return ok(views.html.Projetos.listaProjetos.render(projetos));
@@ -213,9 +214,16 @@ public class Projetos extends Controller{
 				return badRequest(views.html.Projetos.formulario.render(form, editais, cursos));
 			}
 
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			flash().put("error", "Não existe editais abertos no momento! Tente Novamente!");
+			Form<Projeto> form = form(Projeto.class).bindFromRequest();
+			List<Edital> editais = Edital.find.findList();
+			List<Curso> cursos = Curso.find.findList();
+			return badRequest(views.html.Projetos.formulario.render(form, editais, cursos));
 		} catch (Exception e) {
 			e.printStackTrace();
-			flash().put("error", "Não foi possível fazer a submissão do projeto. \n Talvez alguns dos dados informados já existam na base de dados. Tente Novamente!");
+			flash().put("error", "Não foi possível fazer a submissão do projeto. \n Verifique se os dados estão realmente corretos. Tente Novamente!");
 			Form<Projeto> form = form(Projeto.class).bindFromRequest();
 			List<Edital> editais = Edital.find.findList();
 			List<Curso> cursos = Curso.find.findList();
@@ -231,11 +239,12 @@ public class Projetos extends Controller{
 	 */
 	@Permissao("Administrador")
 	public static Result formularioEdicao(Long id) {
+		
 		List<Edital> editais = Edital.find.findList();
-		List<Campus> campus  = Campus.find.findList();
+		List<Curso> cursos = Curso.find.findList();
 		Projeto projeto = Projeto.find.byId(id);
 
-		return ok(views.html.Projetos.formularioEdicao.render(form(Projeto.class).fill(projeto), editais, campus , projeto));
+		return ok(views.html.Projetos.formularioEdicao.render(form(Projeto.class).fill(projeto), editais, cursos , projeto));
 	}
 
 	/**
@@ -251,20 +260,51 @@ public class Projetos extends Controller{
 
 		if(form.hasErrors()) {
 			List<Edital> editais = Edital.find.findList();
-			List<Campus> campus  = Campus.find.findList();
+			List<Curso> cursos = Curso.find.findList();
 
 			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
-			return badRequest(views.html.Projetos.formularioEdicao.render(form, editais, campus, projeto));
+			return badRequest(views.html.Projetos.formularioEdicao.render(form, editais, cursos, projeto));
 		}
+		
+		MultipartFormData body = request().body().asMultipartFormData();
+		FilePart article = body.getFile("arquivo");	
 
 		projeto.setEdital(Edital.find.byId(Long.valueOf(form.data().get("idEdital"))));
-		projeto.setCampus(Campus.find.byId(Long.valueOf(form.data().get("idCampus"))));
+		projeto.setCurso(Curso.find.byId(Long.valueOf(form.data().get("idCurso"))));
 		projeto.setTitulo(form.get().titulo);
 		projeto.setResumo(form.get().resumo);
-		projeto.update();
+	    projeto.setPrimeiroBolsistaNome(form.get().primeiroBolsistaNome);
+	    projeto.setPrimeiroBolsistaMatricula(form.get().primeiroBolsistaMatricula);
+	    projeto.setPrimeiroBolsistaIRA(form.get().primeiroBolsistaIRA);
+	    
+	    
+		if (article != null) {
+			System.out.println("diferente de null");
+			File file = article.getFile();
 
-		flash().put("success", "Projeto \""+ projeto.titulo +"\" atualizado com sucesso!");
-		return redirect(routes.Projetos.index());
+			try {
+				byte barr[]= new byte[(int)file.length()];
+				barr= IOUtils.toByteArray(new FileInputStream(file));
+				projeto.setArquivo(barr);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		if (article != null) {
+			projeto.save();
+			flash().put("success",	"Projeto \""+ projeto.titulo + "\" atualizado com sucesso!");
+			return redirect(routes.Projetos.index());
+
+		} else {
+			List<Edital> editais = Edital.find.findList();
+			List<Curso> cursos = Curso.find.findList();
+
+			flash().put("error", "Você deve preencher todos os campos corretamente. Tente novamente!");
+			return badRequest(views.html.Projetos.formulario.render(form, editais, cursos));
+		}
+
 	}
 
 	/**
@@ -377,7 +417,7 @@ public class Projetos extends Controller{
 		projetoAvaliado.save();
 
 		flash().put("success", "Projeto \""+ projeto.titulo +"\" avaliado com sucesso!");
-		return redirect(routes.Projetos.index());
+		return redirect(routes.Application.index());
 	}
 
 	/**
@@ -548,6 +588,28 @@ public class Projetos extends Controller{
 	}
 
 	/**
+	 * Permite ao administrador reprovar um projeto.
+	 *
+	 * @param id o id do projeto.
+	 * @return
+	 */
+	@Permissao("Administrador")
+	public static Result reprovarProjeto(Long id) {
+		Projeto projeto = Projeto.find.byId(id);
+
+		if (projeto != null) {
+
+			projeto.setSituacao(0);
+			projeto.update();
+
+			flash().put("success","Projeto \"" + projeto.titulo + "\" Reprovado com sucesso!");
+			return redirect(routes.Projetos.rankingProjetos());
+		} else {
+			return redirect(routes.Administracao.index());
+		}
+	}
+
+	/**
 	 * Permite que o administrador visualize os projetos aprovados.
 	 *
 	 * @return
@@ -557,7 +619,18 @@ public class Projetos extends Controller{
 		List<Projeto> projetos = Projeto.find.where().eq("situacao", true).findList();
 		return ok(views.html.Projetos.projetosAprovados.render(projetos));
 	}
-
+	
+	/**
+	 * Permite que o administrador visualize os projetos reprovados.
+	 *
+	 * @return
+	 */
+	@Permissao("Administrador")
+	public static Result visualizarProjetosReprovados() {
+		List<Projeto> projetos = Projeto.find.where().eq("situacao", false).findList();
+		return ok(views.html.Projetos.projetosReprovados.render(projetos));
+	}
+	
 	/**
 	 * Permite que o administrador visualize a opinião dos avaliadores sobre o projeto.
 	 *

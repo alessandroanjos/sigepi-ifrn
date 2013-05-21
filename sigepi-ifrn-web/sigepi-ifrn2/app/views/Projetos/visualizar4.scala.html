@@ -1,6 +1,5 @@
 @(projetos: List[Projeto])
 
-
 @import tags._
 @import helper._
 @import helpers.Seguranca.InformacoesUsuarioHelper._
@@ -11,7 +10,6 @@
 		<div class="span12">
 			<div class="page-header" style="overflow:hidden;">
 				<h1 style="float:left;"> Meus Projetos Submetidos </h1>
-				
 							
 				@if(isLogado()) {
 					@if(getUsuarioLogado().isProfessor) {
@@ -19,8 +17,7 @@
 						<a href="@routes.Projetos.formulario" class="btn"><i class="icon-plus"></i> Submeter Novo Projeto</a>
 					</div>
 					}
-				}	
-				
+				}
 			</div>
 			
 			@if(projetos.size == 0) {
@@ -33,12 +30,11 @@
                   
                   <th>Edital</th>
                   <th>Projeto</th>
-                  <th>Situacao</th>
+                  <th>Situação</th>
                 </tr>
               </thead>
               <tbody>
-              @getUsuarioLogado().nome
-              
+
                	@for(projeto  <- projetos) {
                 <tr>
                		<td style="width:30%;">
@@ -47,12 +43,7 @@
                		<td>
                		<a href="@routes.Projetos.visualizar(projeto.id)">@projeto.getTitulo</a>               		   
                		</td>
-               		
-               		@*
-               	    <td>
-               	       @getPontuacaoProjeto(projeto.id)
-               	    </td>
-               	    *@
+
                	    <td> 
                	     @if(projeto.getSituacao == 1){               	      
                	         Aprovado               	       
@@ -70,7 +61,6 @@
                	    </td>
                 </tr>
 				}
-				
               </tbody>
             </table>
            }

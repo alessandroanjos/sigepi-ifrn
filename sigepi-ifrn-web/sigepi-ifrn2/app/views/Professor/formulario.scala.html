@@ -15,9 +15,9 @@
 			</div>
 			
 			@helper.form(action = routes.Professores.cadastrar(), 'style -> "margin:0;"){
-	    		@helper.inputText(formulario("nome"), 'id -> "nome", 'class -> "span5", '_label -> "Nome: ", '_showConstraints -> false, '_showErrors -> true)
-		    	@helper.inputText(formulario("email"), 'id -> "email", 'class -> "span5",  '_label -> "Email: ", '_showConstraints -> false, '_showErrors -> true)
-		    	@helper.inputText(formulario("cpf"), 'id -> "cpf", 'class -> "span5",  '_label -> "CPF: ", '_showConstraints -> false, '_showErrors -> true)
+	    		@helper.inputText(formulario("nome"), 'id -> "nome", 'class -> "span5", '_label -> "Nome: ", '_showConstraints -> false, '_showErrors -> true, 'placeholder -> "Seu nome:")
+		    	@helper.inputText(formulario("email"), 'id -> "email", 'class -> "span5",  '_label -> "Email: ", '_showConstraints -> false, '_showErrors -> true , 'placeholder -> "ex: email@ifrn.edu.br")
+		    	@helper.inputText(formulario("cpf"), 'id -> "cpf", 'class -> "span5",  '_label -> "CPF: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "ex: 12345678910", '_help -> "Informe o CPF sem pontos e sem traços.")
 		    	
 		    	
 		    	<div class="clearfix" id="idCurso_field">
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 				
-		    	@helper.inputText(formulario("login"), 'id -> "login", 'class -> "span5",  '_label -> "Login: ", '_showConstraints -> false, '_showErrors -> true)
+		    	@helper.inputText(formulario("login"), 'id -> "login", 'class -> "span5",  '_label -> "Login: ", '_showConstraints -> false, '_showErrors -> true, '_help -> "no mínimo 4 caracteres.")
 		    	@helper.inputPassword(formulario("senha"), 'id -> "senha", 'class -> "span5",  '_label -> "Senha: ", '_showConstraints -> false, '_showErrors -> true)
 		    	@helper.inputPassword(formulario("confirmacaoSenha"), 'id -> "confirmacaoSenha", 'class -> "span5", '_label -> "Confirme a Senha: ", '_showConstraints -> false, '_showErrors -> true)
 				

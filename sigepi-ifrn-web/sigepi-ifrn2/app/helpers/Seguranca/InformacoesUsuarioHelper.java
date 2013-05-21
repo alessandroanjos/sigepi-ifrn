@@ -170,5 +170,25 @@ public class InformacoesUsuarioHelper extends Controller {
 		}
 		
 	}
+	
+	public static Boolean isProjetoReprovado(Long id){
+		Projeto projeto = Projeto.find.byId(id);
+		//1 - Aprovado , 0 - Reprovado , -1 - Em avaliação
+		if(projeto.situacao == 0){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public static Boolean isProjetoEmAvaliacao(Long id){
+		Projeto projeto = Projeto.find.byId(id);
+		//1 - Aprovado , 0 - Reprovado , -1 - Em avaliação
+		if(projeto.situacao == -1){
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }

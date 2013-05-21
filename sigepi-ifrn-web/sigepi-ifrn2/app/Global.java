@@ -13,6 +13,11 @@ import play.api.mvc.RequestHeader;
 import play.mvc.*;
 import static play.mvc.Results.*;
 
+/**
+ * 
+ * @author Alessandro
+ *
+ */
 
 public class Global extends GlobalSettings{
 	
@@ -74,7 +79,7 @@ public class Global extends GlobalSettings{
 		
 		if (Edital.find.all().size() == 0) {
 			Edital edital = new Edital();
-			edital.titulo = "PIBITI";
+			edital.titulo = "Edital 01/2013 - PIBITI";
 			edital.descricao = "O Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte - IFRN, através da Pró-Reitoria de Pesquisa e" +
 					" Inovação torna público o presente Edital de Convocação para a apresentação de propostas de projetos de " +
 					"pesquisa e seleção de estudantes de 3º grau como bolsistas dos Programas Institucionais de Bolsas de Iniciação em Desenvolvimento " +
@@ -106,9 +111,11 @@ public class Global extends GlobalSettings{
 	    
 	  }   
  */
+	/*
 	public Result onError(RequestHeader request, Throwable t) {
 		  return internalServerError(views.html.global.error.render(t));
 	}
+	*/
 	/*
 	public Result onError(RequestHeader request, Throwable t){
 		//Logger.info("ERROR");
@@ -116,10 +123,23 @@ public class Global extends GlobalSettings{
 		return null;
 	}
 	*/
-	/*	
+	/*
 	public Result onHandlerNotFound(RequestHeader request) {
-	    return notFound((uri));
-	   return notFound(views.html.global.notFound()errors.onHandlerNotFound(request))
+	   // return notFound((uri));
+	  // return notFound(views.html.global.notFound()errors.onHandlerNotFound(request));
+		return ok(views.html.global.notFound.render(""));
 	}
 	*/
+	@Override
+	public Result onHandlerNotFound(play.mvc.Http.RequestHeader arg0) {
+		// TODO Auto-generated method stub
+		return super.onHandlerNotFound(arg0);
+		
+	}
+	
+	@Override
+	public Result onError(play.mvc.Http.RequestHeader arg0, Throwable arg1) {
+		// TODO Auto-generated method stub
+		return ok(views.html.global.error.render(arg1));
+	}
 }

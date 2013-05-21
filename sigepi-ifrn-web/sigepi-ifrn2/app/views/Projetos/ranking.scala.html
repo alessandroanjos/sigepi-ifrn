@@ -11,32 +11,24 @@
 			<div class="page-header" style="overflow:hidden;">
 				<h1 style="float:left;">Ranking dos Projetos</h1>
 			</div>
-			
-						
-						
-						
-		    					@for(edital <- editais) {
-		
-										<div class="item-lista">
-												<div class="item-lista">
-													<div class="item">
-														<h2>
-															<a href="@routes.Editais.visualizar(edital.id)">
-																 @edital.titulo
-															</a>								       		 
-														</h2>								          					
-													</div>
-													<div style="float:right; padding-top:15px;">
-														<a href="@routes.Projetos.rankingProjetosEdital(edital.id)" class="btn btn-primary"> <i class="icon-white icon-list-alt"></i> Listar</a>
-												   </div>					
-												</div>
-											</div>
-									 
-		                         }
-		                         
-		          	
-			
-			
+
+ 					@for(edital <- editais) {
+
+					<div class="item-lista">
+							<div class="item-lista">
+								<div class="item">
+									<h2>
+										<a href="@routes.Editais.visualizar(edital.id)">
+											 @edital.titulo
+										</a>								       		 
+									</h2>								          					
+								</div>
+								<div style="float:right; padding-top:15px;">
+									<a href="@routes.Projetos.rankingProjetosEdital(edital.id)" class="btn btn-primary"> <i class="icon-white icon-list-alt"></i> Listar</a>
+							   </div>					
+							</div>
+						</div>
+                   }
 			<table class="table table-bordered table-hover">
               <thead>
                 <tr>
@@ -67,20 +59,21 @@
 	               		<td style="width:15%;">@ranking._2 ponto(s)</td>
 	               		<td style="width:15%;"> 
 	               		
-	               		@if(isProjetoAprovado(ranking._1.id)){
-	               		
-	               		 Aprovado
-	               		 
-	               		 } else {
-	               		   <a href="@routes.Projetos.aprovarProjeto(ranking._1.id)" onclick="return confirm('Deseja realmente aprovar o projeto: &quot;@ranking._1.titulo&quot;?')" class="btn btn-success"> Aprovar</a>
-	               		 }
+		               		@if(isProjetoAprovado(ranking._1.id)){
+		               			 Aprovado
+		               		  }
+		               		 
+		               		 @if(isProjetoReprovado(ranking._1.id)){		               		
+		               		 	 Reprovado		               		 
+		                	 }
+		               		 
+		               		 @if(isProjetoEmAvaliacao(ranking._1.id)){
+		               		   <a href="@routes.Projetos.aprovarProjeto(ranking._1.id)" onclick="return confirm('Deseja realmente aprovar o projeto: &quot;@ranking._1.titulo&quot;?')" class="btn btn-success"> Aprovar</a> /
+		               		   <a href="@routes.Projetos.reprovarProjeto(ranking._1.id)" onclick="return confirm('Deseja realmente reprovar o projeto: &quot;@ranking._1.titulo&quot;?')" class="btn btn-danger"> Reprovar</a>
+		               		 }
 	               		</td>
-	               		
-	                
-                  @* } *@
                  </tr>
 				}
-				
               </tbody>
             </table>
 		</div>
