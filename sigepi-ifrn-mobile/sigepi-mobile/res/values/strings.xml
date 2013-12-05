@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SIGEPI</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main">SIGEPI</string>
+    
+     <!-- activity_splash -->
+    <string name="imagem_logo">SIGEPI</string>
+    <string name="carregando_splash">Carregando&#8230;</string>
+    
+    <!-- GERAL -->
+    <string name="salvar">Salvar</string>
+    <string name="ok">Ok</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <!-- GERAL-FIM -->
+    
+    <!-- INTENT -->
+    <string name="intent_extra_1">intent_1</string>
+    <string name="intent_extra_2">intent_2</string>
+    <string name="intent_extra_3">intent_3</string>
+    <!-- INTENT-FIM -->
+    
+    <!-- DIALOG -->
+    <string name="dialog_titulo">Aguarde</string>
+    <string name="dialog_mensagem">Carregando...</string>
+    <!-- DIALOG-FIM -->
+    
+    <!-- MEDIR -->
+     <string name="rota_buscar">Buscar...</string>
+    <string name="label_lista_rota">EDITAIS ABERTOS</string>
+    <string name="label_medir">MEDIÇÃO</string>
+    <string name="label_seq_rota">Seq. Rota:</string>
+    <string name="button_endereco">Ver Endereço</string>
+    <string name="label_sem_termo">Sem Termômetro</string>
+    <string name="celcius">°C</string>
+    <string name="metros_cubicos">m³</string>
+    <string name="label_justificar">Não foi possível realizar a medição</string>
+    <!-- MEDIR-FIM -->
+    
+      <!-- CONFIGURAR -->
+    <string name="label_configurar">CONFIGURAÇÕES</string>
+    <string name="label_host">URL de acesso ao servidor</string>
+    <string name="label_frequencia">Frequência de Envio</string>
+    <string name="label_frequencia_manual">Envio Manual</string>
+    <string name="label_identificador">Identificador do Cliente</string>
+    <!-- CONFIGURAR-FIM -->   
+
+</resources>

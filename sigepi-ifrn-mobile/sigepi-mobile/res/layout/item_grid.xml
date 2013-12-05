@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/fullSizeView"
+    android:orientation="horizontal">
+    
+    <ImageView
+        android:layout_alignParentLeft="true"
+        android:id="@+id/icone_item_image"
+        style="@style/wrapAllView"
+        android:layout_margin="10dip"
+        android:layout_centerVertical="true">
+    </ImageView>
+ 
+    <TextView
+        android:id="@+id/grid_item_label"
+        style="@style/wrapAllView"
+        android:textSize="14dp" 
+        android:layout_marginLeft="10dip"
+        android:layout_toRightOf="@id/icone_item_image"
+        android:layout_centerVertical="true"/>
+ 
+    <ImageView
+        android:id="@+id/seta_item_image"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        style="@style/wrapAllView"
+        android:src="@drawable/arrow"
+        android:layout_marginRight="10dip">
+    </ImageView>
+</RelativeLayout>

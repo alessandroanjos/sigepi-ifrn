@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/fullSizeView.vertical" 
+    android:background="@android:color/transparent">
+    
+    <include layout="@layout/cabecalho"
+        android:id="@+id/header"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+    
+    <LinearLayout 
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0dp"
+		android:layout_height="0dp"></LinearLayout>
+    
+    <EditText
+        android:id="@+id/et_buscar"
+        style="@style/fullWidthView"
+        android:hint="@string/rota_buscar"
+        android:singleLine="true"
+        android:inputType="text"
+        android:layout_below="@id/header"/>
+    
+    <View 
+        android:id="@+id/linha"
+        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/et_buscar"/>
+
+    <ListView
+        android:id="@+id/list"
+        style="@style/fullWidthView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linha"       
+        android:background="@android:color/transparent"
+        android:cacheColorHint="#00000000"
+        android:divider="@android:drawable/divider_horizontal_dark"
+        android:dividerHeight="2dp"
+        android:scrollingCache="false" >
+    </ListView>
+</RelativeLayout>
