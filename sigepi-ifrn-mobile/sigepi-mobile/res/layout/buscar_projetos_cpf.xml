@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/fullSizeView.vertical.body">
+
+    <include
+        android:id="@+id/header" 
+        layout="@layout/cabecalho"
+        android:layout_alignParentTop="true"/>
+    <ScrollView 
+        style="@style/fullSizeView"
+        android:fillViewport="true"
+        android:layout_below="@id/header">
+    <LinearLayout 
+        style="@style/fullSizeView.vertical">
+        
+	    <TableLayout 
+	        android:id="@+id/descricao"
+	        style="@style/fullWidthView.vertical"
+	        android:layout_margin="3dp"
+	        android:background="@drawable/gradient_descricao">
+	        
+	        <TableLayout 
+	        android:id="@+id/descricao"
+	        style="@style/fullWidthView.vertical">
+
+	            <TextView
+	                style="@style/formLabel"
+	                android:text="@string/label_cpf" />
+	        	    
+		    </TableLayout>
+		    
+	        <TableLayout 
+	        android:id="@+id/descricao"
+	        style="@style/fullWidthView.vertical">
+		    
+		    </TableLayout>
+	        
+	        <TableLayout 
+	        android:id="@+id/descricao"
+	        style="@style/fullWidthView.vertical">
+		        <TableRow 
+		            style="@style/fullWidthView">
+
+		            <EditText
+		                android:id="@+id/et_cpf"
+		                style="@style/wrapAllView"
+		                android:layout_width="match_parent"
+		                android:layout_marginLeft="7dp"
+		                android:ems="14"
+		                android:imeOptions="actionDone"
+		                android:inputType="number"
+		                android:hint="@string/digite_seu_cpf_hint"
+		                android:maxWidth="55dip" />
+    
+		        </TableRow>
+	        </TableLayout>
+	        <TableRow 
+	            style="@style/fullWidthView">    
+	        </TableRow>
+	    </TableLayout>
+	    
+	    <TableLayout 
+	        android:id="@+id/descricao2"
+	        style="@style/fullWidthView.vertical"
+	        android:layout_below="@id/descricao"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginLeft="5dp">
+	            <TableRow 
+	            style="@style/fullWidthView">  
+	        </TableRow>
+	    </TableLayout>
+	    
+	    <LinearLayout 
+	        android:id="@+id/form_label_1"
+	        style="@style/fullWidthView"
+	        android:layout_below="@id/descricao2"
+	        android:orientation="horizontal">
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:id="@+id/form_field_1"
+	        style="@style/fullWidthView"
+	        android:layout_below="@id/form_label_1"
+	        android:orientation="horizontal">
+	    </LinearLayout>
+	    
+	    <LinearLayout 
+	        android:id="@+id/form_label_2"
+	        style="@style/fullWidthView"
+	        android:layout_below="@id/form_field_1"
+	        android:orientation="horizontal">
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:id="@+id/form_field_2"
+	        style="@style/fullWidthView"
+	        android:layout_below="@id/form_label_2"
+	        android:orientation="horizontal" >
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:id="@+id/form_botoes1"
+	        style="@style/fullWidthView"
+	        android:gravity="center_horizontal"
+	        android:orientation="horizontal" >
+
+	        <Button
+	            android:id="@+id/bt_buscar_projetos"
+	            style="@style/button_orange"
+	            android:layout_width="304dp"
+	            android:layout_height="50dp"
+	            android:paddingLeft="40dip"
+	            android:paddingRight="40dip"
+	            android:text="@string/buscar_projetos"
+	            android:textSize="12dip" />
+
+	    </LinearLayout>
+	</LinearLayout>
+	</ScrollView>
+</RelativeLayout>

@@ -16,19 +16,19 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"/>
     
-    <TextView 
+    <!-- <TextView 
         android:id="@+id/item_lista_codigo"
         style="@style/formLabel"
         android:textColor="@color/list_orange_text"
         android:layout_alignParentLeft="true"
-        android:text="COD"/>
+        android:text="COD"/> -->
     
-    <TextView 
+    <TextView
         android:id="@+id/item_lista_cliente"
         style="@style/formItem"
-        android:textColor="@color/list_blue_text"
-		android:layout_toRightOf="@id/item_lista_codigo"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/item_lista_medido"
         android:text="Cliente Cliente Cliente Cliente"
-        android:layout_toLeftOf="@id/item_lista_medido"/>
+        android:textColor="@color/list_blue_text" />
     
 </RelativeLayout>

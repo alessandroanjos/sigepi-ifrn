@@ -30,7 +30,11 @@
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".ListaEditalActivity" />
         <activity android:name=".ConfigurarActivity" />
-        
+        <activity android:name=".MenuProjetosActivity" />
+        <activity android:name=".MeusProjetosActivity" />
+        <activity android:name=".AvaliarProjetosActivity" />
+        <activity android:name=".ListaProjetosActivity" />
+        <activity android:name=".ListaProjetosAvaliarActivity" />
     </application>
 
 </manifest>

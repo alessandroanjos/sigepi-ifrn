@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.edu.ifrn.sigepi.R;
 import br.edu.ifrn.sigepi.modelo.Edital;
+import br.edu.ifrn.sigepi.modelo.Projeto;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,17 +16,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ListaEditalAdapter extends BaseAdapter {
+public class ListaProjetoAdapter extends BaseAdapter {
 	
-	private List<Edital> edital;
-	private List<Edital> editalBKP;
+	private List<Projeto> projeto;
+	private List<Projeto> projetoBKP;
 	private Activity context;
 	private SharedPreferences pref;
 
-	public ListaEditalAdapter( Activity context,List<Edital> edital) {
+	public ListaProjetoAdapter( Activity context,List<Projeto> projeto) {
 		super();
-		this.edital = edital;
-		this.editalBKP = edital;
+		this.projeto = projeto;
+		this.projetoBKP = projeto;
 		this.context = context;
 		pref = context.getSharedPreferences("config", Context.MODE_PRIVATE);
 	}
@@ -33,13 +34,13 @@ public class ListaEditalAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return edital.size();
+		return projeto.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return edital.get(position);
+		return projeto.get(position);
 	}
 
 	@Override
@@ -78,16 +79,16 @@ public class ListaEditalAdapter extends BaseAdapter {
 
 	public void filter(String charText) {
 
-		List<Edital> med = new ArrayList<Edital>();
+		List<Projeto> med = new ArrayList<Projeto>();
 		
-        for (Edital e : editalBKP) {
-            if ( e.getTitulo().toLowerCase().contains(charText) )            		
+        for (Projeto e : projetoBKP) {
+            if ( e.getProjeto().toLowerCase().contains(charText) )            		
             {
                 med.add(e);
             }
         }
         
-        this.edital = med;
+        this.projeto = med;
         notifyDataSetChanged();
 	}
 	

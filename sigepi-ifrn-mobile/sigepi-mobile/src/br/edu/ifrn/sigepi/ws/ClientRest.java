@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifrn.sigepi.modelo.Edital;
+import br.edu.ifrn.sigepi.modelo.Projeto;
+import br.edu.ifrn.sigepi.modelo.ProjetoAvaliar;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -55,37 +57,16 @@ public class ClientRest {
 		}
 	}
 	
-	public List<Edital> getListaEditais2() throws Exception {
-		String url = "http://" + ip + "/editais";
-		Log.i("URL: ", url);
-		String[] resposta = new WebServiceClient().get(url);
-		List<Edital> listaEditais = new ArrayList<Edital>();
+	
 
-		Log.i("###### - Código", resposta[0]);
-		Log.i("###### - Json", resposta[1]);
-
-		if (resposta[0].equals("200")) {
-
-			Gson gson = new Gson();
-
-			JsonParser parser = new JsonParser();
-			
-			JsonArray jsonArray = parser.parse(resposta[1]).getAsJsonArray();
-
-			for (JsonElement jsonElement : jsonArray) {
-				listaEditais.add(gson.fromJson(jsonElement, Edital.class));
-			}
-
-			return listaEditais;
-
-		} else {
-			throw new Exception(resposta[1]);
-		}
-	}
-
-	/*public List<Projeto> getListaMeusProjetos(String cpf) throws Exception {
+	public List<Projeto> getListaMeusProjetos(SharedPreferences config, String cpf) throws Exception {
 		
-		String[] resposta = new WebServiceClient().get("http://" + ip + "/ws/client/json/professor/"+ cpf +"/meus-projetos");
+		ip = config.getString("host", "").toString().trim();
+		String url = "http://" + ip + "/ws/client/json/professor/"+ cpf +"/meus-projetos";
+		
+		Log.i("URL: ", url);
+		
+		String[] resposta = new WebServiceClient().get(url);
 		List<Projeto> listaProjetos = new ArrayList<Projeto>();
 		
 		Log.i("###### - Código", resposta[0]);
@@ -109,9 +90,14 @@ public class ClientRest {
 		}
 	}
 
-	public List<ProjetoAvaliar> getListaProjetosParaAvaliar(String cpf) throws Exception {
+	public List<ProjetoAvaliar> getListaProjetosParaAvaliar(SharedPreferences config, String cpf) throws Exception {
+		
+		ip = config.getString("host", "").toString().trim();
+		String url = "http://" + ip + "/ws/client/json/professor/"+ cpf +"/projetos-avaliar-cpf";
+		
+		Log.i("URL: ", url);
 
-		String[] resposta = new WebServiceClient().get("http://" + ip + "/ws/client/json/professor/"+ cpf +"/projetos-avaliar-cpf");
+		String[] resposta = new WebServiceClient().get(url);
 		List<ProjetoAvaliar> listaProjetos = new ArrayList<ProjetoAvaliar>();
 		
 		Log.i("###### - Código", resposta[0]);
@@ -135,6 +121,7 @@ public class ClientRest {
 		}
 	}
 
+	/*
 	public List<ProjetoStatusCampus> getStatusProjetosCampus(String cpf) throws Exception {
 		String[] resposta = new WebServiceClient().get("http://" + ip
 				+ "/ws/client/json/campus/coordenador/" + cpf + "/projetos");
@@ -166,6 +153,38 @@ public class ClientRest {
 
 		}
 		return listaProjetos;
-	}*/
+	}
+	
+	public List<Edital> getListaEditais2() throws Exception {
+		String url = "http://" + ip + "/editais";
+		Log.i("URL: ", url);
+		String[] resposta = new WebServiceClient().get(url);
+		List<Edital> listaEditais = new ArrayList<Edital>();
+
+		Log.i("###### - Código", resposta[0]);
+		Log.i("###### - Json", resposta[1]);
+
+		if (resposta[0].equals("200")) {
+
+			Gson gson = new Gson();
+
+			JsonParser parser = new JsonParser();
+			
+			JsonArray jsonArray = parser.parse(resposta[1]).getAsJsonArray();
+
+			for (JsonElement jsonElement : jsonArray) {
+				listaEditais.add(gson.fromJson(jsonElement, Edital.class));
+			}
+
+			return listaEditais;
+
+		} else {
+			throw new Exception(resposta[1]);
+		}
+	}
+	
+	*
+	*
+	*/
 
 }

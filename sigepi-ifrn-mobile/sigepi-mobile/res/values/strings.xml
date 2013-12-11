@@ -47,5 +47,14 @@
     <string name="label_frequencia_manual">Envio Manual</string>
     <string name="label_identificador">Identificador do Cliente</string>
     <!-- CONFIGURAR-FIM -->   
-
+    
+    <!-- MEUS PROJETOS -->
+    <string name="label_buscar_projetos">BUSCAR MEUS PROJETOS</string>
+    <string name="label_buscar_projetos_avaliar">BUSCAR PROJETOS PARA AVALIAR</string>
+    <string name="label_cpf">Buscar por CPF:</string>
+	<string name="buscar_projetos">Buscar Projetos</string>
+	<string name="digite_seu_cpf_hint">Digite seu CPF</string>
+	<string name="label_lista_projetos">MEUS PROJETOS</string>
+	<string name="label_lista_projetos_avaliar">PROJETOS PARA AVALIAR</string>
+    <!-- FIM MEUS PROJETOS -->
 </resources>

@@ -9,24 +9,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.edu.ifrn.sigepi.adapter.ListaEditalAdapter;
-import br.edu.ifrn.sigepi.exceptions.GenericDAOException;
 import br.edu.ifrn.sigepi.listview.AdapterListView;
 import br.edu.ifrn.sigepi.listview.ItemListViewEdital;
-import br.edu.ifrn.sigepi.modelo.Edital;
+import br.edu.ifrn.sigepi.modelo.Projeto;
+import br.edu.ifrn.sigepi.modelo.ProjetoAvaliar;
 import br.edu.ifrn.sigepi.util.ListaMensagens;
-import br.edu.ifrn.sigepi.util.Mensagem;
 import br.edu.ifrn.sigepi.ws.ClientRest;
 
 /**
@@ -34,42 +29,38 @@ import br.edu.ifrn.sigepi.ws.ClientRest;
  * @author Alessandro
  *
  */
-public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> implements OnItemClickListener, Runnable{
+public class ListaProjetosAvaliarActivity extends AndroidGenericActivity<List<Projeto>> implements OnItemClickListener, Runnable{
 	
-	private ListView listaEdital;
-	private List<Edital> editais;
+	private ListView listaProjeto;
+	private List<ProjetoAvaliar> projetosAvaliar;
 	private ListaEditalAdapter adapter;
 	private ProgressDialog progressDialog;
 	private AdapterListView adapterListView;
 	private ListaMensagens mensagens = new ListaMensagens();
-	
-	private static final int REQUEST_QRCODE = 1;
+	private String cpf;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.lista_edital);
+		setContentView(R.layout.lista_projetos);
 		
-		((TextView) findViewById(R.id.text_cabecalho)).setText(getString(R.string.label_lista_rota));
+		((TextView) findViewById(R.id.text_cabecalho)).setText(getString(R.string.label_lista_projetos_avaliar));
 		
-		listaEdital = (ListView) findViewById(R.id.list);
-		/*
-		if (savedInstanceState == null){
-			processarRequisicao();
-		} else {
-			visitas = (ArrayList<MedicaoMobile>) savedInstanceState.getSerializable(getString(R.string.intent_extra_1));
-			onPostExecuteTask(visitas);
-		}
-		*/
+		listaProjeto = (ListView) findViewById(R.id.list);
 		
-		/*progressDialog = ProgressDialog.show(ListaEditalActivity.this,
-				 "Aguarde", "Processando...");
-				 Thread thread = new Thread(ListaEditalActivity.this);
-				 thread.start();*/
+		Intent intent = getIntent();
+		Bundle paramConsulta = intent.getExtras();
+		if(paramConsulta != null)
+			cpf = paramConsulta.getString("cpf");
+
+		progressDialog = ProgressDialog.show(ListaProjetosAvaliarActivity.this, "Aguarde", "Processando...");
+		
+		Thread thread = new Thread(ListaProjetosAvaliarActivity.this);
+		thread.start();
 		
 		processarRequisicao();
-		
+
 	}
 
 	@Override
@@ -82,9 +73,9 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 	protected void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
 		super.onSaveInstanceState(outState);
-		ArrayList<Edital> array = new ArrayList<Edital>();
-		if (editais != null) {
-			array.addAll(editais);
+		ArrayList<ProjetoAvaliar> array = new ArrayList<ProjetoAvaliar>();
+		if (projetosAvaliar != null) {
+			array.addAll(projetosAvaliar);
 		}
 		outState.putSerializable(getString(R.string.intent_extra_1), array);
 	}
@@ -109,8 +100,8 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 	}*/
 
 	@Override
-	public List<Edital> doInBackgroundTask(String... params) {
-		List<Edital> result = null;
+	public List<Projeto> doInBackgroundTask(String... params) {
+		List<Projeto> result = null;
 		
 		/*try {
 			//result = bd.getAllMedicoesByDataAtual();
@@ -121,36 +112,23 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 		
 		return result;
 	}
-	
-	/*public void run() {
-		ClientRest clienteRest = new ClientRest();
-		SharedPreferences config = getSharedPreferences("config", MODE_PRIVATE);
-
-		try {
-			editais = clienteRest.getListaEditais(config);// .getListaMes();
-			if (editais != null && editais.size() > 0) {
-				ArrayList<ItemListViewEdital> listInfoEditais = new ArrayList<ItemListViewEdital>();
-				
-				for (Edital edital : editais) {
-					ItemListViewEdital itens = new ItemListViewEdital(edital.getTitulo());
-					listInfoEditais.add(itens);
-				}
-				adapterListView = new AdapterListView(this, listInfoEditais);
-			} else {
-				adicionarEMostrarErro("Não há dados a serem exibidos.");
-				finish();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		handler.sendEmptyMessage(0);
-	}*/
 
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			//progressDialog.dismiss();
-			listaEdital.setAdapter(adapterListView);
+			progressDialog.dismiss();
+			listaProjeto.setAdapter(adapterListView);
+			
+			if(listaProjeto.getCount() == 0){
+						
+				adicionarEMostrarErro("Nenhum projeto foi encontrado para avaliar com este CPF.");
+				finish();
+				
+			} else if(listaProjeto.getCount() == 1){
+				Toast.makeText(ListaProjetosAvaliarActivity.this, listaProjeto.getCount() + " Projeto encontrado para avaliar", Toast.LENGTH_LONG).show();	
+			} else {
+				Toast.makeText(ListaProjetosAvaliarActivity.this, listaProjeto.getCount() + " Projetos encontrados para a sua avaliação", Toast.LENGTH_LONG).show();		
+			}
 		}
 	};
 
@@ -161,17 +139,42 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 	}
 
 	@Override
-	public void onPostExecuteTask(List<Edital> result) {
+	public void onPostExecuteTask(List<Projeto> result) {
+/*		ClientRest clienteRest = new ClientRest();
+		SharedPreferences config = getSharedPreferences("config", MODE_PRIVATE);
+
+		try {
+			projetos = clienteRest.getListaMeusProjetos(config, cpf); //.getListaEditais(config);// .getListaMes();
+			if (projetos != null && projetos.size() > 0) {
+				ArrayList<ItemListViewEdital> listInfoEditais = new ArrayList<ItemListViewEdital>();
+				
+				for (Projeto projeto : projetos) {
+					ItemListViewEdital itens = new ItemListViewEdital(projeto.getProjeto());
+					listInfoEditais.add(itens);
+				}
+				adapterListView = new AdapterListView(this, listInfoEditais);
+			} else {
+				adicionarEMostrarErro("Não há dados a serem exibidos.");
+				finish();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		handler.sendEmptyMessage(0);*/
+  }
+
+	@Override
+	public void run() {
 		ClientRest clienteRest = new ClientRest();
 		SharedPreferences config = getSharedPreferences("config", MODE_PRIVATE);
 
 		try {
-			editais = clienteRest.getListaEditais(config);// .getListaMes();
-			if (editais != null && editais.size() > 0) {
+			projetosAvaliar = clienteRest.getListaProjetosParaAvaliar(config, cpf); //.getListaEditais(config);// .getListaMes();
+			if (projetosAvaliar != null && projetosAvaliar.size() > 0) {
 				ArrayList<ItemListViewEdital> listInfoEditais = new ArrayList<ItemListViewEdital>();
 				
-				for (Edital edital : editais) {
-					ItemListViewEdital itens = new ItemListViewEdital(edital.getTitulo());
+				for (ProjetoAvaliar projetoAvaliar : projetosAvaliar) {
+					ItemListViewEdital itens = new ItemListViewEdital(projetoAvaliar.getProjetoAvaliar());
 					listInfoEditais.add(itens);
 				}
 				adapterListView = new AdapterListView(this, listInfoEditais);
@@ -183,11 +186,5 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 			e.printStackTrace();
 		}
 		handler.sendEmptyMessage(0);
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }
