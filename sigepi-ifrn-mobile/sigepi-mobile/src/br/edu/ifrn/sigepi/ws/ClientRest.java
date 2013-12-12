@@ -3,6 +3,7 @@ package br.edu.ifrn.sigepi.ws;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifrn.sigepi.SplashActivity;
 import br.edu.ifrn.sigepi.modelo.Edital;
 import br.edu.ifrn.sigepi.modelo.Projeto;
 import br.edu.ifrn.sigepi.modelo.ProjetoAvaliar;
@@ -46,6 +47,10 @@ public class ClientRest {
 				Edital edital = new Edital();
 				edital.setTitulo(jsonElement.getAsString());
 				listaEditais.add(edital);
+				
+				if(edital!=SplashActivity.sigepiMobileDatabase.buscarEdital(edital.getTitulo())){
+					SplashActivity.sigepiMobileDatabase.criaEdital(edital);
+				}
 			}
 
 			return listaEditais;

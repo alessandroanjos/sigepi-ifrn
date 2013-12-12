@@ -9,29 +9,20 @@ import java.io.Serializable;
  */
 public class Edital implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	public static String[] colunas = new String[] {Edital.TITULO};
 	
+	public static final String TITULO = "titulo";
+
 	private String titulo;
 	
 	public Edital() {
 	}
 	
-	public Edital(int id, String titulo){
-		this.id = id;
+	public Edital(String titulo){
+		super();
 		this.titulo = titulo;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getTitulo() {

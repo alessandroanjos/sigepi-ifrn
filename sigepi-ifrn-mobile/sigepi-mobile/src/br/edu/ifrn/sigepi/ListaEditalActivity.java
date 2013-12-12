@@ -174,12 +174,27 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 				}
 				adapterListView = new AdapterListView(this, listInfoEditais);
 			} else {
-				adicionarEMostrarErro("Não há dados a serem exibidos.");
-				finish();
+				atualizarListaEditais();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		handler.sendEmptyMessage(0);
+	}
+	
+	protected void atualizarListaEditais(){
+		editais = SplashActivity.sigepiMobileDatabase.listarEditais();
+		
+		if (editais != null && editais.size() > 0) {
+			ArrayList<ItemListViewEdital> listInfoEditais = new ArrayList<ItemListViewEdital>();
+			for (Edital edital : editais) {
+				ItemListViewEdital itens = new ItemListViewEdital(edital.getTitulo());
+				listInfoEditais.add(itens);
+			}
+			adapterListView = new AdapterListView(this, listInfoEditais);
+		} else {
+			adicionarEMostrarErro("Não há editais para serem exibidos.");
+			finish();
+		}
 	}
 }

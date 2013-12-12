@@ -1,22 +1,27 @@
 package br.edu.ifrn.sigepi;
 
+import br.edu.ifrn.sigepi.banco.SigepiMobileDatabase;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
 public class SplashActivity extends Activity {
 	
+	public static SigepiMobileDatabase sigepiMobileDatabase;
+	
 	private Thread mSplashThread;
 	private boolean mblnClicou = false;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		sigepiMobileDatabase = new SigepiMobileDatabase(this);
 		setContentView(R.layout.activity_splash);
 		
 		PackageManager manager = this.getPackageManager();
