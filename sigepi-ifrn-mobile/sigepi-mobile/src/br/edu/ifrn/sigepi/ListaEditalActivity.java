@@ -9,24 +9,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.edu.ifrn.sigepi.adapter.ListaEditalAdapter;
-import br.edu.ifrn.sigepi.exceptions.GenericDAOException;
 import br.edu.ifrn.sigepi.listview.AdapterListView;
 import br.edu.ifrn.sigepi.listview.ItemListViewEdital;
 import br.edu.ifrn.sigepi.modelo.Edital;
 import br.edu.ifrn.sigepi.util.ListaMensagens;
-import br.edu.ifrn.sigepi.util.Mensagem;
 import br.edu.ifrn.sigepi.ws.ClientRest;
 
 /**
@@ -54,20 +48,10 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 		((TextView) findViewById(R.id.text_cabecalho)).setText(getString(R.string.label_lista_rota));
 		
 		listaEdital = (ListView) findViewById(R.id.list);
-		/*
-		if (savedInstanceState == null){
-			processarRequisicao();
-		} else {
-			visitas = (ArrayList<MedicaoMobile>) savedInstanceState.getSerializable(getString(R.string.intent_extra_1));
-			onPostExecuteTask(visitas);
-		}
-		*/
 		
-		/*progressDialog = ProgressDialog.show(ListaEditalActivity.this,
-				 "Aguarde", "Processando...");
-				 Thread thread = new Thread(ListaEditalActivity.this);
-				 thread.start();*/
-		
+		progressDialog = ProgressDialog.show(ListaEditalActivity.this, "Aguarde", "Processando...");
+		Thread thread = new Thread(ListaEditalActivity.this);
+		thread.start();
 		processarRequisicao();
 		
 	}
@@ -149,8 +133,17 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			//progressDialog.dismiss();
+			progressDialog.dismiss();
 			listaEdital.setAdapter(adapterListView);
+			
+			if (listaEdital.getCount() == 0) {
+				adicionarEMostrarErro("Não há editais a serem exibidos.");
+				finish();
+			} else if(listaEdital.getCount() == 1){
+				Toast.makeText(ListaEditalActivity.this, listaEdital.getCount() + " Edital aberto", Toast.LENGTH_LONG).show();	
+			} else {
+				Toast.makeText(ListaEditalActivity.this, listaEdital.getCount() + " Editais abertos", Toast.LENGTH_LONG).show();		
+			}
 		}
 	};
 
@@ -162,6 +155,11 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 
 	@Override
 	public void onPostExecuteTask(List<Edital> result) {
+
+	}
+
+	@Override
+	public void run() {
 		ClientRest clienteRest = new ClientRest();
 		SharedPreferences config = getSharedPreferences("config", MODE_PRIVATE);
 
@@ -183,11 +181,5 @@ public class ListaEditalActivity extends AndroidGenericActivity<List<Edital>> im
 			e.printStackTrace();
 		}
 		handler.sendEmptyMessage(0);
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }

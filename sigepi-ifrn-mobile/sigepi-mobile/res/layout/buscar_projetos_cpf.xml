@@ -50,7 +50,8 @@
 		                android:imeOptions="actionDone"
 		                android:inputType="number"
 		                android:hint="@string/digite_seu_cpf_hint"
-		                android:maxWidth="55dip" />
+		                android:maxWidth="55dip"
+		                android:maxLength="11" />
     
 		        </TableRow>
 	        </TableLayout>
