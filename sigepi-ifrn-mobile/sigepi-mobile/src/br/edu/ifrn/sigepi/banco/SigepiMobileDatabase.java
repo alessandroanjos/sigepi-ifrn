@@ -157,12 +157,14 @@ public class SigepiMobileDatabase extends SQLiteOpenHelper {
 	
 	public int deletarTodosEditais(){
 		dbDatabase = contexto.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
+		onCreate(dbDatabase);
 		int qtd = dbDatabase.delete(TABELA_EDITAL, null, null);
 		return qtd;
 	}
 	
 	public int deletarTodosProjetos(){
 		dbDatabase = contexto.openOrCreateDatabase(NOME_BANCO, Context.MODE_PRIVATE, null);
+		onCreate(dbDatabase);
 		int qtd = dbDatabase.delete(TABELA_PROJETO, null, null);
 		return qtd;
 	}
@@ -184,14 +186,18 @@ public class SigepiMobileDatabase extends SQLiteOpenHelper {
 		
 		List<Edital> editais = new ArrayList<Edital>();
 		
-		if(c.moveToFirst()){
-			int idxTitulo = c.getColumnIndex(Edital.TITULO);
-			
-			do{
-				Edital edital = new Edital();
-				editais.add(edital);
-				edital.setTitulo(c.getString(idxTitulo));
-			} while(c.moveToNext());
+		if (c != null) {
+
+			if (c.moveToFirst()) {
+				int idxTitulo = c.getColumnIndex(Edital.TITULO);
+
+				do {
+					Edital edital = new Edital();
+					editais.add(edital);
+					edital.setTitulo(c.getString(idxTitulo));
+				} while (c.moveToNext());
+			}
+
 		}
 		return editais;
 	}
@@ -211,14 +217,17 @@ public class SigepiMobileDatabase extends SQLiteOpenHelper {
 		
 		List<Projeto> projetos = new ArrayList<Projeto>();
 		
-		if(c.moveToFirst()){
-			int idxTitulo = c.getColumnIndex(Projeto.PROJETO);
-			
-			do{
-				Projeto projeto = new Projeto();
-				projetos.add(projeto);
-				projeto.setProjeto(c.getString(idxTitulo));
-			} while(c.moveToNext());
+		if (c != null) {
+
+			if (c.moveToFirst()) {
+				int idxTitulo = c.getColumnIndex(Projeto.PROJETO);
+
+				do {
+					Projeto projeto = new Projeto();
+					projetos.add(projeto);
+					projeto.setProjeto(c.getString(idxTitulo));
+				} while (c.moveToNext());
+			}
 		}
 		return projetos;
 	}
