@@ -133,14 +133,21 @@ public class Editais extends Controller{
 	public static Result deletar(Long id){
 		Edital edital = Edital.find.byId(id);
 		List<Projeto> projetos = Projeto.find.where().eq("situacao", -1).findList();
+		
+		List<Projeto> projetosDesseEdital = Projeto.find.where().eq("edital_id", id).eq("situacao", -1).findList(); //todos os projetos submetidos pelo edital que eu quero excluir
 
 		if(edital == null){
 			flash().put("error", "O Edital informado não foi encontrado no Sistema.");
 			//caso precise que o edital seja excluído apenas quando todos os projetos tenham sido aprovados ou reprovados
 			//utilizaria o código abaixo:
 
-		}else if(projetos.size() > 0 ){
+		}else if(projetosDesseEdital.size() > 0 ){
 			flash().put("error", "O Edital não pode ser excluído, pois existem projetos em andamento para esse edital!");
+			
+		}else if(projetosDesseEdital.size() == 0 ){
+			edital.delete();
+			flash().put("success", "Edital \""+ edital.titulo +"\" excluído com sucesso!");
+			return redirect(routes.Editais.index());
 		}else {
 
 			//primeiro deletar todos os projetos que foram avaliados
