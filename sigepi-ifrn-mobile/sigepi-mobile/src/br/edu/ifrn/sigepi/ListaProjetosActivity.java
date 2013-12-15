@@ -21,7 +21,10 @@ import android.widget.Toast;
 
 import br.edu.ifrn.sigepi.adapter.ListaEditalAdapter;
 import br.edu.ifrn.sigepi.listview.AdapterListView;
+import br.edu.ifrn.sigepi.listview.AdapterListViewProjeto;
 import br.edu.ifrn.sigepi.listview.ItemListViewEdital;
+import br.edu.ifrn.sigepi.listview.ItemListViewProjeto;
+import br.edu.ifrn.sigepi.modelo.Edital;
 import br.edu.ifrn.sigepi.modelo.Projeto;
 import br.edu.ifrn.sigepi.util.ListaMensagens;
 import br.edu.ifrn.sigepi.ws.ClientRest;
@@ -37,7 +40,7 @@ public class ListaProjetosActivity extends AndroidGenericActivity<List<Projeto>>
 	private List<Projeto> projetos;
 	private ListaEditalAdapter adapter;
 	private ProgressDialog progressDialog;
-	private AdapterListView adapterListView;
+	private AdapterListViewProjeto adapterListView;
 	private ListaMensagens mensagens = new ListaMensagens();
 	private String cpf;
 	
@@ -121,7 +124,13 @@ public class ListaProjetosActivity extends AndroidGenericActivity<List<Projeto>>
 			progressDialog.dismiss();
 			listaProjeto.setAdapter(adapterListView);
 			
-			if(listaProjeto.getCount() == 0){
+
+			if(cpf.length() < 11){
+				//Toast.makeText(ListaProjetosActivity.this, "Cpf incompleto. Por favor preencha corretamente.", Toast.LENGTH_LONG).show();
+				adicionarEMostrarErro("Cpf incompleto. Por favor preencha corretamente.");
+				finish();
+				
+			} else if(listaProjeto.getCount() == 0){
 			//	Toast.makeText(ListaProjetosActivity.this, "Nenhum projeto encontrado para este CPF.", Toast.LENGTH_LONG).show();
 				
 				adicionarEMostrarErro("Nenhum projeto encontrado para este CPF.");
@@ -172,22 +181,37 @@ public class ListaProjetosActivity extends AndroidGenericActivity<List<Projeto>>
 		SharedPreferences config = getSharedPreferences("config", MODE_PRIVATE);
 
 		try {
+			
 			projetos = clienteRest.getListaMeusProjetos(config, cpf); //.getListaEditais(config);// .getListaMes();
 			if (projetos != null && projetos.size() > 0) {
-				ArrayList<ItemListViewEdital> listInfoEditais = new ArrayList<ItemListViewEdital>();
+				ArrayList<ItemListViewProjeto> listInfoProjetos = new ArrayList<ItemListViewProjeto>();
 				
 				for (Projeto projeto : projetos) {
-					ItemListViewEdital itens = new ItemListViewEdital(projeto.getProjeto());
-					listInfoEditais.add(itens);
+					ItemListViewProjeto itens = new ItemListViewProjeto(projeto.getProjeto());
+					listInfoProjetos.add(itens);
 				}
-				adapterListView = new AdapterListView(this, listInfoEditais);
+				adapterListView = new AdapterListViewProjeto(this, listInfoProjetos);
 			} else {
-				adicionarEMostrarErro("Não há dados a serem exibidos.");
-				finish();
+				atualizarListaProjetos();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		handler.sendEmptyMessage(0);
+	}
+	protected void atualizarListaProjetos(){
+		projetos = SplashActivity.sigepiMobileDatabase.listarProjetos();
+		
+		if (projetos != null && projetos.size() > 0) {
+			ArrayList<ItemListViewProjeto> listInfoProjetos = new ArrayList<ItemListViewProjeto>();
+			for (Projeto projeto : projetos) {
+				ItemListViewProjeto itens = new ItemListViewProjeto(projeto.getProjeto());
+				listInfoProjetos.add(itens);
+			}
+			adapterListView = new AdapterListViewProjeto(this, listInfoProjetos);
+		} else {
+			adicionarEMostrarErro("Não há projetos para serem exibidos.");
+			finish();
+		}
 	}
 }

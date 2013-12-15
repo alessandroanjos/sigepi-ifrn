@@ -58,8 +58,6 @@ public class MenuPrincipalActivity extends AndroidGenericActivity<Response> {
 					intent = new Intent(MenuPrincipalActivity.this, MenuProjetosActivity.class);
 					startActivity(intent);
 				} else if (menu.equals(menus[2])){
-					mostrarDialogSincronizar();
-				} else if (menu.equals(menus[3])){
 					intent = new Intent(MenuPrincipalActivity.this, ConfigurarActivity.class);
 					startActivity(intent);
 				}

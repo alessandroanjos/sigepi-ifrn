@@ -123,20 +123,13 @@ public class MeusProjetosActivity extends Activity {
 		layoutBusca.setVisibility(View.GONE);
 		isCheckSalvarConsulta.setVisibility(View.VISIBLE);
 
-		idAtual = c.getId();
-
 		exibirNome.setText(c.getProjeto());
 	}
 	
 	private Projeto montarObjetoConsulta(Bundle param) {
 		Projeto consulta = new Projeto();
-
-		consulta.setId(param.getInt(Projeto.ID)); // id da consulta no banco local
-	
+	//	consulta.setId(param.getInt(Projeto.ID)); // id da consulta no banco local
 		consulta.setProjeto(param.getString(Projeto.PROJETO));
-		
 		return consulta;
 	}
-
-
 }

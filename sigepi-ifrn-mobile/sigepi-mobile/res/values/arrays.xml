@@ -4,7 +4,6 @@
     <array name="itens_menu_principal">
         <item>EDITAIS</item>
         <item>CONSULTAR PROJETOS</item>
-        <item>SINCRONIZAR</item>
         <item>CONFIGURAR</item>
     </array>
     
@@ -16,7 +15,6 @@
     <array name="icones_menu_principal">
         <item>@drawable/ic_medir</item>
         <item>@drawable/ic_consultar</item>
-        <item>@drawable/ic_sincronizar</item>
         <item>@drawable/ic_configurar</item>
     </array>
     

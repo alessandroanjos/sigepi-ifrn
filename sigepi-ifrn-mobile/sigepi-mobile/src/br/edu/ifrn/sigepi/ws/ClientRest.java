@@ -43,6 +43,15 @@ public class ClientRest {
 			JsonObject jsonObject = parser.parse(resposta[1]).getAsJsonObject();
 			JsonArray jsonArray = jsonObject.getAsJsonArray("editais");
 			
+			List<Edital> eds = SplashActivity.sigepiMobileDatabase.listarEditais();
+			int qnt= eds.size();
+			int jv = jsonArray.size();
+			
+			if(qnt != jv ){
+				int qntExcluidos = SplashActivity.sigepiMobileDatabase.deletarTodosEditais();
+				Log.i("###### Editais Excluidos", String.valueOf(qntExcluidos));
+			}
+			
 			for (JsonElement jsonElement : jsonArray) {
 				Edital edital = new Edital();
 				edital.setTitulo(jsonElement.getAsString());
@@ -65,7 +74,7 @@ public class ClientRest {
 	
 
 	public List<Projeto> getListaMeusProjetos(SharedPreferences config, String cpf) throws Exception {
-		
+				
 		ip = config.getString("host", "").toString().trim();
 		String url = "http://" + ip + "/ws/client/json/professor/"+ cpf +"/meus-projetos";
 		
@@ -83,13 +92,29 @@ public class ClientRest {
 			JsonObject jsonObject = parser.parse(resposta[1]).getAsJsonObject();
 			JsonArray jsonArray = jsonObject.getAsJsonArray("projetos");
 			
+			List<Projeto> projetosBancoLocal = SplashActivity.sigepiMobileDatabase.listarProjetos();
+			int qnt= projetosBancoLocal.size();
+			int jv = jsonArray.size();
+			
+			if(qnt != jv ){
+				int qntExcluidos = SplashActivity.sigepiMobileDatabase.deletarTodosProjetos();
+				Log.i("###### Projetos Excluidos", String.valueOf(qntExcluidos));
+			}
+			
 			for (JsonElement jsonElement : jsonArray) {
 				Projeto projeto = new Projeto();
 				projeto.setProjeto(jsonElement.getAsString());
 				listaProjetos.add(projeto);
+				
+				if(projeto!=SplashActivity.sigepiMobileDatabase.buscarProjeto(projeto.getProjeto())){
+					SplashActivity.sigepiMobileDatabase.criaProjeto(projeto);
+				}
 			}
 			
 			return listaProjetos;
+			
+		} else if(!resposta[0].equals("200")) {
+				return listaProjetos;
 		} else {
 			throw new Exception(resposta[1]);
 		}
