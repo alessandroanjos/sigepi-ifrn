@@ -3,11 +3,17 @@
 
 @import helper.twitterBootstrap._
 @import helper._
+@import tags._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
 @import helper.{FieldConstructor}
 @implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
 
 
 @main {
+
+@if(isLogado()) {
+					
+   @if(getUsuarioLogado().isCoordenador || getUsuarioLogado().isAdministrador ) {
 
 <div class="row">
 		<div class="span12">
@@ -55,5 +61,7 @@
 			
 		</div>
 	</div>	
-
+	
+	}
+  }
 }
