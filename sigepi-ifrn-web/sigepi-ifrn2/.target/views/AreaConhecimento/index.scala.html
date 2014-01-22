@@ -1,0 +1,62 @@
+@(areas: List[AreaConhecimento])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem das Áreas de Conhecimento</h1>
+				
+				@if(isLogado()) {
+					@if(getUsuarioLogado().isAdministrador) {
+					<div style="float:right; position:relative; top:8px;">
+						<a href="@routes.AreaConhecimentoController.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Nova Área</a>
+					</div>
+					}
+				}
+			</div>
+			
+			@if(areas.size == 0) {
+				<h3>Nenhuma área cadastrada.</h3>			
+			} else {
+				@for(area <- areas) {
+				<div class="item-lista">
+					<div class="item-lista">
+						<div class="item">
+							
+							<h2>
+								<a href="@routes.AreaConhecimentoController.visualizar(area.id)">
+									@area.nome 
+								</a>
+							</h2>
+							
+												
+						
+						
+						<div style=" padding-top:10px;">
+							<a href="@routes.AreaConhecimentoController.visualizar(area.id)" class="btn btn-primary"><i class="icon-white icon-list-alt"></i> Visualizar a Área</a>
+							
+							@if(isLogado()) {
+								@if(getUsuarioLogado().isAdministrador) {
+									<a href="@routes.AreaConhecimentoController.editar(area.id)" class="btn"><i class="icon-edit"></i> Editar</a>
+									<a href="@routes.AreaConhecimentoController.deletar(area.id)" onclick="return confirm('Deseja realmente excluir a área &quot;@area.nome&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
+								}
+							}
+						</div>
+						
+						 <br /><br />
+						
+						</div> 
+					</div>
+				</div>
+				}
+			}
+		</div>
+		</div>
+
+}

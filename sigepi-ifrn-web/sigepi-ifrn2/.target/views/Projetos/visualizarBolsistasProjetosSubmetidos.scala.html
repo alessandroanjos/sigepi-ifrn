@@ -1,0 +1,122 @@
+@(projetos: List[Projeto])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+	@if(isLogado()) {
+			@if(getUsuarioLogado().isCoordenador) {
+				<div class="row">
+					<div class="span12">
+						<div class="page-header" style="overflow:hidden;">
+							<h1 style="float:left;"> Candidatos à Bolsistas do Meu Campus - ( @getUsuarioLogado().campus.getNome )</h1>
+					    </div>
+					       @if(projetos.size == 0) {
+								<h3>Nenhum projeto do seu campus foi submetido.</h3>			
+							} else {
+							<table class="table table-bordered table-hover">
+				              <thead>
+				                <tr>
+				                  <th>Edital</th>
+				                  <th>Projeto</th>
+				                  <th>Nome Bolsista</th>
+				                  <th>Matrícula Bolsista</th>
+				                  <th>IRA</th>
+				                  <th>Curso</th>
+				                  <th>Situação</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				               	@for(projeto  <- projetos) {
+				                <tr>
+				               		<td >
+				               		   @projeto.getEdital.getTitulo
+				               		</td>
+				               		<td style="width:15%;">
+				               		   @projeto.getTitulo
+				               		</td>
+				               		<td>@projeto.primeiroBolsistaNome</td>
+				               		<td>@projeto.primeiroBolsistaMatricula</td>
+				               		<td>@projeto.primeiroBolsistaIRA</td>
+				               		<td>@projeto.curso.getNome</td>
+				               	    <td> 
+										@if(projeto.getSituacao == 1){               	      
+					               	         Aprovado               	       
+					               	     }  
+
+					               	     @if(projeto.getSituacao == 0)	{
+								   	   	     Reprovado
+								   	     }
+
+					               	     @if(projeto.getSituacao == -1) {
+					               	       Em Avaliação
+					               	   	 } 
+				               	    </td>
+				                </tr>
+								}
+				              </tbody>
+				           </table>
+						}
+					  </div>
+				</div>
+   		 }
+
+   		@if(getUsuarioLogado().isAdministrador) {
+   		 	 
+   		 	 <div class="row">
+				<div class="span12">
+					<div class="page-header" style="overflow:hidden;">
+						<h1 style="float:left;"> Informações de Bolsistas dos Projetos Submetidos</h1>
+		             </div>
+		             @if(projetos.size == 0) {
+						<h3>Nenhum projeto foi submetido.</h3>			
+					} else {
+					
+						<table class="table table-bordered table-hover">
+			              <thead>
+			                <tr>
+			                  <th>Edital</th>
+			                  <th>Nome Projeto</th>
+			                  <th>Nome Bolsista</th>
+			                  <th>Matrícula Bolsista</th>
+			                  <th>IRA</th>
+			                  <th>Curso</th>
+			                  <th>Situação</th>
+			                </tr>
+			              </thead>
+						<tbody>
+				               	@for(projeto  <- projetos) {
+				                <tr>
+			               		<td >
+			               		   @projeto.getEdital.getTitulo
+			               		</td>
+			               		<td style="width:15%;">
+			               		   @projeto.getTitulo
+			               		</td>
+			               		<td>@projeto.primeiroBolsistaNome</td>
+			               		<td>@projeto.primeiroBolsistaMatricula</td>
+			               		<td>@projeto.primeiroBolsistaIRA</td>
+			               		<td>@projeto.curso.getNome</td>
+							    <td> 
+  						         @if(projeto.getSituacao == 1){               	      
+				               	         Aprovado               	       
+				               	 }  
+					             @if(projeto.getSituacao == 0)	{
+							   	   	     Reprovado
+							   	 }
+				             	 @if(projeto.getSituacao == -1) {
+				               	     <a href="@routes.Projetos.aprovarProjeto(projeto.id)" onclick="return confirm('Deseja realmente aprovar o projeto: &quot;@projeto.titulo&quot;?')" class="btn btn-success"> Aprovar</a> /
+				               	     <a href="@routes.Projetos.reprovarProjeto(projeto.id)" onclick="return confirm('Deseja realmente reprovar o projeto: &quot;@projeto.titulo&quot;?')" class="btn btn-danger"> Reprovar</a>
+							     }
+							  </td>
+							 </tr>
+							}
+						</tbody>
+					</table>
+					}
+				</div>
+			</div>
+   		 }
+   	}
+}

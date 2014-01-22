@@ -1,0 +1,35 @@
+@if(flash.get("error")) {
+<div class="alert alert-error fade in">
+  <button class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Erro!</h4><br/>
+  
+  @Html(flash.get("error"))
+</div>
+}
+
+@if(flash.get("warning")) {
+<div class="alert fade in">
+  <button class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Atenção!</h4><br/>
+  
+  @Html(flash.get("warning"))
+</div>
+}
+
+@if(flash.get("info")) {
+<div class="alert alert-info fade in">
+  <button class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Informação!</h4><br/>
+  
+  @Html(flash.get("info"))
+</div>	
+}
+
+@if(flash.get("success")) {
+<div class="alert alert-success fade in">
+  <button class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Sucesso!</h4><br/>
+  
+  @Html(flash.get("success"))
+</div>	
+}

@@ -1,0 +1,91 @@
+@(content: Html)
+
+@import tags._
+@import forms.LoginForm._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+<!DOCTYPE html> 
+
+<html>
+    <head>
+        <title>SIGEPI - Sistema de Gestão de Pesquisa e Inovação</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        
+        <!-- Estilos do Twitter Boostrap -->
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")">
+        <style type="text/css">
+	      body {
+	        padding-top: 80px;
+	        padding-bottom: 40px;
+	      }
+	    </style>
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("bootstrap/css/bootstrap-responsive.min.css")">
+		    
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+	    
+        <!-- Estilos da AplicaÃ§Ã£o -->
+        
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">  
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        
+        <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+		<script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+		
+        <script src="@routes.Assets.at("bootstrap/js/bootstrap-collapse.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("bootstrap/js/bootstrap-alert.js")" type="text/javascript"></script>
+        
+        <script src="@routes.Assets.at("javascripts/main.js")" type="text/javascript"></script>
+    </head>
+    <body>
+   
+   @if(isLogado()) {
+	
+		@if(getUsuarioLogado().isProfessor) {
+			@menuProfessor()
+   	    }
+   	    
+   	    @if(getUsuarioLogado().isAdministrador) {
+			@menuAdmin()
+   	    }
+   	    
+   	    @if(getUsuarioLogado().isAvaliador)	{
+   	    	@menuAvaliador() 	
+   	    }
+   	    
+   	    @if(getUsuarioLogado().isGestor){
+   	        @menuGestor()
+   	    }
+    	
+    } else {
+    		@menuPublico()
+    }
+
+	<div class="container">
+          <div class="content">
+                <div class="row">
+                		@mensagensFeedback()
+                        @content
+                </div>
+          </div>
+<hr />
+            <footer>
+
+        		<br/>
+			<center>
+				<p>	SIGEPI - Sistema de Gestão de Pesquisa e Inovação - <i>versão 1.0.1</i> <br />
+					<a href="http://portal.ifrn.edu.br/pesquisa/pro-reitoria-de-pesquisa-e-inovacao" target="blank" >PROPI - Pró-reitoria de Pesquisa e Inovação</a><br>
+					<a href="http://ifrn.edu.br" target="blank">Instituto Federal de Educação,	Ciência e Tecnologia do Rio Grande do Norte</a> <br /> </br>
+				</p>
+				</p>
+			</center>
+		</footer>
+
+        </div>
+    </body>
+</html>

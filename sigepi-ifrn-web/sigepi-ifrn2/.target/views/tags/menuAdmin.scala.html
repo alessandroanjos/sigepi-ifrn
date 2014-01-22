@@ -1,0 +1,104 @@
+
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a data-target=".nav-collapse" data-toggle="collapse"
+				class="btn btn-navbar"> <span class="icon-bar"></span> <span
+				class="icon-bar"></span> <span class="icon-bar"></span>
+			@* </a> <a href="@routes.Administracao.index" style="font-size: 25px;">SIGEPI</a> *@
+			<div class="nav-collapse">
+				<ul class="nav">
+				 <li><a href="@routes.Application.index" style="font-size: 28px;">SIGEPI</a></li>
+					<li><a href="@routes.Administracao.index">Home</a></li> 
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Editais <b class="caret"></b></a>
+						<ul class="dropdown-menu" style="width: 180px;">
+						 	<li><a href="@routes.Editais.index">Visualizar Editais</a></li> 
+						 	<li><a href="@routes.Editais.formulario">Cadastrar Edital</a></li> 
+						</ul>
+					</li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Campus <b class="caret"></b></a>
+						<ul class="dropdown-menu" style="width: 180px;">
+						 	<li><a href="@routes.CampusController.index"> Visualizar Campus</a></li>
+						 	<li><a href="@routes.CampusController.formulario">Cadastrar Campus</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Projetos <b class="caret"></b></a>
+						<ul class="dropdown-menu" style="width: 180px;">
+						 	<li><a href="@routes.Projetos.index">Ver novos Projetos</a></li>
+						 	<li><a href="@routes.Projetos.listaProjetos">Ver todos os Projetos</a></li>
+							 	   <li class="nav-header">Avaliados</li>
+						 	<li><a href="@routes.Projetos.meusProjetosAvaliados">Ver Projetos já avaliados</a></li>
+						 	   		<li class="nav-header">Situação</li>
+						 	<li><a href="@routes.Projetos.visualizarProjetosAprovados">Visualizar Aprovados</a></li>
+						 	<li><a href="@routes.Projetos.visualizarProjetosReprovados">Visualizar Reprovados</a></li>
+						 	   		<li class="nav-header">Opinião</li>
+						 	<li><a href="@routes.Projetos.visualizarOpiniaoAvaliacao">Ver Opinião de Avaliação</a></li>	
+						 	   		<li class="nav-header">Bolsistas</li>
+						 	<li><a href="@routes.Projetos.visualizarBolsistasProjetosSubmetidos">Ver Bolsistas dos Projetos</a></li>
+						         	<li class="nav-header">Ranking</li>
+						  	<li><a href="@routes.Projetos.rankingProjetos">Visualizar Ranking</a></li>						
+						</ul>
+					</li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Grupos de Pesquisa <b class="caret"></b></a>
+						<ul class="dropdown-menu" style="width: 180px;">						 
+						 	<li><a href="@routes.GrupoPesquisaController.index"> Visualizar Grupos</a></li> 
+						 	<li><a href="@routes.GrupoPesquisaController.formulario">Cadastrar Grupo</a></li> 
+						</ul>
+					</li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Área de Conhecimento <b class="caret"></b></a>
+						<ul class="dropdown-menu" style="width: 180px;">
+						 	<li><a href="@routes.AreaConhecimentoController.index">Ver Áreas</a></li> 
+						 	<li><a href="@routes.AreaConhecimentoController.formulario">Cadastrar Área</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Cursos<b class="caret"></b></a>
+						<ul class="dropdown-menu" style="width: 180px;">
+						 	<li><a href="@routes.Cursos.index">Ver Cursos</a></li> 
+						 	<li><a href="@routes.Cursos.formulario">Cadastrar Curso</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#">Usuários <b class="caret"></b></a>
+						<ul class="dropdown-menu" style="width: 180px;">
+						@*	<li class="nav-header">Gestores</li> *@
+						@* 	<li><a href="@routes.Gestores.listaGestores">Visualizar Gestores</a></li>*@
+						@* 	<li><a href="@routes.Gestores.formulario">Cadastrar Gestor</a></li> *@
+							<li class="nav-header">Professores</li>
+						 	<li><a href="@routes.Professores.listaProfessores">Visualizar Professores</a></li>
+						 	<li><a href="@routes.Professores.formulario">Cadastrar Professor</a></li>
+						@*	<li class="nav-header">Avaliadores</li> *@
+						@*	<li><a href="@routes.Avaliadores.listaAvaliadores">Visualizar Avaliadores</a></li> *@
+						@* 	<li><a href="@routes.Avaliadores.formulario">Cadastrar Avaliador</a></li> *@
+						 	<li class="nav-header">Coordenadores</li>
+						 	<li><a href="@routes.Coordenadores.listaCoordenadores">Visualizar Coordenadores</a></li>
+						 	<li><a href="@routes.Coordenadores.formulario">Cadastrar Coordenador</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav pull-right">
+					<li class="dropdown">
+		            	<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		            		<strong>@getUsuarioLogado().nome</strong> <span class="caret"></span>
+		            	</a>
+		             	<ul class="dropdown-menu" style="width:200px;">
+			                <li class="nav-header"><i class="icon-user"></i> Minha Conta</li>
+			              @*  <li><a href="@routes.Sessions.formularioAlteracaoSenha">Alterar minha Senha</a></li> *@
+			                
+			                <li class="divider"></li>
+			                <li><a href="@routes.Sessions.efetuarlogout">Sair do sistema</a></li>
+		              	</ul>
+		          	</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</div>

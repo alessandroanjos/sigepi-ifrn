@@ -1,0 +1,66 @@
+@(editais: List[Edital])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Editais</h1>
+				
+				@if(isLogado()) {
+					@if(getUsuarioLogado().isAdministrador) {
+					<div style="float:right; position:relative; top:8px;">
+						<a href="@routes.Editais.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Novo Edital</a>
+					</div>
+					}
+				}
+			</div>
+			
+			@if(editais.size == 0) {
+				<h3>Nenhum edital cadastrado.</h3>			
+			} else {
+				@for(edital <- editais) {
+				<div class="item-lista">
+					<div class="item-lista">
+						<div class="item">
+							<h2>
+								<a href="@routes.Editais.visualizar(edital.id)">
+									@edital.titulo
+									@if(isLogado()) {
+								        @if(getUsuarioLogado().isAdministrador) {
+									<small>
+										-
+											@if(edital.projetos.size == 0) {
+												Nenhum Projeto Cadastrado.
+											} else {
+												@edital.projetos.size Projetos(s) Cadastrado(s).
+											}
+									</small>
+									    }
+									}
+								</a>
+							</h2>
+							<div style="font-size:12px;">
+								Cadastrado em: <strong>@edital.getDataCadastro</strong> / Autor: <strong>@edital.autor.getNome</strong>
+							</div>						
+						</div>
+						<div style="float:right; padding-top:15px;">
+						@if(isLogado()) {
+								@if(getUsuarioLogado().isAdministrador) {
+							<a href="@routes.Editais.visualizar(edital.id)" class="btn btn-primary"><i class="icon-white icon-list-alt"></i> Visualizar os Projetos do Edital</a>
+									<a href="@routes.Editais.editar(edital.id)" class="btn"><i class="icon-edit"></i> Editar</a>
+									<a href="@routes.Editais.deletar(edital.id)" onclick="return confirm('Deseja realmente excluir o edital &quot;@edital.titulo&quot;?')" class="btn"><i class="icon-remove"></i> Excluir</a>
+								}
+							}
+						</div>
+					</div>
+				</div>
+				}
+			}
+		</div>
+	</div>
+}

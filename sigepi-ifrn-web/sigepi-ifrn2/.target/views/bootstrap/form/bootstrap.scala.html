@@ -1,0 +1,14 @@
+@(elements: helper.FieldElements)
+
+<div class="control-group clearfix@if(elements.hasErrors) { error}">
+    <label class="control-label" for="@elements.id">@elements.label(elements.lang)</label>
+    <div class="controls">
+        @elements.input
+        @elements.infos(elements.lang).map { info =>
+            <span class="help-inline">@info</span>
+        }
+        @elements.errors(elements.lang).map { error =>
+            <span class="help-block">@error</span>
+        }
+    </div>
+</div>

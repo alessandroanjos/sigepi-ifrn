@@ -1,0 +1,30 @@
+@(formulario: Form[AreaConhecimento])
+
+@import tags._
+@import helper._
+@import helper.twitterBootstrap._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+@import helper.{FieldConstructor}
+@implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Cadastro de Área de Conhecimento</h1>
+			</div>
+			
+			@helper.form(action = routes.AreaConhecimentoController.cadastrar(), 'style -> "margin:0;"){
+				@helper.inputText(formulario("nome"), 'id -> "nome", 'class -> "span6", '_label -> "Nome da Área: ", '_showConstraints -> false, '_showErrors -> true)
+				
+				<button type="submit" class="btn btn-primary">Cadastrar Área</button>
+				&nbsp;
+				<a class="btn" href="@routes.AreaConhecimentoController.index" >Cancelar</a>
+			}
+			
+		</div>
+	</div>
+
+}

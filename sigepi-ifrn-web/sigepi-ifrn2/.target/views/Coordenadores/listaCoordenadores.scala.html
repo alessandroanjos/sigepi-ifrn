@@ -1,0 +1,55 @@
+@(coordenadores: List[Usuario])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+
+@main {
+
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Listagem dos Coordenadores</h1>
+				
+				<div style="float:right; position:relative; top:8px;">
+					<a href="@routes.Coordenadores.formulario" class="btn"><i class="icon-plus"></i> Cadastrar Novo Coordenador</a>
+				</div>
+			</div>
+			
+			
+			
+			@if(coordenadores.size == 0) {
+				<h3>Nenhum Coordenador cadastrado.</h3>			
+			} else {
+				<table class="table table-bordered table-condensed table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Nome</th>
+	                  <th>Email</th>
+	                  <th>Login</th>
+	                  <th>Campus</th>
+	                  <th>Ações</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+                	@for(coordenador <- coordenadores) {
+	                <tr>
+                		<td>@coordenador.nome</td>
+                		<td>@coordenador.email</td>
+                		<td>@coordenador.login</td>
+                		<td>@coordenador.campus.getNome</td>
+						<td style="width:15%;">
+							<a href="@routes.Coordenadores.formularioEdicao(coordenador.id)" class="btn btn-small"><i class="icon-edit"></i> Editar</a>
+							<a href="@routes.Coordenadores.deletar(coordenador.id)" onclick="return confirm('Deseja realmente excluir o coordenador &quot;@coordenador.nome&quot;?')" class="btn btn-small"><i class="icon-remove"></i> Excluir</a>
+						</td>
+	                </tr>
+					}
+	              </tbody>
+	            </table>
+			}
+		</div>
+	</div>	
+
+}

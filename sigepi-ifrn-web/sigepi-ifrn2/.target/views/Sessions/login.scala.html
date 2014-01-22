@@ -1,0 +1,49 @@
+@(loginForm: Form[forms.LoginForm])
+
+@import tags._
+@import helper._
+@import helper.twitterBootstrap._
+
+@main  {
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+
+<img style="padding:15.5px 0;" src="@routes.Assets.at("images/sigepi.png")" width="200" height="100" /> 
+ 
+<div class="well" style="width:280px; margin:0 auto;">
+   		@helper.form(action = routes.Sessions.efetuarLogin(), 'style -> "margin:0;") {
+   			<fieldset>
+   				<legend>Entrar no sistema</legend>
+   				
+   				@helper.inputText(loginForm("login"), 'class -> "span3", '_label -> "Login: ")
+   				@helper.inputPassword(loginForm("senha"), 'class -> "span3", '_label -> "Senha: ")
+   				<center>
+   				   <input type="submit" value="      Entrar!      " class="btn btn-primary">
+   			    </center> 
+   			</fieldset>
+   		} 
+  	</div> 
+  	
+  	<br><br> 	
+  	
+  	<center>  	
+  	<div class="well" style="width:450px;">
+       
+        <a href="@routes.Professores.formulario" class="btn">Professor - Faça seu Registro</a>	
+        <a href="@routes.Coordenadores.formulario" class="btn">Coordenador - Faça seu Registro</a>	
+  
+    </div>
+   </center>
+
+</html> 
+}
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".navbar .nav:nth-child(2) > li:nth-child(3)").addClass("active");
+	});
+</script>

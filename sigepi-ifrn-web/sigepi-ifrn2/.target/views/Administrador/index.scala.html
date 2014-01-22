@@ -1,0 +1,49 @@
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+
+<div class="row">
+
+<div class="page-header" style="overflow:hidden;">
+				<h2 style="float:left;">  Acesso Rápido</h2>
+</div>
+	
+<div class="span4">
+		<div class="well sidebar-nav">
+			<ul class="nav nav-list">
+					<li class="nav-header">Editais</li>
+				<li><a href="@routes.Editais.index">Visualizar Editais</a></li>
+				<li><a href="@routes.Editais.formulario">Cadastrar Edital</a></li> 
+					<li class="nav-header">Projetos</li>
+				<li><a href="@routes.Projetos.listaProjetos"> Ver todos os projetos</a></li>
+				<li><a href="@routes.Projetos.index">Selecionar Novos Projetos para Avaliação</a></li>
+				<li><a href="@routes.Projetos.meusProjetosAvaliados">Visualizar Projetos Avaliados Por Mim</a></li>
+				<li><a href="@routes.Projetos.visualizarProjetosAprovados">Visualizar Aprovados</a></li>
+				<li><a href="@routes.Projetos.visualizarProjetosReprovados">Visualizar Reprovados</a></li>
+				<li><a href="@routes.Projetos.visualizarOpiniaoAvaliacao">Ver Opinião de Avaliação</a></li>	
+				<li><a href="@routes.Projetos.visualizarBolsistasProjetosSubmetidos">Ver Bolsistas dos Projetos</a></li>
+				<li><a href="@routes.Projetos.rankingProjetos">Visualizar Ranking</a></li>
+					<li class="nav-header">Grupos de Pesquisa</li>
+				<li><a href="@routes.GrupoPesquisaController.index"> Visualizar Grupos</a></li> 
+				<li><a href="@routes.GrupoPesquisaController.formulario">Cadastrar Grupo</a></li> 
+				<li class="nav-header">Áreas de Conhecimento</li>
+				<li><a href="@routes.AreaConhecimentoController.index">Ver Áreas</a></li> 
+				<li><a href="@routes.AreaConhecimentoController.formulario">Cadastrar Área</a></li>
+					<li class="nav-header">Cursos</li>
+				<li><a href="@routes.Cursos.index">Ver Cursos</a></li> 
+				<li><a href="@routes.Cursos.formulario">Cadastrar Curso</a></li>
+					<li class="nav-header">Professores</li>
+				<li><a href="@routes.Professores.listaProfessores">Visualizar Professores</a></li>
+				<li><a href="@routes.Professores.formulario">Cadastrar Professor</a></li>
+				 	<li class="nav-header">Coordenadores</li>
+				<li><a href="@routes.Coordenadores.listaCoordenadores">Visualizar Coordenadores</a></li>
+				<li><a href="@routes.Coordenadores.formulario">Cadastrar Coordenador</a></li>
+			</ul>
+		</div>
+	</div>
+	
+<div>
+
+}

@@ -1,0 +1,56 @@
+@(formulario: Form[ProjetoAvaliado], projeto: Projeto)
+
+@import tags._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+@import helper.twitterBootstrap._
+@import helper._
+@import helper.{FieldConstructor}
+@implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
+
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Formulário de Avaliação do Projeto: <i>@projeto.titulo</i></h1>
+			</div>
+
+   @helper.form(action = routes.Projetos.avaliacaoProjeto(projeto.id), 'style -> "margin:0;") {
+
+          @helper.inputText(formulario("relevanciaTema"), 'id -> "relevanciaTema", 'rows -> "15", 'class -> "span2", '_label -> "1 - Relevância ao tema: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Valor de 0 a 10", '_error -> formulario("relevanciaTema").error.map(_.withMessage("Valor de 0 a 10")))
+          @helper.inputText(formulario("qualidadeTrabalho"), 'id -> "qualidadeTrabalho", 'rows -> "15", 'class -> "span2", '_label -> "2 - Qualidade técnico-científica do trabalho: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Valor de 0 a 10")
+          @helper.inputText(formulario("originalidade"), 'id -> "originalidade", 'rows -> "15", 'class -> "span2", '_label -> "3 - Originalidade - caráter inédito e inovador do projeto: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Valor de 0 a 10")
+
+          @helper.inputText(formulario("apresentacaoEstrutura"), 'id -> "apresentacaoEstrutura", 'rows -> "15", 'class -> "span2", '_label -> "4 - Apresentacao e Estrutura: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Valor de 0 a 10")
+   		  @helper.inputText(formulario("execucaoProjeto"), 'id -> "execucaoProjeto", 'rows -> "15", 'class -> "span2", '_label -> "5 - Execução do Projeto de Pesquisa: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Valor de 0 a 10")
+
+   		  <hr>
+   		  @helper.inputText(formulario("recomendacao"), 'id -> "recomendacao", 'rows -> "15", 'class -> "span2", '_label -> "6 - Recomendação Final: ", '_showConstraints -> false, '_showErrors -> true,  'placeholder -> "Aceito ou Recusado", '_help -> "Informe a sua recomendação final do projeto.", '_error -> formulario.error("recomendacao"))
+
+          @helper.textarea(formulario("comentarios"), 'id -> "comentarios", 'rows -> "15", 'class -> "span10", '_label -> " 7 - Comentários: ", '_showConstraints -> false, '_showErrors -> true, '_help -> "Descreva pontos fortes e/ou fracos do projeto.")
+
+     <button type="submit" class="btn btn-primary">Enviar</button>
+
+     <a class="btn" href="@routes.Projetos.visualizar(projeto.id)" >Cancelar</a>
+
+   }
+   	</div>
+</div>	
+}
+
+<script type="text/javascript" src="@routes.Assets.at("tinymce/tiny_mce.js")"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	@if(isLogado()) {
+		
+			$(".navbar .nav:nth-child(1) > li:nth-child(5)").addClass("active");
+	}
+	
+	tinyMCE.init({
+		mode : "textareas",
+		elements : "resumo",
+		language: "pt"
+	});
+});
+</script>

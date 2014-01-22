@@ -1,0 +1,55 @@
+@(projetos: List[Projeto])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+	@if(isLogado()) {
+			@if(getUsuarioLogado().isAdministrador || getUsuarioLogado().isCoordenador) {
+					<div class="row">
+						<div class="span12">
+							<div class="page-header" style="overflow:hidden;">
+									<h1 style="float:left;"> Projetos Submetidos do Meu Campus - ( @getUsuarioLogado().campus.getNome )</h1>
+					        </div>
+					             @if(projetos.size == 0) {
+									<h3>Nenhum projeto do seu campus foi submetido.</h3>			
+								 } else {
+									<table class="table table-bordered table-hover">
+							           <thead>
+							              <tr>
+							                 <th>Edital</th>
+							                 <th>Projeto</th>
+							                 <th>Situação</th>
+							              </tr>
+							           </thead>
+							          <tbody>
+							         	 @for(projeto  <- projetos) {
+							                <tr>
+							               		<td style="width:30%;">
+							               		   @projeto.getEdital.getTitulo
+							               		</td>
+							               		<td>
+							               		   @projeto.getTitulo
+							               		</td>
+							               	    <td> 
+								               	   @if(projeto.getSituacao == 1){               	      
+							               	       		  Aprovado               	       
+								               	   }  
+								               	   @if(projeto.getSituacao == 0)	{
+											   	   	     Reprovado
+											   	   }
+								               	   @if(projeto.getSituacao == -1) {
+								               	    	 Em Avaliação
+								               	   }
+							               	    </td>
+							                </tr>
+									 	}
+							     	</tbody>
+							  	</table>
+							}
+					   </div>
+					</div>
+   		 	 }
+   		}
+}

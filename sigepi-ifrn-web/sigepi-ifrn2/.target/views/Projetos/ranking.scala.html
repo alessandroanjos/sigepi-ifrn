@@ -1,0 +1,82 @@
+@(rankingProjetos: TreeMap[Projeto,Integer], editais: List[Edital])
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header" style="overflow:hidden;">
+				<h1 style="float:left;">Ranking dos Projetos</h1>
+			</div>
+
+ 					@for(edital <- editais) {
+
+					<div class="item-lista">
+							<div class="item-lista">
+								<div class="item">
+									<h2>
+										<a href="@routes.Editais.visualizar(edital.id)">
+											 @edital.titulo
+										</a>								       		 
+									</h2>								          					
+								</div>
+								<div style="float:right; padding-top:15px;">
+									<a href="@routes.Projetos.rankingProjetosEdital(edital.id)" class="btn btn-primary"> <i class="icon-white icon-list-alt"></i> Listar</a>
+							   </div>					
+							</div>
+						</div>
+                   }
+			<table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+           
+                  <th>Edital</th> 
+                  <th>Colocação</th>
+                  <th>Nome</th>                 
+                  <th>Pontuação Total</th>
+                  <th>Ações/Situação</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+               	@for((ranking, i) <- rankingProjetos.view.zipWithIndex) {
+               	
+                     
+                <tr>
+                @*       
+                 @if(isCampusIgual(ranking._1.id)){ 
+               	*@
+	               
+	               		<td style="width:15%;">@ranking._1.edital.getTitulo </td> 
+	               		<td style="width:5%;">
+	               			@{var colocacao = i + 1; colocacao}º
+	               		</td>
+	               		<td>@ranking._1.titulo</td>
+	               		
+	               		<td style="width:15%;">@ranking._2 ponto(s)</td>
+	               		<td style="width:15%;"> 
+	               		
+		               		@if(isProjetoAprovado(ranking._1.id)){
+		               			 Aprovado
+		               		  }
+		               		 
+		               		 @if(isProjetoReprovado(ranking._1.id)){		               		
+		               		 	 Reprovado		               		 
+		                	 }
+		               		 
+		               		 @if(isProjetoEmAvaliacao(ranking._1.id)){
+		               		   <a href="@routes.Projetos.aprovarProjeto(ranking._1.id)" onclick="return confirm('Deseja realmente aprovar o projeto: &quot;@ranking._1.titulo&quot;?')" class="btn btn-success"> Aprovar</a> /
+		               		   <a href="@routes.Projetos.reprovarProjeto(ranking._1.id)" onclick="return confirm('Deseja realmente reprovar o projeto: &quot;@ranking._1.titulo&quot;?')" class="btn btn-danger"> Reprovar</a>
+		               		 }
+	               		</td>
+                 </tr>
+				}
+              </tbody>
+            </table>
+		</div>
+	</div>	
+
+}

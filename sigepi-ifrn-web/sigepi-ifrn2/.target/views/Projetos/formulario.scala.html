@@ -1,0 +1,156 @@
+@(formulario: Form[Projeto], editais: List[Edital], cursos: List[Curso] )
+@import tags._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@import helper.twitterBootstrap._
+@import helper._
+@import helper.{FieldConstructor}
+@implicitField = @{ FieldConstructor(bootstrap.form.bootstrap.f) }
+
+@main {
+
+<div class="row">
+		<div class="span12">
+			<div class="page-header">
+				<h1>Submissão de Projeto</h1>
+			</div>
+
+			@helper.form(action = routes.Projetos.submeter(), 'style -> "margin:0;", 'enctype -> "multipart/form-data"){
+
+			<fieldset>
+				@helper.inputText(formulario("titulo"), 'id -> "titulo", 'class -> "span8", '_label -> "Título do Projeto: ", '_showConstraints -> false, '_showErros -> true)
+
+				<div class="clearfix" id="idCampus_field">
+					<label for="idEdital">Edital do Projeto:</label>
+					<div class="input">
+						<select id="idEdital" name="idEdital" class="span5">
+							@for(edital <- editais) {
+							  <option value="@edital.id">@edital.titulo</option>
+							}
+						</select>
+						<span class="help-inline"></span>
+						<span class="help-block"></span>
+					</div>
+				</div>
+				@helper.textarea(formulario("resumo"), 'id -> "resumo", 'rows -> "15", 'class -> "span10", '_label -> "Resumo: ", '_showConstraints -> false, '_showErrors -> true)
+			</fieldset>
+
+			<fieldset>
+		            <legend>Informações do Bolsista</legend>
+		            <div id="profiles">            
+				        <div class="twipsies well ">
+					        @helper.inputText(formulario("primeiroBolsistaNome"), 'id -> "primeiroBolsistaNome", 'class -> "span8", '_label -> "Nome do Bolsista: ", '_showConstraints -> false, '_showErros -> true, 'placeholder -> "ex: Bolsista Fulano de Tal")
+						    @helper.inputText(formulario("primeiroBolsistaMatricula"), 'id -> "primeiroBolsistaMatricula", 'class -> "span4", '_label -> "Matrícula do Bolsista: ", '_showConstraints -> false, '_showErros -> true, 'placeholder -> "ex: 2013.1.404.000")
+						    @helper.inputText(formulario("primeiroBolsistaIRA"), 'id -> "primeiroBolsistaIRA", 'class -> "span1", '_label -> "Índice de Rendimento Acadêmico do Bolsista: ", '_showConstraints -> false, '_showErros -> true, 'placeholder -> "0 a 100")
+
+						    <div class="clearfix" id="idCurso_fiel">
+								<label for="idCurso">Escolha o Curso do Bolsista:</label>
+								<div class="input">
+									<select id="idCurso" name="idCurso" class="span5">
+										@for(curso <- cursos) {
+										  <option value="@curso.id">@curso.nome</option>
+										}
+									</select>
+									<span class="help-inline"></span>
+									<span class="help-block"></span>
+								</div>
+							</div>
+					   	 </div>
+		            </div>
+       		 </fieldset>
+       			 <hr>
+			        <p>
+					    <label>Insira o Arquivo do disco:</label>
+					    <input type="file" name="arquivo" placeholder="Arquivo .PDF">
+				    </p>
+				<hr>            
+		            @checkbox(
+		                formulario("accept"), 
+		                '_label -> None, '_text -> "Você Aceita Todos os Termos e Condições Constados no Edital",
+		                '_showConstraints -> false
+		            )
+		        <br>
+				<button type="submit" class="btn btn-primary">Submeter Projeto</button>
+				&nbsp;
+				<a class="btn" href="@routes.Projetos.meusProjetos" >Cancelar</a>
+			}
+		</div>
+	</div>
+}
+
+<script type="text/javascript" src="@routes.Assets.at("tinymce/tiny_mce.js")"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	@if(isLogado()) {
+		@if(getUsuarioLogado().isProfessor) {
+			$(".navbar .nav:nth-child(1) > li:nth-child(5)").addClass("active");
+		} else {
+			$(".navbar .nav:nth-child(1) > li:nth-child(4)").addClass("active");
+		}
+	}
+	
+	tinyMCE.init({
+		mode : "textareas",
+		elements : "resumo",
+		language: "pt"
+	});
+});
+</script>
+
+
+<script type="text/javascript" charset="utf-8">
+        
+        $('.removeProfile').live('click', function(e) {
+            $(this).parents('.profile').remove()
+            renumber()
+        })
+        
+        $('.removePhone').live('click', function(e) {
+            var phones = $(this).parents('.phones')
+            $(this).parents('.phone').remove()
+            renumber(phones)
+        })
+        
+        $('.addPhone').live('click', function(e) {
+            var phones = $(this).parents('.phones')
+            var template = $('.phone_template', phones)
+            template.before('<div class="clearfix phone">' + template.html() + '</div>')
+            renumber(phones)
+        })
+        
+        $('.addProfile').live('click', function(e) {
+            var template = $('.profile_template')
+            template.before('<div class="twipsies well profile">' + template.html() + '</div>')
+            renumber()
+        })
+        
+        $('#form').submit(function() {
+            $('.phone_template').remove()
+            $('.profile_template').remove()
+        })
+        
+        // -- renumber fields
+        
+        // Rename fields to have a coherent payload like:
+        //
+        // informations[0].label
+        // informations[0].email
+        // informations[0].phones[0]
+        // informations[0].phones[1]
+        // ...
+        //
+        // This is probably not the easiest way to do it. A jQuery plugin would help.
+        
+        var renumber = function(phones) {
+            $('.profile').each(function(i) {
+                $('input', this).each(function() {
+                    $(this).attr('name', $(this).attr('name').replace(/informations\[.+?\]/g, 'informations[' + i + ']'))
+                })
+                $('.phone input', this).each(function(i) {
+                    $(this).attr('name', $(this).attr('name').replace(/phones\[.+\]/g, 'phones[' + i + ']'))
+                })
+            })
+        }
+        
+    </script>
+

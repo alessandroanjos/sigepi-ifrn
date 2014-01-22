@@ -1,0 +1,37 @@
+@(message: String)
+
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+    
+  @*  @play20.welcome(message, style = "Java") *@  
+   
+   <div class="row">
+   
+   <div class="span8">		
+		<div style="text-align:center;">
+		
+			<h2>SIGEPI - Sistema de Gestão de Pesquisa e Inovação</h2> 
+			<br />
+			<div class="well" style="text-align:center; padding-top:10px;" >
+					<img style="padding:15.5px 0;" src="@routes.Assets.at("images/imagem01.jpg")" />
+			</div>
+			<p>Facilitando a tarefa de cadastro de usuários, editais, submissão de projetos e avaliação dos projetos submetidos.</p>
+
+		</div>
+   </div>
+		<div class="span4" style="padding:50px 0 60px 0;">
+			<h1 class="titulo" style="font-size:26px; margin-bottom:20px;">Pesquisa e Inovação do IFRN</h1>
+			<h3 style="font-weight:normal;  margin-bottom:20px;">
+				O SIGEPI é um sistema de informação para o gerenciamento de projetos de pesquisa da Pró-Reitoria de Pesquisa e Inovação do IFRN.				
+			</h3>
+			@if(!isLogado()) {
+				<center>
+				   <a href="@routes.Sessions.login" class="btn-large btn-primary">Entrar no Sistema</a>
+				</center>
+			}
+		</div>
+	</div>
+}

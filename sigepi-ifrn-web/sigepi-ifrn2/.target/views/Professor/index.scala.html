@@ -1,0 +1,36 @@
+@import tags._
+@import helper._
+@import helpers.Seguranca.InformacoesUsuarioHelper._
+
+@main {
+
+<div class="row">
+
+<div class="page-header" style="overflow:hidden;">
+				<h2 style="float:left;">  Acesso Rápido</h2>
+</div>
+	
+<div class="span4">
+		<div class="well sidebar-nav">
+			<ul class="nav nav-list">
+				<li class="nav-header">Ações</li>
+				<li><a href="@routes.Editais.index">Visualizar Editais</a></li>
+					<li class="nav-header">Projetos</li>
+				<li><a href="@routes.Projetos.meusProjetos">Visualizar Meus Projetos</a></li>
+				<li><a href="@routes.Projetos.formulario">Submeter Projeto</a></li>
+					<li class="nav-header">Avaliação</li>
+				 <li><a href="@routes.Projetos.projetosAvaliar"> Ver Projetos para Avaliar</a></li>
+				<li><a href="@routes.Projetos.meusProjetosAvaliados"> Ver Projetos já avaliados</a></li>
+				@if(getUsuarioLogado().isCoordenador) {
+				      <li class="nav-header">Bolsistas Atuais</li>
+				  <li><a href="@routes.Bolsistas.listaBolsistas">Visualizar Bolsistas</a></li>
+			      <li><a href="@routes.Bolsistas.formulario">Cadastrar Bolsista</a></li>
+					  <li class="nav-header">Candidatos à Bolsista</li>
+				  <li><a href="@routes.Projetos.visualizarBolsistasProjetosSubmetidos">Ver Bolsistas do Projetos</a></li>
+				}
+			</ul>
+		</div>
+	</div>	
+<div>
+
+}
